@@ -10,6 +10,9 @@ public class AutoDoor : MonoBehaviour
     [SerializeField]
     private Vector3 m_ClosePos;
 
+    [SerializeField]
+    private float m_Speed = 5f;
+
     private bool m_IsOpen = false;
     public bool isOpen
     {
@@ -19,11 +22,10 @@ public class AutoDoor : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(isOpen);
         if(isOpen && transform.position != m_OpenPos)
-            transform.position = Vector3.MoveTowards(transform.position, m_OpenPos, Time.fixedDeltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, m_OpenPos, Time.fixedDeltaTime * m_Speed);
         else if(!isOpen && transform.position != m_ClosePos)
-            transform.position = Vector3.MoveTowards(transform.position, m_ClosePos, Time.fixedDeltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, m_ClosePos, Time.fixedDeltaTime * m_Speed);
     }
 
     public void OpenDoor()
