@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0f4a7a854b6c174b8dcf0e3c81102d8, type: 3}
-  m_Name: Player1
+  m_Name: Player1_ControlData
   m_EditorClassIdentifier: 
   horizontalAxis: Horizontal_P1
   aimHorizontal: AimHoriz_P1
