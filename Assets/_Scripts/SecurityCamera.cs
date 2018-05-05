@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SecurityCamera : MonoBehaviour
 {
-    private enum Direction { Left = -1, Right = 1 };
+    private enum Direction { Clockwise = -1, AntiClockwise = 1 };
 
     [SerializeField]
     private float[] m_LookRotationsZ;
@@ -12,17 +12,38 @@ public class SecurityCamera : MonoBehaviour
     [SerializeField]
     private Direction m_InitialDirection;
 
-    private const float SPEED = 40f;
-
+    [SerializeField]
+    private float m_SearchSpeed = 40f;
+    
+    [SerializeField]
     private AutoDoor connectedDoor;
 
-    private const float MAX_ALERT_TIME = 10f;
+    [SerializeField]
+    private float m_AlertedTimer = 10f;
+
     private float m_AlertTimeLeft;
     private bool m_OnAlert;
 
+    private Vector3 initRot;
+
+    private void OnDrawGizmos()
+    {
+        Vector3 pos = transform.position;
+
+        //Draw current in blue
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(pos, -transform.up);
+
+        //Draw extents in red
+        Gizmos.color = Color.red;
+        foreach(float rot in m_LookRotationsZ)
+            Gizmos.DrawRay(pos, Quaternion.Euler(0, 0, rot) * initRot * 5f);
+    }
+
     private void Awake()
     {
-        connectedDoor = FindObjectOfType<AutoDoor>();
+        initRot = -transform.up;
+        
         connectedDoor.OpenDoor();
 
         for(int i = 0; i < m_LookRotationsZ.Length; i++)
@@ -30,8 +51,6 @@ public class SecurityCamera : MonoBehaviour
             if(m_LookRotationsZ[i] < 0)
                 m_LookRotationsZ[i] += 360;
         }
-
-        transform.rotation = Quaternion.Euler(0, 0, m_LookRotationsZ[0]);
     }
 
     private void Update()
@@ -45,15 +64,14 @@ public class SecurityCamera : MonoBehaviour
     private IEnumerator LookAround()
     {
         m_OnAlert = true;
-        m_AlertTimeLeft = MAX_ALERT_TIME;
+        m_AlertTimeLeft = m_AlertedTimer;
 
         int i = 0;
         float newRotZ = m_LookRotationsZ[0];
+        float currRotZ = transform.rotation.eulerAngles.z;
         int direction = (int)m_InitialDirection;
         while(m_AlertTimeLeft > 0f)
         {
-            float currRotZ = transform.rotation.eulerAngles.z;
-
             if(Mathf.Abs(currRotZ - newRotZ) < 1f)
             {
                 i = (i + 1) % m_LookRotationsZ.Length;
@@ -61,15 +79,23 @@ public class SecurityCamera : MonoBehaviour
                 newRotZ = m_LookRotationsZ[i];
             }
 
-            currRotZ += Time.fixedDeltaTime * SPEED * direction;
-            if(currRotZ >= 360f)
-                currRotZ = 0;
-            else if(currRotZ < 0f)
-                currRotZ += 360f;
+            Rotate(ref currRotZ, direction);
 
-            transform.rotation = Quaternion.Euler(0, 0, currRotZ);
             m_AlertTimeLeft -= Time.fixedDeltaTime;
 
+            yield return new WaitForFixedUpdate();
+        }
+
+        direction = (int)Mathf.Sign(Vector3.SignedAngle(-transform.up, initRot, transform.forward));
+
+        while(currRotZ != initRot.z)
+        {
+            if(Mathf.Abs(currRotZ - newRotZ) < 1f)
+            {
+                transform.up = initRot;
+                break;
+            }
+            Rotate(ref currRotZ, direction);
             yield return new WaitForFixedUpdate();
         }
 
@@ -77,14 +103,31 @@ public class SecurityCamera : MonoBehaviour
         yield return null;
     }
 
+    private void Rotate(ref float z, int dir)
+    {
+        z += Time.fixedDeltaTime * m_SearchSpeed * dir;
+        if(z >= 360f)
+            z = 0;
+        else if(z < 0f)
+            z += 360f;
+
+        transform.rotation = Quaternion.Euler(0, 0, z);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(!collision.CompareTag("Player"))
+            return;
+
         if(!m_OnAlert)
             StartCoroutine(LookAround());
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        m_AlertTimeLeft = MAX_ALERT_TIME;
+        if(!collision.CompareTag("Player"))
+            return;
+
+        m_AlertTimeLeft = m_AlertedTimer;
     }
 }

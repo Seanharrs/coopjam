@@ -516,6 +516,9 @@ MonoBehaviour:
   - -60
   - 60
   m_InitialDirection: -1
+  m_SearchSpeed: 40
+  connectedDoor: {fileID: 889615980}
+  m_AlertedTimer: 10
 --- !u!1 &1913287961
 GameObject:
   m_ObjectHideFlags: 0
