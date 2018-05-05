@@ -86,15 +86,15 @@ namespace Coop
           Debug.Log("Pressed: Fire " + Input.GetAxis(primaryFire));
           gun.Fire(Input.GetAxis(primaryFire) > 0 ? WhichWeapon.Primary : WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
-        else if (Input.GetButtonDown(primaryFire))
+        else if (Input.GetButton(primaryFire))
         {
           Debug.Log("Pressed: Primary Fire");
-          gun.Fire(WhichWeapon.Primary);
+          gun.Fire(WhichWeapon.Primary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
-        else if (Input.GetButtonDown(secondaryFire))
+        else if (Input.GetButton(secondaryFire))
         {
           Debug.Log("Pressed: Secondary Fire");
-          gun.Fire(WhichWeapon.Secondary);
+          gun.Fire(WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
         else if (Input.GetButtonDown(aimActivate))
         {
