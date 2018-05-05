@@ -20,28 +20,12 @@ namespace Coop
     private bool m_Jump;
     private PlayerInputMode m_InputMode = PlayerInputMode.Game;
 
+    [Header("Controls")]
+    public PlayerControlData controlData;
+
     [Header("Weapon")]
     public Gun gun;
     public GameObject gunSocket;
-
-    [Header("Gameplay Axes")]
-    public string horizontalAxis = "Horizontal_P1";
-    public string aimHorizontal = "AimHoriz_P1";
-    public string aimVertical = "AimVert_P1";
-
-    [Header("Gameplay Buttons")]
-    public string jump = "Jump_P1";
-    public string crouchButton = "Crouch_P1";
-    public string primaryFire = "FirePrimary_P1";
-    public string secondaryFire = "FireSecondary_P1";
-    public string aimActivate = "AimActivate_P1";
-    public string switchPlayerWeapon = "Switch_P1";
-    public string interact = "Interact_P1";
-
-    [Header("Menu Buttons")]
-    public string openMenuPause = "MenuPause_P1";
-    public string submitButton = "Submit_P1";
-    public string cancelButton = "Cancel_P1";
 
     private void Awake()
     {
@@ -54,7 +38,7 @@ namespace Coop
       if (!m_Jump)
       {
         // Read the jump input in Update so button presses aren't missed.
-        m_Jump = Input.GetButtonDown(jump);
+        m_Jump = Input.GetButtonDown(controlData.jump);
       }
 
       //TODO: Package this and move it to an appropriate script/method
@@ -62,7 +46,7 @@ namespace Coop
       if (m_InputMode == PlayerInputMode.Game)
       {
 
-        float verticalAim = Input.GetAxis(aimVertical);
+        float verticalAim = Input.GetAxis(controlData.aimVertical);
         if (Mathf.Abs(verticalAim) > 0) {
           gunSocket.transform.Rotate(0, 0, verticalAim);
           var zRotation = gunSocket.transform.rotation.eulerAngles.z;
@@ -73,42 +57,42 @@ namespace Coop
         }
 
         // manage game controls
-        if (Input.GetButtonDown(jump))
+        if (Input.GetButtonDown(controlData.jump))
         {
           Debug.Log("Pressed: jump");
         }
-        else if (Input.GetButtonDown(crouchButton))
+        else if (Input.GetButtonDown(controlData.crouchButton))
         {
           Debug.Log("Pressed: crouchButton");
         }
-        else if (Input.GetAxis(primaryFire) != 0)
+        else if (Input.GetAxis(controlData.primaryFire) != 0)
         {
-          Debug.Log("Pressed: Fire " + Input.GetAxis(primaryFire));
-          gun.Fire(Input.GetAxis(primaryFire) > 0 ? WhichWeapon.Primary : WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
+          Debug.Log("Pressed: Fire " + Input.GetAxis(controlData.primaryFire));
+          gun.Fire(Input.GetAxis(controlData.primaryFire) > 0 ? WhichWeapon.Primary : WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
-        else if (Input.GetButton(primaryFire))
+        else if (Input.GetButton(controlData.primaryFire))
         {
           Debug.Log("Pressed: Primary Fire");
           gun.Fire(WhichWeapon.Primary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
-        else if (Input.GetButton(secondaryFire))
+        else if (Input.GetButton(controlData.secondaryFire))
         {
           Debug.Log("Pressed: Secondary Fire");
           gun.Fire(WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
-        else if (Input.GetButtonDown(aimActivate))
+        else if (Input.GetButtonDown(controlData.aimActivate))
         {
           Debug.Log("Pressed: aimActivate");
         }
-        else if (Input.GetButtonDown(switchPlayerWeapon))
+        else if (Input.GetButtonDown(controlData.switchPlayerWeapon))
         {
-          Debug.Log("Pressed: switchPlayerWeapon " + Input.GetAxis(switchPlayerWeapon));
+          Debug.Log("Pressed: switchPlayerWeapon " + Input.GetAxis(controlData.switchPlayerWeapon));
         }
-        else if (Input.GetButtonDown(interact))
+        else if (Input.GetButtonDown(controlData.interact))
         {
           Debug.Log("Pressed: interact");
         }
-        else if (Input.GetButtonDown(openMenuPause))
+        else if (Input.GetButtonDown(controlData.openMenuPause))
         {
           Debug.Log("Pressed: Pause");
           Time.timeScale = 0;
@@ -123,19 +107,19 @@ namespace Coop
       else if (m_InputMode == PlayerInputMode.UI)
       {
         // manage UI controls
-        if (Input.GetButtonDown(openMenuPause))
+        if (Input.GetButtonDown(controlData.openMenuPause))
         { // && !canGoBack
           // Close menu
           SetInputMode(PlayerInputMode.Game);
           Time.timeScale = 1;
           Debug.Log("Pressed: Unpause");
         }
-        else if (Input.GetButtonDown(submitButton))
+        else if (Input.GetButtonDown(controlData.submitButton))
         {
           // Activate menu item
           Debug.Log("Pressed: submitButton");
         }
-        else if (Input.GetButtonDown(cancelButton))
+        else if (Input.GetButtonDown(controlData.cancelButton))
         { // && canGoBack
           // Go back
           Debug.Log("Pressed: cancelButton");
@@ -148,8 +132,8 @@ namespace Coop
     private void FixedUpdate()
     {
       // Read the inputs.
-      bool crouch = Input.GetButton(crouchButton);
-      float h = Input.GetAxis(horizontalAxis);
+      bool crouch = Input.GetButton(controlData.crouchButton);
+      float h = Input.GetAxis(controlData.horizontalAxis);
       // Pass all parameters to the character control script.
       m_Character.Move(h, crouch, m_Jump);
       m_Jump = false;
