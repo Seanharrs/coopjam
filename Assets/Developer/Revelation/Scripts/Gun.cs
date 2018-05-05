@@ -36,7 +36,7 @@ using UnityEngine;
         {
           var projectile = Instantiate(weapType == WhichWeapon.Primary ? PrimaryAmmoType : SecondaryAmmoType, AmmoSpawnLocation.position, Quaternion.identity);
           if (projectile) {
-            projectile.Initiate(direction != null ? (Vector2)direction : (Vector2)AmmoSpawnLocation.lossyScale * AmmoSpawnLocation.right);
+            projectile.Initiate(direction ?? (Vector2)AmmoSpawnLocation.lossyScale * AmmoSpawnLocation.right);
             m_LastFired[weapType] = Time.time;
             return true;
           }

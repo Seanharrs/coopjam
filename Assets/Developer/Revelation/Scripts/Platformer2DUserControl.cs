@@ -30,11 +30,21 @@ namespace Coop
     private void Awake()
     {
       m_Character = GetComponent<PlatformerCharacter2D>();
+      Cursor.lockState = CursorLockMode.Locked;
+      Cursor.visible = false;
     }
 
 
     private void Update()
     {
+      //TESTING 
+      //re-enable cursor
+      if(Input.GetKeyDown(KeyCode.BackQuote))
+      {
+        Cursor.lockState ^= CursorLockMode.Locked;
+        Cursor.visible = !Cursor.visible;
+      }
+
       if (!m_Jump)
       {
         // Read the jump input in Update so button presses aren't missed.
