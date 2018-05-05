@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+namespace Coop {
   public enum WhichWeapon
   {
     Primary,
@@ -27,14 +27,19 @@ using UnityEngine;
     [Header("Game Objects")]
     public Transform AmmoSpawnLocation;
 
-    public bool Fire(WhichWeapon weapType, Vector2? direction = null)
+    public virtual bool FireAtTarget(WhichWeapon weapType, Vector2 target) 
+    {
+      return Fire(weapType, (target - (Vector2)AmmoSpawnLocation.position).normalized);
+    }
+
+    public virtual bool Fire(WhichWeapon weapType, Vector2? direction = null)
     {
       if (Time.time > m_LastFired[weapType] + (1/FiringRate))
       {
-        // TODO: Spawn projectile.
-        if (AmmoSpawnLocation && PrimaryAmmoType)
+        var AmmoToUse = weapType == WhichWeapon.Primary ? PrimaryAmmoType : SecondaryAmmoType;
+        if (AmmoSpawnLocation && AmmoToUse)
         {
-          var projectile = Instantiate(weapType == WhichWeapon.Primary ? PrimaryAmmoType : SecondaryAmmoType, AmmoSpawnLocation.position, Quaternion.identity);
+          var projectile = Instantiate(AmmoToUse, AmmoSpawnLocation.position, Quaternion.identity);
           if (projectile) {
             projectile.Initiate(direction ?? (Vector2)AmmoSpawnLocation.lossyScale * AmmoSpawnLocation.right);
             m_LastFired[weapType] = Time.time;
@@ -45,3 +50,4 @@ using UnityEngine;
       return false;
     }
   }
+}

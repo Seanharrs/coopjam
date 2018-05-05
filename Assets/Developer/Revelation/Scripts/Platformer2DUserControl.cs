@@ -22,6 +22,7 @@ namespace Coop
 
     [Header("Controls")]
     public PlayerControlData controlData;
+    private bool isAiming = false;
 
     [Header("Weapon")]
     public Gun gun;
@@ -56,13 +57,25 @@ namespace Coop
       if (m_InputMode == PlayerInputMode.Game)
       {
 
-        float verticalAim = Input.GetAxis(controlData.aimVertical);
-        if (Mathf.Abs(verticalAim) > 0) {
-          gunSocket.transform.Rotate(0, 0, verticalAim);
-          var zRotation = gunSocket.transform.rotation.eulerAngles.z;
-          if(zRotation > 90 && zRotation < 270) {
-            if(zRotation < 180) zRotation = 90; else zRotation = 270;
-            gunSocket.transform.rotation = Quaternion.Euler(0, 0, zRotation);
+        
+        if(isAiming) {
+          // Bi-directional ('Crosshair') aiming.
+          var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+          var direction = (mousePos - gunSocket.transform.position).normalized;
+          var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+          gunSocket.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Sign(transform.lossyScale.x));
+          
+
+        } else {
+          // Up/Down only
+          float verticalAim = Input.GetAxis(controlData.aimVertical);
+          if (Mathf.Abs(verticalAim) > 0) {
+            gunSocket.transform.Rotate(0, 0, verticalAim);
+            var zRotation = gunSocket.transform.rotation.eulerAngles.z;
+            if(zRotation > 90 && zRotation < 270) {
+              if(zRotation < 180) zRotation = 90; else zRotation = 270;
+              gunSocket.transform.rotation = Quaternion.Euler(0, 0, zRotation);
+            }
           }
         }
 
@@ -83,16 +96,33 @@ namespace Coop
         else if (Input.GetButton(controlData.primaryFire))
         {
           Debug.Log("Pressed: Primary Fire");
-          gun.Fire(WhichWeapon.Primary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
+          if(isAiming)
+            gun.FireAtTarget(WhichWeapon.Primary, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+          else
+            gun.Fire(WhichWeapon.Primary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
         else if (Input.GetButton(controlData.secondaryFire))
         {
           Debug.Log("Pressed: Secondary Fire");
-          gun.Fire(WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
+          
+          if(isAiming)
+            gun.FireAtTarget(WhichWeapon.Secondary, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+          else
+            gun.Fire(WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
         else if (Input.GetButtonDown(controlData.aimActivate))
         {
           Debug.Log("Pressed: aimActivate");
+          if(isAiming) {
+            // TODO: Use reticle/crosshairs for cursor
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            isAiming = false;
+          } else {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            isAiming = true;
+          }
         }
         else if (Input.GetButtonDown(controlData.switchPlayerWeapon))
         {
@@ -156,6 +186,15 @@ namespace Coop
     public PlayerInputMode GetInputMode()
     {
       return m_InputMode;
+    }
+
+    void OnDrawGizmos() {
+      if(!isAiming) return;
+
+      Gizmos.color = Color.yellow;
+      
+      Gizmos.DrawLine(gunSocket.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
     }
 
   }
