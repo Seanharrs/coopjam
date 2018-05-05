@@ -56,16 +56,13 @@ namespace Coop
       #region Manage Game Input
       if (m_InputMode == PlayerInputMode.Game)
       {
-
-        
         if(isAiming) {
           // Bi-directional ('Crosshair') aiming.
           var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
           var direction = (mousePos - gunSocket.transform.position).normalized;
           var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-          gunSocket.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Sign(transform.lossyScale.x));
-          
-
+          // TODO: simply rotating an additional 180 degrees if the player is facing backward works and makes sense but feels like a hack. What's the better way to do this?
+          gunSocket.transform.rotation = Quaternion.Euler(0, 0, angle + (Mathf.Sign(transform.lossyScale.x) < 0 ? 180 : 0));
         } else {
           // Up/Down only
           float verticalAim = Input.GetAxis(controlData.aimVertical);
