@@ -43,8 +43,8 @@ public class SecurityCamera : MonoBehaviour
 
     private void Awake()
     {
-        initRot = -transform.up;
-        
+        initRot = transform.rotation.eulerAngles;
+
         connectedObj.Deactivate();
 
         for(int i = 0; i < m_LookRotationsZ.Length; i++)
@@ -87,13 +87,19 @@ public class SecurityCamera : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        direction = (int)Mathf.Sign(Vector3.SignedAngle(-transform.up, initRot, transform.forward));
+        float rotDiff = initRot.z - transform.rotation.eulerAngles.z;
+        if(rotDiff > 180f)
+            rotDiff -= 360f;
+        else if(rotDiff < -180f)
+            rotDiff += 360f;
+        
+        direction = (int)Mathf.Sign(rotDiff);
 
         while(currRotZ != initRot.z)
         {
-            if(Mathf.Abs(currRotZ - newRotZ) < 1f)
+            if(Mathf.Abs(currRotZ - initRot.z) < 1f)
             {
-                transform.up = initRot;
+                transform.rotation = Quaternion.Euler(initRot);
                 break;
             }
             Rotate(ref currRotZ, direction);
@@ -108,7 +114,7 @@ public class SecurityCamera : MonoBehaviour
     {
         z += Time.fixedDeltaTime * m_SearchSpeed * dir;
         if(z >= 360f)
-            z = 0;
+            z -= 360f;
         else if(z < 0f)
             z += 360f;
 
