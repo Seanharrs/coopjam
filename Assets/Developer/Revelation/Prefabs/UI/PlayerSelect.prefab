@@ -415,9 +415,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bb06fcc4c8691a64a824899e12cfabe2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19c166b1b2c212e4eb4f3700e006bfd5, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -494,6 +494,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84f61655c9c0cc41a91bc4976588d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIndex: -1
+  playerData:
+    playerIndex: 0
+    playerActive: 0
+    playerCharacter: {fileID: 0}
+    controlData: {fileID: 0}
+    playerGun: {fileID: 0}
+  isReady: 0
   leftButton: {fileID: 114478316162848922}
   rightButton: {fileID: 114677318443428518}
   portraitImage: {fileID: 114103727198286720}
@@ -721,7 +729,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114469498537396862}
   m_OnClick:
     m_PersistentCalls:
@@ -789,7 +797,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114819713987640252}
   m_OnClick:
     m_PersistentCalls:
@@ -917,7 +925,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114476698057536970}
   m_OnClick:
     m_PersistentCalls:
@@ -1018,7 +1026,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114675623491065594}
   m_Template: {fileID: 224144886601260142}
   m_CaptionText: {fileID: 114257669730452942}
@@ -1152,7 +1160,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ready
+  m_Text: Play
 --- !u!114 &114888848552332350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1416,8 +1424,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 65, y: 30}
-  m_SizeDelta: {x: 30, y: 100}
+  m_AnchoredPosition: {x: 65, y: 45}
+  m_SizeDelta: {x: 30, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224234543282157924
 RectTransform:
@@ -1434,8 +1442,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 30}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 45}
+  m_SizeDelta: {x: 100, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224393775484568700
 RectTransform:
@@ -1548,8 +1556,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -65, y: 30}
-  m_SizeDelta: {x: 30, y: 100}
+  m_AnchoredPosition: {x: -65, y: 45}
+  m_SizeDelta: {x: 30, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224699248082182112
 RectTransform:
