@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CircuitObject))]
 public class AutoDoor : MonoBehaviour
 {
     [SerializeField]
@@ -12,29 +13,33 @@ public class AutoDoor : MonoBehaviour
 
     [SerializeField]
     private float m_Speed = 5f;
-
-    private bool m_IsOpen = false;
-    public bool isOpen
+    
+    private CircuitObject m_Circuit;
+    
+    private void Awake()
     {
-        get { return m_IsOpen; }
-        private set { m_IsOpen = value; }
+        m_Circuit = GetComponent<CircuitObject>();
+        m_Circuit.OnActivate(OpenDoor);
+        m_Circuit.OnDeactivate(CloseDoor);
     }
 
-    private void FixedUpdate()
+    private IEnumerator MoveDoor(Vector3 newPos)
     {
-        if(isOpen && transform.position != m_OpenPos)
-            transform.position = Vector3.MoveTowards(transform.position, m_OpenPos, Time.fixedDeltaTime * m_Speed);
-        else if(!isOpen && transform.position != m_ClosePos)
-            transform.position = Vector3.MoveTowards(transform.position, m_ClosePos, Time.fixedDeltaTime * m_Speed);
+        while(transform.position != newPos)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, newPos, Time.fixedDeltaTime * m_Speed);
+            yield return new WaitForFixedUpdate();
+        }
+        yield return null;
     }
 
-    public void OpenDoor()
+    private void OpenDoor()
     {
-        isOpen = true;
+        StartCoroutine(MoveDoor(m_OpenPos));
     }
 
-    public void CloseDoor()
+    private void CloseDoor()
     {
-        isOpen = false;
+        StartCoroutine(MoveDoor(m_ClosePos));
     }
 }

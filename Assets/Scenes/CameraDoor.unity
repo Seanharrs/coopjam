@@ -347,6 +347,17 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &889615982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 889615979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3555149581572d4f9edb1cf57693c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1086990158 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
@@ -408,6 +419,7 @@ GameObject:
   - component: {fileID: 1807898451}
   - component: {fileID: 1807898453}
   - component: {fileID: 1807898454}
+  - component: {fileID: 1807898455}
   m_Layer: 0
   m_Name: Security Cam
   m_TagString: Untagged
@@ -517,8 +529,19 @@ MonoBehaviour:
   - 60
   m_InitialDirection: -1
   m_SearchSpeed: 40
-  connectedDoor: {fileID: 889615980}
+  connectedObj: {fileID: 889615982}
   m_AlertedTimer: 10
+--- !u!114 &1807898455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1807898450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3555149581572d4f9edb1cf57693c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1913287961
 GameObject:
   m_ObjectHideFlags: 0

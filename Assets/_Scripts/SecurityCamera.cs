@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CircuitObject))]
 public class SecurityCamera : MonoBehaviour
 {
     private enum Direction { Clockwise = -1, AntiClockwise = 1 };
@@ -16,7 +17,7 @@ public class SecurityCamera : MonoBehaviour
     private float m_SearchSpeed = 40f;
     
     [SerializeField]
-    private AutoDoor connectedDoor;
+    private CircuitObject connectedObj;
 
     [SerializeField]
     private float m_AlertedTimer = 10f;
@@ -44,7 +45,7 @@ public class SecurityCamera : MonoBehaviour
     {
         initRot = -transform.up;
         
-        connectedDoor.OpenDoor();
+        connectedObj.Deactivate();
 
         for(int i = 0; i < m_LookRotationsZ.Length; i++)
         {
@@ -55,10 +56,10 @@ public class SecurityCamera : MonoBehaviour
 
     private void Update()
     {
-        if(m_OnAlert && connectedDoor.isOpen)
-            connectedDoor.CloseDoor();
-        else if(!m_OnAlert && !connectedDoor.isOpen)
-            connectedDoor.OpenDoor();
+        if(m_OnAlert && connectedObj.active)
+            connectedObj.Deactivate();
+        else if(!m_OnAlert && !connectedObj.active)
+            connectedObj.Activate();
     }
 
     private IEnumerator LookAround()
