@@ -175,11 +175,31 @@ namespace Coop
       m_Character.Move(h, crouch, m_Jump);
       m_Jump = false;
     }
+    
+    //Clamp player position to within camera view
+    private void LateUpdate()
+    {
+      Vector3 pos = transform.position;
+      Vector3 camPos = Camera.main.transform.position;
+      float vertLim = Camera.main.orthographicSize;
+      float horizLim = vertLim * Screen.width / Screen.height;
+
+      pos.x = Mathf.Clamp(pos.x, camPos.x - horizLim, camPos.x + horizLim);
+      pos.y = Mathf.Clamp(pos.y, camPos.y - vertLim, camPos.y + vertLim);
+      
+      //TODO take into account bounds of player sprite
+
+      //TODO kill player if they fall off the bottom of the camera?
+      //     how do we then handle reverse gravity sending player off the top?
+
+      transform.position = pos;
+    }
 
     public void SetInputMode(PlayerInputMode mode)
     {
       m_InputMode = mode;
     }
+
     public PlayerInputMode GetInputMode()
     {
       return m_InputMode;
