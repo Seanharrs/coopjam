@@ -11,13 +11,13 @@ namespace Coop
   public class PlayerSelectMenu : MonoBehaviour
   {
 
-    public UnityEvent allSelected = new UnityEvent();
+    public UnityEvent allPlayersReady = new UnityEvent();
 
     [SerializeField]
     private List<GameObject> playerSelectAnchors;
     private List<PlayerSelectControl> playerSelectControls = new List<PlayerSelectControl>();
-    [SerializeField]
-    private List<Sprite> playerPortraits;
+    
+    public List<Gun> guns;
     public Sprite placeholderPortrait;
     private List<Sprite> availablePortraits;
 
@@ -66,7 +66,7 @@ namespace Coop
     void OnEnable()
     {
 
-      availablePortraits = playerPortraits.Select(item => item).ToList();
+      availablePortraits = guns.Select(gun => gun.portraitSprite).ToList();
 
       foreach (var anchor in playerSelectAnchors)
       {
@@ -217,7 +217,7 @@ namespace Coop
 
     internal void AllReady() 
     {
-      allSelected.Invoke();
+      allPlayersReady.Invoke();
     }
 
   }

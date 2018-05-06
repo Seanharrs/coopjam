@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4593984622695586}
   - component: {fileID: 114353257182372814}
   m_Layer: 0
-  m_Name: GravityGun
+  m_Name: Gun_Teleportation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 4373479350113452}
   - component: {fileID: 212125488476311972}
   m_Layer: 0
-  m_Name: Gravity_gun
+  m_Name: gun_render
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1822477295798240}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.28, y: -0.05, z: 0}
+  m_LocalPosition: {x: 0.37, y: 0.22, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 4892645719443972}
@@ -79,7 +79,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816830008398728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2222836, y: 5.0570407, z: 0}
+  m_LocalPosition: {x: -1, y: 6.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4373479350113452}
@@ -111,7 +111,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FiringRate: 2
-  AmmoType: {fileID: 1639300293829538, guid: 997a4d16cf31cda40a2a0396e1626ca8, type: 2}
+  PrimaryAmmoType: {fileID: 114504196913111740, guid: 997a4d16cf31cda40a2a0396e1626ca8,
+    type: 2}
+  SecondaryAmmoType: {fileID: 114504196913111740, guid: 997a4d16cf31cda40a2a0396e1626ca8,
+    type: 2}
+  portraitSprite: {fileID: 21300000, guid: 75d0d978b32513c498831ce9c9d06343, type: 3}
   AmmoSpawnLocation: {fileID: 4892645719443972}
 --- !u!212 &212125488476311972
 SpriteRenderer:
@@ -148,7 +152,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 614735a8cc83cde4b887660d7c791190, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 75d0d978b32513c498831ce9c9d06343, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

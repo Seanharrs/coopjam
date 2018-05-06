@@ -20,9 +20,10 @@ namespace Coop {
     [Tooltip("Number of times you can fire this weapon in one second.")]
     public float FiringRate = 5;
 
-    [Header("Prefabs")]
+    [Header("Prefabs/Asset References")]
     public Projectile PrimaryAmmoType;
     public Projectile SecondaryAmmoType;
+    public Sprite portraitSprite;
 
     [Header("Game Objects")]
     public Transform AmmoSpawnLocation;
