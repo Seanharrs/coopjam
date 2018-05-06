@@ -31,7 +31,7 @@ GameObject:
   - component: {fileID: 6100000}
   - component: {fileID: 114113879649549188}
   m_Layer: 0
-  m_Name: CharacterRobotBoy
+  m_Name: Coop_CharacterRig
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

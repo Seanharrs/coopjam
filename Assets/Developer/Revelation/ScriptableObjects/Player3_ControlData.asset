@@ -11,16 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f4a7a854b6c174b8dcf0e3c81102d8, type: 3}
   m_Name: Player3_ControlData
   m_EditorClassIdentifier: 
-  horizontalAxis: Horizontal_P1
-  aimHorizontal: AimHoriz_P1
-  aimVertical: AimVert_P1
-  jump: Jump_P1
-  crouchButton: Crouch_P1
-  primaryFire: FirePrimary_P1
-  secondaryFire: FireSecondary_P1
-  aimActivate: AimActivate_P1
-  switchPlayerWeapon: Switch_P1
-  interact: Interact_P1
-  openMenuPause: MenuPause_P1
-  submitButton: Submit_P1
-  cancelButton: Cancel_P1
+  horizontalAxis: Horizontal_P3
+  aimHorizontal: AimHoriz_P3
+  aimVertical: AimVert_P3
+  jump: Jump_P3
+  crouchButton: Crouch_P3
+  primaryFire: FirePrimary_P3
+  secondaryFire: FireSecondary_P3
+  aimActivate: AimActivate_P3
+  switchPlayerWeapon: Switch_P3
+  interact: Interact_P3
+  openMenuPause: MenuPause_P3
+  submitButton: Submit_P3
+  cancelButton: Cancel_P3
