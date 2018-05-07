@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof (Rigidbody2D), typeof (Collider2D))]
 public class Projectile : MonoBehaviour {
 
+  public enum ProjectileType { Primary, Secondary };
+
   [Header("Projectile")]
   public float projectileSpeed = 10;
 

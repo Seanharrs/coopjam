@@ -5,10 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Projectile))]
 public class GravityProjectile : MonoBehaviour
 {
-    private enum ProjectileType { Primary, Secondary };
-
     [SerializeField]
-    private ProjectileType m_Type;
+    private Projectile.ProjectileType m_Type;
 
     [SerializeField]
     private float m_EffectLength;
@@ -22,7 +20,7 @@ public class GravityProjectile : MonoBehaviour
             return;
         }
 
-        if(m_Type == ProjectileType.Primary)
+        if(m_Type == Projectile.ProjectileType.Primary)
             StartCoroutine(ReverseGravity(rb2d));
         else
             StartCoroutine(ReduceGravity(rb2d));
