@@ -57,6 +57,21 @@ namespace Coop
       }
       instance = this;
       DontDestroyOnLoad(this);
+
+      SceneManager.sceneLoaded += SceneLoaded;
+    }
+
+    private void SceneLoaded(Scene scene, LoadSceneMode sceneMode)
+    {
+      var spawnPoints = FindObjectsOfType<SpawnPoint>(); //GameObject.FindGameObjectsWithTag("PlayerSpawn");
+      if(spawnPoints.Count() == 0) return;
+      for (var i = 0; i < playerData.Count; i++)
+      {
+        Platformer2DUserControl characterRig = Instantiate(characterRigPrefab, spawnPoints[i].transform.position, Quaternion.identity);
+        characterRig.controlData = playerData[i].controlData;
+        // TODO: Make this a "SetGun()" method on the characterRig script, let that script handle instantiation.
+        characterRig.gun = Instantiate(playerData[i].playerGun, characterRig.gunSocket.transform.position, Quaternion.identity, characterRig.gunSocket.transform);
+      }
     }
 
     public void OpenLevel(string levelName)
