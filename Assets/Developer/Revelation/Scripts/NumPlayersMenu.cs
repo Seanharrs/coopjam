@@ -8,8 +8,6 @@ namespace Coop
   public class NumPlayersMenu : MonoBehaviour
   {
 
-    private CoopGameManager gameManager;
-
     public Dropdown playerCountDropdown;
     public PlayerSelectMenu playerSelectMenu;
 
@@ -17,10 +15,8 @@ namespace Coop
     void Start()
     {
 
-      gameManager = FindObjectOfType<CoopGameManager>();
-
       var maxPlayers = Input.GetJoystickNames().Length;
-      if(gameManager.allowKeyboard) maxPlayers++;
+      if(CoopGameManager.instance.allowKeyboard) maxPlayers++;
 
       if (maxPlayers < 2)
       {
@@ -41,6 +37,9 @@ namespace Coop
 
     public void ContinueButton_Clicked()
     {
+
+      var gameManager = CoopGameManager.instance;
+
       var maxPlayers = 1 + Input.GetJoystickNames().Length;
       if (maxPlayers >= 2)
       {

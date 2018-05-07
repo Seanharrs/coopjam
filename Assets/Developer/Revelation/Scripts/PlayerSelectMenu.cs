@@ -31,7 +31,6 @@ namespace Coop
       }
     }
 
-    private CoopGameManager gameManager;
     public Dictionary<PlayerControlData, PlayerSelectControl> playerControlsMap = new Dictionary<PlayerControlData, PlayerSelectControl>();
 
     internal Sprite GetAvailableSprite(Sprite currentSprite, bool usePreviousInsteadOfNext)
@@ -58,11 +57,6 @@ namespace Coop
       }
     }
 
-    void Start()
-    {
-      gameManager = FindObjectOfType<CoopGameManager>();
-    }
-
     void OnEnable()
     {
 
@@ -81,7 +75,7 @@ namespace Coop
 
     void Update()
     {
-      foreach (var controller in gameManager.playerControlData)
+      foreach (var controller in CoopGameManager.instance.playerControlData)
       {
         if (!playerControlsMap.ContainsKey(controller))
         {

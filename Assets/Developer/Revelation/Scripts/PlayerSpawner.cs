@@ -6,11 +6,9 @@ namespace Coop
 {
   public class PlayerSpawner : MonoBehaviour
   {
-    private CoopGameManager gameManager;
-
     void Start()
     {
-      gameManager = FindObjectOfType<CoopGameManager>();
+      CoopGameManager gameManager = CoopGameManager.instance;
 
       var spawnPoints = GameObject.FindGameObjectsWithTag("PlayerSpawn");
       for (var i = 0; i < gameManager.playerData.Count; i++)

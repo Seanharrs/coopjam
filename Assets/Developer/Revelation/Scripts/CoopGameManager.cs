@@ -31,6 +31,8 @@ namespace Coop
   public class CoopGameManager : MonoBehaviour
   {
 
+    public static CoopGameManager instance;
+
     [Header("Options")]
     public bool allowKeyboard = false;
 
@@ -49,19 +51,17 @@ namespace Coop
 
     void Awake()
     {
+      if(CoopGameManager.instance) {
+        Destroy(this.gameObject);
+        return;
+      }
+      instance = this;
       DontDestroyOnLoad(this);
     }
 
     public void OpenLevel(string levelName)
     {
       SceneManager.LoadScene(levelName);
-      // var spawnPoints = GameObject.FindGameObjectsWithTag("PlayerSpawn");
-      // for(var i = 0; i < playerData.Count; i++)
-      // {
-      //   Platformer2DUserControl characterRig = Instantiate(characterRigPrefab, spawnPoints[i].transform.position, Quaternion.identity);
-      //   characterRig.controlData = playerData[i].controlData;
-      //   characterRig.gun = Instantiate(playerData[i].playerGun, characterRig.gunSocket.transform.position, Quaternion.identity);
-      // }
     }
   }
 }
