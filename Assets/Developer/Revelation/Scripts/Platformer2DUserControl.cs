@@ -27,12 +27,22 @@ namespace Coop
     [Header("Weapon")]
     public Gun gun;
     public GameObject gunSocket;
+    
+    private float m_VertLim;
+    private float m_HorizLim;
+    private float m_BoundX;
+    private float m_BoundY;
 
     private void Awake()
     {
       m_Character = GetComponent<PlatformerCharacter2D>();
       Cursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
+
+      m_VertLim = Camera.main.orthographicSize;
+      m_HorizLim = m_VertLim * Screen.width / Screen.height;
+      m_BoundX = GetComponent<SpriteRenderer>().sprite.bounds.extents.x;
+      m_BoundY = GetComponent<SpriteRenderer>().sprite.bounds.extents.y;
     }
 
 
@@ -175,11 +185,26 @@ namespace Coop
       m_Character.Move(h, crouch, m_Jump);
       m_Jump = false;
     }
+    
+    //Clamp player position to within camera view
+    private void LateUpdate()
+    {
+      Vector3 pos = transform.position;
+      Vector3 camPos = Camera.main.transform.position;
+      pos.x = Mathf.Clamp(pos.x, camPos.x - m_HorizLim + m_BoundX, camPos.x + m_HorizLim - m_BoundX);
+      pos.y = Mathf.Clamp(pos.y, camPos.y - m_VertLim + m_BoundY, camPos.y + m_VertLim - m_BoundY);
+
+      //TODO kill player if they fall off the bottom of the camera?
+      //     how do we then handle reverse gravity sending player off the top?
+
+      transform.position = pos;
+    }
 
     public void SetInputMode(PlayerInputMode mode)
     {
       m_InputMode = mode;
     }
+
     public PlayerInputMode GetInputMode()
     {
       return m_InputMode;
