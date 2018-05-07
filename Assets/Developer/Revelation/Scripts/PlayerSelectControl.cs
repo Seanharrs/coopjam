@@ -14,6 +14,11 @@ namespace Coop
 
     public bool isReady = false;
 
+    public string Label {
+      get { return transform.Find("LabelText").GetComponent<Text>().text; }
+      set { transform.Find("LabelText").GetComponent<Text>().text = value; }
+    }
+
     public Button leftButton;
     public Button rightButton;
     public Image portraitImage;
@@ -38,7 +43,6 @@ namespace Coop
       leftButton.GetComponent<Button>().interactable = newEnabled;
       rightButton.GetComponent<Button>().interactable = newEnabled;
       // portraitImage.enabled = newEnabled;
-      controllerDropdown.GetComponent<Dropdown>().interactable = newEnabled;
       if(overrideReadyButton != null) 
         readyButton.GetComponent<Button>().interactable = (bool)overrideReadyButton;
       else

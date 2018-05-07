@@ -121,6 +121,18 @@ namespace Coop
       return playerControlsMap[controller];
     }
 
+    internal List<PlayerData> GeneratePlayerData()
+    {
+      //Debug.Log(guns.First(g => g.portraitSprite == playerControlsMap.First(x => true).Value.portraitImage.sprite));
+      return playerControlsMap
+        .Select(
+          x => new PlayerData { 
+            playerActive = true,
+            controlData = x.Key,
+            playerGun = guns.First(g => g.portraitSprite == x.Value.portraitImage.sprite)
+          }).ToList();
+    }
+
     // Attempts to attach the controller that pressed 'submit' or 'pause' to a player selection control
     internal bool TryActivateController(PlayerControlData controller)
     {
@@ -132,6 +144,7 @@ namespace Coop
           playerControlsMap.Add(controller, control);
           control.SetInteractable(true);
           control.SwapPortrait();
+          control.Label = controller.controllerName;
           // Debug.Log("Activated controller: " + controller.name);
           return true;
         }

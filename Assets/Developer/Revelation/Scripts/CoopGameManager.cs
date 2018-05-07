@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityStandardAssets._2D;
 
 namespace Coop
@@ -32,7 +34,9 @@ namespace Coop
     [Header("Options")]
     public bool allowKeyboard = false;
 
+    [Header("Asset References:")]
     public List<PlayerControlData> playerControlData;
+    public Platformer2DUserControl characterRigPrefab;
 
     [Header("Development/Debugging")]
     [SerializeField] //TODO: Hide after we're sure this is all good.
@@ -46,6 +50,18 @@ namespace Coop
     void Awake()
     {
       DontDestroyOnLoad(this);
+    }
+
+    public void OpenLevel(string levelName)
+    {
+      SceneManager.LoadScene(levelName);
+      // var spawnPoints = GameObject.FindGameObjectsWithTag("PlayerSpawn");
+      // for(var i = 0; i < playerData.Count; i++)
+      // {
+      //   Platformer2DUserControl characterRig = Instantiate(characterRigPrefab, spawnPoints[i].transform.position, Quaternion.identity);
+      //   characterRig.controlData = playerData[i].controlData;
+      //   characterRig.gun = Instantiate(playerData[i].playerGun, characterRig.gunSocket.transform.position, Quaternion.identity);
+      // }
     }
   }
 }

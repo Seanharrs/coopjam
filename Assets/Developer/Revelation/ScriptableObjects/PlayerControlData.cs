@@ -7,6 +7,8 @@ namespace Coop
   public class PlayerControlData : ScriptableObject
   {
 
+    public string controllerName = "";
+
     [Header("Gameplay Axes")]
     public string horizontalAxis = "Horizontal_P1";
     public string aimHorizontal = "AimHoriz_P1";
