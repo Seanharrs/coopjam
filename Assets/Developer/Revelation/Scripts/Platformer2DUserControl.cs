@@ -25,6 +25,7 @@ namespace Coop
     [Header("Weapon")]
     public Gun gun;
     public GameObject gunSocket;
+    public SpriteRenderer crosshair;
 
     private void Awake()
     {
@@ -56,7 +57,10 @@ namespace Coop
       {
         if(isAiming) {
           // Bi-directional ('Crosshair') aiming.
-          var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+          // var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+          var mousePos = crosshair.transform.position;
+          mousePos += new Vector3(Input.GetAxis(controlData.aimHorizontal), Input.GetAxis(controlData.aimVertical), 0);
+          crosshair.transform.position = mousePos;
           var direction = (mousePos - gunSocket.transform.position).normalized;
           var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
           // Simply rotating an additional 180 degrees if the player is facing backward works and makes sense but feels like a hack. What's the better way to do this?
@@ -98,11 +102,15 @@ namespace Coop
           if(isAiming) {
             // TODO: Use reticle/crosshairs for cursor
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            //Cursor.visible = false;
+            crosshair.gameObject.SetActive(false);
             isAiming = false;
           } else {
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            //Cursor.visible = true;
+            crosshair.gameObject.SetActive(true);
+            crosshair.transform.position = gun.AmmoSpawnLocation.position;
+            Debug.Log("Crosshair should show now.");
             isAiming = true;
           }
         }
@@ -183,7 +191,7 @@ namespace Coop
 
       Gizmos.color = Color.yellow;
       
-      Gizmos.DrawLine(gunSocket.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+      Gizmos.DrawLine(gunSocket.transform.position, crosshair.transform.position);
 
     }
 
