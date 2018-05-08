@@ -11,20 +11,18 @@ namespace Coop
   [Serializable]
   public class PlayerData
   {
-    [Tooltip("Up to 4 players.")]
-    public int playerIndex;
-    [Tooltip("Whether this player is active")]
-    public bool playerActive = false;
-    
     [Space]
-    [Tooltip("Reference to currently used GameObject instance.")] // TODO: Hide in inspector after testing
+    [HideInInspector,
+     Tooltip("Reference to currently used GameObject instance.")]
     public PlatformerCharacter2D playerCharacter;
     
     [Space]
-    [Tooltip("Controller scriptable objects")] // TODO: Hide in inspector after testing
+    [HideInInspector,
+     Tooltip("Controller scriptable objects")]
     public PlayerControlData controlData;
-    [Tooltip("Will hold a reference to the current Gun's prefab.")] // TODO: Hide in inspector after testing
-    public Gun playerGun; // TODO: This may not be necessary, depending on design - perhaps it wont hurt to use it either way.
+    [HideInInspector,
+     Tooltip("Will hold a reference to the current Gun's prefab.")] 
+    public Gun playerGun; 
 
   }
 
@@ -41,13 +39,8 @@ namespace Coop
     public Platformer2DUserControl characterRigPrefab;
 
     [Header("Development/Debugging")]
-    [SerializeField] //TODO: Hide after we're sure this is all good.
-    public List<PlayerData> playerData = new List<PlayerData> {
-      new PlayerData { playerIndex = 0 },
-      new PlayerData { playerIndex = 1 },
-      new PlayerData { playerIndex = 2 },
-      new PlayerData { playerIndex = 3 },
-    };
+    [HideInInspector]
+    public List<PlayerData> playerData = new List<PlayerData>();
 
     void Awake()
     {
@@ -63,14 +56,13 @@ namespace Coop
 
     private void SceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {
-      var spawnPoints = FindObjectsOfType<SpawnPoint>(); //GameObject.FindGameObjectsWithTag("PlayerSpawn");
+      var spawnPoints = FindObjectsOfType<SpawnPoint>();
       if(spawnPoints.Count() == 0) return;
       for (var i = 0; i < playerData.Count; i++)
       {
         Platformer2DUserControl characterRig = Instantiate(characterRigPrefab, spawnPoints[i].transform.position, Quaternion.identity);
         characterRig.controlData = playerData[i].controlData;
-        // TODO: Make this a "SetGun()" method on the characterRig script, let that script handle instantiation.
-        characterRig.gun = Instantiate(playerData[i].playerGun, characterRig.gunSocket.transform.position, Quaternion.identity, characterRig.gunSocket.transform);
+        characterRig.SetGun(playerData[i].playerGun);
       }
     }
 

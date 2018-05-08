@@ -3,6 +3,9 @@ using System.Collections;
 
 namespace Coop
 {
+  /// <summary>
+  /// Describes input mappings belonging to a single player.
+  /// </summary>
   [CreateAssetMenu(fileName = "PlayerControlData", menuName = "Player/Controls")]
   public class PlayerControlData : ScriptableObject
   {
