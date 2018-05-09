@@ -26,9 +26,8 @@ namespace Coop
     public Gun gun;
     public GameObject gunSocket;
     public SpriteRenderer crosshair;
-    
-    private float m_VertLim;
-    private float m_HorizLim;
+
+    private MultiplayerFollow cam;
     private float m_BoundX;
     private float m_BoundY;
 
@@ -38,8 +37,7 @@ namespace Coop
       Cursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
 
-      m_VertLim = Camera.main.orthographicSize;
-      m_HorizLim = m_VertLim * Screen.width / Screen.height;
+      cam = FindObjectOfType<MultiplayerFollow>();
       m_BoundX = GetComponent<SpriteRenderer>().sprite.bounds.extents.x;
       m_BoundY = GetComponent<SpriteRenderer>().sprite.bounds.extents.y;
     }
@@ -191,9 +189,20 @@ namespace Coop
     private void LateUpdate()
     {
       Vector3 pos = transform.position;
-      Vector3 camPos = Camera.main.transform.position;
-      pos.x = Mathf.Clamp(pos.x, camPos.x - m_HorizLim + m_BoundX, camPos.x + m_HorizLim - m_BoundX);
-      pos.y = Mathf.Clamp(pos.y, camPos.y - m_VertLim + m_BoundY, camPos.y + m_VertLim - m_BoundY);
+      Vector3 camPos = cam.transform.position;
+      Vector2 minPos = new Vector2()
+      {
+        x = camPos.x - cam.horizLength + m_BoundX,
+        y = camPos.y - cam.vertLength + m_BoundY
+      };
+      Vector2 maxPos = new Vector2()
+      {
+        x = camPos.x + cam.horizLength - m_BoundX,
+        y = camPos.y + cam.vertLength - m_BoundY
+      };
+
+      pos.x = Mathf.Clamp(pos.x, minPos.x, maxPos.x);
+      pos.y = Mathf.Clamp(pos.y, minPos.y, maxPos.y);
 
       //TODO kill player if they fall off the bottom of the camera?
       //     how do we then handle reverse gravity sending player off the top?

@@ -28,17 +28,47 @@ public class MultiplayerFollow : MonoBehaviour
 
     private float m_MinCamX, m_MaxCamX, m_MinCamY, m_MaxCamY;
 
+    /// <summary>The world coordinate of the bottom left point of the camera view.</summary>
+    public Vector2 minVisiblePos
+    {
+        get
+        {
+            Vector2 pos = transform.position;
+            pos.x -= horizLength;
+            pos.y -= vertLength;
+            return pos;
+        }
+    }
+
+    /// <summary>The world coordinate of the top right point of the camera view.</summary>
+    public Vector2 maxVisiblePos
+    {
+        get
+        {
+            Vector2 pos = transform.position;
+            pos.x += horizLength;
+            pos.y += vertLength;
+            return pos;
+        }
+    }
+
+    /// <summary>The distance between the top most and bottom most points visible to the camera</summary>
+    public float vertLength { get; private set; }
+
+    /// <summary>The distance between the left most and right most points visible to the camera</summary>
+    public float horizLength { get; private set; }
+
     private void Awake()
     {
         m_Players = FindObjectsOfType<Coop.Platformer2DUserControl>();
 
-        float vertCamLen = GetComponent<Camera>().orthographicSize;
-        float horizCamLen = vertCamLen * Screen.width / Screen.height;
+        vertLength = GetComponent<Camera>().orthographicSize;
+        horizLength = vertLength * Screen.width / Screen.height;
 
-        m_MinCamX = m_MinMapX + horizCamLen;
-        m_MaxCamX = m_MaxMapX - horizCamLen;
-        m_MinCamY = m_MinMapY + vertCamLen;
-        m_MaxCamY = m_MaxMapY - vertCamLen;
+        m_MinCamX = m_MinMapX + horizLength;
+        m_MaxCamX = m_MaxMapX - horizLength;
+        m_MinCamY = m_MinMapY + vertLength;
+        m_MaxCamY = m_MaxMapY - vertLength;
     }
 
     private void LateUpdate()
