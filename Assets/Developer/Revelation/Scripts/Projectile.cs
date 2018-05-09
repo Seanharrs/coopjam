@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour {
   [Header("Projectile")]
   public float projectileSpeed = 10;
 
-  public void Initiate(Vector2 direction) {
+  public virtual void Initiate(Vector2 direction) {
     GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
   }
 

@@ -5,8 +5,6 @@ using UnityStandardAssets._2D;
 
 namespace Coop
 {
-  // TODO: Flags makes it possible to implement dual input mode (since I've seen it done in Unreal).
-  //       If we don't find a use for this, remove Flags attribute.
   [Flags, Serializable]
   public enum PlayerInputMode
   {
@@ -27,6 +25,7 @@ namespace Coop
     [Header("Weapon")]
     public Gun gun;
     public GameObject gunSocket;
+    public SpriteRenderer crosshair;
     
     private float m_VertLim;
     private float m_HorizLim;
@@ -68,10 +67,13 @@ namespace Coop
       {
         if(isAiming) {
           // Bi-directional ('Crosshair') aiming.
-          var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+          // var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+          var mousePos = crosshair.transform.position;
+          mousePos += new Vector3(Input.GetAxis(controlData.aimHorizontal), Input.GetAxis(controlData.aimVertical), 0);
+          crosshair.transform.position = mousePos;
           var direction = (mousePos - gunSocket.transform.position).normalized;
           var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-          // TODO: simply rotating an additional 180 degrees if the player is facing backward works and makes sense but feels like a hack. What's the better way to do this?
+          // Simply rotating an additional 180 degrees if the player is facing backward works and makes sense but feels like a hack. What's the better way to do this?
           gunSocket.transform.rotation = Quaternion.Euler(0, 0, angle + (Mathf.Sign(transform.lossyScale.x) < 0 ? 180 : 0));
         } else {
           // Up/Down only
@@ -87,22 +89,12 @@ namespace Coop
         }
 
         // manage game controls
-        if (Input.GetButtonDown(controlData.jump))
+        if (Input.GetAxis(controlData.primaryFire) != 0)
         {
-          Debug.Log("Pressed: jump");
-        }
-        else if (Input.GetButtonDown(controlData.crouchButton))
-        {
-          Debug.Log("Pressed: crouchButton");
-        }
-        else if (Input.GetAxis(controlData.primaryFire) != 0)
-        {
-          Debug.Log("Pressed: Fire " + Input.GetAxis(controlData.primaryFire));
           gun.Fire(Input.GetAxis(controlData.primaryFire) > 0 ? WhichWeapon.Primary : WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
         else if (Input.GetButton(controlData.primaryFire))
         {
-          Debug.Log("Pressed: Primary Fire");
           if(isAiming)
             gun.FireAtTarget(WhichWeapon.Primary, Camera.main.ScreenToWorldPoint(Input.mousePosition));
           else
@@ -110,8 +102,6 @@ namespace Coop
         }
         else if (Input.GetButton(controlData.secondaryFire))
         {
-          Debug.Log("Pressed: Secondary Fire");
-          
           if(isAiming)
             gun.FireAtTarget(WhichWeapon.Secondary, Camera.main.ScreenToWorldPoint(Input.mousePosition));
           else
@@ -119,21 +109,25 @@ namespace Coop
         }
         else if (Input.GetButtonDown(controlData.aimActivate))
         {
-          Debug.Log("Pressed: aimActivate");
           if(isAiming) {
             // TODO: Use reticle/crosshairs for cursor
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            //Cursor.visible = false;
+            crosshair.gameObject.SetActive(false);
             isAiming = false;
           } else {
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            //Cursor.visible = true;
+            crosshair.gameObject.SetActive(true);
+            crosshair.transform.position = gun.AmmoSpawnLocation.position;
+            Debug.Log("Crosshair should show now.");
             isAiming = true;
           }
         }
         else if (Input.GetButtonDown(controlData.switchPlayerWeapon))
         {
           Debug.Log("Pressed: switchPlayerWeapon " + Input.GetAxis(controlData.switchPlayerWeapon));
+          
         }
         else if (Input.GetButtonDown(controlData.interact))
         {
@@ -149,7 +143,8 @@ namespace Coop
       }
       #endregion
 
-      //TODO: Package this and move it to an appropriate script/method
+      //TODO: Package this and move it to an appropriate script/method??? 
+      //      ... or is this section even necessary? Feels more like the menu should have the code.
       #region Manage UI Input
       else if (m_InputMode == PlayerInputMode.UI)
       {
@@ -174,6 +169,12 @@ namespace Coop
       }
       #endregion
 
+    }
+
+    internal void SetGun(Gun playerGun)
+    {
+      if(this.gun != null) Destroy(this.gun);
+      this.gun = Instantiate(playerGun, gunSocket.transform.position, Quaternion.identity, gunSocket.transform);
     }
 
     private void FixedUpdate()
@@ -215,7 +216,7 @@ namespace Coop
 
       Gizmos.color = Color.yellow;
       
-      Gizmos.DrawLine(gunSocket.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+      Gizmos.DrawLine(gunSocket.transform.position, crosshair.transform.position);
 
     }
 

@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f4a7a854b6c174b8dcf0e3c81102d8, type: 3}
   m_Name: Keyboard_ControlData
   m_EditorClassIdentifier: 
+  controllerName: Keyboard
   horizontalAxis: Horizontal_KB
   aimHorizontal: AimHoriz_KB
   aimVertical: AimVert_KB
