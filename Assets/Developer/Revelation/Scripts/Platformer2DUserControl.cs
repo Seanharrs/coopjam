@@ -168,7 +168,7 @@ namespace Coop
 
     internal void SetGun(Gun playerGun)
     {
-      if(this.gun != null) Destroy(this.gun);
+      if(this.gun != null) Destroy(this.gun.gameObject);
       this.gun = Instantiate(playerGun, gunSocket.transform.position, Quaternion.identity, gunSocket.transform);
     }
 
