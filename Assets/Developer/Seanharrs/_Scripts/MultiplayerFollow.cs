@@ -60,7 +60,8 @@ public class MultiplayerFollow : MonoBehaviour
 
     private void Awake()
     {
-        m_Players = FindObjectsOfType<Coop.Platformer2DUserControl>();
+        AcquirePlayerRefs();
+        Debug.Log("Found " + m_Players.Length + " players.");
 
         vertLength = GetComponent<Camera>().orthographicSize;
         horizLength = vertLength * Screen.width / Screen.height;
@@ -69,6 +70,11 @@ public class MultiplayerFollow : MonoBehaviour
         m_MaxCamX = m_MaxMapX - horizLength;
         m_MinCamY = m_MinMapY + vertLength;
         m_MaxCamY = m_MaxMapY - vertLength;
+    }
+
+    private void AcquirePlayerRefs()
+    {
+        m_Players = FindObjectsOfType<Coop.Platformer2DUserControl>();
     }
 
     private void LateUpdate()

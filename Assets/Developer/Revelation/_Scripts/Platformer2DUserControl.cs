@@ -25,6 +25,8 @@ namespace Coop
     [Header("Weapon")]
     public Gun gun;
     public GameObject gunSocket;
+    public GameObject armSocket;
+    public GameObject headSocket;
     public SpriteRenderer crosshair;
 
     private MultiplayerFollow m_Cam;
@@ -60,26 +62,24 @@ namespace Coop
       #region Manage Game Input
       if (m_InputMode == PlayerInputMode.Game)
       {
-        if(isAiming) {
+        if(isAiming)
+        {
           // Bi-directional ('Crosshair') aiming.
-          // var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-          var mousePos = crosshair.transform.position;
-          mousePos += new Vector3(Input.GetAxis(controlData.aimHorizontal), Input.GetAxis(controlData.aimVertical), 0);
-          crosshair.transform.position = mousePos;
-          var direction = (mousePos - gunSocket.transform.position).normalized;
-          var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-          // Simply rotating an additional 180 degrees if the player is facing backward works and makes sense but feels like a hack. What's the better way to do this?
-          gunSocket.transform.rotation = Quaternion.Euler(0, 0, angle + (Mathf.Sign(transform.lossyScale.x) < 0 ? 180 : 0));
-        } else {
+          var crossPos = crosshair.transform.position;
+          crossPos += new Vector3(Input.GetAxis(controlData.aimHorizontal), Input.GetAxis(controlData.aimVertical), 0);
+          crosshair.transform.position = crossPos;
+
+          // Rotate arm to point gun at target.
+          LookAtRotate(crossPos, armSocket);
+          LookAtRotate(crossPos, headSocket, -40, 40);
+
+        }
+        else {
           // Up/Down only
           float verticalAim = Input.GetAxis(controlData.aimVertical);
-          if (Mathf.Abs(verticalAim) > 0) {
-            gunSocket.transform.Rotate(0, 0, verticalAim);
-            var zRotation = gunSocket.transform.rotation.eulerAngles.z;
-            if(zRotation > 90 && zRotation < 270) {
-              if(zRotation < 180) zRotation = 90; else zRotation = 270;
-              gunSocket.transform.rotation = Quaternion.Euler(0, 0, zRotation);
-            }
+          if (Mathf.Abs(verticalAim) > 0)
+          {
+            UnidirectionalRotate(verticalAim, armSocket);
           }
         }
 
@@ -111,7 +111,7 @@ namespace Coop
             crosshair.gameObject.SetActive(false);
             isAiming = false;
           } else {
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.Locked;
             //Cursor.visible = true;
             crosshair.gameObject.SetActive(true);
             crosshair.transform.position = gun.AmmoSpawnLocation.position;
@@ -166,6 +166,31 @@ namespace Coop
 
     }
 
+    private void LookAtRotate(Vector3 lookAtPos, GameObject rotateObject, int? minZRotation = null, int? maxZRotation = null)
+    {
+      var direction = (lookAtPos - rotateObject.transform.position).normalized;
+      var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+      
+      var newAngle = angle + (Mathf.Sign(transform.lossyScale.x) < 0 ? 180 : 0);
+      if(minZRotation != null)
+        newAngle = Mathf.Clamp(newAngle, (int)minZRotation, newAngle);
+      if(maxZRotation != null)
+        newAngle = Mathf.Clamp(newAngle, newAngle, (int)maxZRotation);
+      // Simply rotating an additional 180 degrees if the player is facing backward works and makes sense but feels like a hack. What's the better way to do this?
+      rotateObject.transform.rotation = Quaternion.Euler(0, 0, newAngle);
+    }
+
+    private static void UnidirectionalRotate(float verticalAim, GameObject rotateObject)
+    {
+      rotateObject.transform.Rotate(0, 0, verticalAim);
+      var zRotation = rotateObject.transform.rotation.eulerAngles.z;
+      if (zRotation > 90 && zRotation < 270)
+      {
+        if (zRotation < 180) zRotation = 90; else zRotation = 270;
+        rotateObject.transform.rotation = Quaternion.Euler(0, 0, zRotation);
+      }
+    }
+
     internal void SetGun(Gun playerGun)
     {
       if(this.gun != null) Destroy(this.gun.gameObject);
@@ -192,6 +217,7 @@ namespace Coop
         return;
       
       transform.position = m_Cam.ConstrainToView(transform.position, m_Bounds);
+      crosshair.transform.position = m_Cam.ConstrainToView(crosshair.transform.position, crosshair.GetComponent<SpriteRenderer>().sprite.bounds.extents, true);
     }
     
     public void Die()
