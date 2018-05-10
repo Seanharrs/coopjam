@@ -17,11 +17,10 @@ public class SecurityCamera : MonoBehaviour
     private float m_SearchSpeed = 40f;
     
     [SerializeField]
-    private CircuitObject connectedObj;
+    private CircuitObject m_ConnectedObj;
 
     [SerializeField]
-    private float m_AlertedTimer = 10f;
-
+    private float m_MaxAlertTime = 10f;
     private float m_AlertTimeLeft;
     private bool m_OnAlert;
 
@@ -45,8 +44,6 @@ public class SecurityCamera : MonoBehaviour
     {
         initRot = transform.rotation.eulerAngles;
 
-        connectedObj.Deactivate();
-
         for(int i = 0; i < m_LookRotationsZ.Length; i++)
         {
             if(m_LookRotationsZ[i] < 0)
@@ -54,18 +51,18 @@ public class SecurityCamera : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void Start()
     {
-        if(m_OnAlert && connectedObj.active)
-            connectedObj.Deactivate();
-        else if(!m_OnAlert && !connectedObj.active)
-            connectedObj.Activate();
+        m_ConnectedObj.Activate();
     }
 
     private IEnumerator LookAround()
     {
         m_OnAlert = true;
-        m_AlertTimeLeft = m_AlertedTimer;
+        m_AlertTimeLeft = m_MaxAlertTime;
+
+        if(m_ConnectedObj.active)
+            m_ConnectedObj.Deactivate();
 
         int i = 0;
         float newRotZ = m_LookRotationsZ[0];
@@ -107,6 +104,10 @@ public class SecurityCamera : MonoBehaviour
         }
 
         m_OnAlert = false;
+
+        if(!m_ConnectedObj.active)
+            m_ConnectedObj.Activate();
+
         yield return null;
     }
 
@@ -135,6 +136,6 @@ public class SecurityCamera : MonoBehaviour
         if(!collision.CompareTag("Player"))
             return;
 
-        m_AlertTimeLeft = m_AlertedTimer;
+        m_AlertTimeLeft = m_MaxAlertTime;
     }
 }

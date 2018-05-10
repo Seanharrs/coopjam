@@ -7,11 +7,23 @@ public class NonDeadlyLaser : MonoBehaviour
 {
     private CircuitObject m_Circuit;
 
+    [SerializeField]
+    private CircuitObject m_ConnectedObj;
+
+    [SerializeField]
+    private float m_MaxAlertTime = 1f;
+    private float m_AlertTimeLeft;
+
     private void Awake()
     {
         m_Circuit = GetComponent<CircuitObject>();
         m_Circuit.OnActivate(TurnOn);
         m_Circuit.OnDeactivate(TurnOff);
+    }
+
+    private void Start()
+    {
+        m_ConnectedObj.Activate();
     }
 
     private void TurnOn()
@@ -28,6 +40,37 @@ public class NonDeadlyLaser : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //TODO act like camera with connected circuit object
+        if(!collision.CompareTag("Player"))
+            return;
+
+        if(m_AlertTimeLeft <= 0)
+            StartCoroutine(TriggerLaser());
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(!collision.CompareTag("Player"))
+            return;
+
+        m_AlertTimeLeft = m_MaxAlertTime;
+    }
+
+    private IEnumerator TriggerLaser()
+    {
+        m_AlertTimeLeft = m_MaxAlertTime;
+
+        if(m_ConnectedObj.active)
+            m_ConnectedObj.Deactivate();
+
+        while(m_AlertTimeLeft > 0)
+        {
+            m_AlertTimeLeft -= Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        if(!m_ConnectedObj.active)
+            m_ConnectedObj.Activate();
+
+        yield return null;
     }
 }
