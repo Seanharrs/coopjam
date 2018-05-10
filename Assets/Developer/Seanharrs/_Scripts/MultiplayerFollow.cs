@@ -89,13 +89,14 @@ public class MultiplayerFollow : MonoBehaviour
         m_MaxCamY = m_MaxMapY - vertLength;
     }
 
-    private void AcquirePlayerRefs()
+    internal void AcquirePlayerRefs()
     {
         m_Players = FindObjectsOfType<Coop.Platformer2DUserControl>();
     }
 
     private void LateUpdate()
     {
+        if(m_Players == null || m_Players.Count() == 0) return;
         Vector3 avgPos = m_Players.Select(p => p.transform.position).Aggregate((total, next) => total += next) / m_Players.Length;
 
         Vector3 clamped = avgPos + m_Offset;

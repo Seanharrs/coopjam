@@ -31,6 +31,8 @@ namespace Coop
 
     public static CoopGameManager instance;
 
+    public static string nextLevelOverride;
+
     [Header("Options")]
     public bool allowKeyboard = false;
 
@@ -56,20 +58,58 @@ namespace Coop
 
     private void SceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {
+      var lm = FindObjectOfType<LevelManager>();
+      if(lm == null) ShowMessage("LevelManager required.", 2f, true);
+
       var spawnPoints = FindObjectsOfType<SpawnPoint>();
-      if(spawnPoints.Count() == 0) return;
+      if(spawnPoints.Count() < playerData.Count()) 
+      {
+        ShowMessage("Please generate spawn points for this level.", 5f, true);
+        return;
+      }
       for (var i = 0; i < playerData.Count; i++)
       {
         Platformer2DUserControl characterRig = Instantiate(characterRigPrefab, spawnPoints[i].transform.position, Quaternion.identity);
+        Debug.Log("Spawned character at: " + spawnPoints[i].transform.position + " (" + characterRig.transform.position + ")");
         characterRig.controlData = playerData[i].controlData;
         characterRig.SetGun(playerData[i].playerGun);
       }
     }
 
-    public static void OpenLevel(string levelName)
+    public static void OpenLevel(int levelIndex)
     {
       // TODO: Do we need to collect information from the current scene about players before loading the next level?
-      SceneManager.LoadScene(levelName);
+      SceneManager.LoadScene(levelIndex);
+    }
+
+    public static void OpenLevel(string levelName)
+    {
+      if(!String.IsNullOrEmpty(nextLevelOverride))
+      {
+        SceneManager.LoadScene(nextLevelOverride);
+        nextLevelOverride = null;
+      } else {
+        // TODO: Do we need to collect information from the current scene about players before loading the next level?
+        SceneManager.LoadScene(levelName);
+      }
+    }
+
+    public static IEnumerator ShowMessage(string message, float displayTime = 5f, bool isFatal = false)
+    {
+      var lm = FindObjectOfType<LevelManager>();
+      if(lm.messageTextbox)
+      {
+        lm.messageTextbox.text = message;
+        yield return new WaitForSeconds(displayTime);
+        lm.messageTextbox.text = "";
+      }
+      else
+      {
+        Debug.LogError(message);
+      }
+
+      if(isFatal)
+        Application.Quit();
     }
   }
 }
