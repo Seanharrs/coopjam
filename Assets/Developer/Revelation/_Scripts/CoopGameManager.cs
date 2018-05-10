@@ -44,7 +44,7 @@ namespace Coop
 
     void Awake()
     {
-      if(CoopGameManager.instance) {
+      if(CoopGameManager.instance && CoopGameManager.instance != this) {
         Destroy(this.gameObject);
         return;
       }
@@ -66,8 +66,9 @@ namespace Coop
       }
     }
 
-    public void OpenLevel(string levelName)
+    public static void OpenLevel(string levelName)
     {
+      // TODO: Do we need to collect information from the current scene about players before loading the next level?
       SceneManager.LoadScene(levelName);
     }
   }

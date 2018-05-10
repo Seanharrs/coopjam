@@ -28,6 +28,11 @@ public class MultiplayerFollow : MonoBehaviour
 
     private float m_MinCamX, m_MaxCamX, m_MinCamY, m_MaxCamY;
 
+    [SerializeField]
+    private Transform m_BottomLeftIndicator;
+    [SerializeField]
+    private Transform m_TopRightIndicator;
+
     /// <summary>The world coordinate of the bottom left point of the camera view.</summary>
     public Vector2 minVisiblePos
     {
@@ -61,7 +66,19 @@ public class MultiplayerFollow : MonoBehaviour
     private void Awake()
     {
         AcquirePlayerRefs();
-        Debug.Log("Found " + m_Players.Length + " players.");
+
+        if(m_BottomLeftIndicator)
+        {
+            m_MinMapX = m_BottomLeftIndicator.position.x;
+            m_MinMapY = m_BottomLeftIndicator.position.y;
+            m_BottomLeftIndicator.gameObject.SetActive(false);
+        }
+        if(m_TopRightIndicator)
+        {
+            m_MaxMapX = m_TopRightIndicator.position.x;
+            m_MaxMapY = m_TopRightIndicator.position.y;
+            m_TopRightIndicator.gameObject.SetActive(false);
+        }
 
         vertLength = GetComponent<Camera>().orthographicSize;
         horizLength = vertLength * Screen.width / Screen.height;
