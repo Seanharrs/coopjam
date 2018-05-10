@@ -27,9 +27,8 @@ namespace Coop
     public GameObject gunSocket;
     public SpriteRenderer crosshair;
 
-    private MultiplayerFollow cam;
-    private float m_BoundX;
-    private float m_BoundY;
+    private MultiplayerFollow m_Cam;
+    private Vector3 m_Bounds;
 
     private void Awake()
     {
@@ -37,9 +36,8 @@ namespace Coop
       Cursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
 
-      cam = FindObjectOfType<MultiplayerFollow>();
-      m_BoundX = GetComponent<SpriteRenderer>().sprite.bounds.extents.x;
-      m_BoundY = GetComponent<SpriteRenderer>().sprite.bounds.extents.y;
+      m_Cam = FindObjectOfType<MultiplayerFollow>();
+      m_Bounds = GetComponent<SpriteRenderer>().sprite.bounds.extents;
     }
 
 
@@ -188,26 +186,7 @@ namespace Coop
     //Clamp player position to within camera view
     private void LateUpdate()
     {
-      Vector3 pos = transform.position;
-      Vector3 camPos = cam.transform.position;
-      Vector2 minPos = new Vector2()
-      {
-        x = camPos.x - cam.horizLength + m_BoundX,
-        y = camPos.y - cam.vertLength + m_BoundY
-      };
-      Vector2 maxPos = new Vector2()
-      {
-        x = camPos.x + cam.horizLength - m_BoundX,
-        y = camPos.y + cam.vertLength - m_BoundY
-      };
-
-      pos.x = Mathf.Clamp(pos.x, minPos.x, maxPos.x);
-      pos.y = Mathf.Clamp(pos.y, minPos.y, maxPos.y);
-
-      //TODO kill player if they fall off the bottom of the camera?
-      //     how do we then handle reverse gravity sending player off the top?
-
-      transform.position = pos;
+      transform.position = m_Cam.ConstrainToView(transform.position, m_Bounds);
     }
 
     public void SetInputMode(PlayerInputMode mode)

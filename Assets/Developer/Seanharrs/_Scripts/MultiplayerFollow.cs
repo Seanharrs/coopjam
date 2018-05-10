@@ -52,10 +52,10 @@ public class MultiplayerFollow : MonoBehaviour
         }
     }
 
-    /// <summary>The distance between the top most and bottom most points visible to the camera</summary>
+    /// <summary>The distance between the top most and bottom most points visible to the camera.</summary>
     public float vertLength { get; private set; }
 
-    /// <summary>The distance between the left most and right most points visible to the camera</summary>
+    /// <summary>The distance between the left most and right most points visible to the camera.</summary>
     public float horizLength { get; private set; }
 
     private void Awake()
@@ -79,5 +79,28 @@ public class MultiplayerFollow : MonoBehaviour
         clamped.x = Mathf.Clamp(clamped.x, m_MinCamX, m_MaxCamX);
         clamped.y = Mathf.Clamp(clamped.y, m_MinCamY, m_MaxCamY);
         transform.position = clamped;
+    }
+
+    /// <summary>Constrains an object to be fully within the view of the camera.</summary>
+    /// <param name="pos">The world position of the object to be constrained.</param>
+    /// <param name="spriteBounds">The visual bounds of the object to be constrained.</param>
+    /// <returns>The constrained world position of the object.</returns>
+    public Vector3 ConstrainToView(Vector3 pos, Vector3 spriteBounds)
+    {
+      Vector3 camPos = transform.position;
+
+      float minX = camPos.x - horizLength + spriteBounds.x;
+      float maxX = camPos.x + horizLength - spriteBounds.x;
+
+      //float minY = camPos.y - vertLength + spriteBounds.y;
+      //float maxY = camPos.y + vertLength - spriteBounds.y;
+
+      pos.x = Mathf.Clamp(pos.x, minX, maxX);
+      //pos.y = Mathf.Clamp(pos.y, minY, maxY);
+
+      //TODO kill player if they fall off the bottom of the camera?
+      //     how do we then handle reverse gravity sending player off the top?
+
+      return pos;
     }
 }
