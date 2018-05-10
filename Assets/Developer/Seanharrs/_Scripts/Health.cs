@@ -10,9 +10,11 @@ public class Health : MonoBehaviour
     public float timeSinceDamageTaken { get; private set; }
     private bool m_WasAttackedRecently { get { return timeSinceDamageTaken < 0.5f; } }
 
-    [SerializeField]
-    private bool m_CanRespawn;
-    public bool canRespawn { get { return m_CanRespawn; } }
+    //[SerializeField]
+    //private bool m_CanRespawn;
+    //public bool canRespawn { get { return m_CanRespawn; } }
+
+    public bool isDead { get { return healthRemaining <= 0; } }
 
     public bool isInvulnerable;
 
@@ -55,7 +57,7 @@ public class Health : MonoBehaviour
 
         if(healthRemaining <= 0)
         {
-            gameObject.AddComponent<DeathAnimation>();
+            GetComponent<Coop.Platformer2DUserControl>().Die();
             enabled = false;
         }
     }

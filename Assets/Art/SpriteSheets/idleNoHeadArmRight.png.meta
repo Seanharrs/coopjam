@@ -1,7 +1,27 @@
 fileFormatVersion: 2
 guid: d72a7b83bf434984db02a2161a3a593b
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: idleNoHeadArmRight_0
+    21300002: idleNoHeadArmRight_1
+    21300004: idleNoHeadArmRight_2
+    21300006: idleNoHeadArmRight_3
+    21300008: idleNoHeadArmRight_4
+    21300010: idleNoHeadArmRight_5
+    21300012: idleNoHeadArmRight_6
+    21300014: idleNoHeadArmRight_7
+    21300016: idleNoHeadArmRight_8
+    21300018: idleNoHeadArmRight_9
+    21300020: idleNoHeadArmRight_10
+    21300022: idleNoHeadArmRight_11
+    21300024: idleNoHeadArmRight_12
+    21300026: idleNoHeadArmRight_13
+    21300028: idleNoHeadArmRight_14
+    21300030: idleNoHeadArmRight_15
+    21300032: idleNoHeadArmRight_16
+    21300034: idleNoHeadArmRight_17
+    21300036: idleNoHeadArmRight_18
+    21300038: idleNoHeadArmRight_19
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -38,12 +58,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 400
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -67,9 +87,420 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1680
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1a0afd0aa95ee14c91ac9097612dbc2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_1
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 1680
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d6b4d23b8973864d94b72db759c3f21
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_2
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 1680
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 917e6e1afd2ec834d8f8b78004a3c114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_3
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 1680
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7553803ffae3f734a9d2dfecb17b1753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_4
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1680
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5523046ceb5081a4e8b6a368e77983f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_5
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 1680
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20f9bf9fdc2bdb549bf257b0dd6fd6d9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1120
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6a36bebcb6f41a43aca1752ba0b2c24
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_7
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 1120
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b3cf6ce2440f6d4994bbeef91aecaf5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_8
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 1120
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39253094a120bd044bc244f47f629c7d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_9
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 1120
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86d07cc86be1cfd4c88e20962f389627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_10
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1120
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8a178dd4b6508b4289453b1e4ea97fd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_11
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 1120
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa560ec14612faf4da3096b912f4bff6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 560
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d6f3306afd24ab4fac5ebb94dcd4ab2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_13
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 560
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2810b8fa45dc4e24d858b8c138f11391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_14
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 560
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51616cf19b462e749b8d038b6dd45c6c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_15
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 560
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbdc51ff2f61ff64fa0b0738e1e78b68
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_16
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 560
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d50e4b10efd095f47810eb1c48182561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_17
+      rect:
+        serializedVersion: 2
+        x: 1455
+        y: 560
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca54b23e02953346ae9ffbe9a742258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5344ad407821cf49a18c881ed1c386c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idleNoHeadArmRight_19
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 0
+        width: 291
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad8c90f0c21bd974681330cd15cea2ab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
