@@ -11,7 +11,7 @@ namespace Coop
     Game = 1,
     UI = 2
   }
-  [RequireComponent(typeof(PlatformerCharacter2D))]
+  [RequireComponent(typeof(PlatformerCharacter2D), typeof(Health))]
   public class Platformer2DUserControl : MonoBehaviour
   {
     private PlatformerCharacter2D m_Character;
@@ -29,10 +29,14 @@ namespace Coop
 
     private MultiplayerFollow m_Cam;
     private Vector3 m_Bounds;
+    
+    private Health m_HP;
 
     private void Awake()
     {
       m_Character = GetComponent<PlatformerCharacter2D>();
+      m_HP = GetComponent<Health>();
+
       Cursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
 
@@ -43,14 +47,9 @@ namespace Coop
 
     private void Update()
     {
-      //TESTING 
-      //re-enable cursor
-      if(Input.GetKeyDown(KeyCode.BackQuote))
-      {
-        Cursor.lockState ^= CursorLockMode.Locked;
-        Cursor.visible = !Cursor.visible;
-      }
-
+      if(m_HP.isDead)
+        return;
+      
       if (!m_Jump)
       {
         // Read the jump input in Update so button presses aren't missed.
@@ -175,6 +174,9 @@ namespace Coop
 
     private void FixedUpdate()
     {
+      if(m_HP.isDead)
+        return;
+      
       // Read the inputs.
       bool crouch = Input.GetButton(controlData.crouchButton);
       float h = Input.GetAxis(controlData.horizontalAxis);
@@ -186,7 +188,27 @@ namespace Coop
     //Clamp player position to within camera view
     private void LateUpdate()
     {
+      if(m_HP.isDead)
+        return;
+      
       transform.position = m_Cam.ConstrainToView(transform.position, m_Bounds);
+    }
+    
+    public void Die()
+    {
+      GetComponent<Animator>().SetTrigger("Die");      
+      GetComponent<BoxCollider2D>().enabled = false;
+    }
+    
+    public void Respawn()
+    {
+      GetComponent<Animator>().SetTrigger("Respawn");
+      GetComponent<BoxCollider2D>().enabled = true;
+      m_HP.enabled = true;
+      m_HP.ResetHealth();
+
+      //TODO proper respawning
+      transform.position = Vector2.one;
     }
 
     public void SetInputMode(PlayerInputMode mode)
