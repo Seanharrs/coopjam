@@ -26,7 +26,6 @@ namespace Coop
 
     void OnTriggerEnter2D(Collider2D other)
     {
-      Debug.Log("Processing trigger enter event.");
       // If in primary mode and I hit a player or rigidbody with the CanTeleport component
       if ((m_Projectile.Type == Projectile.ProjectileType.Primary)
         && (other.GetComponent<Coop.Platformer2DUserControl>() != null
@@ -57,7 +56,7 @@ namespace Coop
     {
       // If in secondary mode and a crosshair target was selected,
       // check whether we have reached that target.
-      if (m_Projectile.crossTarget != null)
+      if (m_Projectile.crossTarget != null && m_Projectile.Type == Projectile.ProjectileType.Secondary)
       {
         if (m_Collider.OverlapPoint((Vector2)m_Projectile.crossTarget))
         {
