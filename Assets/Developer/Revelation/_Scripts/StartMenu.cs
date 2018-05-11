@@ -16,7 +16,7 @@ namespace Coop
       
       CoopGameManager gameManager = CoopGameManager.instance;
       gameManager.playerData = playerSelectMenu.GeneratePlayerData();
-      gameManager.OpenLevel(nextScene.name);
+      CoopGameManager.OpenLevel(nextScene.name);
     }
 
   }

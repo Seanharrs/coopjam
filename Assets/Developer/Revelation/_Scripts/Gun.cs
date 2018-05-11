@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace Coop {
   public class Gun : MonoBehaviour
   {
 
-    private Dictionary<WhichWeapon, float> m_LastFired = new Dictionary<WhichWeapon, float> {
+    protected Dictionary<WhichWeapon, float> m_LastFired = new Dictionary<WhichWeapon, float> {
       { WhichWeapon.Primary, -5 },
       { WhichWeapon.Secondary, -5 }
     };
@@ -28,12 +29,12 @@ namespace Coop {
     [Header("Game Objects")]
     public Transform AmmoSpawnLocation;
 
-    public virtual bool FireAtTarget(WhichWeapon weapType, Vector2 target) 
+    public virtual Projectile FireAtTarget(WhichWeapon weapType, Vector2 target, Projectile.ProjectileType type = Projectile.ProjectileType.Primary)
     {
-      return Fire(weapType, (target - (Vector2)AmmoSpawnLocation.position).normalized);
+      return Fire(weapType, (target - (Vector2)AmmoSpawnLocation.position).normalized, target);
     }
 
-    public virtual bool Fire(WhichWeapon weapType, Vector2? direction = null)
+    public virtual Projectile Fire(WhichWeapon weapType, Vector2? direction = null, Nullable<Vector2> target = null)
     {
       if (Time.time > m_LastFired[weapType] + (1/FiringRate))
       {
@@ -42,13 +43,13 @@ namespace Coop {
         {
           var projectile = Instantiate(AmmoToUse, AmmoSpawnLocation.position, Quaternion.identity);
           if (projectile) {
-            projectile.Initiate(direction ?? (Vector2)AmmoSpawnLocation.lossyScale * AmmoSpawnLocation.right);
+            projectile.Initiate(direction ?? (Vector2)AmmoSpawnLocation.lossyScale * AmmoSpawnLocation.right, weapType, target);
             m_LastFired[weapType] = Time.time;
-            return true;
+            return projectile;
           }
         }
       }
-      return false;
+      return null;
     }
   }
 }

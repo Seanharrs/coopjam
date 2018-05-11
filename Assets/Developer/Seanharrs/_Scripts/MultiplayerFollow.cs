@@ -28,6 +28,11 @@ public class MultiplayerFollow : MonoBehaviour
 
     private float m_MinCamX, m_MaxCamX, m_MinCamY, m_MaxCamY;
 
+    [SerializeField]
+    private Transform m_BottomLeftIndicator;
+    [SerializeField]
+    private Transform m_TopRightIndicator;
+
     /// <summary>The world coordinate of the bottom left point of the camera view.</summary>
     public Vector2 minVisiblePos
     {
@@ -60,7 +65,20 @@ public class MultiplayerFollow : MonoBehaviour
 
     private void Awake()
     {
-        m_Players = FindObjectsOfType<Coop.Platformer2DUserControl>();
+        AcquirePlayerRefs();
+
+        if(m_BottomLeftIndicator)
+        {
+            m_MinMapX = m_BottomLeftIndicator.position.x;
+            m_MinMapY = m_BottomLeftIndicator.position.y;
+            m_BottomLeftIndicator.gameObject.SetActive(false);
+        }
+        if(m_TopRightIndicator)
+        {
+            m_MaxMapX = m_TopRightIndicator.position.x;
+            m_MaxMapY = m_TopRightIndicator.position.y;
+            m_TopRightIndicator.gameObject.SetActive(false);
+        }
 
         vertLength = GetComponent<Camera>().orthographicSize;
         horizLength = vertLength * Screen.width / Screen.height;
@@ -71,8 +89,14 @@ public class MultiplayerFollow : MonoBehaviour
         m_MaxCamY = m_MaxMapY - vertLength;
     }
 
+    internal void AcquirePlayerRefs()
+    {
+        m_Players = FindObjectsOfType<Coop.Platformer2DUserControl>();
+    }
+
     private void LateUpdate()
     {
+        if(m_Players == null || m_Players.Count() == 0) return;
         Vector3 avgPos = m_Players.Select(p => p.transform.position).Aggregate((total, next) => total += next) / m_Players.Length;
 
         Vector3 clamped = avgPos + m_Offset;
@@ -84,23 +108,26 @@ public class MultiplayerFollow : MonoBehaviour
     /// <summary>Constrains an object to be fully within the view of the camera.</summary>
     /// <param name="pos">The world position of the object to be constrained.</param>
     /// <param name="spriteBounds">The visual bounds of the object to be constrained.</param>
+    /// <param name="constrainAxisY">Should the object be constrained along the camera Y axis.</param>
     /// <returns>The constrained world position of the object.</returns>
-    public Vector3 ConstrainToView(Vector3 pos, Vector3 spriteBounds)
+    public Vector3 ConstrainToView(Vector3 pos, Vector3 spriteBounds, bool constrainAxisY = false)
     {
-      Vector3 camPos = transform.position;
+        Vector3 camPos = transform.position;
 
-      float minX = camPos.x - horizLength + spriteBounds.x;
-      float maxX = camPos.x + horizLength - spriteBounds.x;
+        float minX = camPos.x - horizLength + spriteBounds.x;
+        float maxX = camPos.x + horizLength - spriteBounds.x;
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
 
-      //float minY = camPos.y - vertLength + spriteBounds.y;
-      //float maxY = camPos.y + vertLength - spriteBounds.y;
+        if(constrainAxisY)
+        {
+            float minY = camPos.y - vertLength + spriteBounds.y;
+            float maxY = camPos.y + vertLength - spriteBounds.y;
+            pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        }
 
-      pos.x = Mathf.Clamp(pos.x, minX, maxX);
-      //pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        //TODO kill player if they fall off the bottom of the camera?
+        //     how do we then handle reverse gravity sending player off the top?
 
-      //TODO kill player if they fall off the bottom of the camera?
-      //     how do we then handle reverse gravity sending player off the top?
-
-      return pos;
+        return pos;
     }
 }
