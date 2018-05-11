@@ -40,12 +40,14 @@ namespace Coop
 
     internal void MarkTargetObject(GameObject targetObject)
     {
+      Debug.Log("Marking target object.");
       m_TargetObject = targetObject;
       TryCompleteTeleport();
     }
 
     internal void MarkTargetLocation(Vector2 targetLocation)
     {
+      Debug.Log("Marking target location.");
       m_TargetLocation = targetLocation;
       if(m_TargetLocationObject == null)
         m_TargetLocationObject = Instantiate(m_TargetLocationPrefab, targetLocation, Quaternion.identity);
@@ -58,13 +60,20 @@ namespace Coop
     {
       if (m_TargetObject != null && m_TargetLocation != null)
       {
+        Debug.Log("Completing teleport to " + m_TargetLocation.ToString());
         // TODO: Play sound, animation, effect, etc.
         m_TargetObject.transform.position = (Vector2)m_TargetLocation;
 
+        Debug.Log("Nullifying stuff.");
         m_TargetLocation = null;
         Destroy(m_TargetLocationObject);
-        // TEST: Debug.Log("Set target location to null: " + (m_TargetLocation == null).ToString());
         m_TargetObject = null;
+        // TEST: 
+        Debug.Log("Set target location to null: " + (m_TargetLocation == null).ToString());
+        Debug.Log("Set target object to null: " + (m_TargetObject == null).ToString());
+
+      } else {
+        Debug.Log("Can't complete teleport");
       }
     }
 
