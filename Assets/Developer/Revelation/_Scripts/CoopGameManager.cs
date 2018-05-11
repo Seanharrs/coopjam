@@ -71,7 +71,7 @@ namespace Coop
       for (var i = 0; i < playerData.Count; i++)
       {
         Platformer2DUserControl characterRig = Instantiate(characterRigPrefab, spawnPoints[i].transform.position, Quaternion.identity);
-        Debug.Log("Spawned character at: " + spawnPoints[i].transform.position + " (" + characterRig.transform.position + ")");
+        // TEST: Debug.Log("Spawned character at: " + spawnPoints[i].transform.position + " (" + characterRig.transform.position + ")");
         characterRig.controlData = playerData[i].controlData;
         characterRig.SetGun(playerData[i].playerGun);
       }

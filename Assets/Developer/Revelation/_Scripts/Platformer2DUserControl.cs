@@ -115,7 +115,7 @@ namespace Coop
             //Cursor.visible = true;
             crosshair.gameObject.SetActive(true);
             crosshair.transform.position = gun.AmmoSpawnLocation.position;
-            Debug.Log("Crosshair should show now.");
+            // Debug.Log("Crosshair should show now.");
             isAiming = true;
           }
         }

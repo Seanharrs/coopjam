@@ -8,12 +8,15 @@ namespace Coop
   public class TeleportGun : Gun
   {
 
-    // The thing that will be teleported.
+    [Header("Teleport Gun specific properties")]
     [SerializeField]
+    private GameObject m_TargetLocationPrefab;
+
+    // The thing that will be teleported.
     private GameObject m_TargetObject;
     // The location that the teleported object will be moved to.
-    [SerializeField]
     private Nullable<Vector2> m_TargetLocation;
+    private GameObject m_TargetLocationObject;
 
     public override Projectile Fire(WhichWeapon weapType, Vector2? direction = null, Nullable<Vector2> target = null)
     {
@@ -44,6 +47,10 @@ namespace Coop
     internal void MarkTargetLocation(Vector2 targetLocation)
     {
       m_TargetLocation = targetLocation;
+      if(m_TargetLocationObject == null)
+        m_TargetLocationObject = Instantiate(m_TargetLocationPrefab, targetLocation, Quaternion.identity);
+      else
+        m_TargetLocationObject.transform.position = targetLocation;
       TryCompleteTeleport();
     }
 
@@ -55,7 +62,8 @@ namespace Coop
         m_TargetObject.transform.position = (Vector2)m_TargetLocation;
 
         m_TargetLocation = null;
-        Debug.Log("Set target location to null: " + (m_TargetLocation == null).ToString());
+        Destroy(m_TargetLocationObject);
+        // TEST: Debug.Log("Set target location to null: " + (m_TargetLocation == null).ToString());
         m_TargetObject = null;
       }
     }
