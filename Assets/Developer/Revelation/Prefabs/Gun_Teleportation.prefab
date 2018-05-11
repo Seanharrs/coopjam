@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4593984622695586}
-  - component: {fileID: 114353257182372814}
+  - component: {fileID: 114068677599390282}
   m_Layer: 0
   m_Name: Gun_Teleportation
   m_TagString: Untagged
@@ -99,7 +99,7 @@ Transform:
   m_Father: {fileID: 4373479350113452}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114353257182372814
+--- !u!114 &114068677599390282
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -107,13 +107,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1816830008398728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1af94d3020f7dcb448970418b99a1deb, type: 3}
+  m_Script: {fileID: 11500000, guid: a4ca9b8f787e23741bf2ae8342232c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FiringRate: 2
-  PrimaryAmmoType: {fileID: 114504196913111740, guid: 997a4d16cf31cda40a2a0396e1626ca8,
+  FiringRate: 1
+  PrimaryAmmoType: {fileID: 114504196913111740, guid: cd8c0257bdc494c47b2ef9c9b5d1968b,
     type: 2}
-  SecondaryAmmoType: {fileID: 114504196913111740, guid: 997a4d16cf31cda40a2a0396e1626ca8,
+  SecondaryAmmoType: {fileID: 114504196913111740, guid: cd8c0257bdc494c47b2ef9c9b5d1968b,
     type: 2}
   portraitSprite: {fileID: 21300000, guid: 68fb3c297bf592949a2ed62a02e4686e, type: 3}
   AmmoSpawnLocation: {fileID: 4892645719443972}

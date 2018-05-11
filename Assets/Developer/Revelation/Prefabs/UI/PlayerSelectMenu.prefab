@@ -720,8 +720,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: -1
   playerData:
-    playerIndex: 0
-    playerActive: 0
     playerCharacter: {fileID: 0}
     controlData: {fileID: 0}
     playerGun: {fileID: 0}
@@ -1097,8 +1095,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: -1
   playerData:
-    playerIndex: 0
-    playerActive: 0
     playerCharacter: {fileID: 0}
     controlData: {fileID: 0}
     playerGun: {fileID: 0}
@@ -1251,9 +1247,9 @@ MonoBehaviour:
   - {fileID: 1092399586875510}
   - {fileID: 1954222728661752}
   guns:
-  - {fileID: 114353257182372814, guid: c0c89f4d06b075c468fd5c0341118ce0, type: 2}
+  - {fileID: 114068677599390282, guid: f71ce4ff311aef948b1e2012efbe7ded, type: 2}
   - {fileID: 114353257182372814, guid: d39616c6dee43114e82bb5b4f8567e91, type: 2}
-  - {fileID: 114353257182372814, guid: f71ce4ff311aef948b1e2012efbe7ded, type: 2}
+  - {fileID: 114353257182372814, guid: c0c89f4d06b075c468fd5c0341118ce0, type: 2}
   - {fileID: 114353257182372814, guid: 92df579e5b3b67242868bfbebfedf53d, type: 2}
   placeholderPortrait: {fileID: 21300000, guid: 19c166b1b2c212e4eb4f3700e006bfd5,
     type: 3}
@@ -1652,8 +1648,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: -1
   playerData:
-    playerIndex: 0
-    playerActive: 0
     playerCharacter: {fileID: 0}
     controlData: {fileID: 0}
     playerGun: {fileID: 0}
@@ -2026,8 +2020,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: -1
   playerData:
-    playerIndex: 0
-    playerActive: 0
     playerCharacter: {fileID: 0}
     controlData: {fileID: 0}
     playerGun: {fileID: 0}

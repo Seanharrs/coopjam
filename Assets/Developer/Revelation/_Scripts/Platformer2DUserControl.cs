@@ -62,10 +62,10 @@ namespace Coop
       #region Manage Game Input
       if (m_InputMode == PlayerInputMode.Game)
       {
+        var crossPos = crosshair.transform.position;
         if(isAiming)
         {
           // Bi-directional ('Crosshair') aiming.
-          var crossPos = crosshair.transform.position;
           crossPos += new Vector3(Input.GetAxis(controlData.aimHorizontal), Input.GetAxis(controlData.aimVertical), 0);
           crosshair.transform.position = crossPos;
 
@@ -91,14 +91,14 @@ namespace Coop
         else if (Input.GetButton(controlData.primaryFire))
         {
           if(isAiming)
-            gun.FireAtTarget(WhichWeapon.Primary, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            gun.FireAtTarget(WhichWeapon.Primary, crossPos);
           else
             gun.Fire(WhichWeapon.Primary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
         else if (Input.GetButton(controlData.secondaryFire))
         {
           if(isAiming)
-            gun.FireAtTarget(WhichWeapon.Secondary, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            gun.FireAtTarget(WhichWeapon.Secondary, crossPos);
           else
             gun.Fire(WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
