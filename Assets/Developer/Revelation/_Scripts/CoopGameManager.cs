@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets._2D;
@@ -111,5 +112,55 @@ namespace Coop
       if(isFatal)
         Application.Quit();
     }
+
+
+    [MenuItem("Coop Jam Tools/Check Level")]
+    static void CheckLevel()
+    {
+      List<string> errors = new List<string>();
+
+      var levels = FindObjectsOfType<LevelManager>();
+      // should have exactly one level object, no more, no less
+      if(levels.Count() != 1)
+        errors.Add("Should have exactly one level object, no more, no less.");
+      var characters = FindObjectsOfType<Platformer2DUserControl>();
+      // should not have characters directly, use spawn points instead.
+      if(characters.Count() > 0)
+        errors.Add("Should not add characters directly, use spawn points instead.");
+      var spawnPoints = FindObjectsOfType<SpawnPoint>();
+      // should have exactly 4 spawn points. no more, no less.
+      if(spawnPoints.Count() != 4)
+        errors.Add("Should have exactly 4 spawn points. no more, no less.");
+      var cameras = FindObjectsOfType<Camera>().Where(c => c.tag == "MainCamera").ToList();
+      if(cameras.Count() != 1)
+        errors.Add("Should have exactly one main camera, no more, no less. (You may have additional cameras that are not set as the main camera.)");
+      // One camera, which should be a MultiplayerFollow as well. 
+      else if(cameras[0].GetComponent<MultiplayerFollow>() == null)
+        errors.Add("Camera should also have a MultiplayerFollow component.");
+      else
+      {
+        var followCam = cameras[0].GetComponent<MultiplayerFollow>();
+        // Warning if MultiplayerFollow does not have corner selectors
+        if(followCam.m_BottomLeftIndicator == null || followCam.m_TopRightIndicator == null)
+        {
+          errors.Add("Warning: Missing indicator(s). It is much easier to design a level with these.");
+        }
+        // Error if both corner selectors are null and min/max values are all zero
+        if ( (followCam.m_BottomLeftIndicator == null || followCam.m_TopRightIndicator == null)
+          && followCam.m_MinCamX == 0 && followCam.m_MaxCamX == 0 && followCam.m_MinCamY == 0 && followCam.m_MaxCamY == 0
+        )
+        {
+          errors.Add("Error: Missing indicator(s) and no min/max values have been provided. Camera will not move.");
+        }
+      }
+
+      if(errors.Count() == 0)
+        Debug.Log("No errors encountered.");
+      else
+        Debug.LogError("Errors ecountered:\n - " + String.Join("\n - ", errors.ToArray()) );
+
+      Debug.LogWarning(SceneManager.GetActiveScene().buildIndex);
+    }
+
   }
 }
