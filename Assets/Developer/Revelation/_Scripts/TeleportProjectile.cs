@@ -61,6 +61,7 @@ namespace Coop
         if (m_Collider.OverlapPoint((Vector2)m_Projectile.crossTarget))
         {
           TeleportGun.MarkTargetLocation((Vector2)m_Projectile.crossTarget);
+          Destroy(gameObject);
         }
       }
 
