@@ -31,9 +31,9 @@ namespace Coop
       GetComponent<Collider2D>().enabled = false;
       var position = transform.position;
 
-      Debug.Log("Triggered: " + other.name 
-                + "\nType: " + m_Projectile.Type.ToString() 
-                + "\nPosition: " + position);
+      // Debug.Log("Triggered: " + other.name 
+      //           + "\nType: " + m_Projectile.Type.ToString() 
+      //           + "\nPosition: " + position);
 
       // If in primary mode and I hit a player or rigidbody with the CanTeleport component
       if (m_Projectile.Type == Projectile.ProjectileType.Primary)
@@ -79,7 +79,7 @@ namespace Coop
       {
         if (m_Collider.OverlapPoint((Vector2)m_Projectile.crossTarget))
         {
-          Debug.Log("Marking target location for secondary in update loop.");
+          // Debug.Log("Marking target location for secondary in update loop.");
           gameObject.SetActive(false);
           TeleportGun.MarkTargetLocation((Vector2)m_Projectile.crossTarget);
           Destroy(gameObject);

@@ -153,13 +153,16 @@ namespace Coop
           errors.Add("Error: Missing indicator(s) and no min/max values have been provided. Camera will not move.");
         }
       }
+      if (SceneManager.GetActiveScene().buildIndex == -1)
+      {
+        errors.Add("Scene has not been added to build settings.");
+      }
 
       if(errors.Count() == 0)
         Debug.Log("No errors encountered.");
       else
         Debug.LogError("Errors ecountered:\n - " + String.Join("\n - ", errors.ToArray()) );
 
-      Debug.LogWarning(SceneManager.GetActiveScene().buildIndex);
     }
 
   }
