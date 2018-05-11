@@ -201,7 +201,7 @@ namespace Coop
           // If currently on the picture that was just used, select an image from what is available.
           if (otherUiControl.portraitImage.sprite == uiControl.portraitImage.sprite)
           {
-            otherUiControl.SwapPortrait();
+            otherUiControl.SwapPortrait(false, true);
           }
         }
 

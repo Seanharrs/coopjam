@@ -31,14 +31,15 @@ namespace Coop
     private float lastSwapped = -5;
     public float minSwapIntervalSeconds = .5f;
 
-    internal void SwapPortrait(bool usePreviousInsteadOfNext = false)
+    internal void SwapPortrait(bool usePreviousInsteadOfNext = false, bool overrideTimeControl = false)
     {
       if(isReady) return;
 
       var imageControl = transform.Find("PortraitImage").GetComponent<Image>();
 
-      if (Time.time - lastSwapped < minSwapIntervalSeconds)
+      if (!overrideTimeControl && Time.time - lastSwapped < minSwapIntervalSeconds)
         return;
+
       lastSwapped = Time.time;
 
       if (!isInteractable)
