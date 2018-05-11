@@ -170,5 +170,23 @@ namespace Coop
 
     }
 
+    internal Gun GetAvailableGun(Gun currentGun = null)
+    {
+      // TODO: Work in progress...
+      var guns = allGuns.FindAll(gun => !playerData.Any(player => player.playerGun == gun) || gun == currentGun);
+
+      if(guns.Count() == 0) return null;
+      if(currentGun == null)
+        return guns[0];
+      else
+      {
+        var index = allGuns.IndexOf(currentGun);
+        if (index == allGuns.Count() - 1)
+        {
+          return guns[0];
+        }
+        return guns[index + 1];
+      }
+    }
   }
 }
