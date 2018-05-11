@@ -159,9 +159,11 @@ namespace Coop
       }
 
       if(errors.Count() == 0)
-        Debug.Log("No errors encountered.");
+        EditorUtility.DisplayDialog("Level Check", "No errors encountered." , "OK", "Cancel");
       else
-        Debug.LogError("Errors ecountered:\n - " + String.Join("\n - ", errors.ToArray()) );
+        EditorUtility.DisplayDialog("Level Check", 
+          "Errors ecountered:\n - " + String.Join("\n - ", errors.ToArray()) 
+          , "OK", "Cancel");
 
     }
 
