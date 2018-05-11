@@ -60,24 +60,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 56d04b6202c4340449f3f14dab4c7949, type: 2}
   characterRigPrefab: {fileID: 114113879649549188, guid: 661d5437eb1aedf4491012d4317feeb5,
     type: 2}
+  allGuns:
+  - {fileID: 114068677599390282, guid: f71ce4ff311aef948b1e2012efbe7ded, type: 2}
+  - {fileID: 114353257182372814, guid: d39616c6dee43114e82bb5b4f8567e91, type: 2}
+  - {fileID: 114353257182372814, guid: c0c89f4d06b075c468fd5c0341118ce0, type: 2}
+  - {fileID: 114353257182372814, guid: 92df579e5b3b67242868bfbebfedf53d, type: 2}
   playerData:
-  - playerIndex: 0
-    playerActive: 0
-    playerCharacter: {fileID: 0}
+  - playerCharacter: {fileID: 0}
     controlData: {fileID: 0}
     playerGun: {fileID: 0}
-  - playerIndex: 1
-    playerActive: 0
-    playerCharacter: {fileID: 0}
+  - playerCharacter: {fileID: 0}
     controlData: {fileID: 0}
     playerGun: {fileID: 0}
-  - playerIndex: 2
-    playerActive: 0
-    playerCharacter: {fileID: 0}
+  - playerCharacter: {fileID: 0}
     controlData: {fileID: 0}
     playerGun: {fileID: 0}
-  - playerIndex: 3
-    playerActive: 0
-    playerCharacter: {fileID: 0}
+  - playerCharacter: {fileID: 0}
     controlData: {fileID: 0}
     playerGun: {fileID: 0}

@@ -18,8 +18,6 @@ namespace Coop
     private List<PlayerSelectControl> playerSelectControls = new List<PlayerSelectControl>();
 
     [SerializeField]
-    internal List<Gun> guns;
-    [SerializeField]
     internal Sprite placeholderPortrait;
     internal List<Sprite> availablePortraits;
 
@@ -52,7 +50,7 @@ namespace Coop
     void OnEnable()
     {
 
-      availablePortraits = guns.Select(gun => gun.portraitSprite).ToList();
+      availablePortraits = CoopGameManager.instance.allGuns.Select(gun => gun.portraitSprite).ToList();
 
       foreach (var anchor in playerSelectAnchors)
       {
@@ -116,7 +114,7 @@ namespace Coop
           x => new PlayerData
           {
             controlData = x.Key,
-            playerGun = guns.First(g => g.portraitSprite == x.Value.portraitImage.sprite)
+            playerGun = CoopGameManager.instance.allGuns.First(g => g.portraitSprite == x.Value.portraitImage.sprite)
           }).ToList();
     }
 

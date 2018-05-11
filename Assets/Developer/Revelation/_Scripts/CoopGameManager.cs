@@ -40,10 +40,13 @@ namespace Coop
     [Header("Asset References:")]
     public List<PlayerControlData> playerControlData;
     public Platformer2DUserControl characterRigPrefab;
+    [SerializeField]
+    internal List<Gun> allGuns;
 
     [Header("Development/Debugging")]
     [HideInInspector]
     public List<PlayerData> playerData = new List<PlayerData>();
+    
 
     void Awake()
     {
