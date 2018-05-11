@@ -253,6 +253,8 @@ MonoBehaviour:
   m_MaxMapX: 100
   m_MinMapY: -100
   m_MaxMapY: 100
+  m_BottomLeftIndicator: {fileID: 0}
+  m_TopRightIndicator: {fileID: 0}
 --- !u!1001 &889615978
 Prefab:
   m_ObjectHideFlags: 0

@@ -1,27 +1,27 @@
 fileFormatVersion: 2
-guid: 3758e390ff7f42b4fa64fbe9dc96b714
+guid: a73a5befbb168a4478658611f85fdebe
 TextureImporter:
   fileIDToRecycleName:
-    21300000: running with coat_0
-    21300002: running with coat_1
-    21300004: running with coat_2
-    21300006: running with coat_3
-    21300008: running with coat_4
-    21300010: running with coat_5
-    21300012: running with coat_6
-    21300014: running with coat_7
-    21300016: running with coat_8
-    21300018: running with coat_9
-    21300020: running with coat_10
-    21300022: running with coat_11
-    21300024: running with coat_12
-    21300026: running with coat_13
-    21300028: running with coat_14
-    21300030: running with coat_15
-    21300032: running with coat_16
-    21300034: running with coat_17
-    21300036: running with coat_18
-    21300038: running with coat_19
+    21300000: jumpNoRightArm_0
+    21300002: jumpNoRightArm_1
+    21300004: jumpNoRightArm_2
+    21300006: jumpNoRightArm_3
+    21300008: jumpNoRightArm_4
+    21300010: jumpNoRightArm_5
+    21300012: jumpNoRightArm_6
+    21300014: jumpNoRightArm_7
+    21300016: jumpNoRightArm_8
+    21300018: jumpNoRightArm_9
+    21300020: jumpNoRightArm_10
+    21300022: jumpNoRightArm_11
+    21300024: jumpNoRightArm_12
+    21300026: jumpNoRightArm_13
+    21300028: jumpNoRightArm_14
+    21300030: jumpNoRightArm_15
+    21300032: jumpNoRightArm_16
+    21300034: jumpNoRightArm_17
+    21300036: jumpNoRightArm_18
+    21300038: jumpNoRightArm_19
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -102,401 +102,341 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: running with coat_0
+      name: jumpNoRightArm_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2229
-        width: 570
-        height: 743
+        y: 1968
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d27c1d6b511d36d46a5489ddeadb72cb
+      spriteID: 609d70aa2a22e0e49a399dbd9f03f299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_1
+      name: jumpNoRightArm_1
       rect:
         serializedVersion: 2
-        x: 570
-        y: 2229
-        width: 570
-        height: 743
+        x: 566
+        y: 1968
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20f8c13ea99d69b47b8e89b23282dea7
+      spriteID: cd456193ed4c5a741b6d1d277e9b646a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_2
+      name: jumpNoRightArm_2
       rect:
         serializedVersion: 2
-        x: 1140
-        y: 2229
-        width: 570
-        height: 743
+        x: 1132
+        y: 1968
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f40371d848840649add867d45434d13
+      spriteID: 092526af2a4d30b4aa7c6b875c276669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_3
+      name: jumpNoRightArm_3
       rect:
         serializedVersion: 2
-        x: 1710
-        y: 2229
-        width: 570
-        height: 743
+        x: 1698
+        y: 1968
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4af984de70ff1f49949daafa6078f6a
+      spriteID: 4dbc39022b390e94b82b375c995b2002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_4
+      name: jumpNoRightArm_4
       rect:
         serializedVersion: 2
-        x: 2280
-        y: 2229
-        width: 570
-        height: 743
+        x: 2264
+        y: 1968
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e7461f17b57cb944992d77976b24957
+      spriteID: 18593c66f2149e842a8b046600e78448
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1486
-        width: 570
-        height: 743
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5023db3d6b50584785f21b7104bdaea
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: running with coat_6
-      rect:
-        serializedVersion: 2
-        x: 570
-        y: 1486
-        width: 570
-        height: 743
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 33ba34e3813460d4ba0fd76881460a8d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: running with coat_7
-      rect:
-        serializedVersion: 2
-        x: 1140
-        y: 1486
-        width: 570
-        height: 743
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 83133ae16838bea4ba04cbd5b6caf56c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: running with coat_8
-      rect:
-        serializedVersion: 2
-        x: 1710
-        y: 1486
-        width: 570
-        height: 743
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d892642106d9e464bb6f2ee1ee04952b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: running with coat_9
-      rect:
-        serializedVersion: 2
-        x: 2280
-        y: 1486
-        width: 570
-        height: 743
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a719a087109a6e9478875f8c5853e5b6
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: running with coat_10
+      name: jumpNoRightArm_5
       rect:
         serializedVersion: 2
         x: 0
-        y: 743
-        width: 570
-        height: 743
+        y: 1312
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afd428f137e2d2e4e82bd4d3c2cbbb1b
+      spriteID: c4a6659ba5b96e24986d0b309b4d5c40
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_11
+      name: jumpNoRightArm_6
       rect:
         serializedVersion: 2
-        x: 570
-        y: 743
-        width: 570
-        height: 743
+        x: 566
+        y: 1312
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c87a37062a556a54a9e42910089fe827
+      spriteID: a86d75510ad03ae4a9d5064c9ce251ca
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_12
+      name: jumpNoRightArm_7
       rect:
         serializedVersion: 2
-        x: 1140
-        y: 743
-        width: 570
-        height: 743
+        x: 1132
+        y: 1312
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0b422b22d0707a48b845e1dcd07028e
+      spriteID: d1bad1e9ab5f06c46bf8503a1a1696fe
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_13
+      name: jumpNoRightArm_8
       rect:
         serializedVersion: 2
-        x: 1710
-        y: 743
-        width: 570
-        height: 743
+        x: 1698
+        y: 1312
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9c3aab65a2cb394c8f9ec60811aa4c5
+      spriteID: 745ccf6540c78d94c98038133d91da44
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_14
+      name: jumpNoRightArm_9
       rect:
         serializedVersion: 2
-        x: 2280
-        y: 743
-        width: 570
-        height: 743
+        x: 2264
+        y: 1312
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 891f81259eb8e6549ac905df5e54dc9b
+      spriteID: 6200a58456635034c93cc97eb725e2f2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_15
+      name: jumpNoRightArm_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 656
+        width: 566
+        height: 656
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c23be52d0407d74e875e40f273203f8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpNoRightArm_11
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 656
+        width: 566
+        height: 656
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 926bd7f2bcda8904fbf520391c8c05bf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpNoRightArm_15
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 570
-        height: 743
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc6ea8bc444f6b3498cdd6de118caead
+      spriteID: d84dbb1a5ccb3d54babaf4cab431b4e0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_16
+      name: jumpNoRightArm_16
       rect:
         serializedVersion: 2
-        x: 570
+        x: 566
         y: 0
-        width: 570
-        height: 743
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8dc2a7ea430c31409cb294adbd83922
+      spriteID: d422b3d2b0ba9e34cacf6a03dcaf7466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_17
+      name: jumpNoRightArm_17
       rect:
         serializedVersion: 2
-        x: 1140
+        x: 1132
         y: 0
-        width: 570
-        height: 743
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af3c1a5981b0f7f4bab28fd058b55f5f
+      spriteID: b165eec5d3c3ced4fb016304331ad9a1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_18
+      name: jumpNoRightArm_18
       rect:
         serializedVersion: 2
-        x: 1710
+        x: 1698
         y: 0
-        width: 570
-        height: 743
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e06fdb8e6e76ae4da8608f1d37c09f0
+      spriteID: e3e590600ccbef4408ac8234760ca8a3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: running with coat_19
+      name: jumpNoRightArm_19
       rect:
         serializedVersion: 2
-        x: 2280
+        x: 2264
         y: 0
-        width: 570
-        height: 743
+        width: 566
+        height: 656
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ea16c34334fe6a4db1b2000e3861df6
+      spriteID: 00455e612ad13214dbf831d0229f68b4
       vertices: []
       indices: 
       edges: []
@@ -504,7 +444,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6c1cdc865f4c7b946ba98fbf5ae2a0bc
+    spriteID: a4e99cd8993d1264ca5b9026e79cac9e
     vertices: []
     indices: 
     edges: []
