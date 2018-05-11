@@ -26,6 +26,9 @@ namespace Coop
 
     void OnTriggerEnter2D(Collider2D other)
     {
+
+      gameObject.SetActive(false); // To counteract bug from multiple collisions.
+
       // If in primary mode and I hit a player or rigidbody with the CanTeleport component
       if (m_Projectile.Type == Projectile.ProjectileType.Primary)
       {
@@ -56,7 +59,7 @@ namespace Coop
         TeleportGun.MarkTargetLocation(transform.position);
       }
 
-      // either way the projectile should be destroyed.
+      // Projectile should be destroyed last as we need it's transform information above.
       Destroy(gameObject);
 
     }
