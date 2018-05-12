@@ -123,7 +123,7 @@ namespace Coop
         {
           Debug.Log("Pressed: switchPlayerWeapon " + Input.GetAxis(controlData.switchPlayerWeapon));
           
-          SetGun(CoopGameManager.instance.GetAvailableGun(gun));
+          SetGun(CoopGameManager.instance.GetAvailableGun(this));
           
         }
         else if (Input.GetButtonDown(controlData.interact))
@@ -201,6 +201,8 @@ namespace Coop
     {
       if(this.gun != null) Destroy(this.gun.gameObject);
       this.gun = Instantiate(playerGun, gunSocket.transform.position, Quaternion.identity, gunSocket.transform);
+      // TODO: This seems so wrong. Gotta clean up the pipeline somehow.
+      CoopGameManager.instance.SetPlayerGun(this, playerGun);
     }
 
     private void FixedUpdate()

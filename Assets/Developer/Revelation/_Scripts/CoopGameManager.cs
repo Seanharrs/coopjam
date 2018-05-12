@@ -15,7 +15,7 @@ namespace Coop
     [Space]
     [HideInInspector,
      Tooltip("Reference to currently used GameObject instance.")]
-    public PlatformerCharacter2D playerCharacter;
+    public Platformer2DUserControl playerCharacter;
     
     [Space]
     [HideInInspector,
@@ -77,6 +77,7 @@ namespace Coop
         // TEST: Debug.Log("Spawned character at: " + spawnPoints[i].transform.position + " (" + characterRig.transform.position + ")");
         characterRig.controlData = playerData[i].controlData;
         characterRig.SetGun(playerData[i].playerGun);
+        playerData[i].playerCharacter = characterRig;
       }
     }
 
@@ -170,23 +171,35 @@ namespace Coop
 
     }
 
+    internal Gun GetAvailableGun(Platformer2DUserControl controller)
+    {
+      return GetAvailableGun(playerData.Find(p => p.playerCharacter == controller).playerGun);
+    }
+
     internal Gun GetAvailableGun(Gun currentGun = null)
     {
-      // TODO: Work in progress...
       var guns = allGuns.FindAll(gun => !playerData.Any(player => player.playerGun == gun) || gun == currentGun);
+      // Debug.Log(guns.Count() + " guns found: " + String.Join(", ", guns.Select(g => g.name).ToArray()) );
 
       if(guns.Count() == 0) return null;
       if(currentGun == null)
         return guns[0];
       else
       {
-        var index = allGuns.IndexOf(currentGun);
-        if (index == allGuns.Count() - 1)
+        var index = guns.IndexOf(currentGun);
+        if (index == guns.Count() - 1)
         {
           return guns[0];
         }
         return guns[index + 1];
       }
     }
+
+    internal void SetPlayerGun(Platformer2DUserControl character, Gun gun)
+    {
+      var c = playerData.Find(p => p.playerCharacter == character);
+      if(c != null) c.playerGun = gun;
+    }
+
   }
 }
