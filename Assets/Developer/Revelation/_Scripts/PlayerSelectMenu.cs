@@ -49,6 +49,11 @@ namespace Coop
       }
     }
 
+    internal string GetSpriteText(Sprite sprite)
+    {
+      return guns.Find(g => g.portraitSprite == sprite).GunName;
+    }
+
     void OnEnable()
     {
 
@@ -187,6 +192,7 @@ namespace Coop
 
       if (uiControl.isReady)
       {
+        Debug.Log("Ready...");
         var readyCount = 0;
         availablePortraits.Remove(uiControl.portraitImage.sprite);
         foreach (var otherControl in playerControlsMap)
@@ -208,6 +214,9 @@ namespace Coop
         if (readyCount == playerControlsMap.Count() && playerControlsMap.Count() > 1)
         {
           AllReady();
+          Debug.Log("Ready: " + readyCount + "/" + playerControlsMap.Count());
+        } else {
+          Debug.Log("Not ready: " + readyCount + "/" + playerControlsMap.Count());
         }
 
       }

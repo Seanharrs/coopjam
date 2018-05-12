@@ -110,7 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af94d3020f7dcb448970418b99a1deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FiringRate: 2
+  m_GunName: Thermo-gun
+  m_FiringRate: 1
   PrimaryAmmoType: {fileID: 114504196913111740, guid: 997a4d16cf31cda40a2a0396e1626ca8,
     type: 2}
   SecondaryAmmoType: {fileID: 114504196913111740, guid: 997a4d16cf31cda40a2a0396e1626ca8,

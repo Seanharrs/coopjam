@@ -110,13 +110,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4ca9b8f787e23741bf2ae8342232c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FiringRate: 1
+  m_GunName: Teleport Gun
+  m_FiringRate: 1
   PrimaryAmmoType: {fileID: 114504196913111740, guid: cd8c0257bdc494c47b2ef9c9b5d1968b,
     type: 2}
   SecondaryAmmoType: {fileID: 114504196913111740, guid: cd8c0257bdc494c47b2ef9c9b5d1968b,
     type: 2}
   portraitSprite: {fileID: 21300000, guid: 68fb3c297bf592949a2ed62a02e4686e, type: 3}
   AmmoSpawnLocation: {fileID: 4892645719443972}
+  m_TargetObject: {fileID: 0}
 --- !u!212 &212125488476311972
 SpriteRenderer:
   m_ObjectHideFlags: 1

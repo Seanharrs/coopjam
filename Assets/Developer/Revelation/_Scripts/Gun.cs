@@ -18,8 +18,12 @@ namespace Coop {
     };
 
     [Header("Details")]
-    [Tooltip("Number of times you can fire this weapon in one second.")]
-    public float FiringRate = 5;
+    [SerializeField, Tooltip("Label used in game.")]
+    private string m_GunName = "";
+    public string GunName { get { return m_GunName; }}
+    [SerializeField, Tooltip("Number of times you can fire this weapon in one second.")]
+    private float m_FiringRate = 5;
+
 
     [Header("Prefabs/Asset References")]
     public Projectile PrimaryAmmoType;
@@ -36,7 +40,7 @@ namespace Coop {
 
     public virtual Projectile Fire(WhichWeapon weapType, Vector2? direction = null, Nullable<Vector2> target = null)
     {
-      if (Time.time > m_LastFired[weapType] + (1/FiringRate))
+      if (Time.time > m_LastFired[weapType] + (1/m_FiringRate))
       {
         var AmmoToUse = weapType == WhichWeapon.Primary ? PrimaryAmmoType : SecondaryAmmoType;
         if (AmmoSpawnLocation && AmmoToUse)
