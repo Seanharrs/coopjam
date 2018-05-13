@@ -16,6 +16,8 @@ namespace Coop
   {
     private PlatformerCharacter2D m_Character;
     private bool m_Jump;
+    private bool m_FiringPrimary = false;
+    private bool m_FiringSecondary = false;
     private PlayerInputMode m_InputMode = PlayerInputMode.Game;
 
     [Header("Controls")]
@@ -84,12 +86,26 @@ namespace Coop
         }
 
         // manage game controls
-        if (Input.GetAxis(controlData.primaryFire) != 0)
+        #region Axis Firing Input
+        float fireAxis = Input.GetAxis(controlData.primaryFire);
+        if (fireAxis != 0)
         {
-          gun.Fire(Input.GetAxis(controlData.primaryFire) > 0 ? WhichWeapon.Primary : WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
+          WhichWeapon weap = fireAxis > 0 ? WhichWeapon.Primary : WhichWeapon.Secondary;
+          if(weap == WhichWeapon.Primary)
+          {
+            m_FiringPrimary = true;
+          }
+          else
+          {
+            m_FiringSecondary = true;
+          }
+          gun.Fire(weap, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
+        #endregion
+        #region Keyboard Firing Input
         else if (Input.GetButton(controlData.primaryFire))
         {
+          m_FiringPrimary = true;
           if(isAiming)
             gun.FireAtTarget(WhichWeapon.Primary, crossPos);
           else
@@ -97,10 +113,18 @@ namespace Coop
         }
         else if (Input.GetButton(controlData.secondaryFire))
         {
+          m_FiringSecondary = true;
           if(isAiming)
             gun.FireAtTarget(WhichWeapon.Secondary, crossPos);
           else
             gun.Fire(WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
+        }
+        #endregion
+        else if (m_FiringPrimary || m_FiringSecondary)
+        {
+          gun.StopFiring();
+          m_FiringPrimary = false;
+          m_FiringSecondary = false;
         }
         else if (Input.GetButtonDown(controlData.aimActivate))
         {

@@ -55,5 +55,10 @@ namespace Coop {
       }
       return null;
     }
+
+    public virtual void StopFiring()
+    {
+      // Placeholder
+    }
   }
 }

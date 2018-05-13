@@ -87,8 +87,8 @@ namespace Coop
           // TODO: This may still be causing weird behavior. Further testing needed to ensure things work correctly.
           if (Input.GetButtonDown(controller.cancelButton))
           {
-            if (playerControlsMap[controller].isReady)
-              playerControlsMap[controller].SetReady(false);
+            if (playerControlsMap[controller].isReady) //playerControlsMap[controller].SetReady(false);
+              ReadyButton_Click(playerControlsMap[controller]);
             else
               TryDeactivateController(controller);
           }
@@ -222,6 +222,7 @@ namespace Coop
       }
       else
       {
+        Debug.Log("Returning portrait to list.");
         availablePortraits.Add(uiControl.portraitImage.sprite);
       }
     }

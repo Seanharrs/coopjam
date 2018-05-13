@@ -220,11 +220,6 @@ Prefab:
       propertyPath: allPlayersReady.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 877546228}
-    - target: {fileID: 114243845137436404, guid: 3401fedc863ad0c4f906d0977869747a,
-        type: 2}
-      propertyPath: allPlayersReady.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayersSelected
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3401fedc863ad0c4f906d0977869747a, type: 2}
   m_IsPrefabParent: 0
