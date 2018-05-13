@@ -47,6 +47,11 @@ namespace Coop
       }
     }
 
+    internal string GetSpriteText(Sprite sprite)
+    {
+      return guns.Find(g => g.portraitSprite == sprite).GunName;
+    }
+
     void OnEnable()
     {
 
@@ -80,8 +85,8 @@ namespace Coop
           // TODO: This may still be causing weird behavior. Further testing needed to ensure things work correctly.
           if (Input.GetButtonDown(controller.cancelButton))
           {
-            if (playerControlsMap[controller].isReady)
-              playerControlsMap[controller].SetReady(false);
+            if (playerControlsMap[controller].isReady) //playerControlsMap[controller].SetReady(false);
+              ReadyButton_Click(playerControlsMap[controller]);
             else
               TryDeactivateController(controller);
           }
@@ -185,6 +190,7 @@ namespace Coop
 
       if (uiControl.isReady)
       {
+        Debug.Log("Ready...");
         var readyCount = 0;
         availablePortraits.Remove(uiControl.portraitImage.sprite);
         foreach (var otherControl in playerControlsMap)
@@ -206,11 +212,15 @@ namespace Coop
         if (readyCount == playerControlsMap.Count() && playerControlsMap.Count() > 1)
         {
           AllReady();
+          Debug.Log("Ready: " + readyCount + "/" + playerControlsMap.Count());
+        } else {
+          Debug.Log("Not ready: " + readyCount + "/" + playerControlsMap.Count());
         }
 
       }
       else
       {
+        Debug.Log("Returning portrait to list.");
         availablePortraits.Add(uiControl.portraitImage.sprite);
       }
     }

@@ -110,7 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af94d3020f7dcb448970418b99a1deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FiringRate: 5
+  m_GunName: Gravi-gun
+  m_FiringRate: 3
   PrimaryAmmoType: {fileID: 114541541818956504, guid: c57c516895341534c84f3530964d8848,
     type: 2}
   SecondaryAmmoType: {fileID: 114541541818956504, guid: 1bfec6e1221ec504bb099c0c41dc8b9a,

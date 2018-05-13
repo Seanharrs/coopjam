@@ -25,6 +25,7 @@ namespace Coop
     public Button leftButton;
     public Button rightButton;
     public Image portraitImage;
+    public Text portraitLabel;
     public Dropdown controllerDropdown;
     public Button readyButton;
 
@@ -35,7 +36,7 @@ namespace Coop
     {
       if(isReady) return;
 
-      var imageControl = transform.Find("PortraitImage").GetComponent<Image>();
+      var imageControl = portraitImage; // Why did this happen? -> transform.Find("PortraitImage").GetComponent<Image>();
 
       if (!overrideTimeControl && Time.time - lastSwapped < minSwapIntervalSeconds)
         return;
@@ -45,10 +46,13 @@ namespace Coop
       if (!isInteractable)
       {
         imageControl.sprite = GetComponentInParent<PlayerSelectMenu>().placeholderPortrait;
+        portraitLabel.text = "";
       }
       else
       {
-        imageControl.sprite = GetComponentInParent<PlayerSelectMenu>().GetAvailableSprite(imageControl.sprite, usePreviousInsteadOfNext);
+        var menu = GetComponentInParent<PlayerSelectMenu>();
+        imageControl.sprite = menu.GetAvailableSprite(imageControl.sprite, usePreviousInsteadOfNext);
+        portraitLabel.text = menu.GetSpriteText(imageControl.sprite);
       }
     }
 
