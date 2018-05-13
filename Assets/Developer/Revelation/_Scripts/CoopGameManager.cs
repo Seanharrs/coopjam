@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets._2D;
@@ -14,7 +15,7 @@ namespace Coop
     [Space]
     [HideInInspector,
      Tooltip("Reference to currently used GameObject instance.")]
-    public PlatformerCharacter2D playerCharacter;
+    public Platformer2DUserControl playerCharacter;
     
     [Space]
     [HideInInspector,
@@ -39,10 +40,13 @@ namespace Coop
     [Header("Asset References:")]
     public List<PlayerControlData> playerControlData;
     public Platformer2DUserControl characterRigPrefab;
+    [SerializeField]
+    internal List<Gun> allGuns;
 
     [Header("Development/Debugging")]
     [HideInInspector]
     public List<PlayerData> playerData = new List<PlayerData>();
+    
 
     void Awake()
     {
@@ -70,9 +74,10 @@ namespace Coop
       for (var i = 0; i < playerData.Count; i++)
       {
         Platformer2DUserControl characterRig = Instantiate(characterRigPrefab, spawnPoints[i].transform.position, Quaternion.identity);
-        Debug.Log("Spawned character at: " + spawnPoints[i].transform.position + " (" + characterRig.transform.position + ")");
+        // TEST: Debug.Log("Spawned character at: " + spawnPoints[i].transform.position + " (" + characterRig.transform.position + ")");
         characterRig.controlData = playerData[i].controlData;
         characterRig.SetGun(playerData[i].playerGun);
+        playerData[i].playerCharacter = characterRig;
       }
     }
 
@@ -111,5 +116,90 @@ namespace Coop
       if(isFatal)
         Application.Quit();
     }
+
+
+    [MenuItem("Coop Jam Tools/Check Level")]
+    static void CheckLevel()
+    {
+      List<string> errors = new List<string>();
+
+      var levels = FindObjectsOfType<LevelManager>();
+      // should have exactly one level object, no more, no less
+      if(levels.Count() != 1)
+        errors.Add("Should have exactly one level object, no more, no less.");
+      var characters = FindObjectsOfType<Platformer2DUserControl>();
+      // should not have characters directly, use spawn points instead.
+      if(characters.Count() > 0)
+        errors.Add("Should not add characters directly, use spawn points instead.");
+      var spawnPoints = FindObjectsOfType<SpawnPoint>();
+      // should have exactly 4 spawn points. no more, no less.
+      if(spawnPoints.Count() != 4)
+        errors.Add("Should have exactly 4 spawn points. no more, no less.");
+      var cameras = FindObjectsOfType<Camera>().Where(c => c.tag == "MainCamera").ToList();
+      if(cameras.Count() != 1)
+        errors.Add("Should have exactly one main camera, no more, no less. (You may have additional cameras that are not set as the main camera.)");
+      // One camera, which should be a MultiplayerFollow as well. 
+      else if(cameras[0].GetComponent<MultiplayerFollow>() == null)
+        errors.Add("Camera should also have a MultiplayerFollow component.");
+      else
+      {
+        var followCam = cameras[0].GetComponent<MultiplayerFollow>();
+        // Warning if MultiplayerFollow does not have corner selectors
+        if(followCam.m_BottomLeftIndicator == null || followCam.m_TopRightIndicator == null)
+        {
+          errors.Add("Warning: Missing indicator(s). It is much easier to design a level with these.");
+        }
+        // Error if both corner selectors are null and min/max values are all zero
+        if ( (followCam.m_BottomLeftIndicator == null || followCam.m_TopRightIndicator == null)
+          && followCam.m_MinCamX == 0 && followCam.m_MaxCamX == 0 && followCam.m_MinCamY == 0 && followCam.m_MaxCamY == 0
+        )
+        {
+          errors.Add("Error: Missing indicator(s) and no min/max values have been provided. Camera will not move.");
+        }
+      }
+      if (SceneManager.GetActiveScene().buildIndex == -1)
+      {
+        errors.Add("Scene has not been added to build settings.");
+      }
+
+      if(errors.Count() == 0)
+        EditorUtility.DisplayDialog("Level Check", "No errors encountered." , "OK", "Cancel");
+      else
+        EditorUtility.DisplayDialog("Level Check", 
+          "Errors ecountered:\n - " + String.Join("\n - ", errors.ToArray()) 
+          , "OK", "Cancel");
+
+    }
+
+    internal Gun GetAvailableGun(Platformer2DUserControl controller)
+    {
+      return GetAvailableGun(playerData.Find(p => p.playerCharacter == controller).playerGun);
+    }
+
+    internal Gun GetAvailableGun(Gun currentGun = null)
+    {
+      var guns = allGuns.FindAll(gun => !playerData.Any(player => player.playerGun == gun) || gun == currentGun);
+      // Debug.Log(guns.Count() + " guns found: " + String.Join(", ", guns.Select(g => g.name).ToArray()) );
+
+      if(guns.Count() == 0) return null;
+      if(currentGun == null)
+        return guns[0];
+      else
+      {
+        var index = guns.IndexOf(currentGun);
+        if (index == guns.Count() - 1)
+        {
+          return guns[0];
+        }
+        return guns[index + 1];
+      }
+    }
+
+    internal void SetPlayerGun(Platformer2DUserControl character, Gun gun)
+    {
+      var c = playerData.Find(p => p.playerCharacter == character);
+      if(c != null) c.playerGun = gun;
+    }
+
   }
 }

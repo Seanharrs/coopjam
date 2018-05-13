@@ -26,28 +26,47 @@ namespace Coop
 
     void OnTriggerEnter2D(Collider2D other)
     {
+
+      gameObject.SetActive(false); // To counteract bug from multiple collisions.
+      GetComponent<Collider2D>().enabled = false;
+      var position = transform.position;
+
+      // Debug.Log("Triggered: " + other.name 
+      //           + "\nType: " + m_Projectile.Type.ToString() 
+      //           + "\nPosition: " + position);
+
       // If in primary mode and I hit a player or rigidbody with the CanTeleport component
-      if ((m_Projectile.Type == Projectile.ProjectileType.Primary)
-        && (other.GetComponent<Coop.Platformer2DUserControl>() != null
-            || other.GetComponent<Teleportable>() != null)
-      )
+      if (m_Projectile.Type == Projectile.ProjectileType.Primary)
       {
-        // mark the thing I hit as the target to teleport.
-        Debug.Log("hit something teleportable.");
-        TeleportGun.MarkTargetObject(other.gameObject);
+        // if (other.GetComponent<Platformer2DUserControl>() != null || other.GetComponent<Teleportable>() != null)
+        // {
+        //   // Debug.Log("hit something teleportable.");
+        //   TeleportGun.MarkTargetObject(other.gameObject);
+        // }
+        // else 
+        if (other.GetComponentInParent<Platformer2DUserControl>() != null)
+        {
+          // Debug.Log("hit whose parent is something teleportable.");
+          GameObject target = other.GetComponentInParent<Platformer2DUserControl>().gameObject;
+          TeleportGun.MarkTargetObject(target);
+        }
+        else if (other.GetComponentInParent<Teleportable>() != null)
+        {
+          // Debug.Log("hit whose parent is something teleportable.");
+          GameObject target = other.GetComponentInParent<Teleportable>().gameObject;
+          TeleportGun.MarkTargetObject(target);
+        }
       }
 
       // If in secondary mode and I hit anything,
       // If I do not have a target to teleport, drop a portal here - this becomes the place the target will be teleported to.
       if ((m_Projectile.Type == Projectile.ProjectileType.Secondary))
       {
-        Debug.Log("setting teleport target location.");
-        TeleportGun.MarkTargetLocation(transform.position);
+        // Debug.Log("setting teleport target location.");
+        TeleportGun.MarkTargetLocation(position);
       }
 
-      Debug.Log("Type: " + m_Projectile.Type.ToString());
-
-      // either way the projectile should be destroyed.
+      // Projectile should be destroyed last as we need it's transform information above.
       Destroy(gameObject);
 
     }
@@ -60,6 +79,8 @@ namespace Coop
       {
         if (m_Collider.OverlapPoint((Vector2)m_Projectile.crossTarget))
         {
+          // Debug.Log("Marking target location for secondary in update loop.");
+          gameObject.SetActive(false);
           TeleportGun.MarkTargetLocation((Vector2)m_Projectile.crossTarget);
           Destroy(gameObject);
         }

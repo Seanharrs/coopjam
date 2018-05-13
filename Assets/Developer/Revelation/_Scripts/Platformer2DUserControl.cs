@@ -115,13 +115,15 @@ namespace Coop
             //Cursor.visible = true;
             crosshair.gameObject.SetActive(true);
             crosshair.transform.position = gun.AmmoSpawnLocation.position;
-            Debug.Log("Crosshair should show now.");
+            // Debug.Log("Crosshair should show now.");
             isAiming = true;
           }
         }
         else if (Input.GetButtonDown(controlData.switchPlayerWeapon))
         {
           Debug.Log("Pressed: switchPlayerWeapon " + Input.GetAxis(controlData.switchPlayerWeapon));
+          
+          SetGun(CoopGameManager.instance.GetAvailableGun(this));
           
         }
         else if (Input.GetButtonDown(controlData.interact))
@@ -191,10 +193,16 @@ namespace Coop
       }
     }
 
+    /// <summary>
+    /// Replace the current gun with a new one.
+    /// </summary>
+    /// <param name="playerGun">A reference to a prefab to instantiate a player gun from.</param>
     internal void SetGun(Gun playerGun)
     {
       if(this.gun != null) Destroy(this.gun.gameObject);
       this.gun = Instantiate(playerGun, gunSocket.transform.position, Quaternion.identity, gunSocket.transform);
+      // TODO: This seems so wrong. Gotta clean up the pipeline somehow.
+      CoopGameManager.instance.SetPlayerGun(this, playerGun);
     }
 
     private void FixedUpdate()
