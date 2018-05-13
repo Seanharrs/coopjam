@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CircuitObject))]
+[RequireComponent(typeof(CircuitObject), typeof(AudioSource))]
 public class SecurityCamera : MonoBehaviour
 {
     private enum Direction { Clockwise = -1, AntiClockwise = 1 };
@@ -25,6 +25,7 @@ public class SecurityCamera : MonoBehaviour
     private bool m_OnAlert;
 
     private Vector3 initRot;
+    private AudioSource m_Audio;
 
     private void OnDrawGizmos()
     {
@@ -43,23 +44,20 @@ public class SecurityCamera : MonoBehaviour
     private void Awake()
     {
         initRot = transform.rotation.eulerAngles;
+        m_Audio = GetComponent<AudioSource>();
 
         for(int i = 0; i < m_LookRotationsZ.Length; i++)
-        {
             if(m_LookRotationsZ[i] < 0)
                 m_LookRotationsZ[i] += 360;
-        }
     }
 
-    private void Start()
-    {
-        m_ConnectedObj.Activate();
-    }
+    private void Start() { m_ConnectedObj.Activate(); }
 
     private IEnumerator LookAround()
     {
         m_OnAlert = true;
         m_AlertTimeLeft = m_MaxAlertTime;
+        m_Audio.Play();
 
         if(m_ConnectedObj.active)
             m_ConnectedObj.Deactivate();
@@ -104,6 +102,7 @@ public class SecurityCamera : MonoBehaviour
         }
 
         m_OnAlert = false;
+        m_Audio.Stop();
 
         if(!m_ConnectedObj.active)
             m_ConnectedObj.Activate();
