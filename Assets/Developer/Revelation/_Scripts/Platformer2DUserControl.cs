@@ -243,7 +243,9 @@ namespace Coop
       float numFlashes = 3f;
       SpriteRenderer sprite = GetComponent<SpriteRenderer>();
       Color initColor = sprite.color;
-      Color flashColor = new Color(150, 150, 150);
+      
+      float r = 150f / 255f, g = 150f / 255f, b = 150f / 255f;
+      Color flashColor = new Color(r, g, b);
 
       for(int i = 0; i < numFlashes * 2; ++i)
       {
