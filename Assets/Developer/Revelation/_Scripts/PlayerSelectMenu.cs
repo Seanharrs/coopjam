@@ -49,7 +49,7 @@ namespace Coop
 
     internal string GetSpriteText(Sprite sprite)
     {
-      return guns.Find(g => g.portraitSprite == sprite).GunName;
+      return CoopGameManager.instance.allGuns.Find(g => g.portraitSprite == sprite).GunName;
     }
 
     void OnEnable()

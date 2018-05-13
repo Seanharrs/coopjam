@@ -112,9 +112,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GunName: Thermo-gun
   m_FiringRate: 1
-  PrimaryAmmoType: {fileID: 114504196913111740, guid: 997a4d16cf31cda40a2a0396e1626ca8,
+  PrimaryAmmoType: {fileID: 114541541818956504, guid: 364cff0ed561e2940b838a795e1443e0,
     type: 2}
-  SecondaryAmmoType: {fileID: 114504196913111740, guid: 997a4d16cf31cda40a2a0396e1626ca8,
+  SecondaryAmmoType: {fileID: 114541541818956504, guid: 8f1d06f4281bcc0428037bfb7e36c82f,
     type: 2}
   portraitSprite: {fileID: 21300000, guid: c5bcdc15a7bb00d4bbeabc3c6b6cc003, type: 3}
   AmmoSpawnLocation: {fileID: 4892645719443972}
