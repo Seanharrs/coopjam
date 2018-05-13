@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 58784830593610910}
   - component: {fileID: 50807974749881190}
   - component: {fileID: 114541541818956504}
-  - component: {fileID: 114450457890186032}
+  - component: {fileID: 114154618934850868}
   m_Layer: 0
-  m_Name: GravityGunSecondary
+  m_Name: ThermoGunPrimary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ CircleCollider2D:
   m_Offset: {x: -0.01, y: 0.02}
   serializedVersion: 2
   m_Radius: 0.28
---- !u!114 &114450457890186032
+--- !u!114 &114154618934850868
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -87,11 +87,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1334623540852784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff296cc0f363736459d944b240a8bb9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8355ca08fa77a024dae5adca96e4a6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Type: 1
-  m_EffectLength: 5
 --- !u!114 &114541541818956504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,7 +138,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 19c166b1b2c212e4eb4f3700e006bfd5, type: 3}
-  m_Color: {r: 0.14159843, g: 0.8113208, b: 0.27837363, a: 1}
+  m_Color: {r: 0.8509804, g: 0.8312972, b: 0.15686272, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
