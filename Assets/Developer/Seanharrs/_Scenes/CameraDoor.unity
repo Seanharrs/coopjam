@@ -407,16 +407,6 @@ Prefab:
       propertyPath: m_ConnectedObj
       value: 
       objectReference: {fileID: 889615982}
-    - target: {fileID: 82240625584149160, guid: cd20106621ecddf4a8a07e3ca1f4f043,
-        type: 2}
-      propertyPath: MaxDistance
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 82240625584149160, guid: cd20106621ecddf4a8a07e3ca1f4f043,
-        type: 2}
-      propertyPath: rolloffMode
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd20106621ecddf4a8a07e3ca1f4f043, type: 2}
   m_IsPrefabParent: 0
