@@ -63,7 +63,7 @@ MonoBehaviour:
   allGuns:
   - {fileID: 114068677599390282, guid: f71ce4ff311aef948b1e2012efbe7ded, type: 2}
   - {fileID: 114353257182372814, guid: d39616c6dee43114e82bb5b4f8567e91, type: 2}
-  - {fileID: 114353257182372814, guid: c0c89f4d06b075c468fd5c0341118ce0, type: 2}
+  - {fileID: 114506248553776704, guid: c0c89f4d06b075c468fd5c0341118ce0, type: 2}
   - {fileID: 114353257182372814, guid: 92df579e5b3b67242868bfbebfedf53d, type: 2}
   playerData:
   - playerCharacter: {fileID: 0}
