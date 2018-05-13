@@ -243,6 +243,26 @@ namespace Coop
 
       //TODO proper respawning
       transform.position = Vector2.one;
+      StartCoroutine(RespawnFlash());
+    }
+
+    private System.Collections.IEnumerator RespawnFlash()
+    {
+      float numFlashes = 3f;
+      SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+      Color initColor = sprite.color;
+      
+      float r = 150f / 255f, g = 150f / 255f, b = 150f / 255f;
+      Color flashColor = new Color(r, g, b);
+
+      for(int i = 0; i < numFlashes * 2; ++i)
+      {
+        sprite.color = sprite.color == initColor ? flashColor : initColor;
+        yield return new WaitForSeconds(1f);
+      }
+
+      sprite.color = initColor;
+      yield return null;
     }
 
     public void SetInputMode(PlayerInputMode mode)
