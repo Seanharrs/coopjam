@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(DeathCollider), typeof(CircuitObject))]
+[RequireComponent(typeof(DeathCollider), typeof(CircuitObject), typeof(AudioSource))]
 public class DeadlyLaser : MonoBehaviour
 {
     private CircuitObject m_Circuit;
