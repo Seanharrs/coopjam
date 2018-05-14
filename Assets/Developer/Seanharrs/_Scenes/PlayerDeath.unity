@@ -368,6 +368,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5000000, guid: 18fcd494ab71841d695135246693eb3a, type: 2}
+    - {fileID: 114498553474667974, guid: 18fcd494ab71841d695135246693eb3a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 18fcd494ab71841d695135246693eb3a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &633863816
@@ -823,6 +824,8 @@ MonoBehaviour:
   m_MaxMapX: 23.5
   m_MinMapY: -4.5
   m_MaxMapY: 20.5
+  m_BottomLeftIndicator: {fileID: 0}
+  m_TopRightIndicator: {fileID: 0}
 --- !u!1 &1364620426
 GameObject:
   m_ObjectHideFlags: 0

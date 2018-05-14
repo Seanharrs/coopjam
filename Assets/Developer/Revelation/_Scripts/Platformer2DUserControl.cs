@@ -35,11 +35,15 @@ namespace Coop
     private Vector3 m_Bounds;
     
     private Health m_HP;
+    private Animator m_Anim;
+    private BoxCollider2D m_Coll;
 
     private void Awake()
     {
       m_Character = GetComponent<PlatformerCharacter2D>();
       m_HP = GetComponent<Health>();
+      m_Anim = GetComponent<Animator>();
+      m_Coll = GetComponent<BoxCollider2D>();
 
       Cursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
@@ -254,14 +258,25 @@ namespace Coop
     
     public void Die()
     {
-      GetComponent<Animator>().SetTrigger("Die");      
-      GetComponent<BoxCollider2D>().enabled = false;
+      m_Anim.SetTrigger("Die");      
+      m_Coll.enabled = false;
+      armSocket.SetActive(false);
+      headSocket.SetActive(false);
     }
     
     public void Respawn()
     {
-      GetComponent<Animator>().SetTrigger("Respawn");
-      GetComponent<BoxCollider2D>().enabled = true;
+      //keep player dead for 2 seconds
+      Invoke("RespawnPlayer", 2f);
+    }
+
+    private void RespawnPlayer()
+    {
+      m_Anim.SetTrigger("Respawn");      
+      m_Coll.enabled = true;
+      armSocket.SetActive(true);
+      headSocket.SetActive(true);
+
       m_HP.enabled = true;
       m_HP.ResetHealth();
 
@@ -272,8 +287,10 @@ namespace Coop
 
     private System.Collections.IEnumerator RespawnFlash()
     {
-      float numFlashes = 3f;
+      float numFlashes = 4f;
       SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+      SpriteRenderer armSprite = armSocket.GetComponentInChildren<SpriteRenderer>();
+      SpriteRenderer headSprite = headSocket.GetComponentInChildren<SpriteRenderer>();
       Color initColor = sprite.color;
       
       float r = 150f / 255f, g = 150f / 255f, b = 150f / 255f;
@@ -281,11 +298,17 @@ namespace Coop
 
       for(int i = 0; i < numFlashes * 2; ++i)
       {
-        sprite.color = sprite.color == initColor ? flashColor : initColor;
-        yield return new WaitForSeconds(1f);
+        Color color = sprite.color == initColor ? flashColor : initColor;
+        sprite.color = color;
+        armSprite.color = color;
+        headSprite.color = color;
+
+        yield return new WaitForSeconds(0.5f);
       }
 
       sprite.color = initColor;
+      armSprite.color = initColor;
+      headSprite.color = initColor;
       yield return null;
     }
 
