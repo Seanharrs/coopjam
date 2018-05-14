@@ -27,26 +27,27 @@ namespace Coop
       if(hits > 0)
       {
         currentForceType = weapType;
-        int emCount = 0;
+        // Debugging: int emCount = 0;
         for (var i = 0; i < hits; i++)
         {
           var emComponent = results[i].collider.GetComponent<Electromagnetic>();
           if (emComponent != null)
           {
-            emCount++;
-            affectedObjects.Add(emComponent);
+            // Debugging: emCount++;
             emComponent.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            if (weapType == WhichWeapon.Primary)
+            if (weapType == WhichWeapon.Primary && emComponent.canAttract)
             {
               emComponent.OnStartPull.Invoke(this);
+              affectedObjects.Add(emComponent);
             }
-            else
+            else if (emComponent.canRepel)
             {
               emComponent.OnStopPull.Invoke(this);
+              affectedObjects.Add(emComponent);
             }
           }
         }
-        Debug.Log("Affecting " + emCount + " electromagnetic objects.");
+        // Debugging: Debug.Log("Affecting " + emCount + " electromagnetic objects.");
       }
       return null;
     }
@@ -59,13 +60,9 @@ namespace Coop
         obj.OnStopPush.Invoke(this);
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
 
-        // TODO: Should we stop velocities on both kinematic and dynamic objects?
-        if(obj.atRestBodyType == RigidbodyType2D.Kinematic)
-        {
-          rb.velocity = Vector2.zero;
-          rb.angularVelocity = 0;
-        }
-        rb.bodyType = obj.atRestBodyType;
+        // TODO: Is this okay? Do we want to dampen the movement instead of stopping it 100%?
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0;
       }
       affectedObjects.Clear();
       currentForceType = (WhichWeapon)(-1);

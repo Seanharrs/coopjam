@@ -21,8 +21,5 @@ namespace Coop
     [SerializeField]
     [Tooltip("Electromagnetic repelling (secondary weapon) works on this object. Defaults to true.")]
     internal bool canRepel = true;
-    [SerializeField]
-    [Tooltip("Electromagnetic repelling (secondary weapon) works on this object. Defaults to true.")]
-    internal RigidbodyType2D atRestBodyType = RigidbodyType2D.Kinematic;
   }
 }
