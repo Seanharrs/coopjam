@@ -228,7 +228,7 @@ namespace Coop
     internal void SetGun(Gun playerGun)
     {
       if(this.gun != null) Destroy(this.gun.gameObject);
-      this.gun = Instantiate(playerGun, gunSocket.transform.position, Quaternion.identity, gunSocket.transform);
+      this.gun = Instantiate(playerGun, gunSocket.transform.position, gunSocket.transform.rotation, gunSocket.transform);
       // TODO: This seems so wrong. Gotta clean up the pipeline somehow.
       CoopGameManager.instance.SetPlayerGun(this, playerGun);
     }
