@@ -190,7 +190,7 @@ namespace Coop
 
       if (uiControl.isReady)
       {
-        Debug.Log("Ready...");
+        // Debug.Log("Ready...");
         var readyCount = 0;
         availablePortraits.Remove(uiControl.portraitImage.sprite);
         foreach (var otherControl in playerControlsMap)
@@ -212,15 +212,15 @@ namespace Coop
         if (readyCount == playerControlsMap.Count() && playerControlsMap.Count() > 1)
         {
           AllReady();
-          Debug.Log("Ready: " + readyCount + "/" + playerControlsMap.Count());
+          // Debug.Log("Ready: " + readyCount + "/" + playerControlsMap.Count());
         } else {
-          Debug.Log("Not ready: " + readyCount + "/" + playerControlsMap.Count());
+          // Debug.Log("Not ready: " + readyCount + "/" + playerControlsMap.Count());
         }
 
       }
       else
       {
-        Debug.Log("Returning portrait to list.");
+        // Debug.Log("Returning portrait to list.");
         availablePortraits.Add(uiControl.portraitImage.sprite);
       }
     }

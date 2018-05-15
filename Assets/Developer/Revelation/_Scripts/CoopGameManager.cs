@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets._2D;
@@ -27,8 +28,22 @@ namespace Coop
 
   }
 
+  [InitializeOnLoad]
   public class CoopGameManager : MonoBehaviour
   {
+
+    #if UNITY_EDITOR
+    static CoopGameManager()
+    {
+      EditorSceneManager.sceneSaved += CheckScene;
+    }
+
+    private static void CheckScene(Scene scene)
+    {
+      CheckLevel();
+    }
+
+    #endif
 
     public static CoopGameManager instance;
 
@@ -89,12 +104,13 @@ namespace Coop
 
     public static void OpenLevel(string levelName)
     {
+      // TODO: Do we need to collect any additional information from the current scene about players before loading the next level?
+
       if(!String.IsNullOrEmpty(nextLevelOverride))
       {
         SceneManager.LoadScene(nextLevelOverride);
         nextLevelOverride = null;
       } else {
-        // TODO: Do we need to collect information from the current scene about players before loading the next level?
         SceneManager.LoadScene(levelName);
       }
     }
@@ -118,58 +134,6 @@ namespace Coop
     }
 
 
-    [MenuItem("Coop Jam Tools/Check Level")]
-    static void CheckLevel()
-    {
-      List<string> errors = new List<string>();
-
-      var levels = FindObjectsOfType<LevelManager>();
-      // should have exactly one level object, no more, no less
-      if(levels.Count() != 1)
-        errors.Add("Should have exactly one level object, no more, no less.");
-      var characters = FindObjectsOfType<Platformer2DUserControl>();
-      // should not have characters directly, use spawn points instead.
-      if(characters.Count() > 0)
-        errors.Add("Should not add characters directly, use spawn points instead.");
-      var spawnPoints = FindObjectsOfType<SpawnPoint>();
-      // should have exactly 4 spawn points. no more, no less.
-      if(spawnPoints.Count() != 4)
-        errors.Add("Should have exactly 4 spawn points. no more, no less.");
-      var cameras = FindObjectsOfType<Camera>().Where(c => c.tag == "MainCamera").ToList();
-      if(cameras.Count() != 1)
-        errors.Add("Should have exactly one main camera, no more, no less. (You may have additional cameras that are not set as the main camera.)");
-      // One camera, which should be a MultiplayerFollow as well. 
-      else if(cameras[0].GetComponent<MultiplayerFollow>() == null)
-        errors.Add("Camera should also have a MultiplayerFollow component.");
-      else
-      {
-        var followCam = cameras[0].GetComponent<MultiplayerFollow>();
-        // Warning if MultiplayerFollow does not have corner selectors
-        if(followCam.m_BottomLeftIndicator == null || followCam.m_TopRightIndicator == null)
-        {
-          errors.Add("Warning: Missing indicator(s). It is much easier to design a level with these.");
-        }
-        // Error if both corner selectors are null and min/max values are all zero
-        if ( (followCam.m_BottomLeftIndicator == null || followCam.m_TopRightIndicator == null)
-          && followCam.m_MinCamX == 0 && followCam.m_MaxCamX == 0 && followCam.m_MinCamY == 0 && followCam.m_MaxCamY == 0
-        )
-        {
-          errors.Add("Error: Missing indicator(s) and no min/max values have been provided. Camera will not move.");
-        }
-      }
-      if (SceneManager.GetActiveScene().buildIndex == -1)
-      {
-        errors.Add("Scene has not been added to build settings.");
-      }
-
-      if(errors.Count() == 0)
-        EditorUtility.DisplayDialog("Level Check", "No errors encountered." , "OK", "Cancel");
-      else
-        EditorUtility.DisplayDialog("Level Check", 
-          "Errors ecountered:\n - " + String.Join("\n - ", errors.ToArray()) 
-          , "OK", "Cancel");
-
-    }
 
     internal Gun GetAvailableGun(Platformer2DUserControl controller)
     {
@@ -199,6 +163,70 @@ namespace Coop
     {
       var c = playerData.Find(p => p.playerCharacter == character);
       if(c != null) c.playerGun = gun;
+    }
+    
+    [MenuItem("Tools/Coop Jam/Check Level")]
+    static void CheckLevel()
+    {
+      List<string> errors = new List<string>();
+
+      // should have exactly one level object, no more, no less
+      var levels = FindObjectsOfType<LevelManager>();
+      if(levels.Count() != 1)
+        errors.Add("Should have exactly one level object, no more, no less.");
+      
+      // should not have characters directly, use spawn points instead.
+      var characters = FindObjectsOfType<Platformer2DUserControl>();
+      if(characters.Count() > 0)
+        errors.Add("Should not add characters directly, use spawn points instead.");
+
+      // should have exactly 4 spawn points. no more, no less.
+      var spawnPoints = FindObjectsOfType<SpawnPoint>();
+      if(spawnPoints.Count() != 4)
+        errors.Add("Should have exactly 4 spawn points. no more, no less.");
+      
+      // One camera, which should be a MultiplayerFollow as well. 
+      var cameras = FindObjectsOfType<Camera>().Where(c => c.tag == "MainCamera").ToList();
+      if(cameras.Count() != 1)
+        errors.Add("Should have exactly one main camera, no more, no less. (You may have additional cameras that are not set as the main camera.)");
+      else if(cameras[0].GetComponent<MultiplayerFollow>() == null)
+        errors.Add("Camera should also have a MultiplayerFollow component.");
+      else
+      {
+        var followCam = cameras[0].GetComponent<MultiplayerFollow>();
+        // Warning if MultiplayerFollow does not have corner selectors
+        if(followCam.m_BottomLeftIndicator == null || followCam.m_TopRightIndicator == null)
+        {
+          errors.Add("Warning: Missing indicator(s). It is much easier to design a level with these.");
+        }
+        // Error if both corner selectors are null and min/max values are all zero
+        if ( (followCam.m_BottomLeftIndicator == null || followCam.m_TopRightIndicator == null)
+          && followCam.m_MinCamX == 0 && followCam.m_MaxCamX == 0 && followCam.m_MinCamY == 0 && followCam.m_MaxCamY == 0
+        )
+        {
+          errors.Add("Error: Missing indicator(s) and no min/max values have been provided. Camera will not move.");
+        }
+      }
+
+      // At least one LevelGoal object.
+      var levelGoal = FindObjectsOfType<LevelGoal>();
+      if(levelGoal.Count() == 0)
+        errors.Add("Each level should have at least one LevelGoal (You may have multiple).");
+
+      // Scene should be in build settings.
+      if (SceneManager.GetActiveScene().buildIndex == -1)
+      {
+        errors.Add("Scene has not been added to build settings.");
+      }
+
+      // if(errors.Count() == 0)
+      //   EditorUtility.DisplayDialog("Level Check", "No errors encountered." , "OK", "Cancel");
+      // else
+      if(errors.Count() > 0)
+        EditorUtility.DisplayDialog("Level Check", 
+          "Errors ecountered:\n - " + String.Join("\n - ", errors.ToArray()) 
+          , "OK", "Cancel");
+
     }
 
   }

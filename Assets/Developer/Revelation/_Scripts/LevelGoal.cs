@@ -18,7 +18,7 @@ namespace Coop
         {
           if(CoopGameManager.instance.playerData.Count() == overlappedPlayers.Count())
           {
-            Debug.Log("All players overlapping");
+            // Debug.Log("All players overlapping");
             FindObjectOfType<LevelManager>().LevelComplete();
           }
         }
