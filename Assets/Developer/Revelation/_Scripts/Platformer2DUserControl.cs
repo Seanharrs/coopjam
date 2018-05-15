@@ -149,7 +149,7 @@ namespace Coop
         }
         else if (Input.GetButtonDown(controlData.switchPlayerWeapon))
         {
-          Debug.Log("Pressed: switchPlayerWeapon " + Input.GetAxis(controlData.switchPlayerWeapon));
+          // Debug.Log("Pressed: switchPlayerWeapon " + Input.GetAxis(controlData.switchPlayerWeapon));
           
           SetGun(CoopGameManager.instance.GetAvailableGun(this));
           
@@ -160,7 +160,7 @@ namespace Coop
         }
         else if (Input.GetButtonDown(controlData.openMenuPause))
         {
-          Debug.Log("Pressed: Pause");
+          // Debug.Log("Pressed: Pause");
           Time.timeScale = 0;
           // TODO: Show pause menu
           SetInputMode(Coop.PlayerInputMode.UI);
