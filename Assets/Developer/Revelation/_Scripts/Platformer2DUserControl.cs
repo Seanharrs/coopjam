@@ -50,6 +50,8 @@ namespace Coop
 
       m_Cam = FindObjectOfType<MultiplayerFollow>();
       m_Bounds = GetComponent<SpriteRenderer>().sprite.bounds.extents;
+
+      crosshair.transform.SetParent(null);
     }
 
 
@@ -137,6 +139,7 @@ namespace Coop
             Cursor.lockState = CursorLockMode.Locked;
             //Cursor.visible = false;
             crosshair.gameObject.SetActive(false);
+            headSocket.transform.rotation = Quaternion.Euler(headSocket.transform.rotation.eulerAngles.x, headSocket.transform.rotation.eulerAngles.y, 0);
             isAiming = false;
           } else {
             Cursor.lockState = CursorLockMode.Locked;
@@ -199,13 +202,35 @@ namespace Coop
     private void LookAtRotate(Vector3 lookAtPos, GameObject rotateObject, int? minZRotation = null, int? maxZRotation = null)
     {
       var direction = (lookAtPos - rotateObject.transform.position).normalized;
-      var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+      var targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+      var newAngle = targetAngle;
+
+      if(Mathf.Sign(transform.lossyScale.x) > 0) // Facing forward / right
+      {
+        if(minZRotation != null)
+          newAngle = Mathf.Clamp(newAngle, (int)minZRotation, newAngle);
+        if(maxZRotation != null)
+          newAngle = Mathf.Clamp(newAngle, newAngle, (int)maxZRotation);
+      } 
+      else 
+      {
+        if(minZRotation != null && maxZRotation != null)
+        {
+          if(newAngle >= -90 && newAngle <= 0)
+            newAngle = -(int)minZRotation - 180;
+          if(newAngle > 0 && newAngle <= 90)
+            newAngle = 180 - (int)maxZRotation;
+          if(newAngle > 90 && newAngle < 180)
+            newAngle = Mathf.Clamp(newAngle, 180 - (int)maxZRotation, 180);
+          if(newAngle > -180 && newAngle < -90)
+            newAngle = Mathf.Clamp(newAngle, -180, - (int)minZRotation - 180);
+        }
+        newAngle += 180;
+      }
+      //newAngle +=  (Mathf.Sign(transform.lossyScale.x) < 0 ? 180 : 0);
       
-      var newAngle = angle + (Mathf.Sign(transform.lossyScale.x) < 0 ? 180 : 0);
-      if(minZRotation != null)
-        newAngle = Mathf.Clamp(newAngle, (int)minZRotation, newAngle);
-      if(maxZRotation != null)
-        newAngle = Mathf.Clamp(newAngle, newAngle, (int)maxZRotation);
+
       // Simply rotating an additional 180 degrees if the player is facing backward works and makes sense but feels like a hack. What's the better way to do this?
       rotateObject.transform.rotation = Quaternion.Euler(0, 0, newAngle);
     }
@@ -320,6 +345,22 @@ namespace Coop
     public PlayerInputMode GetInputMode()
     {
       return m_InputMode;
+    }
+
+    /// <summary>
+    /// OnGUI is called for rendering and handling GUI events.
+    /// This function can be called multiple times per frame (one call per event).
+    /// </summary>
+    void OnGUI()
+    {
+      if(!isAiming) return;
+
+      var direction = (crosshair.transform.position - headSocket.transform.position).normalized;
+      var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+      string output = "Current: " + (headSocket.transform.rotation.eulerAngles.z).ToString() + ", Target: " + angle;
+
+      GUI.TextArea(new Rect(headSocket.transform.position, new Vector2(100, 100)) , output);
     }
 
     void OnDrawGizmos() {
