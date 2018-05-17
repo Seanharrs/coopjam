@@ -158,7 +158,21 @@ namespace Coop
         }
         else if (Input.GetButtonDown(controlData.interact))
         {
-          Debug.Log("Pressed: interact");
+          // Debug.Log("Pressed: interact");
+
+          Collider2D[] res = new Collider2D[1];
+          ContactFilter2D filter = new ContactFilter2D()
+          {
+            useTriggers = true,
+            useLayerMask = true,
+            layerMask = LayerMask.GetMask("Interactable")
+          };
+          m_Coll.OverlapCollider(filter, res);
+          if(res[0])
+          {
+            Interactable obj = res[0].GetComponent<Interactable>();
+            if(obj != null) obj.Interact();
+          }
         }
         else if (Input.GetButtonDown(controlData.openMenuPause))
         {

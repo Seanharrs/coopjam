@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CircuitObject))]
 public class AutoDoor : MonoBehaviour
 {
     [SerializeField]
@@ -13,15 +11,6 @@ public class AutoDoor : MonoBehaviour
 
     [SerializeField]
     private float m_Speed = 5f;
-    
-    private CircuitObject m_Circuit;
-    
-    private void Awake()
-    {
-        m_Circuit = GetComponent<CircuitObject>();
-        m_Circuit.OnActivate(OpenDoor);
-        m_Circuit.OnDeactivate(CloseDoor);
-    }
 
     private IEnumerator MoveDoor(Vector3 newPos)
     {
@@ -32,13 +21,13 @@ public class AutoDoor : MonoBehaviour
         }
         yield return null;
     }
-
-    private void OpenDoor()
+    
+    public void OpenDoor()
     {
         StartCoroutine(MoveDoor(m_OpenPos));
     }
 
-    private void CloseDoor()
+    public void CloseDoor()
     {
         StartCoroutine(MoveDoor(m_ClosePos));
     }

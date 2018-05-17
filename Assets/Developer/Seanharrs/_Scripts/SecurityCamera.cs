@@ -17,12 +17,11 @@ public class SecurityCamera : MonoBehaviour
     private float m_SearchSpeed = 40f;
     
     [SerializeField]
-    private CircuitObject m_ConnectedObj;
-
-    [SerializeField]
     private float m_MaxAlertTime = 10f;
     private float m_AlertTimeLeft;
     private bool m_OnAlert;
+
+    private CircuitObject m_CircuitObj;
 
     private Vector3 initRot;
     private AudioSource m_Audio;
@@ -45,13 +44,12 @@ public class SecurityCamera : MonoBehaviour
     {
         initRot = transform.rotation.eulerAngles;
         m_Audio = GetComponent<AudioSource>();
+        m_CircuitObj = GetComponent<CircuitObject>();
 
         for(int i = 0; i < m_LookRotationsZ.Length; i++)
             if(m_LookRotationsZ[i] < 0)
                 m_LookRotationsZ[i] += 360;
     }
-
-    private void Start() { m_ConnectedObj.Activate(); }
 
     private IEnumerator LookAround()
     {
@@ -59,8 +57,8 @@ public class SecurityCamera : MonoBehaviour
         m_AlertTimeLeft = m_MaxAlertTime;
         m_Audio.Play();
 
-        if(m_ConnectedObj.active)
-            m_ConnectedObj.Deactivate();
+        if(!m_CircuitObj.active)
+            m_CircuitObj.onTriggerStart.Invoke();
 
         int i = 0;
         float newRotZ = m_LookRotationsZ[0];
@@ -104,8 +102,8 @@ public class SecurityCamera : MonoBehaviour
         m_OnAlert = false;
         m_Audio.Stop();
 
-        if(!m_ConnectedObj.active)
-            m_ConnectedObj.Activate();
+        if(m_CircuitObj.active)
+            m_CircuitObj.onTriggerEnd.Invoke();
 
         yield return null;
     }
