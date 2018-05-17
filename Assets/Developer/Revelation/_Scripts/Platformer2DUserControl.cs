@@ -125,7 +125,7 @@ namespace Coop
             gun.Fire(WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
         #endregion
-        else if (m_FiringPrimary || m_FiringSecondary)
+        else if (m_FiringPrimary || m_FiringSecondary) // These may be "true" from the previous frame while buttons are not still held this frame.
         {
           gun.StopFiring();
           m_FiringPrimary = false;
