@@ -194,25 +194,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1099612627906320, guid: 24f76a21076bb904c8ff649cc1ac73d4, type: 2}
+      propertyPath: m_Name
+      value: Lever (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114760641008709332, guid: 24f76a21076bb904c8ff649cc1ac73d4,
+        type: 2}
+      propertyPath: m_ActivationType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114760641008709332, guid: 24f76a21076bb904c8ff649cc1ac73d4,
         type: 2}
       propertyPath: m_ConnectedObj
       value: 
       objectReference: {fileID: 889615982}
-    - target: {fileID: 114760641008709332, guid: 24f76a21076bb904c8ff649cc1ac73d4,
-        type: 2}
-      propertyPath: m_Activate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114760641008709332, guid: 24f76a21076bb904c8ff649cc1ac73d4,
-        type: 2}
-      propertyPath: m_TimeActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1099612627906320, guid: 24f76a21076bb904c8ff649cc1ac73d4, type: 2}
-      propertyPath: m_Name
-      value: Lever (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 24f76a21076bb904c8ff649cc1ac73d4, type: 2}
   m_IsPrefabParent: 0
@@ -325,11 +320,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4756569512032702, guid: 24f76a21076bb904c8ff649cc1ac73d4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 11.96
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4756569512032702, guid: 24f76a21076bb904c8ff649cc1ac73d4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4756569512032702, guid: 24f76a21076bb904c8ff649cc1ac73d4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -360,16 +355,6 @@ Prefab:
       propertyPath: m_ConnectedObj
       value: 
       objectReference: {fileID: 889615982}
-    - target: {fileID: 114760641008709332, guid: 24f76a21076bb904c8ff649cc1ac73d4,
-        type: 2}
-      propertyPath: m_Activate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114760641008709332, guid: 24f76a21076bb904c8ff649cc1ac73d4,
-        type: 2}
-      propertyPath: m_TimeActive
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 114760641008709332, guid: 24f76a21076bb904c8ff649cc1ac73d4,
         type: 2}
       propertyPath: m_ActivationType

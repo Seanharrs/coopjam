@@ -8,16 +8,21 @@ public class Lever : MonoBehaviour
     public enum ActivationType { Toggle, Timed };
 
     [SerializeField]
-    private ActivationType m_ActivationType;
+    private CircuitObject m_ConnectedObj;
 
     [SerializeField]
-    private CircuitObject m_ConnectedObj;
+    private ActivationType m_ActivationType;
 
     [SerializeField, Tooltip("The time in seconds that the lever should remain active for, if Timed not Toggle")]
     private float m_TimeActive;
     private float m_LastActivated;
 
     private bool m_IsActive;
+
+    private const float ACTIVE_ROT = 310f;
+    private const float INACTIVE_ROT = 50f;
+
+    private const float FLIP_SPEED = 180f;
 
     public void Interact()
     {
@@ -27,13 +32,11 @@ public class Lever : MonoBehaviour
             if(m_ActivationType == ActivationType.Timed && remainActive)
                 return;
 
-            m_IsActive = false;
-            m_ConnectedObj.Deactivate();
+            ToggleLever(false);
         }
         else
         {
-            m_IsActive = true;
-            m_ConnectedObj.Activate();
+            ToggleLever(true);
 
             if(m_ActivationType == ActivationType.Timed)
             {
@@ -41,5 +44,44 @@ public class Lever : MonoBehaviour
                 Invoke("Interact", m_TimeActive + 0.1f);
             }
         }
+    }
+
+    private void ToggleLever(bool state)
+    {
+        m_IsActive = state;
+
+        if(state)
+            m_ConnectedObj.Activate();
+        else
+            m_ConnectedObj.Deactivate();
+
+
+        StartCoroutine(FlipBar());
+    }
+
+    private IEnumerator FlipBar()
+    {
+        Transform barTransform = transform.GetChild(0);
+
+        float newRotZ = m_IsActive ? ACTIVE_ROT : INACTIVE_ROT;
+        float currRotZ = barTransform.rotation.eulerAngles.z;
+        int direction = m_IsActive ? -1 : 1; // right : left
+
+        while(Mathf.Abs(currRotZ - newRotZ) >= 1f)
+        {
+            currRotZ += Time.fixedDeltaTime * FLIP_SPEED * direction;
+            if(currRotZ >= 360f)
+                currRotZ -= 360f;
+            else if(currRotZ < 0f)
+                currRotZ += 360f;
+
+            barTransform.rotation = Quaternion.Euler(0, 0, currRotZ);
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        barTransform.rotation = Quaternion.Euler(0, 0, newRotZ);
+
+        yield return null;
     }
 }
