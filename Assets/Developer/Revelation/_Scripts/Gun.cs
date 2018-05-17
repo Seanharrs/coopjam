@@ -47,7 +47,7 @@ namespace Coop {
         {
           var projectile = Instantiate(AmmoToUse, AmmoSpawnLocation.position, Quaternion.identity);
           if (projectile) {
-            projectile.Initiate(direction ?? (Vector2)AmmoSpawnLocation.lossyScale * AmmoSpawnLocation.right, weapType, target);
+            projectile.Initiate(direction ?? (Vector2)AmmoSpawnLocation.lossyScale.normalized * AmmoSpawnLocation.right, weapType, target);
             m_LastFired[weapType] = Time.time;
             return projectile;
           }
@@ -60,5 +60,6 @@ namespace Coop {
     {
       // Placeholder
     }
+
   }
 }

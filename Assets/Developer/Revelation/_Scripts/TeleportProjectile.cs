@@ -15,6 +15,11 @@ namespace Coop
     private Projectile m_Projectile;
     private Collider2D m_Collider;
 
+    [SerializeField]
+    private Color primaryColor;
+    [SerializeField]
+    private Color secondaryColor;
+
     // Reference to the gun that fired this projectile.
     public TeleportGun TeleportGun { get; internal set; }
 

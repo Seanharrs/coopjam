@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityStandardAssets._2D;
 // using UnityStandardAssets.CrossPlatformInput;
 
 namespace Coop

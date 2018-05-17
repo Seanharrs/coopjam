@@ -77,5 +77,15 @@ namespace Coop
       }
     }
 
+    /// <summary>
+    /// This function is called when the MonoBehaviour will be destroyed.
+    /// </summary>
+    void OnDestroy()
+    {
+      // Make sure we don't have residual teleport portals.
+      if(m_TargetLocationObject != null)
+        Destroy(m_TargetLocationObject);
+    }
+
   }
 }

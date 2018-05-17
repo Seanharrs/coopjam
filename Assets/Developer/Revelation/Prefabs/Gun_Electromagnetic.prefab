@@ -117,7 +117,7 @@ MonoBehaviour:
   portraitSprite: {fileID: 21300000, guid: 2a5faef476a5b01498697721bb3e423e, type: 3}
   AmmoSpawnLocation: {fileID: 4892645719443972}
   m_EmDistance: 10
-  forceAmount: 5
+  forceAmount: 250
 --- !u!212 &212125488476311972
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -150,9 +150,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingLayerID: -354108773
+  m_SortingLayer: 3
+  m_SortingOrder: -50
   m_Sprite: {fileID: 21300000, guid: 2a5faef476a5b01498697721bb3e423e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
