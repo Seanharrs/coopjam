@@ -162,10 +162,16 @@ namespace Coop
           // Debug.Log("Pressed: interact");
 
           Collider2D[] res = new Collider2D[1];
-          GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), res);
+          ContactFilter2D filter = new ContactFilter2D()
+          {
+            useTriggers = true,
+            useLayerMask = true,
+            layerMask = LayerMask.GetMask("Interactable")
+          };
+          m_Coll.OverlapCollider(filter, res);
           if(res[0])
           {
-            IInteractable obj = res[0].GetComponent<IInteractable>();
+            Interactable obj = res[0].GetComponent<Interactable>();
             if(obj != null) obj.Interact();
           }
         }

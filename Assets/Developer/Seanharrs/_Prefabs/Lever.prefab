@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 4756569512032702}
   - component: {fileID: 212475534857254298}
   - component: {fileID: 58736919414164606}
+  - component: {fileID: 114015315492348184}
   - component: {fileID: 114760641008709332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,6 +58,33 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &114015315492348184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1099612627906320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee605e88d9d1ec4b963f4277ab11947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114760641008709332}
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114760641008709332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18914aec944515744b5c01ed7433918f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Activate: 0
+  m_ActivationType: 0
   m_ConnectedObj: {fileID: 0}
   m_TimeActive: 0
 --- !u!212 &212475534857254298

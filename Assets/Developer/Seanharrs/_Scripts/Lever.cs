@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
-public class Lever : MonoBehaviour, IInteractable
+[RequireComponent(typeof(CircleCollider2D), typeof(Interactable))]
+public class Lever : MonoBehaviour
 {
     public enum ActivationType { Toggle, Timed };
 
@@ -38,7 +38,7 @@ public class Lever : MonoBehaviour, IInteractable
             if(m_ActivationType == ActivationType.Timed)
             {
                 m_LastActivated = Time.time;
-                Invoke("Interact", m_TimeActive);
+                Invoke("Interact", m_TimeActive + 0.1f);
             }
         }
     }
