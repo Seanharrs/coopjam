@@ -268,7 +268,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 18fcd494ab71841d695135246693eb3a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.67
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 18fcd494ab71841d695135246693eb3a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -312,6 +312,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5000000, guid: 18fcd494ab71841d695135246693eb3a, type: 2}
+    - {fileID: 114498553474667974, guid: 18fcd494ab71841d695135246693eb3a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 18fcd494ab71841d695135246693eb3a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &889615979 stripped
@@ -352,17 +353,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &889615982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 889615979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3555149581572d4f9edb1cf57693c01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1018357231
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +619,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114500500308874358, guid: d98d7c579c02e834baa42d163af30ea0,
+        type: 2}
+      propertyPath: onTriggerEnd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500500308874358, guid: d98d7c579c02e834baa42d163af30ea0,
+        type: 2}
+      propertyPath: onTriggerStart.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4106446895962218, guid: d98d7c579c02e834baa42d163af30ea0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 11
@@ -669,7 +669,7 @@ Prefab:
         type: 2}
       propertyPath: m_ConnectedObj
       value: 
-      objectReference: {fileID: 889615982}
+      objectReference: {fileID: 0}
     - target: {fileID: 4242070009276760, guid: d98d7c579c02e834baa42d163af30ea0, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0.7071068
@@ -691,6 +691,56 @@ Prefab:
         type: 2}
       propertyPath: m_LookRotationsZ.Array.data[1]
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500500308874358, guid: d98d7c579c02e834baa42d163af30ea0,
+        type: 2}
+      propertyPath: onTriggerStart.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500500308874358, guid: d98d7c579c02e834baa42d163af30ea0,
+        type: 2}
+      propertyPath: onTriggerStart.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500500308874358, guid: d98d7c579c02e834baa42d163af30ea0,
+        type: 2}
+      propertyPath: onTriggerEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500500308874358, guid: d98d7c579c02e834baa42d163af30ea0,
+        type: 2}
+      propertyPath: onTriggerEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500500308874358, guid: d98d7c579c02e834baa42d163af30ea0,
+        type: 2}
+      propertyPath: onTriggerStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 889615980}
+    - target: {fileID: 114500500308874358, guid: d98d7c579c02e834baa42d163af30ea0,
+        type: 2}
+      propertyPath: onTriggerEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 889615980}
+    - target: {fileID: 114500500308874358, guid: d98d7c579c02e834baa42d163af30ea0,
+        type: 2}
+      propertyPath: onTriggerEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500500308874358, guid: d98d7c579c02e834baa42d163af30ea0,
+        type: 2}
+      propertyPath: onTriggerEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500500308874358, guid: d98d7c579c02e834baa42d163af30ea0,
+        type: 2}
+      propertyPath: onTriggerStart.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 114500500308874358, guid: d98d7c579c02e834baa42d163af30ea0,
+        type: 2}
+      propertyPath: onTriggerStart.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d98d7c579c02e834baa42d163af30ea0, type: 2}

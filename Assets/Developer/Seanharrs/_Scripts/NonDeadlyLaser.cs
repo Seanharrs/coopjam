@@ -6,33 +6,20 @@ using UnityEngine;
 public class NonDeadlyLaser : MonoBehaviour
 {
     private CircuitObject m_Circuit;
-
-    [SerializeField]
-    private CircuitObject m_ConnectedObj;
-
+    
     [SerializeField]
     private float m_MaxAlertTime = 1f;
     private float m_AlertTimeLeft;
 
-    private void Awake()
-    {
-        m_Circuit = GetComponent<CircuitObject>();
-        m_Circuit.OnActivate(TurnOn);
-        m_Circuit.OnDeactivate(TurnOff);
-    }
+    private void Awake() { m_Circuit = GetComponent<CircuitObject>(); }
 
-    private void Start()
-    {
-        m_ConnectedObj.Activate();
-    }
-
-    private void TurnOn()
+    public void TurnOn()
     {
         GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<SpriteRenderer>().enabled = true;
     }
 
-    private void TurnOff()
+    public void TurnOff()
     {
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
@@ -59,8 +46,8 @@ public class NonDeadlyLaser : MonoBehaviour
     {
         m_AlertTimeLeft = m_MaxAlertTime;
 
-        if(m_ConnectedObj.active)
-            m_ConnectedObj.Deactivate();
+        if(!m_Circuit.active)
+            m_Circuit.onTriggerStart.Invoke();
 
         while(m_AlertTimeLeft > 0)
         {
@@ -68,8 +55,8 @@ public class NonDeadlyLaser : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        if(!m_ConnectedObj.active)
-            m_ConnectedObj.Activate();
+        if(m_Circuit.active)
+            m_Circuit.onTriggerEnd.Invoke();
 
         yield return null;
     }

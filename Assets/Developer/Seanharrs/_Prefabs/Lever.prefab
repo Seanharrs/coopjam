@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212475534857254298}
   - component: {fileID: 58736919414164606}
   - component: {fileID: 114015315492348184}
+  - component: {fileID: 114815027218897716}
   - component: {fileID: 114760641008709332}
   m_Layer: 8
   m_Name: Lever
@@ -127,8 +128,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ActivationType: 0
-  m_ConnectedObj: {fileID: 0}
   m_TimeActive: 3
+--- !u!114 &114815027218897716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1099612627906320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3555149581572d4f9edb1cf57693c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTriggerStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onTriggerEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!212 &212032754098429538
 SpriteRenderer:
   m_ObjectHideFlags: 1

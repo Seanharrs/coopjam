@@ -54,8 +54,8 @@ GameObject:
   - component: {fileID: 212535832813516988}
   - component: {fileID: 61358399233543488}
   - component: {fileID: 114978292655440150}
-  - component: {fileID: 82319762280880430}
   - component: {fileID: 114156703026143876}
+  - component: {fileID: 82319762280880430}
   m_Layer: 0
   m_Name: Non Deadly Laser
   m_TagString: Untagged
@@ -235,7 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82abe410fb379cb43b9642d6a90216eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ConnectedObj: {fileID: 0}
   m_MaxAlertTime: 1
 --- !u!114 &114978292655440150
 MonoBehaviour:
@@ -248,6 +247,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3555149581572d4f9edb1cf57693c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onTriggerStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onTriggerEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!212 &212115570280051272
 SpriteRenderer:
   m_ObjectHideFlags: 1

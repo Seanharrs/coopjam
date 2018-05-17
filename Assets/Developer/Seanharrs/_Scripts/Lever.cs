@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D), typeof(Interactable))]
+[RequireComponent(typeof(CircleCollider2D), typeof(Interactable), typeof(CircuitObject))]
 public class Lever : MonoBehaviour
 {
     public enum ActivationType { Toggle, Timed };
-
-    [SerializeField]
-    private CircuitObject m_ConnectedObj;
-
+    
     [SerializeField]
     private ActivationType m_ActivationType;
 
@@ -17,12 +14,16 @@ public class Lever : MonoBehaviour
     private float m_TimeActive;
     private float m_LastActivated;
 
+    private CircuitObject m_CircuitObj;
+
     private bool m_IsActive;
 
     private const float ACTIVE_ROT = 310f;
     private const float INACTIVE_ROT = 50f;
 
     private const float FLIP_SPEED = 180f;
+
+    private void Awake() { m_CircuitObj = GetComponent<CircuitObject>(); }
 
     public void Interact()
     {
@@ -50,11 +51,10 @@ public class Lever : MonoBehaviour
     {
         m_IsActive = state;
 
-        if(state)
-            m_ConnectedObj.Activate();
-        else
-            m_ConnectedObj.Deactivate();
-
+        if(state && !m_CircuitObj.active)
+            m_CircuitObj.onTriggerStart.Invoke();
+        else if(!state && m_CircuitObj.active)
+            m_CircuitObj.onTriggerEnd.Invoke();
 
         StartCoroutine(FlipBar());
     }

@@ -38,9 +38,8 @@ GameObject:
   - component: {fileID: 212783868545870390}
   - component: {fileID: 61419750125206496}
   - component: {fileID: 114032549419976294}
-  - component: {fileID: 114909550310878536}
-  - component: {fileID: 82020761824317524}
   - component: {fileID: 114249694716726730}
+  - component: {fileID: 82020761824317524}
   m_Layer: 0
   m_Name: Deadly Laser
   m_TagString: Untagged
@@ -245,17 +244,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bf942576183aee409fcb80c1e7de368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114909550310878536
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1427884908184492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3555149581572d4f9edb1cf57693c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212020168749407982

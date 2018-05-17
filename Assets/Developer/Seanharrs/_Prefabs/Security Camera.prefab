@@ -37,9 +37,9 @@ GameObject:
   - component: {fileID: 4242070009276760}
   - component: {fileID: 212549301618733094}
   - component: {fileID: 60148165064796700}
-  - component: {fileID: 82758671582852202}
-  - component: {fileID: 114117742354617276}
   - component: {fileID: 114500500308874358}
+  - component: {fileID: 114117742354617276}
+  - component: {fileID: 82758671582852202}
   m_Layer: 0
   m_Name: SecCam
   m_TagString: Untagged
@@ -242,7 +242,6 @@ MonoBehaviour:
   - 60
   m_InitialDirection: -1
   m_SearchSpeed: 40
-  m_ConnectedObj: {fileID: 0}
   m_MaxAlertTime: 10
 --- !u!114 &114500500308874358
 MonoBehaviour:
@@ -255,6 +254,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3555149581572d4f9edb1cf57693c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onTriggerStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onTriggerEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!212 &212365345249156854
 SpriteRenderer:
   m_ObjectHideFlags: 1
