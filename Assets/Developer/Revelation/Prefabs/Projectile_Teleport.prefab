@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4cf1af12b87964889286019bf17779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryColor: {r: 1, g: 0.6396565, b: 0.1462264, a: 0}
-  secondaryColor: {r: 0.8396226, g: 0, b: 0, a: 0}
+  primaryColor: {r: 1, g: 0.6396565, b: 0.1462264, a: 1}
+  secondaryColor: {r: 0.8396226, g: 0, b: 0, a: 1}
 --- !u!114 &114504196913111740
 MonoBehaviour:
   m_ObjectHideFlags: 1

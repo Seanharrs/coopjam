@@ -189,6 +189,10 @@ namespace Coop
       /// </summary>
       void OnDrawGizmos()
       {
+          #if UNITY_EDITOR
+            m_CircleCollider = GetComponent<CircleCollider2D>();
+            m_SlopeMask = ~LayerMask.GetMask("Characters");
+          #endif
           var start = (Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius);
           var hit = Physics2D.Raycast(start, Vector2.down, 2f, m_SlopeMask);
           

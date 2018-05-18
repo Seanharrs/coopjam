@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400000}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   - component: {fileID: 114571047100707184}
   - component: {fileID: 251890073372096210}
   - component: {fileID: 114309672057929266}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Coop_CharacterRig
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400004}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4216730975078470}
   - component: {fileID: 212060919973537604}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4533013003283686}
   - component: {fileID: 212275192183518160}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166326822112520}
   - component: {fileID: 58202210969915864}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: HeadSocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4535969710696264}
   - component: {fileID: 212457422083676156}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: HeadSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4471308230588082}
   - component: {fileID: 61969712049750068}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: FloorTestTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4620111066880022}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GunSocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4637830240405362}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: ShoulderSocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
