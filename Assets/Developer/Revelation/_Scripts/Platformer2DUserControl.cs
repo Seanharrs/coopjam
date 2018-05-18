@@ -302,6 +302,7 @@ namespace Coop
       headSocket.SetActive(false);
     }
     
+    /// <summary>Called by an animation event at the end of the player's death animation.</summary>
     public void Respawn()
     {
       //keep player dead for 2 seconds
@@ -319,7 +320,8 @@ namespace Coop
       m_HP.ResetHealth();
 
       //TODO proper respawning
-      transform.position = Vector2.one;
+      SpawnPoint[] spawns = FindObjectsOfType<SpawnPoint>();
+      transform.position = spawns[new System.Random().Next(0, spawns.Length)].transform.position;
       StartCoroutine(RespawnFlash());
     }
 
