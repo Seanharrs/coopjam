@@ -144,7 +144,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 88efa86b3a8e90247be931199507788f, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
@@ -621,8 +621,8 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 4294967295
-  m_MaxSlope: 45
+    m_Bits: 4294966783
+  m_MaxSlope: 50
   m_NormalGravity: 3
   m_SlopeGravity: 8
   floorTestCollider: {fileID: 61969712049750068}

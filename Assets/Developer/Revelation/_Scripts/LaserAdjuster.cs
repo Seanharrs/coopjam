@@ -21,10 +21,8 @@ namespace Coop
       {
 
         var distance = (topEmitter.transform.position - bottomEmitter.transform.position).magnitude;
-        Debug.Log("Transform has changed. Distance: " + distance);
         transform.localScale = new Vector3(1, distance / 4, 1);
         transform.localPosition = new Vector3(0, bottomEmitter.transform.localPosition.y + distance / 2, 0);
-        Debug.Log("Changed me.");
 
         var tPosition = topEmitter.transform.localPosition;
         tPosition.x = 0;
