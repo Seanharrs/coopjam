@@ -9682,6 +9682,7 @@ GameObject:
   - component: {fileID: 1641510094}
   - component: {fileID: 1641510093}
   - component: {fileID: 1641510092}
+  - component: {fileID: 1641510095}
   m_Layer: 0
   m_Name: steel_ramp
   m_TagString: Untagged
@@ -9715,7 +9716,7 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 2.9882812, y: 3}
       - {x: 0, y: 0.01171875}
-      - {x: 0, y: 0}
+      - {x: -0.06281917, y: -0.015704691}
       - {x: 3, y: 0}
       - {x: 3, y: 3}
 --- !u!212 &1641510093
@@ -9776,6 +9777,24 @@ Transform:
   m_Father: {fileID: 520989664}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &1641510095
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1641510091}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 45
+  m_UseOneWay: 0
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1642951727
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,9 @@ namespace Coop
         [SerializeField] private float m_SlopeGravity = 6f;
         private CircleCollider2D m_CircleCollider;
         private float m_Slope;              // Calculated slope angle below player.
+        private float m_SignedSlope;
+        private Vector3 m_SlopeNormal;
+        private Vector3 m_SlopePerpendicular;
         private LayerMask m_SlopeMask;
         private bool m_SlipperySlope = false;
         private GameObject debug_GroundObject;
@@ -47,6 +50,7 @@ namespace Coop
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             m_CircleCollider = GetComponent<CircleCollider2D>();
+            m_Rigidbody2D.centerOfMass = m_CircleCollider.offset - ((Vector2)transform.up * m_CircleCollider.radius);
             m_SlopeMask = ~LayerMask.GetMask("Characters");
         }
 
@@ -71,7 +75,21 @@ namespace Coop
             else
               m_SlipperySlope = false;
 
-            m_Slope = Mathf.Abs(Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg - 90);
+            m_SignedSlope = Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg - 90;
+            m_Slope = Mathf.Abs(m_SignedSlope);
+            m_SlopeNormal = hit.normal;
+            m_SlopePerpendicular = -Vector2.Perpendicular(hit.normal);
+
+            if(m_Grounded)
+            {
+              m_Rigidbody2D.gravityScale = 0;
+              m_Rigidbody2D.AddForce(m_SlopeNormal * Physics2D.gravity * 0.4f);
+            }
+            else
+            {
+              m_Rigidbody2D.gravityScale = m_NormalGravity;
+            }
+
 
             m_Anim.SetBool("Ground", m_Grounded);
 
@@ -120,7 +138,13 @@ namespace Coop
                 m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
                 // Move the character
-                m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
+                if(m_Slope > 15 && m_Slope < 90)
+                {
+                  var perviousVelocity = m_Rigidbody2D.velocity / m_SlopePerpendicular;
+                  m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, perviousVelocity.y) * m_SlopePerpendicular;
+                }
+                else
+                  m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
 
                 // If the input is moving the player right and the player is facing left...
                 if (move > 0 && !m_FacingRight)
@@ -205,6 +229,12 @@ namespace Coop
           Gizmos.color = Color.yellow;
           Gizmos.DrawLine(hit.point, hit.point + hit.normal);
           Gizmos.DrawSphere(hit.point, .15f);
+
+          var perpStart = hit.point + hit.normal;
+          var perpendicular = Vector2.Perpendicular(hit.normal);
+          Gizmos.color = Color.red;
+          Gizmos.DrawLine(perpStart, perpStart + perpendicular);
+          Gizmos.DrawSphere(perpStart, .15f);
       }
     }
 }
