@@ -40,9 +40,9 @@ namespace Coop
               emComponent.OnStartPull.Invoke(this);
               affectedObjects.Add(emComponent);
             }
-            else if (emComponent.canRepel)
+            else if (weapType == WhichWeapon.Secondary && emComponent.canRepel)
             {
-              emComponent.OnStopPull.Invoke(this);
+              emComponent.OnStartPull.Invoke(this);
               affectedObjects.Add(emComponent);
             }
           }
