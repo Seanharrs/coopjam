@@ -398,6 +398,26 @@ Prefab:
       propertyPath: m_Name
       value: Door (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_OpenPos.x
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_OpenPos.y
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_ClosePos.x
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_ClosePos.y
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4009c2b570050924b99662b491eed449, type: 2}
   m_IsPrefabParent: 0
@@ -534,6 +554,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 50245718063707710, guid: c949030825a9b3f49ba5587ddc2da4ea,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
   m_IsPrefabParent: 0
@@ -592,6 +617,11 @@ Prefab:
     - target: {fileID: 4831314811800858, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50245718063707710, guid: c949030825a9b3f49ba5587ddc2da4ea,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
@@ -801,6 +831,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4831314811800858, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
       propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50245718063707710, guid: c949030825a9b3f49ba5587ddc2da4ea,
+        type: 2}
+      propertyPath: m_BodyType
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1783,7 +1818,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4484736391894120, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 56
+      value: 55.75
       objectReference: {fileID: 0}
     - target: {fileID: 4484736391894120, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1816,6 +1851,11 @@ Prefab:
     - target: {fileID: 1924061331522826, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
       propertyPath: m_Name
       value: IceCrate (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 50321356364022274, guid: 7865ce34c72bbd34abab3c17b76b970c,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
@@ -2448,6 +2488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 208112706}
   - component: {fileID: 208112707}
+  - component: {fileID: 208112708}
   m_Layer: 0
   m_Name: steel_crates_10 (3)
   m_TagString: Untagged
@@ -2513,6 +2554,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &208112708
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208112705}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &216201017
 Prefab:
   m_ObjectHideFlags: 0
@@ -2860,7 +2926,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1626437137199260, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_Name
@@ -3890,6 +3956,26 @@ Prefab:
       propertyPath: m_Name
       value: LightningCrate (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 61149776941124786, guid: 4f727ffcc1f105c47a446816f6efbd60,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0.4999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 61149776941124786, guid: 4f727ffcc1f105c47a446816f6efbd60,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 61149776941124786, guid: 4f727ffcc1f105c47a446816f6efbd60,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 61149776941124786, guid: 4f727ffcc1f105c47a446816f6efbd60,
+        type: 2}
+      propertyPath: m_EdgeRadius
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f727ffcc1f105c47a446816f6efbd60, type: 2}
   m_IsPrefabParent: 0
@@ -4028,6 +4114,26 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_OpenPos.x
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_ClosePos.x
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_ClosePos.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_OpenPos.y
+      value: 10.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4009c2b570050924b99662b491eed449, type: 2}
   m_IsPrefabParent: 0
@@ -4114,6 +4220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 310915053}
   - component: {fileID: 310915054}
+  - component: {fileID: 310915055}
   m_Layer: 0
   m_Name: steel_crates_7
   m_TagString: Untagged
@@ -4179,6 +4286,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &310915055
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 310915052}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &316378962
 GameObject:
   m_ObjectHideFlags: 0
@@ -4577,7 +4709,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1626437137199260, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_Name
@@ -4845,6 +4977,11 @@ Prefab:
     - target: {fileID: 4831314811800858, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50245718063707710, guid: c949030825a9b3f49ba5587ddc2da4ea,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
@@ -5634,7 +5771,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1626437137199260, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_Name
@@ -5895,7 +6032,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1626437137199260, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_Name
@@ -5939,7 +6076,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 2.5}
+  m_Offset: {x: 0.5, y: 1.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5950,7 +6087,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 5}
+  m_Size: {x: 1, y: 3}
   m_EdgeRadius: 0
 --- !u!4 &474604618
 Transform:
@@ -6006,7 +6143,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1626437137199260, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_Name
@@ -6306,6 +6443,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 50245718063707710, guid: c949030825a9b3f49ba5587ddc2da4ea,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
   m_IsPrefabParent: 0
@@ -6405,7 +6547,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4484736391894120, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 53
+      value: 52.75
       objectReference: {fileID: 0}
     - target: {fileID: 4484736391894120, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6438,6 +6580,11 @@ Prefab:
     - target: {fileID: 1924061331522826, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
       propertyPath: m_Name
       value: IceCrate (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 50321356364022274, guid: 7865ce34c72bbd34abab3c17b76b970c,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
@@ -7599,6 +7746,21 @@ Prefab:
       propertyPath: m_Name
       value: LightningCrate (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 61149776941124786, guid: 4f727ffcc1f105c47a446816f6efbd60,
+        type: 2}
+      propertyPath: m_EdgeRadius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61149776941124786, guid: 4f727ffcc1f105c47a446816f6efbd60,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 61149776941124786, guid: 4f727ffcc1f105c47a446816f6efbd60,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f727ffcc1f105c47a446816f6efbd60, type: 2}
   m_IsPrefabParent: 0
@@ -7717,6 +7879,11 @@ Prefab:
     - target: {fileID: 4484736391894120, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50321356364022274, guid: 7865ce34c72bbd34abab3c17b76b970c,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
@@ -8064,6 +8231,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 50245718063707710, guid: c949030825a9b3f49ba5587ddc2da4ea,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
   m_IsPrefabParent: 0
@@ -8081,6 +8253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 663208743}
   - component: {fileID: 663208744}
+  - component: {fileID: 663208745}
   m_Layer: 0
   m_Name: steel_crates_10
   m_TagString: Untagged
@@ -8146,6 +8319,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &663208745
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663208742}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &663662105
 Prefab:
   m_ObjectHideFlags: 0
@@ -8183,7 +8381,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1626437137199260, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_Name
@@ -8791,7 +8989,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1626437137199260, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_Name
@@ -9294,6 +9492,11 @@ Prefab:
     - target: {fileID: 4831314811800858, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50245718063707710, guid: c949030825a9b3f49ba5587ddc2da4ea,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
@@ -9889,7 +10092,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1626437137199260, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_Name
@@ -10173,15 +10376,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4747857941672006, guid: f418dcf024a28a34694d2134c73d41da, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.999997
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4678379262217120, guid: f418dcf024a28a34694d2134c73d41da, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 40.000004
+      value: 44.000004
       objectReference: {fileID: 0}
     - target: {fileID: 4678379262217120, guid: f418dcf024a28a34694d2134c73d41da, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 106
+      value: 88
       objectReference: {fileID: 0}
     - target: {fileID: 4065537654764798, guid: f418dcf024a28a34694d2134c73d41da, type: 2}
       propertyPath: m_LocalPosition.x
@@ -10666,6 +10869,7 @@ GameObject:
   m_Component:
   - component: {fileID: 843570357}
   - component: {fileID: 843570358}
+  - component: {fileID: 843570359}
   m_Layer: 0
   m_Name: steel_crates_10 (1)
   m_TagString: Untagged
@@ -10731,6 +10935,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &843570359
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 843570356}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &844523719
 Prefab:
   m_ObjectHideFlags: 0
@@ -12159,7 +12388,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1626437137199260, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_Name
@@ -12172,6 +12401,16 @@ Prefab:
     - target: {fileID: 4088317142921820, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0.0000038146973
+      objectReference: {fileID: 0}
+    - target: {fileID: 61864333629859598, guid: 66168eee4b856cf46a4f50f11059b51a,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 61864333629859598, guid: 66168eee4b856cf46a4f50f11059b51a,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 6.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
@@ -13177,6 +13416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1071173944}
   - component: {fileID: 1071173945}
+  - component: {fileID: 1071173946}
   m_Layer: 0
   m_Name: steel_crates_7
   m_TagString: Untagged
@@ -13242,6 +13482,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &1071173946
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1071173943}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1075204910
 GameObject:
   m_ObjectHideFlags: 0
@@ -13535,6 +13800,11 @@ Prefab:
     - target: {fileID: 4831314811800858, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50245718063707710, guid: c949030825a9b3f49ba5587ddc2da4ea,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
@@ -14562,6 +14832,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4831314811800858, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
       propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50245718063707710, guid: c949030825a9b3f49ba5587ddc2da4ea,
+        type: 2}
+      propertyPath: m_BodyType
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -16163,6 +16438,16 @@ Prefab:
     - target: {fileID: 4629320212660372, guid: 42399713f87902142bb45552dad922d7, type: 2}
       propertyPath: m_RootOrder
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 61465868701467904, guid: 42399713f87902142bb45552dad922d7,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 61465868701467904, guid: 42399713f87902142bb45552dad922d7,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 6.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42399713f87902142bb45552dad922d7, type: 2}
@@ -18101,6 +18386,11 @@ Prefab:
       propertyPath: m_Name
       value: IceCrate (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 50321356364022274, guid: 7865ce34c72bbd34abab3c17b76b970c,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
   m_IsPrefabParent: 0
@@ -18163,6 +18453,106 @@ Transform:
   m_PrefabParentObject: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a,
     type: 2}
   m_PrefabInternal: {fileID: 1560252226}
+--- !u!1 &1563590624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1563590625}
+  - component: {fileID: 1563590627}
+  - component: {fileID: 1563590626}
+  m_Layer: 0
+  m_Name: steel_crates_7 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1563590625
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1563590624}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1675645650}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1563590626
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1563590624}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!212 &1563590627
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1563590624}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300014, guid: f652a8d0c33692142bdd0d03922044c5, type: 3}
+  m_Color: {r: 0.5518868, g: 1, b: 0.9868377, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1001 &1576872231
 Prefab:
   m_ObjectHideFlags: 0
@@ -18212,6 +18602,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4831314811800858, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
       propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50245718063707710, guid: c949030825a9b3f49ba5587ddc2da4ea,
+        type: 2}
+      propertyPath: m_BodyType
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -18346,6 +18741,11 @@ Prefab:
     - target: {fileID: 4831314811800858, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50245718063707710, guid: c949030825a9b3f49ba5587ddc2da4ea,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
@@ -18648,7 +19048,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1626437137199260, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_Name
@@ -18717,6 +19117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1632837698}
   - component: {fileID: 1632837699}
+  - component: {fileID: 1632837700}
   m_Layer: 0
   m_Name: steel_crates_10 (2)
   m_TagString: Untagged
@@ -18782,6 +19183,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &1632837700
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1632837697}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1635323797
 GameObject:
   m_ObjectHideFlags: 0
@@ -19699,8 +20125,8 @@ Transform:
   - {fileID: 692938456}
   - {fileID: 663662106}
   - {fileID: 957729166}
-  - {fileID: 1701805396}
   - {fileID: 230715839}
+  - {fileID: 1701805396}
   - {fileID: 1627540930}
   - {fileID: 422298827}
   - {fileID: 331317000}
@@ -19711,6 +20137,7 @@ Transform:
   - {fileID: 1834141815}
   - {fileID: 276633595}
   - {fileID: 931673354}
+  - {fileID: 1563590625}
   m_Father: {fileID: 786476364}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19960,6 +20387,26 @@ Prefab:
         type: 2}
       propertyPath: m_Size.y
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_OpenPos.x
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_OpenPos.y
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_ClosePos.x
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_ClosePos.y
+      value: 36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4009c2b570050924b99662b491eed449, type: 2}
@@ -20638,7 +21085,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1626437137199260, guid: 66168eee4b856cf46a4f50f11059b51a, type: 2}
       propertyPath: m_Name
@@ -21903,6 +22350,26 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_OpenPos.x
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_OpenPos.y
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_ClosePos.x
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_ClosePos.y
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4009c2b570050924b99662b491eed449, type: 2}
   m_IsPrefabParent: 0
@@ -22112,6 +22579,11 @@ Prefab:
     - target: {fileID: 4831314811800858, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50245718063707710, guid: c949030825a9b3f49ba5587ddc2da4ea,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c949030825a9b3f49ba5587ddc2da4ea, type: 2}

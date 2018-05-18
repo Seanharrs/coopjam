@@ -4,10 +4,10 @@ using UnityEngine;
 public class AutoDoor : MonoBehaviour
 {
     [SerializeField]
-    private Vector3 m_OpenPos;
+    public Vector3 m_OpenPos;
 
     [SerializeField]
-    private Vector3 m_ClosePos;
+    public Vector3 m_ClosePos;
 
     [SerializeField]
     private float m_Speed = 5f;

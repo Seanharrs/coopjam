@@ -34,7 +34,9 @@ namespace Coop
           if (emComponent != null)
           {
             // Debugging: emCount++;
-            emComponent.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            var rb = emComponent.GetComponent<Rigidbody2D>();
+            if(rb)
+              rb.bodyType = RigidbodyType2D.Dynamic;
             if (weapType == WhichWeapon.Primary && emComponent.canAttract)
             {
               emComponent.OnStartPull.Invoke(this);
@@ -59,6 +61,7 @@ namespace Coop
         obj.OnStopPull.Invoke(this);
         obj.OnStopPush.Invoke(this);
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        if(!rb) return;
 
         // TODO: Is this okay? Do we want to dampen the movement instead of stopping it 100%?
         rb.velocity = Vector2.zero;
@@ -72,8 +75,10 @@ namespace Coop
     {
       foreach(var obj in affectedObjects)
       {
+        var rb = obj.GetComponent<Rigidbody2D>();
+        if(!rb) return;
         var direction = AmmoSpawnLocation.right * Mathf.Sign(AmmoSpawnLocation.lossyScale.x); // (AmmoSpawnLocation.position - obj.transform.position).normalized;
-        obj.GetComponent<Rigidbody2D>().AddForce(direction * (currentForceType == WhichWeapon.Primary ? -forceAmount : forceAmount));
+        rb.AddForce(direction * (currentForceType == WhichWeapon.Primary ? -forceAmount : forceAmount));
       }
     }
 
