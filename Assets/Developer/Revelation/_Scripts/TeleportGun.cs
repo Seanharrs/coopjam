@@ -56,7 +56,7 @@ namespace Coop
       else
         m_TargetLocationObject.transform.position = targetLocation;
 
-      for(var i = 0; i < m_NumCollisionPasses; i++)
+      //for(var i = 0; i < m_NumCollisionPasses; i++)
       {
         AdjustForCollisions(m_TargetLocationObject.GetComponent<BoxCollider2D>());
       }
@@ -70,7 +70,7 @@ namespace Coop
         // Debug.Log("Completing teleport to " + m_TargetLocation.ToString());
         // TODO: Play sound, animation, effect, etc.
         m_TargetObject.transform.position = (Vector2)m_TargetLocation;
-        for(var i = 0; i < m_NumCollisionPasses; i++)
+        //for(var i = 0; i < m_NumCollisionPasses; i++)
         {
           AdjustForCollisions(m_TargetObject.GetComponent<BoxCollider2D>());
         }
@@ -91,40 +91,114 @@ namespace Coop
     private void AdjustForCollisions(Collider2D collider)
     {
       //var collider = m_TargetLocationObject.GetComponent<BoxCollider2D>();
-      var colliderCenter = (Vector2)collider.transform.position + collider.offset;
+      //var colliderCenter = (Vector2)collider.transform.position + collider.offset;
       Collider2D[] results = new Collider2D[10];
-      int overlappedCount = collider.OverlapCollider(new ContactFilter2D(), results);
+      ContactFilter2D filter = new ContactFilter2D()
+      {
+        useLayerMask = true,
+        layerMask = ~LayerMask.GetMask("Characters")
+      };
+      int overlappedCount = collider.OverlapCollider(filter, results);
       if (overlappedCount > 0)
       {
-        foreach (var c in results)
+        Debug.Log("target:" + m_TargetLocation.Value);
+        bool adjustedX = false, adjustedY = false;
+        for (int i = 0; i < results.Length; ++i)
         {
+          Collider2D c = results[i];
           Debug.Log("Checking... " + c);
           if(!c) return;
-          if (!c.isTrigger && c != collider)
+
+          if(!c.isTrigger && c != collider)
           {
-            var cCenter = (Vector2)c.transform.position + c.offset;
-
-            var desiredDistances = new Vector2(collider.bounds.extents.x + c.bounds.extents.x, collider.bounds.extents.y + c.bounds.extents.y);
-            var directionVector = colliderCenter - cCenter;
-            Debug.Log("Desired Distances: " + desiredDistances);
-
-            var actualDistance2D = (colliderCenter - cCenter);
-            Debug.Log("Actual Distances: " + actualDistance2D);
+            Vector3 cHitPos = c.transform.InverseTransformPoint(m_TargetLocation.Value) - (Vector3)c.offset;
+            Debug.Log("local hit pos: " + cHitPos);
 
             var p = collider.transform.position;
             Debug.Log("Original Position: " + p);
-            if(Mathf.Abs(actualDistance2D.x) < Mathf.Abs(actualDistance2D.y))
-            {
-              Debug.Log("Adjusting on X... " + c);
-              p.x = cCenter.x + (desiredDistances.x * Mathf.Sign(directionVector.x));
-            }
-            else
+
+            bool hitTopOrBottom = Mathf.Abs(cHitPos.y) >= c.bounds.extents.y;
+            bool hitLeftOrRight = Mathf.Abs(cHitPos.x) >= c.bounds.extents.x;
+
+            //Always adjust first hit, ignore latter "indirect" hits
+            if(i > 0 && hitTopOrBottom && hitLeftOrRight)
+              continue;
+
+            if(hitTopOrBottom)
             {
               Debug.Log("Adjusting on Y... " + c);
-              p.y = cCenter.y + (desiredDistances.y * Mathf.Sign(directionVector.y));
+              if(adjustedY) Debug.Log("already adjusted");
+              else p.y += collider.bounds.extents.y * Mathf.Sign(cHitPos.y);
+              adjustedY = true;
             }
+
+            if(hitLeftOrRight)
+            {
+              Debug.Log("Adjusting on X... " + c);
+              if(adjustedX) Debug.Log("already adjusted");
+              else p.x += collider.bounds.extents.x * Mathf.Sign(cHitPos.x);
+              adjustedX = true;
+            }
+
             Debug.Log("New position: " + p);
             collider.transform.position = p;
+
+            //
+            // DOT PRODUCT - sometimes adjusted along the wrong axis
+            //
+
+            //Vector3 cHitPos = c.transform.InverseTransformPoint(m_TargetLocation.Value) - (Vector3)c.offset;
+            //Vector3 cHitDir = cHitPos.normalized;
+            //float up = Vector3.Dot(cHitDir, Vector3.up);
+            //float right = Vector3.Dot(cHitDir, Vector3.right);
+            //Debug.Log("up dot: " + up);
+            //Debug.Log("right dot: " + right);
+            //var p = collider.transform.position; //+collider.offset
+            //Debug.Log("Original Position: " + p);
+            //if(Mathf.Abs(up) < Mathf.Abs(right))
+            //{
+            //  Debug.Log("Adjusting on Y... " + c);
+            //  if(adjustedY) Debug.Log("already adjusted");
+            //  else p.y += collider.bounds.extents.y * Mathf.Sign(up);
+            //  adjustedY = true;
+            //}
+            //else
+            //{
+            //  Debug.Log("Adjusting on X... " + c);
+            //  if(adjustedX) Debug.Log("already adjusted");
+            //  else p.x += collider.bounds.extents.x * Mathf.Sign(right);
+            //  adjustedX = true;
+            //}
+            //Debug.Log("New position: " + p);
+            //collider.transform.position = p;
+
+            //
+            // ORIGINAL SOLUTION - edge cases
+            //
+
+            //var cCenter = (Vector2)c.transform.position + c.offset;
+
+            //var desiredDistances = new Vector2(collider.bounds.extents.x + c.bounds.extents.x, collider.bounds.extents.y + c.bounds.extents.y);
+            //var directionVector = colliderCenter - cCenter;
+            //Debug.Log("Desired Distances: " + desiredDistances);
+
+            //var actualDistance2D = (colliderCenter - cCenter);
+            //Debug.Log("Actual Distances: " + actualDistance2D);
+
+            //var p = collider.transform.position;
+            //Debug.Log("Original Position: " + p);
+            //if(Mathf.Abs(actualDistance2D.x) < Mathf.Abs(actualDistance2D.y))
+            //{
+            //  Debug.Log("Adjusting on X... " + c);
+            //  p.x = cCenter.x + (desiredDistances.x * Mathf.Sign(directionVector.x));
+            //}
+            //else
+            //{
+            //  Debug.Log("Adjusting on Y... " + c);
+            //  p.y = cCenter.y + (desiredDistances.y * Mathf.Sign(directionVector.y));
+            //}
+            //Debug.Log("New position: " + p);
+            //collider.transform.position = p;
 
           }
         }
