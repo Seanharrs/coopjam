@@ -99,7 +99,10 @@ namespace Coop
       private void LateUpdate()
       {
           if(m_Players == null || m_Players.Count() == 0) return;
+          float maxY = m_Players.Max(p => p.transform.position.y);
           Vector3 avgPos = m_Players.Select(p => p.transform.position).Aggregate((total, next) => total += next) / m_Players.Length;
+
+          avgPos.y = Mathf.Max(avgPos.y, maxY - vertLength / 2);
 
           Vector3 clamped = avgPos + m_Offset;
           clamped.x = Mathf.Clamp(clamped.x, m_MinCamX, m_MaxCamX);
@@ -125,6 +128,11 @@ namespace Coop
               float minY = camPos.y - vertLength + spriteBounds.y;
               float maxY = camPos.y + vertLength - spriteBounds.y;
               pos.y = Mathf.Clamp(pos.y, minY, maxY);
+          }
+          else
+          {
+            float maxY = camPos.y + vertLength - spriteBounds.y;
+            pos.y = Mathf.Clamp(pos.y, pos.y, maxY);
           }
 
           //TODO kill player if they fall off the bottom of the camera?
