@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4665645024551742}
   - component: {fileID: 212354875144704164}
   - component: {fileID: 58899542482858078}
-  - component: {fileID: 114504196913111740}
   - component: {fileID: 50062956862132982}
+  - component: {fileID: 114504196913111740}
   - component: {fileID: 114417866437393590}
   m_Layer: 10
   m_Name: Projectile_Teleport
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1639300293829538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.63283014, y: 4.9815445, z: 0}
+  m_LocalPosition: {x: -10.187627, y: -7.534954, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,7 +51,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1639300293829538}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -90,8 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4cf1af12b87964889286019bf17779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryColor: {r: 1, g: 0.6396565, b: 0.1462264, a: 1}
-  secondaryColor: {r: 0.8396226, g: 0, b: 0, a: 1}
 --- !u!114 &114504196913111740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,7 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243b6b7e97084bd44a13ab2a036311bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
+  m_ProjectileSpeed: 10
+  m_PrimaryColor: {r: 0.25882354, g: 0.84313726, b: 0.40784314, a: 1}
+  m_SecondaryColor: {r: 0.56078434, g: 0.6156863, b: 0, a: 1}
 --- !u!212 &212354875144704164
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -136,11 +136,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1915476707
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e0a19e52e9cc9db40b4fac96e78f3f18, type: 3}
-  m_Color: {r: 0.28502133, g: 0.9696268, b: 0.990566, a: 1}
+  m_Color: {r: 0.0990566, g: 0.860064, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

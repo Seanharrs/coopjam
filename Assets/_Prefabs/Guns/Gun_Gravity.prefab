@@ -112,9 +112,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GunName: Gravi-gun
   m_FiringRate: 3
-  PrimaryAmmoType: {fileID: 114541541818956504, guid: c57c516895341534c84f3530964d8848,
+  PrimaryAmmoType: {fileID: 114098394490812164, guid: 8eddfea94a4634741bcc3ed00114879c,
     type: 2}
-  SecondaryAmmoType: {fileID: 114541541818956504, guid: 1bfec6e1221ec504bb099c0c41dc8b9a,
+  SecondaryAmmoType: {fileID: 114098394490812164, guid: 8eddfea94a4634741bcc3ed00114879c,
     type: 2}
   portraitSprite: {fileID: 21300000, guid: 3e134e576173cd248958887029586dab, type: 3}
   AmmoSpawnLocation: {fileID: 4892645719443972}
