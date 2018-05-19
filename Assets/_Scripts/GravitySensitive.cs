@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Coop
 {
@@ -35,7 +37,11 @@ namespace Coop
                 m_rb2D.gravityScale *= -1;
 
             Vector3 rot = transform.rotation.eulerAngles;
-            transform.rotation = Quaternion.Euler(0, 180, 180);
+            Vector3 average;
+            
+            // Rotate to accommodate reversed gravity
+            average = GetAverageCenter(transform);
+            transform.RotateAround(average, Vector3.forward, 180);
 
             yield return new WaitForSeconds(m_ReverseLength);
 
@@ -43,8 +49,17 @@ namespace Coop
                 pc2D.NormalGravity *= -1;
             else
                 m_rb2D.gravityScale *= -1;
+              
+            // Rotate to accommodate reversed gravity
+            average = GetAverageCenter(transform);
+            transform.RotateAround(average, Vector3.forward, 180);
+        }
 
-            transform.rotation = Quaternion.Euler(rot);
+        private Vector3 GetAverageCenter(Transform t)
+        {
+            List<Vector3> allCenters = t.GetComponents<Collider2D>().Select(c => c.bounds.center).ToList();
+            allCenters.AddRange(t.GetComponents<SpriteRenderer>().Select(s => s.bounds.center));
+            return allCenters.Aggregate((c, next) => { return next + c; } ) / allCenters.Count();
         }
 
         private IEnumerator Reduce()
