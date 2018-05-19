@@ -34,9 +34,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4593984622695586}
-  - component: {fileID: 114506248553776704}
+  - component: {fileID: 114353257182372814}
   m_Layer: 0
-  m_Name: Gun_Electromagnetic
+  m_Name: Gun_Gravity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816830008398728}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0209424, w: 0.9997807}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -93,13 +93,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1513914838336738}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.733, y: 0.185, z: 0}
+  m_LocalPosition: {x: -0.532, y: -0.023, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4373479350113452}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114506248553776704
+--- !u!114 &114353257182372814
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -107,17 +107,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1816830008398728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8908cbed4f669440be0e68e0ce55b5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1af94d3020f7dcb448970418b99a1deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GunName: EM Gun
-  m_FiringRate: 5
-  PrimaryAmmoType: {fileID: 0}
-  SecondaryAmmoType: {fileID: 0}
-  portraitSprite: {fileID: 21300000, guid: 2a5faef476a5b01498697721bb3e423e, type: 3}
+  m_GunName: Gravi-gun
+  m_FiringRate: 3
+  PrimaryAmmoType: {fileID: 114541541818956504, guid: c57c516895341534c84f3530964d8848,
+    type: 2}
+  SecondaryAmmoType: {fileID: 114541541818956504, guid: 1bfec6e1221ec504bb099c0c41dc8b9a,
+    type: 2}
+  portraitSprite: {fileID: 21300000, guid: 3e134e576173cd248958887029586dab, type: 3}
   AmmoSpawnLocation: {fileID: 4892645719443972}
-  m_EmDistance: 10
-  forceAmount: 250
 --- !u!212 &212125488476311972
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -151,9 +151,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -354108773
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -50
-  m_Sprite: {fileID: 21300000, guid: 2a5faef476a5b01498697721bb3e423e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3e134e576173cd248958887029586dab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
