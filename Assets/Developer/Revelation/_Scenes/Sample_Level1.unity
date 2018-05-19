@@ -4400,7 +4400,27 @@ Prefab:
     - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
         type: 2}
       propertyPath: m_OpenPos.y
-      value: 10.5
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 61215474422278762, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 61215474422278762, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 61215474422278762, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61215474422278762, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4009c2b570050924b99662b491eed449, type: 2}
@@ -11085,6 +11105,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212879705858527312, guid: 48446ff332be4cd46a32ff1a39169271,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 1016890119
+      objectReference: {fileID: 0}
+    - target: {fileID: 212879705858527312, guid: 48446ff332be4cd46a32ff1a39169271,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48446ff332be4cd46a32ff1a39169271, type: 2}
   m_IsPrefabParent: 0
@@ -14079,7 +14109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1069184667
 MonoBehaviour:
   m_ObjectHideFlags: 0

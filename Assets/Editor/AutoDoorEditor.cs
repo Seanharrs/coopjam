@@ -4,19 +4,28 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(AutoDoor))]
-public class AutoDoorEditor : Editor {
+public class AutoDoorEditor : Editor
+{
+    private SerializedProperty m_ClosePos;
+    private SerializedProperty m_OpenPos;
+    
+    private void OnEnable()
+    {
+        m_ClosePos = serializedObject.FindProperty("m_ClosePos");
+        m_OpenPos = serializedObject.FindProperty("m_OpenPos");
+    }
 
     public override void OnInspectorGUI()
     {
+      serializedObject.Update();
 
       AutoDoor door = (AutoDoor)target;
-
       DrawDefaultInspector();
 
       if(GUILayout.Button("Set From Current Position")) {
-        door.m_ClosePos = door.transform.position;
-        door.m_OpenPos = door.m_ClosePos + (door.GetComponent<SpriteRenderer>().bounds.size.y * Vector3.up);
-        EditorUtility.SetDirty(door); // TODO: Unity does not recommend this as it does not have an "undo" operation attached when applying changes. However, using serialized properties was just a lot to manage when writing this, so leaving that til later.
+        m_ClosePos.vector3Value = door.transform.position;
+        m_OpenPos.vector3Value = m_ClosePos.vector3Value + (door.GetComponent<SpriteRenderer>().bounds.size.y * Vector3.up);
+        serializedObject.ApplyModifiedProperties();
       }
     }
 }
