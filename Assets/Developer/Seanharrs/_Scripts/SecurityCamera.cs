@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CircuitObject), typeof(AudioSource))]
 public class SecurityCamera : MonoBehaviour
 {
-    private enum Direction { Clockwise = -1, AntiClockwise = 1 };
+    private enum Direction { Clockwise = -1, CounterClockwise = 1 };
 
     [SerializeField]
     private float[] m_LookRotationsZ;
