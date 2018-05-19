@@ -8,8 +8,11 @@ namespace Coop
     {
         private Rigidbody2D m_rb2D;
 
-        private const float REVERSE_LEN = 3f;
-        private const float REDUCE_LEN = 5f;
+        [SerializeField]
+        private float m_ReverseLength = 3f;
+
+        [SerializeField]
+        private float m_ReduceLength = 5f;
 
         private void Awake() { m_rb2D = GetComponent<Rigidbody2D>(); }
 
@@ -32,16 +35,16 @@ namespace Coop
                 m_rb2D.gravityScale *= -1;
 
             Vector3 rot = transform.rotation.eulerAngles;
-            transform.rotation = Quaternion.Euler(rot.x, rot.y, 180);
+            transform.rotation = Quaternion.Euler(0, 180, 180);
 
-            yield return new WaitForSeconds(REVERSE_LEN);
+            yield return new WaitForSeconds(m_ReverseLength);
 
             if(pc2D)
                 pc2D.NormalGravity *= -1;
             else
                 m_rb2D.gravityScale *= -1;
 
-            transform.rotation = Quaternion.Euler(rot.x, rot.y, 0);
+            transform.rotation = Quaternion.Euler(rot);
         }
 
         private IEnumerator Reduce()
@@ -52,7 +55,7 @@ namespace Coop
             else
                 m_rb2D.gravityScale /= 2;
 
-            yield return new WaitForSeconds(REDUCE_LEN);
+            yield return new WaitForSeconds(m_ReduceLength);
 
             if(pc2D)
                 pc2D.NormalGravity *= 2;

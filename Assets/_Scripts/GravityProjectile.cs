@@ -13,13 +13,10 @@ namespace Coop
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("test");
             GravitySensitive grav = collision.GetComponent<GravitySensitive>();
             if(grav != null)
-            {
-                Debug.Log("okay");
                 grav.ChangeGravity(m_Projectile.type);
-            }
+
             Destroy(gameObject);
         }
     }
