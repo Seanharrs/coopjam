@@ -69,8 +69,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1245552125704244}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 69, y: 9, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 40, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4242070009276760}
@@ -83,14 +83,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1564942218400704}
-  m_LocalRotation: {x: 0, y: 0, z: 0.9848078, w: 0.17364825}
+  m_LocalRotation: {x: 0, y: 0, z: 0.13052616, w: 0.9914449}
   m_LocalPosition: {x: 0, y: -1.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4812271113651086}
   m_Father: {fileID: 4106446895962218}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 160}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
 --- !u!4 &4812271113651086
 Transform:
   m_ObjectHideFlags: 1
@@ -238,9 +238,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LookRotationsZ:
-  - 160
-  - 50
-  m_InitialDirection: -1
+  - 30
+  - 0
+  m_InitialDirection: 1
   m_SearchSpeed: 30
   m_MaxAlertTime: 5
   m_ShutdownRot: {x: 0, y: 0, z: 90}
@@ -259,30 +259,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: CloseDoor
+        m_MethodName: TurnOn
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: OpenDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: set_enabled
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -297,7 +275,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: OpenDoor
+        m_MethodName: TurnOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -341,8 +319,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1016890119
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 8efde1bf5d7d33449be4dd1af4cf54a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -386,8 +364,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1016890119
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 6dbe57bdbc7b4a34a8419256e2bb9dd2, type: 3}
   m_Color: {r: 0.8867924, g: 0.77562565, b: 0.5479708, a: 0.26666668}
@@ -431,8 +409,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1016890119
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: aceaba5267784bd4ca01bfc38d131865, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
