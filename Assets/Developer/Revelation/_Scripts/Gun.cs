@@ -33,12 +33,12 @@ namespace Coop {
     [Header("Game Objects")]
     public Transform AmmoSpawnLocation;
 
-    public virtual Projectile FireAtTarget(WhichWeapon weapType, Vector2 target, Projectile.ProjectileType type = Projectile.ProjectileType.Primary)
+    public virtual Projectile FireAtTarget(WhichWeapon weapType, Vector2 target, WhichWeapon type = WhichWeapon.Primary)
     {
       return Fire(weapType, (target - (Vector2)AmmoSpawnLocation.position).normalized, target);
     }
 
-    public virtual Projectile Fire(WhichWeapon weapType, Vector2? direction = null, Nullable<Vector2> target = null)
+    public virtual Projectile Fire(WhichWeapon weapType, Vector2? direction = null, Vector2? target = null)
     {
       if (Time.time > m_LastFired[weapType] + (1/m_FiringRate))
       {

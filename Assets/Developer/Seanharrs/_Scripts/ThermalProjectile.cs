@@ -8,14 +8,14 @@ namespace Coop
     public class ThermalProjectile : MonoBehaviour
     {
         [SerializeField]
-        private Projectile.ProjectileType m_Type;
+        private WhichWeapon m_Type;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             ThermalSensitive thermalObj = collision.GetComponent<ThermalSensitive>();
             if(thermalObj != null)
             {
-                if(m_Type == Projectile.ProjectileType.Primary)
+                if(m_Type == WhichWeapon.Primary)
                     thermalObj.Freeze();
                 else
                     thermalObj.Melt();

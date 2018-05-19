@@ -1,25 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Coop;
 using UnityEngine;
 
 namespace Coop
 {
-
   [RequireComponent(typeof(Projectile))]
   public class TeleportProjectile : MonoBehaviour
   {
-
     // References to other components.
     private Projectile m_Projectile;
     private Collider2D m_Collider;
     private SpriteRenderer m_SpriteRenderer;
-
-    [SerializeField]
-    private Color primaryColor;
-    [SerializeField]
-    private Color secondaryColor;
 
     // Reference to the gun that fired this projectile.
     public TeleportGun TeleportGun { get; internal set; }
@@ -49,7 +41,7 @@ namespace Coop
       //           + "\nPosition: " + position);
 
       // If in primary mode and I hit a player or rigidbody with the CanTeleport component
-      if (m_Projectile.Type == Projectile.ProjectileType.Primary)
+      if (m_Projectile.type == WhichWeapon.Primary)
       {
         // if (other.GetComponent<Platformer2DUserControl>() != null || other.GetComponent<Teleportable>() != null)
         // {
@@ -73,7 +65,7 @@ namespace Coop
 
       // If in secondary mode and I hit anything,
       // If I do not have a target to teleport, drop a portal here - this becomes the place the target will be teleported to.
-      if ((m_Projectile.Type == Projectile.ProjectileType.Secondary))
+      if (m_Projectile.type == WhichWeapon.Secondary)
       {
         // Debug.Log("setting teleport target location.");
         TeleportGun.MarkTargetLocation(position);
@@ -86,15 +78,9 @@ namespace Coop
 
     void Update()
     {
-
-      if(m_Projectile.Type == Projectile.ProjectileType.Primary)
-        m_SpriteRenderer.color = primaryColor;
-      else
-        m_SpriteRenderer.color = secondaryColor;
-
       // If in secondary mode and a crosshair target was selected,
       // check whether we have reached that target.
-      if (m_Projectile.crossTarget != null && m_Projectile.Type == Projectile.ProjectileType.Secondary)
+      if (m_Projectile.crossTarget != null && m_Projectile.type == WhichWeapon.Secondary)
       {
         if (m_Collider.OverlapPoint((Vector2)m_Projectile.crossTarget))
         {

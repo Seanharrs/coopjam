@@ -1,34 +1,37 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Coop
 {
-  [RequireComponent(typeof (Rigidbody2D), typeof (Collider2D))]
-  public class Projectile : MonoBehaviour {
-
-    public enum ProjectileType { Primary, Secondary };
-
+  [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+  public class Projectile : MonoBehaviour
+  {
     [Header("Projectile")]
-    public float projectileSpeed = 10;
+    [SerializeField]
+    private float m_ProjectileSpeed = 10;
     
-    private Nullable<ProjectileType> m_Type = null;
-    internal Nullable<ProjectileType> Type
+    [SerializeField]
+    private Color m_PrimaryColor;
+
+    [SerializeField]
+    private Color m_SecondaryColor;
+
+    private WhichWeapon m_Type = WhichWeapon.Primary;
+    internal WhichWeapon type { get { return m_Type; } }
+
+    internal Vector2? crossTarget = null;
+
+    public virtual void Initiate(Vector2 direction, WhichWeapon type = WhichWeapon.Primary, Vector2? target = null)
     {
-      get { return m_Type; }
-    }
-
-    internal Nullable<Vector2> crossTarget = null;
-
-    public virtual void Initiate(Vector2 direction, WhichWeapon type = WhichWeapon.Primary, Nullable<Vector2> target = null) {
-      GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
-      m_Type = type == WhichWeapon.Primary ? ProjectileType.Primary : ProjectileType.Secondary;
+      GetComponent<Rigidbody2D>().velocity = direction * m_ProjectileSpeed;
+      m_Type = type;
       if(target != null)
-      {
         crossTarget = target;
-      }
+      
+      SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+      if(type == WhichWeapon.Primary)
+        renderer.color = m_PrimaryColor;
+      else
+        renderer.color = m_SecondaryColor;
     }
-
   }
 }

@@ -22,8 +22,13 @@ namespace Coop
         [HideInInspector] public float NormalGravity
         {
           get { return m_NormalGravity; }
-          set { m_NormalGravity = value; }
+          set
+          {
+            m_NormalGravity = value;
+            m_Rigidbody2D.gravityScale = value;
+          }
         }
+
         [SerializeField] private float m_SlopeGravity = 6f;
         private CircleCollider2D m_CircleCollider;
         private float m_Slope;              // Calculated slope angle below player.
@@ -177,7 +182,7 @@ namespace Coop
                 m_Grounded = false;
                 m_Anim.SetBool("Ground", false);
                 m_Anim.SetTrigger("Jump");
-                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                m_Rigidbody2D.AddForce(new Vector2(0f, Mathf.Sign(m_NormalGravity) * m_JumpForce));
             }
         }
 
