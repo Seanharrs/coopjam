@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityStandardAssets._2D;
 // using UnityStandardAssets.CrossPlatformInput;
 
 namespace Coop
@@ -126,7 +125,7 @@ namespace Coop
             gun.Fire(WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
         #endregion
-        else if (m_FiringPrimary || m_FiringSecondary)
+        else if (m_FiringPrimary || m_FiringSecondary) // These may be "true" from the previous frame while buttons are not still held this frame.
         {
           gun.StopFiring();
           m_FiringPrimary = false;
@@ -303,6 +302,7 @@ namespace Coop
       headSocket.SetActive(false);
     }
     
+    /// <summary>Called by an animation event at the end of the player's death animation.</summary>
     public void Respawn()
     {
       //keep player dead for 2 seconds
@@ -320,7 +320,8 @@ namespace Coop
       m_HP.ResetHealth();
 
       //TODO proper respawning
-      transform.position = Vector2.one;
+      SpawnPoint[] spawns = FindObjectsOfType<SpawnPoint>();
+      transform.position = spawns[new System.Random().Next(0, spawns.Length)].transform.position;
       StartCoroutine(RespawnFlash());
     }
 

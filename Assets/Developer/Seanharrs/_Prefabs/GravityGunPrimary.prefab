@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50807974749881190}
   - component: {fileID: 114541541818956504}
   - component: {fileID: 114836441528588390}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GravityGunPrimary
   m_TagString: Untagged
   m_Icon: {fileID: 0}

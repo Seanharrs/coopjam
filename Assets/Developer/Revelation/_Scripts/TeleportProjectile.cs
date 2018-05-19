@@ -14,6 +14,12 @@ namespace Coop
     // References to other components.
     private Projectile m_Projectile;
     private Collider2D m_Collider;
+    private SpriteRenderer m_SpriteRenderer;
+
+    [SerializeField]
+    private Color primaryColor;
+    [SerializeField]
+    private Color secondaryColor;
 
     // Reference to the gun that fired this projectile.
     public TeleportGun TeleportGun { get; internal set; }
@@ -22,10 +28,17 @@ namespace Coop
     {
       m_Projectile = GetComponent<Projectile>();
       m_Collider = GetComponent<Collider2D>();
+      m_SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+
+      if(other.gameObject.layer == (other.gameObject.layer & LayerMask.GetMask("Characters", "Default"))
+        && other.gameObject != gameObject)
+      {
+        Debug.Log("// TODO: Adjust code to respond to appropriate layers?");
+      }
 
       gameObject.SetActive(false); // To counteract bug from multiple collisions.
       GetComponent<Collider2D>().enabled = false;
@@ -73,6 +86,12 @@ namespace Coop
 
     void Update()
     {
+
+      if(m_Projectile.Type == Projectile.ProjectileType.Primary)
+        m_SpriteRenderer.color = primaryColor;
+      else
+        m_SpriteRenderer.color = secondaryColor;
+
       // If in secondary mode and a crosshair target was selected,
       // check whether we have reached that target.
       if (m_Projectile.crossTarget != null && m_Projectile.Type == Projectile.ProjectileType.Secondary)

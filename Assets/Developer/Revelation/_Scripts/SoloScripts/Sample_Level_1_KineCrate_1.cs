@@ -14,13 +14,13 @@ namespace Coop
     
     public void StopPushing(Gun gun)
     {
-      StartCoroutine(Still());
+      //StartCoroutine(Still());
     }
 
-    private IEnumerator Still()
-    {
-      yield return new WaitForSeconds(5);
-      GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-    }
+    // private IEnumerator Still()
+    // {
+    //   yield return new WaitForSeconds(5);
+    //   GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+    // }
   }
 }

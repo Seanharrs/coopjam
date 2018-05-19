@@ -17,9 +17,11 @@ namespace Coop
         {
             Rigidbody2D rb2d = collision.GetComponent<Rigidbody2D>();
             if(rb2d == null)
-            { 
+            { Debug.Log("Didn't hit a rigidbody.");
                 Destroy(gameObject);
                 return;
+            } else {
+              Debug.Log("Hit an RB. applying gravity.");
             }
 
             if(m_Type == Projectile.ProjectileType.Primary)
@@ -33,8 +35,11 @@ namespace Coop
 
         private IEnumerator ReverseGravity(Rigidbody2D ctrl)
         {
+          var pc2D = ctrl.GetComponentInParent<PlatformerCharacter2D>();
+          if(pc2D) pc2D.NormalGravity *= -1;
             ctrl.gravityScale *= -1;
             yield return new WaitForSeconds(m_EffectLength);
+          if(pc2D) pc2D.NormalGravity *= -1;
             ctrl.gravityScale *= -1;
             Destroy(gameObject);
         }
