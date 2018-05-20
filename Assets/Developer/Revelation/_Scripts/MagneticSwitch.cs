@@ -4,41 +4,48 @@ using UnityEngine;
 
 namespace Coop
 {
-  [RequireComponent(typeof (Animator))]
+
+  [RequireComponent(typeof (Animator), typeof (MultiSwitch))]
   public class MagneticSwitch : MonoBehaviour, IElectrostatic
   {
 
     Animator m_Animator;
-    CircuitObject m_CircuitObject;
+    MultiSwitch m_MultiSwitch;
 
     bool isOn = false;
+    SwitchState position = SwitchState.Off;
 
     void Start()
     {
         m_Animator = GetComponent<Animator>();
-        m_CircuitObject = GetComponent<CircuitObject>();
+        m_MultiSwitch = GetComponent<MultiSwitch>();
     }
 
     public void OnStartCharge(Gun gun, WhichWeapon weaponType)
     {
-      if(isOn && weaponType == WhichWeapon.Secondary)
+      if(position == SwitchState.Off && weaponType == WhichWeapon.Primary)
       {
-        m_Animator.SetTrigger("Off");
-        m_CircuitObject.onTriggerEnd.Invoke();
-        isOn = false;
+        m_Animator.SetTrigger("OnPositive");
+        position = SwitchState.Positive;
+        m_MultiSwitch.OnMultiSwitchStateChanged.Invoke(m_MultiSwitch, position);
       }
-      else if(!isOn && weaponType == WhichWeapon.Primary)
+      if(position == SwitchState.Off && weaponType == WhichWeapon.Secondary)
       {
-        m_Animator.SetTrigger("On");
-        m_CircuitObject.onTriggerStart.Invoke();
-        isOn = true;
+        m_Animator.SetTrigger("OnNegative");
+        position = SwitchState.Negative;
+        m_MultiSwitch.OnMultiSwitchStateChanged.Invoke(m_MultiSwitch, position);
       }
-
     }
 
     public void OnStopCharge(Gun gun, WhichWeapon weaponType)
     {
-      // TODO: anything?
+      if(position == SwitchState.Positive && weaponType == WhichWeapon.Primary
+      || position == SwitchState.Negative && weaponType == WhichWeapon.Secondary)
+      {
+        m_Animator.SetTrigger("Off");
+        position = SwitchState.Off;
+        m_MultiSwitch.OnMultiSwitchStateChanged.Invoke(m_MultiSwitch, position);
+      }
     }
   }
 }

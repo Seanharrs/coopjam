@@ -1,34 +1,45 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class AutoDoor : MonoBehaviour
+namespace Coop
 {
-    [SerializeField]
-    private Vector3 m_OpenPos;
-
-    [SerializeField]
-    private Vector3 m_ClosePos;
-
-    [SerializeField]
-    private float m_Speed = 5f;
-
-    private IEnumerator MoveDoor(Vector3 newPos)
+    public class AutoDoor : MonoBehaviour, IMultiSwitchStateListener
     {
-        while(transform.position != newPos)
+        [SerializeField]
+        private Vector3 m_OpenPos;
+
+        [SerializeField]
+        private Vector3 m_ClosePos;
+
+        [SerializeField]
+        private float m_Speed = 5f;
+
+        private IEnumerator MoveDoor(Vector3 newPos)
         {
-            transform.position = Vector3.MoveTowards(transform.position, newPos, Time.fixedDeltaTime * m_Speed);
-            yield return new WaitForFixedUpdate();
+            while(transform.position != newPos)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, newPos, Time.fixedDeltaTime * m_Speed);
+                yield return new WaitForFixedUpdate();
+            }
+            yield return null;
         }
-        yield return null;
-    }
-    
-    public void OpenDoor()
-    {
-        StartCoroutine(MoveDoor(m_OpenPos));
-    }
+        
+        public void OpenDoor()
+        {
+            StartCoroutine(MoveDoor(m_OpenPos));
+        }
 
-    public void CloseDoor()
-    {
-        StartCoroutine(MoveDoor(m_ClosePos));
+        public void CloseDoor()
+        {
+            StartCoroutine(MoveDoor(m_ClosePos));
+        }
+
+        public void OnSwitchStateChanged(MultiSwitch multiSwitch, SwitchState state)
+        {
+            if(state == SwitchState.Positive)
+                OpenDoor();
+            else
+                CloseDoor();
+        }
     }
 }

@@ -15428,6 +15428,33 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   canInterrupt: 1
+--- !u!114 &946546614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 946546612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f199281878e0c45b17fa06855cbe78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnMultiSwitchStateChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1070765263}
+        m_MethodName: OnSwitchStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Coop.MultiSwitchEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &946546616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15457,49 +15484,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &946546619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 946546612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3555149581572d4f9edb1cf57693c01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onTriggerStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1070765263}
-        m_MethodName: OpenDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onTriggerEnd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1070765263}
-        m_MethodName: CloseDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &948045639
 Prefab:
   m_ObjectHideFlags: 0
@@ -22537,7 +22521,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4426911282354398, guid: dec2113cb7ec8c74682e0c45fb3a5b31, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.26749992
+      value: 0.9457499
       objectReference: {fileID: 0}
     - target: {fileID: 212906562941842450, guid: dec2113cb7ec8c74682e0c45fb3a5b31,
         type: 2}
@@ -22547,12 +22531,12 @@ Prefab:
     - target: {fileID: 212906562941842450, guid: dec2113cb7ec8c74682e0c45fb3a5b31,
         type: 2}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212906562941842450, guid: dec2113cb7ec8c74682e0c45fb3a5b31,
         type: 2}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dec2113cb7ec8c74682e0c45fb3a5b31, type: 2}

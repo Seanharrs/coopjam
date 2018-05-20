@@ -39,6 +39,10 @@ GameObject:
   - component: {fileID: 4736615825682240}
   - component: {fileID: 212141754721699172}
   - component: {fileID: 68193394179650526}
+  - component: {fileID: 95691607366248954}
+  - component: {fileID: 114034296321794942}
+  - component: {fileID: 114726966263136494}
+  - component: {fileID: 114003336854142932}
   m_Layer: 0
   m_Name: MagneticSwitch
   m_TagString: Untagged
@@ -53,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1761595838451544}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.26749992, y: 0.24650002, z: 0}
+  m_LocalPosition: {x: 0.9457499, y: 0.24650002, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children: []
   m_Father: {fileID: 4736615825682240}
@@ -66,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1794921835396350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.8125, y: 4.5625, z: 0}
+  m_LocalPosition: {x: 21.097, y: 4.5625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4426911282354398}
@@ -80,7 +84,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1761595838451544}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -138,6 +142,104 @@ EdgeCollider2D:
   - {x: 2.6, y: 1.225}
   - {x: 0.17, y: 1.225}
   - {x: 0.17, y: 0.17}
+--- !u!95 &95691607366248954
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794921835396350}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ae0ccbb94e1bd7a4c9ba6fc0c5d6add3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114003336854142932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794921835396350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9953d7da7cb419a43b6d821992bcaa80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114034296321794942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794921835396350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83acebcab0a3b504d858d8e111eb0ab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnStartCharge:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114003336854142932}
+        m_MethodName: OnStartCharge
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnStopCharge:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114003336854142932}
+        m_MethodName: OnStopCharge
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  canInterrupt: 1
+--- !u!114 &114726966263136494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794921835396350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f199281878e0c45b17fa06855cbe78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnMultiSwitchStateChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: OnSwitchStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Coop.MultiSwitchEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!212 &212141754721699172
 SpriteRenderer:
   m_ObjectHideFlags: 1
