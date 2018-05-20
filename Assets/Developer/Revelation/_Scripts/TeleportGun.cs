@@ -18,6 +18,7 @@ namespace Coop
     private GameObject m_TargetObject;
     // The location that the teleported object will be moved to.
     private Nullable<Vector2> m_TargetLocation;
+    // Reference to the instance of teleport portal being used for this gun, if any
     private GameObject m_TargetLocationObject;
 
     public override Projectile Fire(WhichWeapon weapType, Vector2? direction = null, Nullable<Vector2> target = null)

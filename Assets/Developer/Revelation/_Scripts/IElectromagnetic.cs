@@ -2,9 +2,9 @@ namespace Coop
 {
   interface IElectromagnetic
   {
-    void OnStartPull(Gun gun);
-    void OnStopPull(Gun gun);
-    void OnStartPush(Gun gun);
-    void OnStopPush(Gun gun);
+    void OnStartPull(Gun gun, WhichWeapon weaponType);
+    void OnStopPull(Gun gun, WhichWeapon weaponType);
+    void OnStartPush(Gun gun, WhichWeapon weaponType);
+    void OnStopPush(Gun gun, WhichWeapon weaponType);
   }
 }

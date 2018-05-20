@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace Coop
 {
   [Serializable]
-  public class EmEvent : UnityEvent<Gun> { }
+  public class EmEvent : UnityEvent<Gun, WhichWeapon> { }
 
   public class Electromagnetic : MonoBehaviour
   {
