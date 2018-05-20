@@ -4,17 +4,63 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CircuitObject : MonoBehaviour
+namespace Coop
 {
-    public bool active { get; private set; }
+  public enum CircuitState
+  {
+    Off,
+    Positive,
+    Negative
+  }
 
-    public UnityEvent onTriggerStart;
-    
-    public UnityEvent onTriggerEnd;
+  [Serializable]
+  public class CircuitEvent : UnityEvent<CircuitObject> {}
 
-    private void Awake()
-    {
-        onTriggerStart.AddListener(() => active = true);
-        onTriggerEnd.AddListener(() => active = false);
-    }
+  public class CircuitObject : MonoBehaviour
+  {
+      public CircuitState state = CircuitState.Off;
+      public bool active { get { return state != CircuitState.Off; } }
+
+      [SerializeField]
+      private CircuitEvent onStateChanged_Positive = new CircuitEvent();
+      [SerializeField]
+      private CircuitEvent onStateChanged_Off = new CircuitEvent();
+      [SerializeField]
+      private CircuitEvent onStateChanged_Negative = new CircuitEvent();
+
+      private void Awake()
+      {
+          onStateChanged_Positive.AddListener((c) => state = CircuitState.Positive );
+          onStateChanged_Off.AddListener((c) => state = CircuitState.Off );
+          onStateChanged_Negative.AddListener((c) => state = CircuitState.Negative );
+      }
+
+      public void TriggerStateChange(CircuitState newState)
+      {
+        switch (newState)
+        {
+          case CircuitState.Off:
+            if(state != newState)
+            {
+              state = newState;
+              onStateChanged_Off.Invoke(this);
+            }
+            break;
+          case CircuitState.Positive:
+            if(state != newState)
+            {
+              state = newState;
+              onStateChanged_Positive.Invoke(this);
+            }
+            break;
+          case CircuitState.Negative:
+            if(state != newState)
+            {
+              state = newState;
+              onStateChanged_Negative.Invoke(this);
+            }
+            break;
+        }
+      }
+  }
 }
