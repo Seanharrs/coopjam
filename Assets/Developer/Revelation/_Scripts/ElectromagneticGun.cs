@@ -12,7 +12,8 @@ namespace Coop
     [Tooltip("How powerful is the EM field?")]
     private int forceAmount;
 
-    private List<Electromagnetic> affectedObjects = new List<Electromagnetic>();
+    private List<Electromagnetic> magnetizedObjects = new List<Electromagnetic>();
+    private List<Electrostatic> interruptedObjects = new List<Electrostatic>();
     internal WhichWeapon currentForceType = (WhichWeapon)(-1);
 
     public override Projectile Fire(WhichWeapon weapType, Vector2? direction = null, Vector2? target = null)
@@ -39,14 +40,22 @@ namespace Coop
               rb.bodyType = RigidbodyType2D.Dynamic;
             if (weapType == WhichWeapon.Primary && emComponent.canAttract)
             {
-              emComponent.OnStartPull.Invoke(this);
-              affectedObjects.Add(emComponent);
+              if(emComponent.StartPull(this, currentForceType))
+                magnetizedObjects.Add(emComponent);
             }
             else if (weapType == WhichWeapon.Secondary && emComponent.canRepel)
             {
-              emComponent.OnStartPull.Invoke(this);
-              affectedObjects.Add(emComponent);
+              if(emComponent.StartPush(this, currentForceType))
+                magnetizedObjects.Add(emComponent);
             }
+          }
+
+          var staticComponent = results[i].collider.GetComponent<Electrostatic>();
+          if(staticComponent != null && staticComponent.canInterrupt)
+          {
+            // TODO: Should particle effect be different for electrostatic?
+            staticComponent.StartCharge(this, currentForceType);
+            interruptedObjects.Add(staticComponent);
           }
         }
         // Debugging: Debug.Log("Affecting " + emCount + " electromagnetic objects.");
@@ -55,11 +64,12 @@ namespace Coop
     }
     public override void StopFiring()
     {
+
       Debug.Log("Stopped firing EM gun.");
-      foreach (var obj in affectedObjects)
+      foreach (var obj in magnetizedObjects)
       {
-        obj.OnStopPull.Invoke(this);
-        obj.OnStopPush.Invoke(this);
+        obj.StopPull(this, currentForceType);
+        obj.StopPush(this, currentForceType);
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
         if(!rb) return;
 
@@ -67,13 +77,20 @@ namespace Coop
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0;
       }
-      affectedObjects.Clear();
+      magnetizedObjects.Clear();
+
+      foreach(var obj in interruptedObjects)
+      {
+        obj.StopCharge(this, currentForceType);
+      }
+
       currentForceType = (WhichWeapon)(-1);
+
     }
 
     private void Update()
     {
-      foreach(var obj in affectedObjects)
+      foreach(var obj in magnetizedObjects)
       {
         var rb = obj.GetComponent<Rigidbody2D>();
         if(!rb) return;

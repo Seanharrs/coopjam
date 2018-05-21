@@ -1,25 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Coop;
 using UnityEngine;
 
 namespace Coop
 {
-
   [RequireComponent(typeof(Projectile))]
   public class TeleportProjectile : MonoBehaviour
   {
-
     // References to other components.
     private Projectile m_Projectile;
     private Collider2D m_Collider;
     private SpriteRenderer m_SpriteRenderer;
-
-    [SerializeField]
-    private Color primaryColor;
-    [SerializeField]
-    private Color secondaryColor;
 
     // Reference to the gun that fired this projectile.
     public TeleportGun TeleportGun { get; internal set; }
@@ -33,30 +25,18 @@ namespace Coop
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
-      if(other.gameObject.layer == (other.gameObject.layer & LayerMask.GetMask("Characters", "Default"))
-        && other.gameObject != gameObject)
+      if(!TeleportGun) // Fail out.
       {
-        Debug.Log("// TODO: Adjust code to respond to appropriate layers?");
+        Destroy(this.gameObject);
+        return;
       }
 
       gameObject.SetActive(false); // To counteract bug from multiple collisions.
       GetComponent<Collider2D>().enabled = false;
       var position = transform.position;
 
-      // Debug.Log("Triggered: " + other.name 
-      //           + "\nType: " + m_Projectile.Type.ToString() 
-      //           + "\nPosition: " + position);
-
-      // If in primary mode and I hit a player or rigidbody with the CanTeleport component
-      if (m_Projectile.Type == Projectile.ProjectileType.Primary)
+      if (m_Projectile.type == WhichWeapon.Primary)
       {
-        // if (other.GetComponent<Platformer2DUserControl>() != null || other.GetComponent<Teleportable>() != null)
-        // {
-        //   // Debug.Log("hit something teleportable.");
-        //   TeleportGun.MarkTargetObject(other.gameObject);
-        // }
-        // else 
         if (other.GetComponentInParent<Platformer2DUserControl>() != null)
         {
           // Debug.Log("hit whose parent is something teleportable.");
@@ -73,7 +53,7 @@ namespace Coop
 
       // If in secondary mode and I hit anything,
       // If I do not have a target to teleport, drop a portal here - this becomes the place the target will be teleported to.
-      if ((m_Projectile.Type == Projectile.ProjectileType.Secondary))
+      if (m_Projectile.type == WhichWeapon.Secondary)
       {
         // Debug.Log("setting teleport target location.");
         TeleportGun.MarkTargetLocation(position);
@@ -86,15 +66,9 @@ namespace Coop
 
     void Update()
     {
-
-      if(m_Projectile.Type == Projectile.ProjectileType.Primary)
-        m_SpriteRenderer.color = primaryColor;
-      else
-        m_SpriteRenderer.color = secondaryColor;
-
       // If in secondary mode and a crosshair target was selected,
       // check whether we have reached that target.
-      if (m_Projectile.crossTarget != null && m_Projectile.Type == Projectile.ProjectileType.Secondary)
+      if (m_Projectile.crossTarget != null && m_Projectile.type == WhichWeapon.Secondary)
       {
         if (m_Collider.OverlapPoint((Vector2)m_Projectile.crossTarget))
         {

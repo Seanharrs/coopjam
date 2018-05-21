@@ -1,34 +1,50 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Coop
 {
-  [RequireComponent(typeof (Rigidbody2D), typeof (Collider2D))]
-  public class Projectile : MonoBehaviour {
+  [Serializable]
+  public class ProjectileEvent : UnityEvent<Gun, WhichWeapon> { }
 
-    public enum ProjectileType { Primary, Secondary };
-
+  [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+  public class Projectile : MonoBehaviour
+  {
     [Header("Projectile")]
-    public float projectileSpeed = 10;
+    [SerializeField]
+    private float m_ProjectileSpeed = 10;
     
-    private Nullable<ProjectileType> m_Type = null;
-    internal Nullable<ProjectileType> Type
+    [SerializeField]
+    private Color m_PrimaryColor = Color.white;
+
+    [SerializeField]
+    private Color m_SecondaryColor = Color.white;
+
+    private WhichWeapon m_Type = WhichWeapon.Primary;
+    internal WhichWeapon type { get { return m_Type; } }
+
+    internal Vector2? crossTarget = null;
+
+    private Gun m_OwnerGun;
+    public Gun OwnerGun
     {
-      get { return m_Type; }
+      get { return m_OwnerGun; }
     }
 
-    internal Nullable<Vector2> crossTarget = null;
+    public virtual void Initiate(Vector2 direction, Gun gun, WhichWeapon type = WhichWeapon.Primary, Vector2? target = null)
+    {
+      GetComponent<Rigidbody2D>().velocity = direction * m_ProjectileSpeed;
+      m_OwnerGun = gun;
+      m_Type = type;
 
-    public virtual void Initiate(Vector2 direction, WhichWeapon type = WhichWeapon.Primary, Nullable<Vector2> target = null) {
-      GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
-      m_Type = type == WhichWeapon.Primary ? ProjectileType.Primary : ProjectileType.Secondary;
       if(target != null)
-      {
         crossTarget = target;
-      }
+      
+      SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+      if(type == WhichWeapon.Primary)
+        renderer.color = m_PrimaryColor;
+      else
+        renderer.color = m_SecondaryColor;
     }
-
   }
 }

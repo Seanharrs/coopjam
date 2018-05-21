@@ -8,19 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Developer/Revelation/_Scenes/PlayerSelect.unity
     guid: a9cb830140228824e8bf135e2ee1c5ea
-  - enabled: 1
-    path: Assets/Scenes/StarterScene.unity
-    guid: 3a2523e272b443f48a357bd62d9246e4
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Developer/Revelation/_Scenes/Revelation_Workshop.unity
     guid: caa5ee4d96df4f54eadae6ed66bb4172
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Developer/Seanharrs/_Scenes/FollowCam.unity
-    guid: 33cb6213d69a36c4ea67141ffca669af
-  - enabled: 1
-    path: Assets/Developer/Seanharrs/_Scenes/GunTesting.unity
-    guid: ff60090ca88b1e843b5209eca91579ad
-  - enabled: 1
-    path: Assets/Developer/Revelation/_Scenes/Sample_Level1.unity
+    path: Assets/_Scenes/Sample_Level1.unity
     guid: a836664a2e5eb7b4abb237477dac31ed
   m_configObjects: {}
