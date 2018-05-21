@@ -13,9 +13,9 @@ namespace Coop
             if(thermalObj != null)
             {
                 if(GetComponent<Projectile>().type == WhichWeapon.Primary)
-                    thermalObj.Cool(projectileComponent.OwnerGun, projectileComponent.type);
-                else
                     thermalObj.Heat(projectileComponent.OwnerGun, projectileComponent.type);
+                else
+                    thermalObj.Cool(projectileComponent.OwnerGun, projectileComponent.type);
             }
 
             Destroy(gameObject);

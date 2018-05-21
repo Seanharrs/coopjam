@@ -5,46 +5,46 @@ using UnityEngine;
 namespace Coop
 {
 
-  [RequireComponent(typeof (Animator), typeof (MultiSwitch))]
+  [RequireComponent(typeof (Animator), typeof (CircuitObject))]
   public class MagneticSwitch : MonoBehaviour, IElectrostatic
   {
 
     Animator m_Animator;
-    MultiSwitch m_MultiSwitch;
+    CircuitObject m_CircuitObject;
 
     bool isOn = false;
-    SwitchState position = SwitchState.Off;
+    CircuitState position = CircuitState.Off;
 
     void Start()
     {
         m_Animator = GetComponent<Animator>();
-        m_MultiSwitch = GetComponent<MultiSwitch>();
+        m_CircuitObject = GetComponent<CircuitObject>();
     }
 
     public void OnStartCharge(Gun gun, WhichWeapon weaponType)
     {
-      if(position == SwitchState.Off && weaponType == WhichWeapon.Primary)
+      if(position == CircuitState.Off && weaponType == WhichWeapon.Primary)
       {
         m_Animator.SetTrigger("OnPositive");
-        position = SwitchState.Positive;
-        m_MultiSwitch.OnMultiSwitchStateChanged.Invoke(m_MultiSwitch, position);
+        position = CircuitState.Positive;
+        m_CircuitObject.TriggerStateChange(position);
       }
-      if(position == SwitchState.Off && weaponType == WhichWeapon.Secondary)
+      if(position == CircuitState.Off && weaponType == WhichWeapon.Secondary)
       {
         m_Animator.SetTrigger("OnNegative");
-        position = SwitchState.Negative;
-        m_MultiSwitch.OnMultiSwitchStateChanged.Invoke(m_MultiSwitch, position);
+        position = CircuitState.Negative;
+        m_CircuitObject.TriggerStateChange(position);
       }
     }
 
     public void OnStopCharge(Gun gun, WhichWeapon weaponType)
     {
-      if(position == SwitchState.Positive && weaponType == WhichWeapon.Primary
-      || position == SwitchState.Negative && weaponType == WhichWeapon.Secondary)
+      if(position == CircuitState.Positive && weaponType == WhichWeapon.Primary
+      || position == CircuitState.Negative && weaponType == WhichWeapon.Secondary)
       {
         m_Animator.SetTrigger("Off");
-        position = SwitchState.Off;
-        m_MultiSwitch.OnMultiSwitchStateChanged.Invoke(m_MultiSwitch, position);
+        position = CircuitState.Off;
+        m_CircuitObject.TriggerStateChange(position);
       }
     }
   }

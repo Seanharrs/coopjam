@@ -22,6 +22,17 @@ namespace Coop
       public bool active { get { return state != CircuitState.Off; } }
 
       [SerializeField]
+      private bool m_MultiSwitch = false;
+
+      private bool m_SwitchEnabled = true;
+      internal bool SwitchEnabled {
+        get { return m_SwitchEnabled; }
+        set {
+          m_SwitchEnabled = value;
+        }
+      }
+
+      [SerializeField]
       private CircuitEvent onStateChanged_Positive = new CircuitEvent();
       [SerializeField]
       private CircuitEvent onStateChanged_Off = new CircuitEvent();
@@ -35,8 +46,14 @@ namespace Coop
           onStateChanged_Negative.AddListener((c) => state = CircuitState.Negative );
       }
 
-      public void TriggerStateChange(CircuitState newState)
+      public void DisableSwitchEvents()
       {
+        m_SwitchEnabled = false;
+      }
+
+      internal void TriggerStateChange(CircuitState newState)
+      {
+        if(!m_SwitchEnabled) return;
         switch (newState)
         {
           case CircuitState.Off:

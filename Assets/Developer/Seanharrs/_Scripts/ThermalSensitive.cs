@@ -8,7 +8,7 @@ namespace Coop
     [SerializeField, Tooltip("Event triggered when primary weapon projectile hits this object.")]
     private ProjectileEvent OnThermalHit_Heat = new ProjectileEvent();
     [SerializeField, Tooltip("Event triggered when secondary weapon projectile hits this object.")]
-    private ProjectileEvent OnThermalHit_Freeze = new ProjectileEvent();
+    private ProjectileEvent OnThermalHit_Cool = new ProjectileEvent();
 
     [SerializeField, Tooltip("Thermal heating works on this object. Defaults to true.")]
     internal bool m_canHeat = true;
@@ -18,7 +18,7 @@ namespace Coop
     internal bool Cool(Gun sourceGun, WhichWeapon type)
     {
       if(m_canCool)
-        OnThermalHit_Freeze.Invoke(sourceGun, type);
+        OnThermalHit_Cool.Invoke(sourceGun, type);
       return m_canCool;
     }
 
