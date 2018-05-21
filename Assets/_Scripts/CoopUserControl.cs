@@ -10,13 +10,15 @@ namespace Coop
     Game = 1,
     UI = 2
   }
-  [RequireComponent(typeof(PlatformerCharacter2D), typeof(Health))]
-  public class Platformer2DUserControl : MonoBehaviour
+  [RequireComponent(typeof(CoopCharacter2D), typeof(Health))]
+  public class CoopUserControl : MonoBehaviour
   {
-    private PlatformerCharacter2D m_Character;
+    private CoopCharacter2D m_Character;
     private bool m_Jump;
     private bool m_FiringPrimary = false;
     private bool m_FiringSecondary = false;
+    private bool m_CanFire = true;
+    private bool m_HideGun = false;
     private PlayerInputMode m_InputMode = PlayerInputMode.Game;
 
     [Header("Controls")]
@@ -39,7 +41,7 @@ namespace Coop
 
     private void Awake()
     {
-      m_Character = GetComponent<PlatformerCharacter2D>();
+      m_Character = GetComponent<CoopCharacter2D>();
       m_HP = GetComponent<Health>();
       m_Anim = GetComponent<Animator>();
       m_Coll = GetComponent<BoxCollider2D>();
@@ -69,94 +71,98 @@ namespace Coop
       #region Manage Game Input
       if (m_InputMode == PlayerInputMode.Game)
       {
-        var crossPos = crosshair.transform.position;
-        if(isAiming)
+        if(m_CanFire)
         {
-          // Bi-directional ('Crosshair') aiming.
-          crossPos += new Vector3(Input.GetAxis(controlData.aimHorizontal), Input.GetAxis(controlData.aimVertical), 0);
-          crosshair.transform.position = crossPos;
-
-          // Rotate arm to point gun at target.
-          LookAtRotate(crossPos, armSocket);
-          LookAtRotate(crossPos, headSocket, -40, 40);
-
-        }
-        else {
-          // Up/Down only
-          float verticalAim = Input.GetAxis(controlData.aimVertical);
-          if (Mathf.Abs(verticalAim) > 0)
+          var crossPos = crosshair.transform.position;
+          if(isAiming)
           {
-            UnidirectionalRotate(verticalAim, armSocket);
-          }
-        }
+            // Bi-directional ('Crosshair') aiming.
+            crossPos += new Vector3(Input.GetAxis(controlData.aimHorizontal), Input.GetAxis(controlData.aimVertical), 0);
+            crosshair.transform.position = crossPos;
 
-        // manage game controls
-        #region Axis Firing Input
-        float fireAxis = Input.GetAxis(controlData.primaryFire);
-        if (fireAxis != 0)
-        {
-          FiringState weap = fireAxis > 0 ? FiringState.Primary : FiringState.Secondary;
-          if(weap == FiringState.Primary)
+            // Rotate arm to point gun at target.
+            LookAtRotate(crossPos, armSocket);
+            LookAtRotate(crossPos, headSocket, -40, 40);
+
+          }
+          else {
+            // Up/Down only
+            float verticalAim = Input.GetAxis(controlData.aimVertical);
+            if (Mathf.Abs(verticalAim) > 0)
+            {
+              UnidirectionalRotate(verticalAim, armSocket);
+            }
+          }
+
+          // manage game controls
+          #region Axis Firing Input
+          float fireAxis = Input.GetAxis(controlData.primaryFire);
+          if (fireAxis != 0)
+          {
+            FiringState weap = fireAxis > 0 ? FiringState.Primary : FiringState.Secondary;
+            if(weap == FiringState.Primary)
+            {
+              m_FiringPrimary = true;
+            }
+            else
+            {
+              m_FiringSecondary = true;
+            }
+            gun.Fire(weap, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
+          }
+          #endregion
+          #region Keyboard Firing Input
+          else if (Input.GetButton(controlData.primaryFire))
           {
             m_FiringPrimary = true;
+            if(isAiming)
+              gun.FireAtTarget(FiringState.Primary, crossPos);
+            else
+              gun.Fire(FiringState.Primary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
           }
-          else
+          else if (Input.GetButton(controlData.secondaryFire))
           {
             m_FiringSecondary = true;
+            if(isAiming)
+              gun.FireAtTarget(FiringState.Secondary, crossPos);
+            else
+              gun.Fire(FiringState.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
           }
-          gun.Fire(weap, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
-        }
-        #endregion
-        #region Keyboard Firing Input
-        else if (Input.GetButton(controlData.primaryFire))
-        {
-          m_FiringPrimary = true;
-          if(isAiming)
-            gun.FireAtTarget(FiringState.Primary, crossPos);
-          else
-            gun.Fire(FiringState.Primary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
-        }
-        else if (Input.GetButton(controlData.secondaryFire))
-        {
-          m_FiringSecondary = true;
-          if(isAiming)
-            gun.FireAtTarget(FiringState.Secondary, crossPos);
-          else
-            gun.Fire(FiringState.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
-        }
-        #endregion
-        else if (m_FiringPrimary || m_FiringSecondary) // These may be "true" from the previous frame while buttons are not still held this frame.
-        {
-          gun.StopFiring();
-          m_FiringPrimary = false;
-          m_FiringSecondary = false;
-        }
-        else if (Input.GetButtonDown(controlData.aimActivate))
-        {
-          if(isAiming) {
-            // TODO: Use reticle/crosshairs for cursor
-            Cursor.lockState = CursorLockMode.Locked;
-            //Cursor.visible = false;
-            crosshair.gameObject.SetActive(false);
-            headSocket.transform.rotation = Quaternion.Euler(headSocket.transform.rotation.eulerAngles.x, headSocket.transform.rotation.eulerAngles.y, 0);
-            isAiming = false;
-          } else {
-            Cursor.lockState = CursorLockMode.Locked;
-            //Cursor.visible = true;
-            crosshair.gameObject.SetActive(true);
-            crosshair.transform.position = gun.AmmoSpawnLocation.position;
-            // Debug.Log("Crosshair should show now.");
-            isAiming = true;
+          #endregion
+          else if (m_FiringPrimary || m_FiringSecondary) // These may be "true" from the previous frame while buttons are not still held this frame.
+          {
+            gun.StopFiring();
+            m_FiringPrimary = false;
+            m_FiringSecondary = false;
+          }
+          else if (Input.GetButtonDown(controlData.aimActivate))
+          {
+            if(isAiming) {
+              // TODO: Use reticle/crosshairs for cursor
+              Cursor.lockState = CursorLockMode.Locked;
+              //Cursor.visible = false;
+              crosshair.gameObject.SetActive(false);
+              headSocket.transform.rotation = Quaternion.Euler(headSocket.transform.rotation.eulerAngles.x, headSocket.transform.rotation.eulerAngles.y, 0);
+              isAiming = false;
+            } else {
+              Cursor.lockState = CursorLockMode.Locked;
+              //Cursor.visible = true;
+              crosshair.gameObject.SetActive(true);
+              crosshair.transform.position = gun.AmmoSpawnLocation.position;
+              // Debug.Log("Crosshair should show now.");
+              isAiming = true;
+            }
+          }
+          else if (Input.GetButtonDown(controlData.switchPlayerWeapon))
+          {
+            // Debug.Log("Pressed: switchPlayerWeapon " + Input.GetAxis(controlData.switchPlayerWeapon));
+            
+            SetGun(CoopGameManager.instance.GetAvailableGun(this));
+            
           }
         }
-        else if (Input.GetButtonDown(controlData.switchPlayerWeapon))
-        {
-          // Debug.Log("Pressed: switchPlayerWeapon " + Input.GetAxis(controlData.switchPlayerWeapon));
-          
-          SetGun(CoopGameManager.instance.GetAvailableGun(this));
-          
-        }
-        else if (Input.GetButtonDown(controlData.interact))
+        
+        if (Input.GetButtonDown(controlData.interact))
         {
           // Debug.Log("Pressed: interact");
 

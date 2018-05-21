@@ -51,7 +51,7 @@ namespace Coop
 
         private IEnumerator Reverse()
         {
-            PlatformerCharacter2D pc2D = GetComponent<PlatformerCharacter2D>();
+            CoopCharacter2D pc2D = GetComponent<CoopCharacter2D>();
             if(pc2D)
                 pc2D.NormalGravity *= -1;
             else
@@ -85,7 +85,7 @@ namespace Coop
 
         private IEnumerator Reduce()
         {
-            PlatformerCharacter2D pc2D = GetComponent<PlatformerCharacter2D>();
+            CoopCharacter2D pc2D = GetComponent<CoopCharacter2D>();
             if(pc2D)
                 pc2D.NormalGravity /= 2;
             else

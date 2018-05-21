@@ -7,7 +7,7 @@ namespace Coop
 {
   public class MultiplayerFollow : MonoBehaviour
   {
-      private Coop.Platformer2DUserControl[] m_Players;
+      private Coop.CoopUserControl[] m_Players;
 
       [SerializeField]
       private Vector3 m_Offset;
@@ -93,7 +93,7 @@ namespace Coop
 
       internal void AcquirePlayerRefs()
       {
-          m_Players = FindObjectsOfType<Coop.Platformer2DUserControl>();
+          m_Players = FindObjectsOfType<Coop.CoopUserControl>();
       }
 
       private void LateUpdate()

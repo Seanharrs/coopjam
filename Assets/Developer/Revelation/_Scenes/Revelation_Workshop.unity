@@ -507,16 +507,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114726966263136494, guid: dec2113cb7ec8c74682e0c45fb3a5b31,
-        type: 2}
-      propertyPath: OnMultiSwitchStateChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 478294478}
-    - target: {fileID: 114726966263136494, guid: dec2113cb7ec8c74682e0c45fb3a5b31,
-        type: 2}
-      propertyPath: OnMultiSwitchStateChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnSwitchStateChanged
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dec2113cb7ec8c74682e0c45fb3a5b31, type: 2}
   m_IsPrefabParent: 0
@@ -628,12 +618,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4009c2b570050924b99662b491eed449, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &478294478 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
-    type: 2}
-  m_PrefabInternal: {fileID: 478294477}
-  m_Script: {fileID: 11500000, guid: cc72e577f91242b48a1334f1ed93c31f, type: 3}
 --- !u!1001 &491104124
 Prefab:
   m_ObjectHideFlags: 0
