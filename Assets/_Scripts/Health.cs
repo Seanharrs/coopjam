@@ -57,7 +57,7 @@ public class Health : MonoBehaviour
 
         if(healthRemaining <= 0)
         {
-            GetComponent<Coop.Platformer2DUserControl>().Die();
+            GetComponent<Coop.CoopUserControl>().Die();
             enabled = false;
         }
     }

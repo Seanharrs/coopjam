@@ -15,6 +15,8 @@ namespace Coop
     bool isOn = false;
     CircuitState position = CircuitState.Off;
 
+    [SerializeField] public bool canPlayerAffect = true;
+
     void Start()
     {
         m_Animator = GetComponent<Animator>();
@@ -46,6 +48,16 @@ namespace Coop
         position = CircuitState.Off;
         m_CircuitObject.TriggerStateChange(position);
       }
+    }
+
+    public void DisableSwitch()
+    {
+      if(position == CircuitState.Positive || position == CircuitState.Negative )
+      {
+        m_Animator.SetTrigger("Off");
+        position = CircuitState.Off;
+      }
+      canPlayerAffect = false;
     }
   }
 }

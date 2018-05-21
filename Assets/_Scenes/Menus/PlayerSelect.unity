@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3844d545b4b64cc43aa2a3d3e264413e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: {fileID: 102900000, guid: caa5ee4d96df4f54eadae6ed66bb4172, type: 3}
+  nextScene: Obstacle_Tutorial
 --- !u!4 &877546229
 Transform:
   m_ObjectHideFlags: 0

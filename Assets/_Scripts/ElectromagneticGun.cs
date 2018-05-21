@@ -22,7 +22,7 @@ namespace Coop
     // Allocate up to 10 hit results in case other non-electromagnetic things are in the way. If we have more than 10, it will fail, but this seems reasonable.
     RaycastHit2D[] m_Results = new RaycastHit2D[10];
     List<GameObject> m_ResultObjects = new List<GameObject>();
-    ContactFilter2D m_Filter = new ContactFilter2D();
+    ContactFilter2D m_Filter = new ContactFilter2D() { useTriggers = true };
     int hits = 0;
 
     private int PopulateHitResults()
@@ -30,8 +30,9 @@ namespace Coop
       m_Results = new RaycastHit2D[10];
       var hits = Physics2D.Raycast(AmmoSpawnLocation.position, AmmoSpawnLocation.right * Mathf.Sign(AmmoSpawnLocation.lossyScale.x), m_Filter, m_Results, m_EmDistance);
       m_ResultObjects.Clear();
-      foreach(var hit in m_Results)
+      for(var i = 0; i < hits; i++)
       {
+        var hit = m_Results[i];
         if(!hit) Debug.Log("No hit?");
         else if(!hit.collider) Debug.Log("No Collider?");
         else if(!hit.collider.gameObject) Debug.Log ("No GameObject.");

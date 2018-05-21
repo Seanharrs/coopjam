@@ -8,7 +8,7 @@ namespace Coop
   public class StartMenu : MonoBehaviour
   {
     
-    public Object nextScene;
+    public string nextScene;
 
     public void PlayersSelected()
     {
@@ -16,7 +16,7 @@ namespace Coop
       
       CoopGameManager gameManager = CoopGameManager.instance;
       gameManager.playerData = playerSelectMenu.GeneratePlayerData();
-      CoopGameManager.OpenLevel(nextScene.name);
+      CoopGameManager.OpenLevel(nextScene);
     }
 
   }

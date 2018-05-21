@@ -37,10 +37,10 @@ namespace Coop
 
       if (m_Projectile.type == FiringState.Primary)
       {
-        if (other.GetComponentInParent<Platformer2DUserControl>() != null)
+        if (other.GetComponentInParent<CoopUserControl>() != null)
         {
           // Debug.Log("hit whose parent is something teleportable.");
-          GameObject target = other.GetComponentInParent<Platformer2DUserControl>().gameObject;
+          GameObject target = other.GetComponentInParent<CoopUserControl>().gameObject;
           TeleportGun.MarkTargetObject(target);
         }
         else if (other.GetComponentInParent<Teleportable>() != null)

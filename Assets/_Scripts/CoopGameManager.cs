@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets._2D;
+#if UNITY_EDITOR
+  using UnityEditor;
+  using UnityEditor.SceneManagement;
+#endif
 
 namespace Coop
 {
@@ -16,7 +18,7 @@ namespace Coop
     [Space]
     [HideInInspector,
      Tooltip("Reference to currently used GameObject instance.")]
-    public Platformer2DUserControl playerCharacter;
+    public CoopUserControl playerCharacter;
     
     [Space]
     [HideInInspector,
@@ -28,7 +30,9 @@ namespace Coop
 
   }
 
+  #if UNITY_EDITOR
   [InitializeOnLoad]
+  #endif
   public class CoopGameManager : MonoBehaviour
   {
 
@@ -54,7 +58,7 @@ namespace Coop
 
     [Header("Asset References:")]
     public List<PlayerControlData> playerControlData;
-    public Platformer2DUserControl characterRigPrefab;
+    public CoopUserControl characterRigPrefab;
     [SerializeField]
     internal List<Gun> allGuns;
 
@@ -88,7 +92,7 @@ namespace Coop
       }
       for (var i = 0; i < playerData.Count; i++)
       {
-        Platformer2DUserControl characterRig = Instantiate(characterRigPrefab, spawnPoints[i].transform.position, Quaternion.identity);
+        CoopUserControl characterRig = Instantiate(characterRigPrefab, spawnPoints[i].transform.position, Quaternion.identity);
         // TEST: Debug.Log("Spawned character at: " + spawnPoints[i].transform.position + " (" + characterRig.transform.position + ")");
         characterRig.controlData = playerData[i].controlData;
         characterRig.SetGun(playerData[i].playerGun);
@@ -135,7 +139,7 @@ namespace Coop
 
 
 
-    internal Gun GetAvailableGun(Platformer2DUserControl controller)
+    internal Gun GetAvailableGun(CoopUserControl controller)
     {
       return GetAvailableGun(playerData.Find(p => p.playerCharacter == controller).playerGun);
     }
@@ -159,12 +163,13 @@ namespace Coop
       }
     }
 
-    internal void SetPlayerGun(Platformer2DUserControl character, Gun gun)
+    internal void SetPlayerGun(CoopUserControl character, Gun gun)
     {
       var c = playerData.Find(p => p.playerCharacter == character);
       if(c != null) c.playerGun = gun;
     }
     
+    #if UNITY_EDITOR
     [MenuItem("Tools/Coop Jam/Check Level")]
     static void CheckLevel()
     {
@@ -176,7 +181,7 @@ namespace Coop
         errors.Add("Should have exactly one level object, no more, no less.");
       
       // should not have characters directly, use spawn points instead.
-      var characters = FindObjectsOfType<Platformer2DUserControl>();
+      var characters = FindObjectsOfType<CoopUserControl>();
       if(characters.Count() > 0)
         errors.Add("Should not add characters directly, use spawn points instead.");
 
@@ -228,6 +233,6 @@ namespace Coop
           , "OK", "Cancel");
 
     }
-
+    #endif
   }
 }

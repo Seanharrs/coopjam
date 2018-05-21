@@ -8,13 +8,13 @@ namespace Coop
 {
   public class LevelGoal : MonoBehaviour {
 
-    List<Platformer2DUserControl> overlappedPlayers = new List<Platformer2DUserControl>();
+    List<CoopUserControl> overlappedPlayers = new List<CoopUserControl>();
 
     void OnTriggerEnter2D(Collider2D other)
     {
-      if (other.GetComponent<Platformer2DUserControl>())
+      if (other.GetComponent<CoopUserControl>())
       {
-        if(AddUnique(other.GetComponent<Platformer2DUserControl>()))
+        if(AddUnique(other.GetComponent<CoopUserControl>()))
         {
           if(CoopGameManager.instance.playerData.Count() == overlappedPlayers.Count())
           {
@@ -27,13 +27,13 @@ namespace Coop
 
     void OnTriggerExit2D(Collider2D other)
     {
-      if (other.GetComponent<Platformer2DUserControl>())
+      if (other.GetComponent<CoopUserControl>())
       {
-        overlappedPlayers.Remove(other.GetComponent<Platformer2DUserControl>());
+        overlappedPlayers.Remove(other.GetComponent<CoopUserControl>());
       }
     }
 
-    bool AddUnique(Platformer2DUserControl controller)
+    bool AddUnique(CoopUserControl controller)
     {
       if(!overlappedPlayers.Contains(controller))
       {

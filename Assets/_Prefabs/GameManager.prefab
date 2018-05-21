@@ -58,7 +58,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5369caf0b43908d4da950f5cb7dbffba, type: 2}
   - {fileID: 11400000, guid: 9b061527a74b38c498502880f81633a7, type: 2}
   - {fileID: 11400000, guid: 56d04b6202c4340449f3f14dab4c7949, type: 2}
-  characterRigPrefab: {fileID: 114113879649549188, guid: 661d5437eb1aedf4491012d4317feeb5,
+  characterRigPrefab: {fileID: 114329824752243218, guid: 661d5437eb1aedf4491012d4317feeb5,
     type: 2}
   allGuns:
   - {fileID: 114068677599390282, guid: f71ce4ff311aef948b1e2012efbe7ded, type: 2}
