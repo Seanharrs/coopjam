@@ -35,7 +35,7 @@ namespace Coop
       GetComponent<Collider2D>().enabled = false;
       var position = transform.position;
 
-      if (m_Projectile.type == WhichWeapon.Primary)
+      if (m_Projectile.type == FiringState.Primary)
       {
         if (other.GetComponentInParent<Platformer2DUserControl>() != null)
         {
@@ -53,7 +53,7 @@ namespace Coop
 
       // If in secondary mode and I hit anything,
       // If I do not have a target to teleport, drop a portal here - this becomes the place the target will be teleported to.
-      if (m_Projectile.type == WhichWeapon.Secondary)
+      if (m_Projectile.type == FiringState.Secondary)
       {
         // Debug.Log("setting teleport target location.");
         TeleportGun.MarkTargetLocation(position);
@@ -68,7 +68,7 @@ namespace Coop
     {
       // If in secondary mode and a crosshair target was selected,
       // check whether we have reached that target.
-      if (m_Projectile.crossTarget != null && m_Projectile.type == WhichWeapon.Secondary)
+      if (m_Projectile.crossTarget != null && m_Projectile.type == FiringState.Secondary)
       {
         if (m_Collider.OverlapPoint((Vector2)m_Projectile.crossTarget))
         {

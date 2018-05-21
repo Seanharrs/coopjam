@@ -15,14 +15,14 @@ namespace Coop
     [Tooltip("Electrostatic disruption (either weapon mode) works on this object. Defaults to true.")]
     internal bool canInterrupt = true;
 
-    internal bool StartCharge(Gun sourceGun, WhichWeapon weapType)
+    internal bool StartCharge(Gun sourceGun, FiringState weapType)
     {
       if(canInterrupt)
         OnStartCharge.Invoke(sourceGun, weapType);
       return canInterrupt;
     }
 
-    internal bool StopCharge(Gun sourceGun, WhichWeapon weapType)
+    internal bool StopCharge(Gun sourceGun, FiringState weapType)
     {
       if(canInterrupt)
         OnStopCharge.Invoke(sourceGun, weapType);

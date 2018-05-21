@@ -4,17 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Coop {
-  public enum WhichWeapon
+  public enum FiringState
   {
+    None,
     Primary,
     Secondary
   }
   public class Gun : MonoBehaviour
   {
 
-    protected Dictionary<WhichWeapon, float> m_LastFired = new Dictionary<WhichWeapon, float> {
-      { WhichWeapon.Primary, -5 },
-      { WhichWeapon.Secondary, -5 }
+    protected Dictionary<FiringState, float> m_LastFired = new Dictionary<FiringState, float> {
+      { FiringState.Primary, -5 },
+      { FiringState.Secondary, -5 }
     };
 
     [Header("Details")]
@@ -33,17 +34,17 @@ namespace Coop {
     [Header("Game Objects")]
     public Transform AmmoSpawnLocation;
 
-    public virtual Projectile FireAtTarget(WhichWeapon weapType, Vector2 target, WhichWeapon type = WhichWeapon.Primary)
+    public virtual Projectile FireAtTarget(FiringState weapType, Vector2 target, FiringState type = FiringState.Primary)
     {
       return Fire(weapType, (target - (Vector2)AmmoSpawnLocation.position).normalized, target);
     }
 
-    public virtual Projectile Fire(WhichWeapon weapType, Vector2? direction = null, Vector2? target = null)
+    public virtual Projectile Fire(FiringState weapType, Vector2? direction = null, Vector2? target = null)
     {
       Debug.Log("Firing " + weapType);
       if (Time.time > m_LastFired[weapType] + (1/m_FiringRate))
       {
-        var AmmoToUse = weapType == WhichWeapon.Primary ? PrimaryAmmoType : SecondaryAmmoType;
+        var AmmoToUse = weapType == FiringState.Primary ? PrimaryAmmoType : SecondaryAmmoType;
         if (AmmoSpawnLocation && AmmoToUse)
         {
           var projectile = Instantiate(AmmoToUse, AmmoSpawnLocation.position, Quaternion.identity);

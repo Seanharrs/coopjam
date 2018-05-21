@@ -15,14 +15,14 @@ namespace Coop
     [SerializeField, Tooltip("Thermal cooling works on this object. Defaults to true.")]
     internal bool m_canCool = true;
 
-    internal bool Cool(Gun sourceGun, WhichWeapon type)
+    internal bool Cool(Gun sourceGun, FiringState type)
     {
       if(m_canCool)
         OnThermalHit_Cool.Invoke(sourceGun, type);
       return m_canCool;
     }
 
-    internal bool Heat(Gun sourceGun, WhichWeapon type)
+    internal bool Heat(Gun sourceGun, FiringState type)
     {
       if(m_canHeat)
         OnThermalHit_Heat.Invoke(sourceGun, type);

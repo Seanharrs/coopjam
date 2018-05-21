@@ -21,15 +21,15 @@ namespace Coop
         m_CircuitObject = GetComponent<CircuitObject>();
     }
 
-    public void OnStartCharge(Gun gun, WhichWeapon weaponType)
+    public void OnStartCharge(Gun gun, FiringState weaponType)
     {
-      if(position == CircuitState.Off && weaponType == WhichWeapon.Primary)
+      if(position == CircuitState.Off && weaponType == FiringState.Primary)
       {
         m_Animator.SetTrigger("OnPositive");
         position = CircuitState.Positive;
         m_CircuitObject.TriggerStateChange(position);
       }
-      if(position == CircuitState.Off && weaponType == WhichWeapon.Secondary)
+      if(position == CircuitState.Off && weaponType == FiringState.Secondary)
       {
         m_Animator.SetTrigger("OnNegative");
         position = CircuitState.Negative;
@@ -37,10 +37,10 @@ namespace Coop
       }
     }
 
-    public void OnStopCharge(Gun gun, WhichWeapon weaponType)
+    public void OnStopCharge(Gun gun, FiringState weaponType)
     {
-      if(position == CircuitState.Positive && weaponType == WhichWeapon.Primary
-      || position == CircuitState.Negative && weaponType == WhichWeapon.Secondary)
+      if(position == CircuitState.Positive && weaponType == FiringState.Primary
+      || position == CircuitState.Negative && weaponType == FiringState.Secondary)
       {
         m_Animator.SetTrigger("Off");
         position = CircuitState.Off;

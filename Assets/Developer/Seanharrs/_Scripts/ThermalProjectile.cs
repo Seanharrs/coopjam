@@ -12,7 +12,7 @@ namespace Coop
             Projectile projectileComponent = GetComponent<Projectile>();
             if(thermalObj != null)
             {
-                if(GetComponent<Projectile>().type == WhichWeapon.Primary)
+                if(GetComponent<Projectile>().type == FiringState.Primary)
                     thermalObj.Heat(projectileComponent.OwnerGun, projectileComponent.type);
                 else
                     thermalObj.Cool(projectileComponent.OwnerGun, projectileComponent.type);
