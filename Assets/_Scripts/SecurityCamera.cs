@@ -4,183 +4,187 @@ using UnityEngine;
 
 namespace Coop
 {
-  [RequireComponent(typeof(CircuitObject), typeof(AudioSource))]
-  public class SecurityCamera : MonoBehaviour
-  {
-      private enum Direction { Clockwise = -1, CounterClockwise = 1 };
+	[RequireComponent(typeof(CircuitObject), typeof(AudioSource))]
+	public class SecurityCamera : MonoBehaviour
+	{
+		private enum Direction { Clockwise = -1, CounterClockwise = 1 };
 
-      [SerializeField]
-      private float[] m_LookRotationsZ;
+		[SerializeField]
+		private float[] m_LookRotationsZ;
 
-      [SerializeField]
-      private Direction m_InitialDirection;
+		[SerializeField]
+		private Direction m_InitialDirection;
 
-      [SerializeField]
-      private float m_SearchSpeed = 40f;
-      
-      [SerializeField]
-      private float m_MaxAlertTime = 10f;
-      private float m_AlertTimeLeft;
-      private bool m_OnAlert;
+		[SerializeField]
+		private float m_SearchSpeed = 40f;
 
-      private CircuitObject m_CircuitObj;
-      private AudioSource m_Audio;
+		[SerializeField]
+		private float m_MaxAlertTime = 10f;
+		private float m_AlertTimeLeft;
+		private bool m_OnAlert;
 
-      [SerializeField, Tooltip("The rotation the camera should move to when shut down.")]
-      private Vector3 m_ShutdownRot;
+		private CircuitObject m_CircuitObj;
+		private AudioSource m_Audio;
 
-      private Vector3 m_InitRot;
-      private Vector3 m_InitRotLeft;
-      private float m_CurrRotZ;
+		[SerializeField, Tooltip("The rotation the camera should move to when shut down.")]
+		private Vector3 m_ShutdownRot;
 
-      private bool m_Initialized = false;
+		private Vector3 m_InitRot;
+		private Vector3 m_InitRotLeft;
+		private float m_CurrRotZ;
 
-      private void OnDrawGizmos()
-      {
-          Vector3 pos = transform.position;
+		private bool m_Initialized = false;
 
-          //In case Awake() hasn't run yet
-          if(!m_Initialized)
-              InitCam();
+		private void OnDrawGizmos()
+		{
+			Vector3 pos = transform.position;
 
-          //Draw current in blue
-          Gizmos.color = Color.blue;
-          Gizmos.DrawRay(pos, -transform.right);
+			//In case Awake() hasn't run yet
+			if(!m_Initialized)
+				InitCam();
 
-          //Draw extents in red
-          Gizmos.color = Color.red;
-          foreach(float rot in m_LookRotationsZ)
-              Gizmos.DrawRay(pos, Quaternion.Euler(0, 0, rot - m_InitRot.z) * m_InitRotLeft * 5f);
-      }
+			//Draw current in blue
+			Gizmos.color = Color.blue;
+			Gizmos.DrawRay(pos, -transform.right);
 
-      private void Awake() { InitCam(); }
+			//Draw extents in red
+			Gizmos.color = Color.red;
+			foreach(float rot in m_LookRotationsZ)
+				Gizmos.DrawRay(pos, Quaternion.Euler(0, 0, rot - m_InitRot.z) * m_InitRotLeft * 5f);
+		}
 
-      private void InitCam()
-      {
-          m_Initialized = true;
+		private void Awake() { InitCam(); }
 
-          m_InitRot = transform.rotation.eulerAngles;
-          m_InitRotLeft = -transform.right;
+		private void InitCam()
+		{
+			m_Initialized = true;
 
-          m_Audio = GetComponent<AudioSource>();
-          m_CircuitObj = GetComponent<CircuitObject>();
+			m_InitRot = transform.rotation.eulerAngles;
+			m_InitRotLeft = -transform.right;
 
-          for(int i = 0; i < m_LookRotationsZ.Length; i++)
-              if(m_LookRotationsZ[i] < 0)
-                  m_LookRotationsZ[i] += 360;
-      }
+			m_Audio = GetComponent<AudioSource>();
+			m_CircuitObj = GetComponent<CircuitObject>();
 
-      public void ShutDown()
-      {
-          StopAllCoroutines();
-          transform.GetChild(0).gameObject.SetActive(false);
-          GetComponent<PolygonCollider2D>().enabled = false;
-          StartCoroutine(ReturnToState(m_ShutdownRot));
-      }
+			for(int i = 0; i < m_LookRotationsZ.Length; i++)
+				if(m_LookRotationsZ[i] < 0)
+					m_LookRotationsZ[i] += 360;
+		}
 
-      public void StartUp()
-      {
-          StopAllCoroutines();
-          transform.GetChild(0).gameObject.SetActive(true);
-          GetComponent<PolygonCollider2D>().enabled = true;
-          StartCoroutine(ReturnToState(m_InitRot));
-      }
+		public void ShutDown()
+		{
+			StopAllCoroutines();
+			m_Audio.Stop();
+			m_CircuitObj.TriggerStateChange(CircuitState.Off);
 
-      private IEnumerator LookAround()
-      {
-          m_OnAlert = true;
-          m_AlertTimeLeft = m_MaxAlertTime;
-          m_Audio.Play();
+			transform.GetChild(0).gameObject.SetActive(false);
+			GetComponent<PolygonCollider2D>().enabled = false;
+			StartCoroutine(ReturnToState(m_ShutdownRot));
+		}
 
-          if(!m_CircuitObj.active)
-              m_CircuitObj.TriggerStateChange(CircuitState.Positive);
+		public void StartUp()
+		{
+			StopAllCoroutines();
 
-          int i = 0;
-          float newRotZ = m_LookRotationsZ[0];
-          m_CurrRotZ = transform.rotation.eulerAngles.z;
-          int direction = (int)m_InitialDirection;
+			transform.GetChild(0).gameObject.SetActive(true);
+			GetComponent<PolygonCollider2D>().enabled = true;
+			StartCoroutine(ReturnToState(m_InitRot));
+		}
 
-          if(Mathf.Abs(m_CurrRotZ - newRotZ) < 1f)
-          {
-              i = (i + 1) % m_LookRotationsZ.Length;
-              newRotZ = m_LookRotationsZ[i];
-          }
-          
-          while(m_AlertTimeLeft > 0f)
-          {
-              if(Mathf.Abs(m_CurrRotZ - newRotZ) < 1f)
-              {
-                  i = (i + 1) % m_LookRotationsZ.Length;
-                  direction *= -1;
-                  newRotZ = m_LookRotationsZ[i];
-              }
+		private IEnumerator LookAround()
+		{
+			m_OnAlert = true;
+			m_AlertTimeLeft = m_MaxAlertTime;
+			m_Audio.Play();
 
-              Rotate(direction);
+			if(!m_CircuitObj.active)
+				m_CircuitObj.TriggerStateChange(CircuitState.Positive);
 
-              m_AlertTimeLeft -= Time.fixedDeltaTime;
+			int i = 0;
+			float newRotZ = m_LookRotationsZ[0];
+			m_CurrRotZ = transform.rotation.eulerAngles.z;
+			int direction = (int)m_InitialDirection;
 
-              yield return new WaitForFixedUpdate();
-          }
-          
-          yield return ReturnToState(m_InitRot);
+			if(Mathf.Abs(m_CurrRotZ - newRotZ) < 1f)
+			{
+				i = (i + 1) % m_LookRotationsZ.Length;
+				newRotZ = m_LookRotationsZ[i];
+			}
 
-          m_OnAlert = false;
-          m_Audio.Stop();
+			while(m_AlertTimeLeft > 0f)
+			{
+				if(Mathf.Abs(m_CurrRotZ - newRotZ) < 1f)
+				{
+					i = (i + 1) % m_LookRotationsZ.Length;
+					direction *= -1;
+					newRotZ = m_LookRotationsZ[i];
+				}
 
-          if(m_CircuitObj.active)
-              m_CircuitObj.TriggerStateChange(CircuitState.Off);
+				Rotate(direction);
 
-          yield return null;
-      }
+				m_AlertTimeLeft -= Time.fixedDeltaTime;
 
-      private IEnumerator ReturnToState(Vector3 rot)
-      {
-          float rotDiff = rot.z - transform.rotation.eulerAngles.z;
-          if(rotDiff > 180f)
-              rotDiff -= 360f;
-          else if(rotDiff < -180f)
-              rotDiff += 360f;
+				yield return new WaitForFixedUpdate();
+			}
 
-          int direction = (int)Mathf.Sign(rotDiff);
+			yield return ReturnToState(m_InitRot);
 
-          while(m_CurrRotZ != rot.z)
-          {
-              if(Mathf.Abs(m_CurrRotZ - rot.z) < 1f)
-              {
-                  transform.rotation = Quaternion.Euler(rot);
-                  break;
-              }
-              Rotate(direction);
-              yield return new WaitForFixedUpdate();
-          }
-      }
+			m_OnAlert = false;
+			m_Audio.Stop();
 
-      private void Rotate(int dir)
-      {
-          m_CurrRotZ += Time.fixedDeltaTime * m_SearchSpeed * dir;
-          if(m_CurrRotZ >= 360f)
-              m_CurrRotZ -= 360f;
-          else if(m_CurrRotZ < 0f)
-              m_CurrRotZ += 360f;
+			if(m_CircuitObj.active)
+				m_CircuitObj.TriggerStateChange(CircuitState.Off);
 
-          transform.rotation = Quaternion.Euler(0, 0, m_CurrRotZ);
-      }
+			yield return null;
+		}
 
-      private void OnTriggerEnter2D(Collider2D collision)
-      {
-          if(!collision.CompareTag("Player"))
-              return;
+		private IEnumerator ReturnToState(Vector3 rot)
+		{
+			float rotDiff = rot.z - transform.rotation.eulerAngles.z;
+			if(rotDiff > 180f)
+				rotDiff -= 360f;
+			else if(rotDiff < -180f)
+				rotDiff += 360f;
 
-          if(!m_OnAlert)
-              StartCoroutine(LookAround());
-      }
+			int direction = (int)Mathf.Sign(rotDiff);
 
-      private void OnTriggerStay2D(Collider2D collision)
-      {
-          if(!collision.CompareTag("Player"))
-              return;
+			while(m_CurrRotZ != rot.z)
+			{
+				if(Mathf.Abs(m_CurrRotZ - rot.z) < 1f)
+				{
+					transform.rotation = Quaternion.Euler(rot);
+					break;
+				}
+				Rotate(direction);
+				yield return new WaitForFixedUpdate();
+			}
+		}
 
-          m_AlertTimeLeft = m_MaxAlertTime;
-      }
-  }
+		private void Rotate(int dir)
+		{
+			m_CurrRotZ += Time.fixedDeltaTime * m_SearchSpeed * dir;
+			if(m_CurrRotZ >= 360f)
+				m_CurrRotZ -= 360f;
+			else if(m_CurrRotZ < 0f)
+				m_CurrRotZ += 360f;
+
+			transform.rotation = Quaternion.Euler(0, 0, m_CurrRotZ);
+		}
+
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+			if(!collision.CompareTag("Player"))
+				return;
+
+			if(!m_OnAlert)
+				StartCoroutine(LookAround());
+		}
+
+		private void OnTriggerStay2D(Collider2D collision)
+		{
+			if(!collision.CompareTag("Player"))
+				return;
+
+			m_AlertTimeLeft = m_MaxAlertTime;
+		}
+	}
 }

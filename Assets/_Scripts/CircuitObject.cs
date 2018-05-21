@@ -22,7 +22,7 @@ namespace Coop
       public bool active { get { return state != CircuitState.Off; } }
 
       [SerializeField]
-      private bool m_MultiSwitch = false;
+      private bool m_IsMultiState = false;
 
       private bool m_SwitchEnabled = true;
       internal bool SwitchEnabled {
@@ -33,17 +33,17 @@ namespace Coop
       }
 
       [SerializeField]
-      private CircuitEvent onStateChanged_Positive = new CircuitEvent();
+      private CircuitEvent m_OnStateChanged_Positive = new CircuitEvent();
       [SerializeField]
-      private CircuitEvent onStateChanged_Off = new CircuitEvent();
+      private CircuitEvent m_OnStateChanged_Off = new CircuitEvent();
       [SerializeField]
-      private CircuitEvent onStateChanged_Negative = new CircuitEvent();
+      private CircuitEvent m_OnStateChanged_Negative = new CircuitEvent();
 
       private void Awake()
       {
-          onStateChanged_Positive.AddListener((c) => state = CircuitState.Positive );
-          onStateChanged_Off.AddListener((c) => state = CircuitState.Off );
-          onStateChanged_Negative.AddListener((c) => state = CircuitState.Negative );
+          m_OnStateChanged_Positive.AddListener((c) => state = CircuitState.Positive );
+          m_OnStateChanged_Off.AddListener((c) => state = CircuitState.Off );
+          m_OnStateChanged_Negative.AddListener((c) => state = CircuitState.Negative );
       }
 
       public void DisableSwitchEvents()
@@ -60,21 +60,21 @@ namespace Coop
             if(state != newState)
             {
               state = newState;
-              onStateChanged_Off.Invoke(this);
+              m_OnStateChanged_Off.Invoke(this);
             }
             break;
           case CircuitState.Positive:
             if(state != newState)
             {
               state = newState;
-              onStateChanged_Positive.Invoke(this);
+              m_OnStateChanged_Positive.Invoke(this);
             }
             break;
           case CircuitState.Negative:
             if(state != newState)
             {
               state = newState;
-              onStateChanged_Negative.Invoke(this);
+              m_OnStateChanged_Negative.Invoke(this);
             }
             break;
         }

@@ -9,7 +9,7 @@ namespace Coop
         private Vector3 m_OpenPos;
 
         [SerializeField]
-        private Vector3 m_ClosePos;
+        private Vector3 m_ClosedPos;
 
         [SerializeField]
         private float m_Speed = 5f;
@@ -31,7 +31,7 @@ namespace Coop
 
         public void CloseDoor()
         {
-            StartCoroutine(MoveDoor(m_ClosePos));
+            StartCoroutine(MoveDoor(m_ClosedPos));
         }
 
         public void OnSwitchStateChanged(MultiSwitch multiSwitch, SwitchState state)

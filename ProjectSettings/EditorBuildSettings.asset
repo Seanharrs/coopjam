@@ -5,21 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/_Scenes/LevelSelect.unity
+    guid: 330443bc28941d848a5c00341145ea9a
   - enabled: 1
     path: Assets/Developer/Revelation/_Scenes/PlayerSelect.unity
     guid: a9cb830140228824e8bf135e2ee1c5ea
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
     path: Assets/Developer/Revelation/_Scenes/Revelation_Workshop.unity
     guid: caa5ee4d96df4f54eadae6ed66bb4172
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/_Scenes/Obstacle_Tutorial.unity
+    guid: ed13d9be07a40d84bbe842f131f15c20
   - enabled: 1
     path: Assets/_Scenes/Sample_Level1.unity
     guid: a836664a2e5eb7b4abb237477dac31ed
