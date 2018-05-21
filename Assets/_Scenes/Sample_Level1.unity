@@ -967,19 +967,23 @@ MonoBehaviour:
   OnStartPull:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStopPull:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStartPush:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStopPush:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   canAttract: 1
   canRepel: 1
 --- !u!4 &66111095 stripped
@@ -2358,19 +2362,23 @@ MonoBehaviour:
   OnStartPull:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStopPull:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStartPush:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStopPush:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   canAttract: 1
   canRepel: 1
 --- !u!4 &143279276 stripped
@@ -4738,19 +4746,23 @@ MonoBehaviour:
   OnStartPull:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStopPull:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStartPush:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStopPush:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   canAttract: 1
   canRepel: 1
 --- !u!4 &282733662 stripped
@@ -7009,11 +7021,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStopCharge:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   canInterrupt: 1
 --- !u!1 &421353053
 GameObject:
@@ -8104,11 +8118,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStopCharge:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   canInterrupt: 1
 --- !u!1001 &520930345
 Prefab:
@@ -8504,19 +8520,23 @@ MonoBehaviour:
   OnStartPull:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStopPull:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStartPush:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStopPush:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   canAttract: 1
   canRepel: 1
 --- !u!4 &551726150 stripped
@@ -14150,6 +14170,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333701d8edd1d5741ae108f3218cb0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnThermalHeatProjectileHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnThermalFreezeProjectileHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   m_FrozenSprite: {fileID: 21300012, guid: f652a8d0c33692142bdd0d03922044c5, type: 3}
   m_MeltedSprite: {fileID: 21300010, guid: f652a8d0c33692142bdd0d03922044c5, type: 3}
   m_State: 1
@@ -20238,6 +20268,35 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &1370963068 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1924061331522826, guid: 7865ce34c72bbd34abab3c17b76b970c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1551212120}
+--- !u!114 &1370963072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1370963068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333701d8edd1d5741ae108f3218cb0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnThermalHeatProjectileHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnThermalFreezeProjectileHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  m_FrozenSprite: {fileID: 21300012, guid: f652a8d0c33692142bdd0d03922044c5, type: 3}
+  m_MeltedSprite: {fileID: 21300010, guid: f652a8d0c33692142bdd0d03922044c5, type: 3}
+  m_State: 1
 --- !u!1001 &1381810768
 Prefab:
   m_ObjectHideFlags: 0
@@ -20900,6 +20959,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39ed864d0b28184e8fc00e1f200c0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1441634967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1441634962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 333701d8edd1d5741ae108f3218cb0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnThermalHeatProjectileHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnThermalFreezeProjectileHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  m_FrozenSprite: {fileID: 0}
+  m_MeltedSprite: {fileID: 0}
+  m_State: 0
 --- !u!1 &1444250444
 GameObject:
   m_ObjectHideFlags: 0
@@ -28685,19 +28768,23 @@ MonoBehaviour:
   OnStartPull:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStopPull:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStartPush:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnStopPush:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Coop.EmEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   canAttract: 1
   canRepel: 1
 --- !u!4 &1945686998 stripped
@@ -30095,6 +30182,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d0af5eaadd5fe40a71fb5164aed33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnReverseGravityHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnReduceGravityHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   m_ReverseLength: 3
   m_ReduceLength: 5
 --- !u!1001 &2055738966

@@ -1,13 +1,24 @@
 ﻿using System.Collections;
-using UnityEngine;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace Coop
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class GravitySensitive : MonoBehaviour
     {
+
+        [SerializeField, Tooltip("Event triggered when primary weapon projectile hits this object.")]
+        private ProjectileEvent OnReverseGravityHit = new ProjectileEvent();
+        [SerializeField, Tooltip("Event triggered when secondary weapon projectile hits this object.")]
+        private ProjectileEvent OnReduceGravityHit = new ProjectileEvent();
+
+        [SerializeField, Tooltip("Gravity reversal works on this object. Defaults to true.")]
+        internal bool m_canReverseGravity = true;
+        [SerializeField, Tooltip("Gravity reduction works on this object. Defaults to true.")]
+        internal bool m_canReduceGravity = true;
+
         private Rigidbody2D m_rb2D;
 
         [SerializeField]
@@ -18,14 +29,24 @@ namespace Coop
 
         private void Awake() { m_rb2D = GetComponent<Rigidbody2D>(); }
 
-        public void ChangeGravity(WhichWeapon type)
+        internal bool ChangeGravity(Gun sourceGun, WhichWeapon type)
         {
 
             Debug.Log(name + " changing with " + type);
-            if(type == WhichWeapon.Primary)
+            if(type == WhichWeapon.Primary && m_canReverseGravity)
+            {
                 StartCoroutine(Reverse());
-            else
+                OnReverseGravityHit.Invoke(sourceGun, type);
+                return true;
+            }
+            else if(type == WhichWeapon.Secondary && m_canReduceGravity)
+            {
                 StartCoroutine(Reduce());
+                OnReduceGravityHit.Invoke(sourceGun, type);
+                return true;
+            }
+            else
+              return false;
         }
 
         private IEnumerator Reverse()

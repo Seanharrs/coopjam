@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50394495904651316}
   - component: {fileID: 114127978659472064}
   - component: {fileID: 114610555041085920}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Projectile_Thermal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -91,8 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ProjectileSpeed: 10
-  m_PrimaryColor: {r: 1, g: 0.24705882, b: 0.0627451, a: 0}
-  m_SecondaryColor: {r: 0.27058825, g: 0.6862745, b: 1, a: 0}
+  m_PrimaryColor: {r: 1, g: 0.24705882, b: 0.0627451, a: 1}
+  m_SecondaryColor: {r: 0.27058825, g: 0.6862745, b: 1, a: 1}
 --- !u!114 &114610555041085920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,8 +136,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1915476707
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 479d0179a9ebc4941bfe7eca43f286f0, type: 3}
   m_Color: {r: 0.04223035, g: 0.6886792, b: 0.43995655, a: 1}

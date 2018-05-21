@@ -90,7 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8355ca08fa77a024dae5adca96e4a6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Type: 0
 --- !u!114 &114541541818956504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,7 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243b6b7e97084bd44a13ab2a036311bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
+  m_ProjectileSpeed: 10
+  m_PrimaryColor: {r: 1, g: 0.24705882, b: 0.0627451, a: 1}
+  m_SecondaryColor: {r: 0.27058825, g: 0.6862745, b: 1, a: 1}
 --- !u!212 &212984449871708108
 SpriteRenderer:
   m_ObjectHideFlags: 1

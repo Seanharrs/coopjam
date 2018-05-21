@@ -40,13 +40,13 @@ namespace Coop
               rb.bodyType = RigidbodyType2D.Dynamic;
             if (weapType == WhichWeapon.Primary && emComponent.canAttract)
             {
-              emComponent.OnStartPull.Invoke(this, currentForceType);
-              magnetizedObjects.Add(emComponent);
+              if(emComponent.StartPull(this, currentForceType))
+                magnetizedObjects.Add(emComponent);
             }
             else if (weapType == WhichWeapon.Secondary && emComponent.canRepel)
             {
-              emComponent.OnStartPull.Invoke(this, currentForceType);
-              magnetizedObjects.Add(emComponent);
+              if(emComponent.StartPush(this, currentForceType))
+                magnetizedObjects.Add(emComponent);
             }
           }
 
@@ -54,7 +54,7 @@ namespace Coop
           if(staticComponent != null && staticComponent.canInterrupt)
           {
             // TODO: Should particle effect be different for electrostatic?
-            staticComponent.OnStartCharge.Invoke(this, currentForceType);
+            staticComponent.StartCharge(this, currentForceType);
             interruptedObjects.Add(staticComponent);
           }
         }
@@ -68,8 +68,8 @@ namespace Coop
       Debug.Log("Stopped firing EM gun.");
       foreach (var obj in magnetizedObjects)
       {
-        obj.OnStopPull.Invoke(this, currentForceType);
-        obj.OnStopPush.Invoke(this, currentForceType);
+        obj.StopPull(this, currentForceType);
+        obj.StopPush(this, currentForceType);
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
         if(!rb) return;
 
@@ -81,7 +81,7 @@ namespace Coop
 
       foreach(var obj in interruptedObjects)
       {
-        obj.OnStopCharge.Invoke(this, currentForceType);
+        obj.StopCharge(this, currentForceType);
       }
 
       currentForceType = (WhichWeapon)(-1);

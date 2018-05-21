@@ -25,30 +25,18 @@ namespace Coop
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
-      if(other.gameObject.layer == (other.gameObject.layer & LayerMask.GetMask("Characters", "Default"))
-        && other.gameObject != gameObject)
+      if(!TeleportGun) // Fail out.
       {
-        Debug.Log("// TODO: Adjust code to respond to appropriate layers?");
+        Destroy(this.gameObject);
+        return;
       }
 
       gameObject.SetActive(false); // To counteract bug from multiple collisions.
       GetComponent<Collider2D>().enabled = false;
       var position = transform.position;
 
-      // Debug.Log("Triggered: " + other.name 
-      //           + "\nType: " + m_Projectile.Type.ToString() 
-      //           + "\nPosition: " + position);
-
-      // If in primary mode and I hit a player or rigidbody with the CanTeleport component
       if (m_Projectile.type == WhichWeapon.Primary)
       {
-        // if (other.GetComponent<Platformer2DUserControl>() != null || other.GetComponent<Teleportable>() != null)
-        // {
-        //   // Debug.Log("hit something teleportable.");
-        //   TeleportGun.MarkTargetObject(other.gameObject);
-        // }
-        // else 
         if (other.GetComponentInParent<Platformer2DUserControl>() != null)
         {
           // Debug.Log("hit whose parent is something teleportable.");

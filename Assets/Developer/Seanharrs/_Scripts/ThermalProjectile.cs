@@ -7,13 +7,15 @@ namespace Coop
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {
+          Debug.Log("THermal triggered.");
             ThermalSensitive thermalObj = collision.GetComponent<ThermalSensitive>();
+            Projectile projectileComponent = GetComponent<Projectile>();
             if(thermalObj != null)
             {
                 if(GetComponent<Projectile>().type == WhichWeapon.Primary)
-                    thermalObj.Freeze();
+                    thermalObj.Cool(projectileComponent.OwnerGun, projectileComponent.type);
                 else
-                    thermalObj.Melt();
+                    thermalObj.Heat(projectileComponent.OwnerGun, projectileComponent.type);
             }
 
             Destroy(gameObject);

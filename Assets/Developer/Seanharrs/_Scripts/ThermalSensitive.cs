@@ -1,48 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer), typeof(BoxCollider2D))]
-public class ThermalSensitive : MonoBehaviour
+namespace Coop 
 {
-    private enum ThermalState { Melted, Frozen };
+  [RequireComponent(typeof(SpriteRenderer), typeof(BoxCollider2D))]
+  public class ThermalSensitive : MonoBehaviour
+  {
+    [SerializeField, Tooltip("Event triggered when primary weapon projectile hits this object.")]
+    private ProjectileEvent OnThermalHit_Heat = new ProjectileEvent();
+    [SerializeField, Tooltip("Event triggered when secondary weapon projectile hits this object.")]
+    private ProjectileEvent OnThermalHit_Freeze = new ProjectileEvent();
 
-    [SerializeField]
-    private Sprite m_FrozenSprite;
+    [SerializeField, Tooltip("Thermal heating works on this object. Defaults to true.")]
+    internal bool m_canHeat = true;
+    [SerializeField, Tooltip("Thermal cooling works on this object. Defaults to true.")]
+    internal bool m_canCool = true;
 
-    [SerializeField]
-    private Sprite m_MeltedSprite;
-
-    [SerializeField]
-    private ThermalState m_State = ThermalState.Melted;
-
-    private SpriteRenderer m_Renderer;
-    private BoxCollider2D m_Coll;
-
-    private void Awake()
+    internal bool Cool(Gun sourceGun, WhichWeapon type)
     {
-        m_Renderer = GetComponent<SpriteRenderer>();
-        m_Coll = GetComponent<BoxCollider2D>();
-        m_Coll.isTrigger = m_State == ThermalState.Melted;
+      if(m_canCool)
+        OnThermalHit_Freeze.Invoke(sourceGun, type);
+      return m_canCool;
     }
 
-    public void Freeze()
+    internal bool Heat(Gun sourceGun, WhichWeapon type)
     {
-        if(m_State == ThermalState.Frozen)
-            return;
-
-        m_State = ThermalState.Frozen;
-        m_Renderer.sprite = m_FrozenSprite;
-        m_Coll.isTrigger = false;
+      if(m_canHeat)
+        OnThermalHit_Heat.Invoke(sourceGun, type);
+      return m_canHeat;
     }
-
-    public void Melt()
-    {
-        if(m_State == ThermalState.Melted)
-            return;
-
-        m_State = ThermalState.Melted;
-        m_Renderer.sprite = m_MeltedSprite;
-        m_Coll.isTrigger = true;
-    }
+  }
 }

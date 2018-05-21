@@ -40,6 +40,7 @@ namespace Coop {
 
     public virtual Projectile Fire(WhichWeapon weapType, Vector2? direction = null, Vector2? target = null)
     {
+      Debug.Log("Firing " + weapType);
       if (Time.time > m_LastFired[weapType] + (1/m_FiringRate))
       {
         var AmmoToUse = weapType == WhichWeapon.Primary ? PrimaryAmmoType : SecondaryAmmoType;
@@ -47,7 +48,7 @@ namespace Coop {
         {
           var projectile = Instantiate(AmmoToUse, AmmoSpawnLocation.position, Quaternion.identity);
           if (projectile) {
-            projectile.Initiate(direction ?? (Vector2)AmmoSpawnLocation.lossyScale.normalized * AmmoSpawnLocation.right, weapType, target);
+            projectile.Initiate(direction ?? (Vector2)AmmoSpawnLocation.lossyScale.normalized * AmmoSpawnLocation.right, this, weapType, target);
             m_LastFired[weapType] = Time.time;
             return projectile;
           }
