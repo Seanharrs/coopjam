@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets._2D;
+#if UNITY_EDITOR
+  using UnityEditor;
+  using UnityEditor.SceneManagement;
+#endif
 
 namespace Coop
 {
@@ -28,7 +30,9 @@ namespace Coop
 
   }
 
+  #if UNITY_EDITOR
   [InitializeOnLoad]
+  #endif
   public class CoopGameManager : MonoBehaviour
   {
 
@@ -165,6 +169,7 @@ namespace Coop
       if(c != null) c.playerGun = gun;
     }
     
+    #if UNITY_EDITOR
     [MenuItem("Tools/Coop Jam/Check Level")]
     static void CheckLevel()
     {
@@ -228,6 +233,6 @@ namespace Coop
           , "OK", "Cancel");
 
     }
-
+    #endif
   }
 }
