@@ -21,7 +21,7 @@ namespace Coop
     // Reference to the instance of teleport portal being used for this gun, if any
     private GameObject m_TargetLocationObject;
 
-    public override Projectile Fire(WhichWeapon weapType, Vector2? direction = null, Nullable<Vector2> target = null)
+    public override Projectile Fire(FiringState weapType, Vector2? direction = null, Nullable<Vector2> target = null)
     {
       var projectile = base.Fire(weapType, direction, target);
       if (projectile == null)

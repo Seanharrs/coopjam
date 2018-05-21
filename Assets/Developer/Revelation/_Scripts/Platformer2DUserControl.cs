@@ -95,8 +95,8 @@ namespace Coop
         float fireAxis = Input.GetAxis(controlData.primaryFire);
         if (fireAxis != 0)
         {
-          WhichWeapon weap = fireAxis > 0 ? WhichWeapon.Primary : WhichWeapon.Secondary;
-          if(weap == WhichWeapon.Primary)
+          FiringState weap = fireAxis > 0 ? FiringState.Primary : FiringState.Secondary;
+          if(weap == FiringState.Primary)
           {
             m_FiringPrimary = true;
           }
@@ -112,17 +112,17 @@ namespace Coop
         {
           m_FiringPrimary = true;
           if(isAiming)
-            gun.FireAtTarget(WhichWeapon.Primary, crossPos);
+            gun.FireAtTarget(FiringState.Primary, crossPos);
           else
-            gun.Fire(WhichWeapon.Primary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
+            gun.Fire(FiringState.Primary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
         else if (Input.GetButton(controlData.secondaryFire))
         {
           m_FiringSecondary = true;
           if(isAiming)
-            gun.FireAtTarget(WhichWeapon.Secondary, crossPos);
+            gun.FireAtTarget(FiringState.Secondary, crossPos);
           else
-            gun.Fire(WhichWeapon.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
+            gun.Fire(FiringState.Secondary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
         }
         #endregion
         else if (m_FiringPrimary || m_FiringSecondary) // These may be "true" from the previous frame while buttons are not still held this frame.

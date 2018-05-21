@@ -29,17 +29,17 @@ namespace Coop
 
         private void Awake() { m_rb2D = GetComponent<Rigidbody2D>(); }
 
-        internal bool ChangeGravity(Gun sourceGun, WhichWeapon type)
+        internal bool ChangeGravity(Gun sourceGun, FiringState type)
         {
 
             Debug.Log(name + " changing with " + type);
-            if(type == WhichWeapon.Primary && m_canReverseGravity)
+            if(type == FiringState.Primary && m_canReverseGravity)
             {
                 StartCoroutine(Reverse());
                 OnReverseGravityHit.Invoke(sourceGun, type);
                 return true;
             }
-            else if(type == WhichWeapon.Secondary && m_canReduceGravity)
+            else if(type == FiringState.Secondary && m_canReduceGravity)
             {
                 StartCoroutine(Reduce());
                 OnReduceGravityHit.Invoke(sourceGun, type);

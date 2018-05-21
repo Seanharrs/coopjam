@@ -23,26 +23,26 @@ namespace Coop
     [Tooltip("Electromagnetic repelling (secondary weapon) works on this object. Defaults to true.")]
     internal bool canRepel = true;
 
-    internal bool StartPull(Gun sourceGun, WhichWeapon weapType)
+    internal bool StartPull(Gun sourceGun, FiringState weapType)
     {
       if(canAttract)
         OnStartPull.Invoke(sourceGun, weapType);
       return canAttract;
     }
-    internal bool StopPull(Gun sourceGun, WhichWeapon weapType)
+    internal bool StopPull(Gun sourceGun, FiringState weapType)
     {
       if(canAttract)
         OnStopPull.Invoke(sourceGun, weapType);
       return canAttract;
     }
 
-    internal bool StartPush(Gun sourceGun, WhichWeapon weapType)
+    internal bool StartPush(Gun sourceGun, FiringState weapType)
     {
       if(canRepel)
         OnStartPush.Invoke(sourceGun, weapType);
       return canRepel;
     }
-    internal bool StopPush(Gun sourceGun, WhichWeapon weapType)
+    internal bool StopPush(Gun sourceGun, FiringState weapType)
     {
       if(canRepel)
         OnStopPush.Invoke(sourceGun, weapType);

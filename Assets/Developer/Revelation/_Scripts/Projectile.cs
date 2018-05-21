@@ -5,7 +5,7 @@ using UnityEngine.Events;
 namespace Coop
 {
   [Serializable]
-  public class ProjectileEvent : UnityEvent<Gun, WhichWeapon> { }
+  public class ProjectileEvent : UnityEvent<Gun, FiringState> { }
 
   [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
   public class Projectile : MonoBehaviour
@@ -20,8 +20,8 @@ namespace Coop
     [SerializeField]
     private Color m_SecondaryColor = Color.white;
 
-    private WhichWeapon m_Type = WhichWeapon.Primary;
-    internal WhichWeapon type { get { return m_Type; } }
+    private FiringState m_Type = FiringState.Primary;
+    internal FiringState type { get { return m_Type; } }
 
     internal Vector2? crossTarget = null;
 
@@ -31,7 +31,7 @@ namespace Coop
       get { return m_OwnerGun; }
     }
 
-    public virtual void Initiate(Vector2 direction, Gun gun, WhichWeapon type = WhichWeapon.Primary, Vector2? target = null)
+    public virtual void Initiate(Vector2 direction, Gun gun, FiringState type = FiringState.Primary, Vector2? target = null)
     {
       GetComponent<Rigidbody2D>().velocity = direction * m_ProjectileSpeed;
       m_OwnerGun = gun;
@@ -41,7 +41,7 @@ namespace Coop
         crossTarget = target;
       
       SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-      if(type == WhichWeapon.Primary)
+      if(type == FiringState.Primary)
         renderer.color = m_PrimaryColor;
       else
         renderer.color = m_SecondaryColor;
