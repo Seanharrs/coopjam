@@ -89,7 +89,7 @@ namespace Coop
 			if(m_Players == null || m_Players.Count() == 0)
 				return;
 
-			if(m_ZoomStates.Any(z => z != Zoom.In) && m_CurrZoom > MIN_ZOOM_LEVEL)
+			if(m_ZoomStates.All(z => z == Zoom.In) && m_CurrZoom > MIN_ZOOM_LEVEL)
 			{
 				float newZoom = m_CurrZoom - DELTA_ZOOM;
 				m_CurrZoom = newZoom < MIN_ZOOM_LEVEL ? MIN_ZOOM_LEVEL : newZoom;
