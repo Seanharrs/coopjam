@@ -99,8 +99,13 @@ namespace Coop
       private void LateUpdate()
       {
           if(m_Players == null || m_Players.Count() == 0) return;
-          float maxY = m_Players.Max(p => p.transform.position.y);
-          Vector3 avgPos = m_Players.Select(p => p.transform.position).Aggregate((total, next) => total += next) / m_Players.Length;
+          var testPlayers = m_Players.Where(p => !p.GetComponent<Health>().isDead).ToList(); 
+          float maxY = testPlayers.Max(p => p.transform.position.y);
+          Vector3 avgPos;
+          if(testPlayers.Count() == 1)
+            avgPos = testPlayers[0].transform.position;
+          else
+            avgPos = testPlayers.Select(p => p.transform.position).Aggregate((total, next) => total += next) / m_Players.Length;
 
           avgPos.y = Mathf.Max(avgPos.y, maxY - vertLength / 2);
 

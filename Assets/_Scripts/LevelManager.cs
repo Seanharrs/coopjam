@@ -17,9 +17,19 @@ namespace Coop {
     internal Text messageTextbox;
 
     [SerializeField]
+    private Checkpoint m_ActiveCheckpoint;
+    internal Checkpoint ActiveCheckpoint
+    {
+      get { return m_ActiveCheckpoint; }
+      set { m_ActiveCheckpoint = value; }
+    }
+
+    [SerializeField]
     internal UnityEvent levelCompleted;
 
     internal MultiplayerFollow m_Cam;
+
+    private static LevelManager m_Instance;
 
     void Awake()
     {
@@ -31,6 +41,14 @@ namespace Coop {
       } else {
         SceneManager.sceneLoaded += SceneLoaded;
       }
+
+      if(m_Instance) {
+        Destroy(gameObject);
+        return;
+      }
+      else
+        m_Instance = this;
+
     }
 
     private void SceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -47,5 +65,9 @@ namespace Coop {
       CoopGameManager.OpenLevel(nextLevel); // TODO: Show UI  and let player click continue before loading next level?
     }
 
+    internal static Vector3 GetRespawnLocation()
+    {
+      return m_Instance.m_ActiveCheckpoint.spawnAtPoint.position;
+    }
   }
 }

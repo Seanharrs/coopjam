@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 // using UnityStandardAssets.CrossPlatformInput;
 
@@ -32,15 +33,24 @@ namespace Coop
     public GameObject headSocket;
     public SpriteRenderer crosshair;
 
+    [Header("Other")]
+    [Tooltip("How long until first respawn attempt.")]
+    [SerializeField] private float m_RespawnTimer = 2f;
+    [Tooltip("How long between repeat respawn attempts.")]
+    [SerializeField] private float m_RespawnRetryTimer = 1f;
+
     private MultiplayerFollow m_Cam;
     private Vector3 m_Bounds;
     
     private Health m_HP;
     private Animator m_Anim;
     private BoxCollider2D m_Coll;
+    private LevelManager m_LevelControl;
 
     private void Awake()
     {
+      m_LevelControl = FindObjectOfType<LevelManager>();
+
       m_Character = GetComponent<CoopCharacter2D>();
       m_HP = GetComponent<Health>();
       m_Anim = GetComponent<Animator>();
@@ -309,15 +319,30 @@ namespace Coop
     }
     
     /// <summary>Called by an animation event at the end of the player's death animation.</summary>
-    public void Respawn()
+    public IEnumerator Respawn()
     {
       //keep player dead for 2 seconds
-      Invoke("RespawnPlayer", 2f);
+      yield return new WaitForSeconds(m_RespawnTimer);
+      while(m_HP.isDead)
+      {
+        RespawnPlayer();
+        yield return new WaitForSeconds(m_RespawnRetryTimer);
+      }
     }
 
     private void RespawnPlayer()
     {
-      m_Anim.SetTrigger("Respawn");      
+      if(!m_LevelControl.ActiveCheckpoint.IsVisible)
+      {
+        var cam = FindObjectOfType<MultiplayerFollow>();
+        var camPos = cam.transform.position;
+        // GetComponent<SpriteRenderer>().enabled = false;
+        // transform.position = new Vector3(camPos.x, camPos.y, 0);
+        return;
+      } 
+      //GetComponent<SpriteRenderer>().enabled = true;
+
+      m_Anim.SetTrigger("Respawn");
       m_Coll.enabled = true;
       armSocket.SetActive(true);
       headSocket.SetActive(true);
@@ -325,9 +350,8 @@ namespace Coop
       m_HP.enabled = true;
       m_HP.ResetHealth();
 
-      //TODO proper respawning
-      SpawnPoint[] spawns = FindObjectsOfType<SpawnPoint>();
-      transform.position = spawns[new System.Random().Next(0, spawns.Length)].transform.position;
+      // TODO: proper respawning
+      transform.position = LevelManager.GetRespawnLocation();
       StartCoroutine(RespawnFlash());
     }
 

@@ -62,7 +62,7 @@ namespace Coop
     [SerializeField]
     internal List<Gun> allGuns;
 
-    [Header("Development/Debugging")]
+    // [Header("Development/Debugging")]
     [HideInInspector]
     public List<PlayerData> playerData = new List<PlayerData>();
     
