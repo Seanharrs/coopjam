@@ -114,8 +114,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 1
+  m_AngularDrag: 1
   m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: 4a7696911043c7f449828e3cfb41e92d, type: 2}
   m_Interpolate: 1
@@ -630,7 +630,7 @@ MonoBehaviour:
       PublicKeyToken=null
   m_canReverseGravity: 1
   m_canReduceGravity: 1
-  m_ReverseLength: 3
+  m_ReverseLength: 10
   m_ReduceLength: 5
 --- !u!114 &114528723132736130
 MonoBehaviour:
@@ -652,8 +652,10 @@ MonoBehaviour:
     m_Bits: 4294963423
   m_MaxSlope: 50
   m_NormalGravity: 3
-  m_SlopeGravity: 6
+  m_SlopeGravity: 25
   floorTestCollider: {fileID: 61969712049750068}
+  slipperySlopeMaterial: {fileID: 6200000, guid: 88efa86b3a8e90247be931199507788f,
+    type: 2}
 --- !u!114 &114571047100707184
 MonoBehaviour:
   m_ObjectHideFlags: 1
