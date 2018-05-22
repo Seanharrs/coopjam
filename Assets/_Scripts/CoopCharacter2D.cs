@@ -38,6 +38,7 @@ namespace Coop
         private LayerMask m_SlopeMask;
         private bool m_SlipperySlope = false;
         private GameObject debug_GroundObject;
+        private bool debug_IsOnSlope = false;
         [SerializeField] private BoxCollider2D floorTestCollider;
 
 
@@ -57,6 +58,8 @@ namespace Coop
             m_CircleCollider = GetComponent<CircleCollider2D>();
             m_Rigidbody2D.centerOfMass = m_CircleCollider.offset - ((Vector2)transform.up * m_CircleCollider.radius);
             m_SlopeMask = ~LayerMask.GetMask("Characters");
+
+            m_Rigidbody2D.gravityScale = 0;
         }
 
 
@@ -72,7 +75,7 @@ namespace Coop
                 if (colliders[i].gameObject != gameObject)
                     m_Grounded = true;
             }
-            
+
             // Need to raycast as well to determine slope and angle.
             var hit = Physics2D.Raycast((Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius), Vector2.down, 2f, m_SlopeMask);
             if(hit && hit.collider.sharedMaterial != null && hit.collider.sharedMaterial.name == "Slippery") 
@@ -82,17 +85,19 @@ namespace Coop
 
             m_SignedSlope = Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg - 90;
             m_Slope = Mathf.Abs(m_SignedSlope);
+            debug_IsOnSlope = m_Slope > 15 && m_Slope < 90;
             m_SlopeNormal = hit.normal;
             m_SlopePerpendicular = -Vector2.Perpendicular(hit.normal);
 
-            if(m_Grounded)
+            if(m_Grounded && debug_IsOnSlope)
             {
-              m_Rigidbody2D.gravityScale = 0;
-              m_Rigidbody2D.AddForce(m_SlopeNormal * Physics2D.gravity * 0.4f);
+              //m_Rigidbody2D.gravityScale = 0;
+              m_Rigidbody2D.AddForce(m_SlopeNormal * Physics2D.gravity * m_NormalGravity);
             }
             else
             {
-              m_Rigidbody2D.gravityScale = m_NormalGravity;
+              Debug.Log("Not on slope: Angle -> " + m_Slope);
+              m_Rigidbody2D.AddForce(Physics2D.gravity * m_NormalGravity);
             }
 
 
@@ -145,8 +150,9 @@ namespace Coop
                 // Move the character
                 if(m_Slope > 15 && m_Slope < 90)
                 {
-                  var perviousVelocity = m_Rigidbody2D.velocity / m_SlopePerpendicular;
-                  m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, perviousVelocity.y) * m_SlopePerpendicular;
+                  //var previousVelocity = m_Rigidbody2D.velocity / m_SlopePerpendicular;
+                  //m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, previousVelocity.y) * m_SlopePerpendicular;
+                  m_Rigidbody2D.velocity = move * m_MaxSpeed * m_SlopePerpendicular;
                 }
                 else
                   m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
@@ -172,7 +178,7 @@ namespace Coop
             }
             else
             {
-              m_Rigidbody2D.gravityScale = m_NormalGravity;
+              //m_Rigidbody2D.gravityScale = m_NormalGravity;
             }
 
             // If the player should jump...
@@ -228,8 +234,12 @@ namespace Coop
           if(hit)
             debug_GroundObject = hit.collider.gameObject;
 
+            
+
           Gizmos.color = Color.blue;
           Gizmos.DrawLine(start, start + Vector2.down * 2f);
+          if(debug_IsOnSlope)
+            Gizmos.DrawSphere(hit.point, .5f);
 
           Gizmos.color = Color.yellow;
           Gizmos.DrawLine(hit.point, hit.point + hit.normal);
