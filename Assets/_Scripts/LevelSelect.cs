@@ -10,7 +10,7 @@ public class LevelSelect : MonoBehaviour
     private struct Level
     {
         public string name;
-        public int buildIndex;
+        //public int buildIndex;
         public Sprite preview;
     }
 
@@ -25,10 +25,12 @@ public class LevelSelect : MonoBehaviour
 
     private int m_Index = 0;
 
+	private const int PLAYER_SELECT_MENU_INDEX = 1;
+
     private void Awake()
     {
         IEnumerable<string> duplicateNames = 
-            m_Levels.Where(l1 => m_Levels.Where(l2 => l1.name == l2.name || l1.buildIndex == l2.buildIndex).Count() > 1)
+            m_Levels.Where(l1 => m_Levels.Where(l2 => l1.name == l2.name /*|| l1.buildIndex == l2.buildIndex*/).Count() > 1)
                     .Select(l => l.name)
                     .Distinct();
 
@@ -43,7 +45,8 @@ public class LevelSelect : MonoBehaviour
 
     public void LoadSelectedLevel()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(m_Levels[m_Index].buildIndex);
+		Coop.CoopGameManager.OpenLevel(PLAYER_SELECT_MENU_INDEX);
+		Coop.CoopGameManager.nextLevelOverride = m_Levels[m_Index].name;
     }
 
     public void NextLevel()
@@ -64,7 +67,7 @@ public class LevelSelect : MonoBehaviour
             newIndex = 0;
 
         m_Index = newIndex;
-        m_LevelName.text = m_Levels[m_Index].name;
+        m_LevelName.text = m_Levels[m_Index].name.Replace('_', ' ');
         m_LevelPreview.sprite = m_Levels[m_Index].preview;
     }
 }
