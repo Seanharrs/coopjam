@@ -140,5 +140,25 @@ namespace Coop
 
           return pos;
       }
+
+      /// <summary>
+      /// Callback to draw gizmos that are pickable and always drawn.
+      /// </summary>
+      void OnDrawGizmos()
+      {
+          if(m_BottomLeftIndicator && m_TopRightIndicator)
+          {
+            var bottomLeft = m_BottomLeftIndicator.transform.position;
+            var topRight = m_TopRightIndicator.transform.position;
+            var topLeft = new Vector3(bottomLeft.x, topRight.y);
+            var bottomRight = new Vector3(topRight.x, bottomLeft.y);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(bottomLeft, topLeft + Vector3.up);
+            Gizmos.DrawLine(bottomLeft, bottomRight + Vector3.right);
+            Gizmos.DrawLine(topRight, topLeft - Vector3.right);
+            Gizmos.DrawLine(topRight, bottomRight + Vector3.down);
+
+          }
+      }
   }
 }

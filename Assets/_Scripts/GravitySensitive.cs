@@ -31,8 +31,6 @@ namespace Coop
 
         internal bool ChangeGravity(Gun sourceGun, FiringState type)
         {
-
-            Debug.Log(name + " changing with " + type);
             if(type == FiringState.Primary && m_canReverseGravity)
             {
                 StartCoroutine(Reverse());

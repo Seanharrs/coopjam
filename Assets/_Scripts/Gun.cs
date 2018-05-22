@@ -41,7 +41,6 @@ namespace Coop {
 
     public virtual Projectile Fire(FiringState weapType, Vector2? direction = null, Vector2? target = null)
     {
-      Debug.Log("Firing " + weapType);
       if (Time.time > m_LastFired[weapType] + (1/m_FiringRate))
       {
         var AmmoToUse = weapType == FiringState.Primary ? PrimaryAmmoType : SecondaryAmmoType;
