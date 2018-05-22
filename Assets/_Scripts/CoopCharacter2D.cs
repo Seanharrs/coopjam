@@ -14,6 +14,8 @@ namespace Coop
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .25f; // Radius of the overlap circle to determine if grounded
         private bool m_Grounded;            // Whether or not the player is grounded.
+        private bool m_Jumping = false;
+        private bool m_Falling = false;
 
 
         /* Slope handling */
@@ -40,6 +42,8 @@ namespace Coop
         private GameObject debug_GroundObject;
         private bool debug_IsOnSlope = false;
         [SerializeField] private BoxCollider2D floorTestCollider;
+        // private float m_LastJumpedTime = -5f;
+        // private float m_JumpGraceTime = 0.2f;
 
 
         private Transform m_CeilingCheck;   // A position marking where to check for ceilings
@@ -100,6 +104,17 @@ namespace Coop
               m_Rigidbody2D.AddForce(Physics2D.gravity * m_NormalGravity);
             }
 
+            if(m_Jumping && m_Rigidbody2D.velocity.y < 0)
+            {
+              m_Jumping = false;
+              m_Falling = true;
+            }
+            else if(m_Falling && m_Grounded)
+            {
+              m_Falling = false;
+            }
+            
+
 
             m_Anim.SetBool("Ground", m_Grounded);
 
@@ -148,7 +163,7 @@ namespace Coop
                 m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
                 // Move the character
-                if(m_Slope > 15 && m_Slope < 90)
+                if(m_Slope > 15 && m_Slope < 90 && !(m_Jumping || m_Falling))
                 {
                   //var previousVelocity = m_Rigidbody2D.velocity / m_SlopePerpendicular;
                   //m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, previousVelocity.y) * m_SlopePerpendicular;
@@ -189,6 +204,8 @@ namespace Coop
                 m_Anim.SetBool("Ground", false);
                 m_Anim.SetTrigger("Jump");
                 m_Rigidbody2D.AddForce(new Vector2(0f, Mathf.Sign(m_NormalGravity) * m_JumpForce));
+                // m_LastJumpedTime = Time.time;
+                m_Jumping = true;
             }
         }
 
