@@ -29,6 +29,10 @@ namespace Coop
       private float m_MaxMapY;
 
       internal float m_MinCamX, m_MaxCamX, m_MinCamY, m_MaxCamY;
+      private Vector3 m_TargetPosition = Vector3.zero;
+      [Tooltip("Approximately the time it will take the camera to smoothly reach the target. A smaller value will reach the target faster.")]
+      [SerializeField] private float m_SmoothTime = 0.3F;
+      private Vector3 m_Velocity = Vector3.zero;
 
       [SerializeField]
       internal Transform m_BottomLeftIndicator;
@@ -40,7 +44,8 @@ namespace Coop
       {
           get
           {
-              Vector2 pos = transform.position;
+              //Vector2 pos = transform.position;
+              Vector2 pos = m_TargetPosition;
               pos.x -= horizLength;
               pos.y -= vertLength;
               return pos;
@@ -52,7 +57,8 @@ namespace Coop
       {
           get
           {
-              Vector2 pos = transform.position;
+              //Vector2 pos = transform.position;
+              Vector2 pos = m_TargetPosition;
               pos.x += horizLength;
               pos.y += vertLength;
               return pos;
@@ -99,20 +105,22 @@ namespace Coop
       private void LateUpdate()
       {
           if(m_Players == null || m_Players.Count() == 0) return;
-          var testPlayers = m_Players.Where(p => !p.GetComponent<Health>().isDead).ToList(); 
-          float maxY = testPlayers.Max(p => p.transform.position.y);
+          var activePlayers = m_Players.Where(p => !p.GetComponent<Health>().isDead).ToList(); 
+          float maxY = activePlayers.Max(p => p.transform.position.y);
           Vector3 avgPos;
-          if(testPlayers.Count() == 1)
-            avgPos = testPlayers[0].transform.position;
+          if(activePlayers.Count() == 1)
+            avgPos = activePlayers[0].transform.position;
           else
-            avgPos = testPlayers.Select(p => p.transform.position).Aggregate((total, next) => total += next) / m_Players.Length;
+            avgPos = activePlayers.Select(p => p.transform.position).Aggregate((total, next) => total += next) / m_Players.Length;
 
           avgPos.y = Mathf.Max(avgPos.y, maxY - vertLength / 2);
 
           Vector3 clamped = avgPos + m_Offset;
           clamped.x = Mathf.Clamp(clamped.x, m_MinCamX, m_MaxCamX);
           clamped.y = Mathf.Clamp(clamped.y, m_MinCamY, m_MaxCamY);
-          transform.position = clamped;
+          m_TargetPosition = clamped;
+          
+          transform.position = Vector3.SmoothDamp(transform.position, m_TargetPosition, ref m_Velocity, m_SmoothTime);
       }
 
       /// <summary>Constrains an object to be fully within the view of the camera.</summary>
@@ -122,7 +130,9 @@ namespace Coop
       /// <returns>The constrained world position of the object.</returns>
       public Vector3 ConstrainToView(Vector3 pos, Vector3 spriteBounds, bool constrainAxisY = false)
       {
-          Vector3 camPos = transform.position;
+          //Vector3 camPos = transform.position;
+          Vector3 camPos = m_TargetPosition;
+          Debug.Log("Constraining to target position: " + camPos);
 
           float minX = camPos.x - horizLength + spriteBounds.x;
           float maxX = camPos.x + horizLength - spriteBounds.x;

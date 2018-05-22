@@ -1479,6 +1479,16 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 61871654482203464, guid: e1efc580779646d42b01d0cf82010889,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61821941932726082, guid: e1efc580779646d42b01d0cf82010889,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1efc580779646d42b01d0cf82010889, type: 2}
   m_IsPrefabParent: 0
@@ -5423,7 +5433,7 @@ Prefab:
     - target: {fileID: 61149776941124786, guid: 4f727ffcc1f105c47a446816f6efbd60,
         type: 2}
       propertyPath: m_EdgeRadius
-      value: 0.15
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 61149776941124786, guid: 4f727ffcc1f105c47a446816f6efbd60,
         type: 2}
@@ -5486,7 +5496,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 88efa86b3a8e90247be931199507788f, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -5500,7 +5510,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 297126787}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 88efa86b3a8e90247be931199507788f, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -10693,7 +10703,7 @@ Prefab:
     - target: {fileID: 61149776941124786, guid: 4f727ffcc1f105c47a446816f6efbd60,
         type: 2}
       propertyPath: m_EdgeRadius
-      value: 0.15
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 61149776941124786, guid: 4f727ffcc1f105c47a446816f6efbd60,
         type: 2}
@@ -12379,7 +12389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e763e92b14bb848bf008ccfcbb2568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: Revelation_Workshop
+  nextLevel: Design Starter Level
   messageTextbox: {fileID: 0}
   m_ActiveCheckpoint: {fileID: 794074384}
   levelCompleted:
@@ -14220,6 +14230,10 @@ Prefab:
         type: 2}
       propertyPath: m_SortingLayer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937217577025380, guid: 48446ff332be4cd46a32ff1a39169271, type: 2}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48446ff332be4cd46a32ff1a39169271, type: 2}
