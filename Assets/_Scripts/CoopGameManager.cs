@@ -119,6 +119,12 @@ namespace Coop
       }
     }
 
+	public static void SelectPlayersThenOpen(string levelName)
+	{
+	  nextLevelOverride = levelName;
+	  SceneManager.LoadScene("Player_Select");
+	}
+
     public static IEnumerator ShowMessage(string message, float displayTime = 5f, bool isFatal = false)
     {
       var lm = FindObjectOfType<LevelManager>();
@@ -169,7 +175,7 @@ namespace Coop
       if(c != null) c.playerGun = gun;
     }
     
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     [MenuItem("Tools/Coop Jam/Check Level")]
     static void CheckLevel()
     {
@@ -233,6 +239,6 @@ namespace Coop
           , "OK", "Cancel");
 
     }
-    #endif
   }
+#endif
 }
