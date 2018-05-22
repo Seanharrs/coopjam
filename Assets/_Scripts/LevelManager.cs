@@ -21,7 +21,12 @@ namespace Coop {
     internal Checkpoint ActiveCheckpoint
     {
       get { return m_ActiveCheckpoint; }
-      set { m_ActiveCheckpoint = value; }
+      set {
+        if(m_ActiveCheckpoint)
+          m_ActiveCheckpoint.SetActive(false);
+        m_ActiveCheckpoint = value;
+        m_ActiveCheckpoint.SetActive(true);
+      }
     }
 
     [SerializeField]
@@ -48,6 +53,9 @@ namespace Coop {
       }
       else
         m_Instance = this;
+
+      if(m_ActiveCheckpoint)
+        m_ActiveCheckpoint.SetActive(true);
 
     }
 

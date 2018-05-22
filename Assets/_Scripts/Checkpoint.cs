@@ -11,6 +11,9 @@ namespace Coop
     [SerializeField]
     internal Transform spawnAtPoint;
 
+    [SerializeField]
+    internal ParticleSystem particleSystem;
+
     public void Interact()
     {
       Debug.Log("Setting last checkpoint.");
@@ -32,6 +35,14 @@ namespace Coop
     void OnBecameInvisible()
     {
         IsVisible = false;
+    }
+
+    internal void SetActive(bool active)
+    {
+      if(active)
+        particleSystem.Play();
+      else
+        particleSystem.Stop();
     }
   }
 }
