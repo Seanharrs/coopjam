@@ -393,6 +393,26 @@ Prefab:
       propertyPath: m_Levels.Array.data[0].buildIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 224486015700646044, guid: f1bf5d408d9ae89469ead99f41c64a69,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 224486015700646044, guid: f1bf5d408d9ae89469ead99f41c64a69,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 224486015700646044, guid: f1bf5d408d9ae89469ead99f41c64a69,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114578433160990522, guid: f1bf5d408d9ae89469ead99f41c64a69,
+        type: 2}
+      propertyPath: m_Text
+      value: Level Name
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1bf5d408d9ae89469ead99f41c64a69, type: 2}
   m_IsPrefabParent: 0

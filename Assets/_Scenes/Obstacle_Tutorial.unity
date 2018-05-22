@@ -4649,7 +4649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e763e92b14bb848bf008ccfcbb2568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: Sample_Level1
+  nextLevel: Level_1
   messageTextbox: {fileID: 0}
   levelCompleted:
     m_PersistentCalls:

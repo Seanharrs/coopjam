@@ -25,8 +25,6 @@ public class LevelSelect : MonoBehaviour
 
     private int m_Index = 0;
 
-	private const int PLAYER_SELECT_MENU_INDEX = 1;
-
     private void Awake()
     {
         IEnumerable<string> duplicateNames = 
@@ -45,8 +43,7 @@ public class LevelSelect : MonoBehaviour
 
     public void LoadSelectedLevel()
     {
-		Coop.CoopGameManager.OpenLevel(PLAYER_SELECT_MENU_INDEX);
-		Coop.CoopGameManager.nextLevelOverride = m_Levels[m_Index].name;
+		Coop.CoopGameManager.SelectPlayersThenOpen(m_Levels[m_Index].name);
     }
 
     public void NextLevel()
