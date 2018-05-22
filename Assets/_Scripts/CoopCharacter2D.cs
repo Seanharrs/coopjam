@@ -6,7 +6,7 @@ namespace Coop
   public class CoopCharacter2D : MonoBehaviour
   {
 
-    private const float GROUND_RAY_DISTANCE = .75f;
+    private const float GROUND_RAY_DISTANCE = .4f;
 
     [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
     [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
@@ -153,6 +153,10 @@ namespace Coop
       else if (m_Falling && m_Grounded)
       {
         m_Falling = false;
+      }
+      else if(!m_Grounded && m_Rigidbody2D.velocity.y < 0)
+      {
+        m_Falling = true;
       }
 
 
