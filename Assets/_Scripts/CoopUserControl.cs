@@ -297,7 +297,8 @@ namespace Coop
         return;
       
       transform.position = m_Cam.ConstrainToView(transform.position, m_Bounds);
-      crosshair.transform.position = m_Cam.ConstrainToView(crosshair.transform.position, crosshair.GetComponent<SpriteRenderer>().sprite.bounds.extents, true);
+      if(crosshair.gameObject.activeInHierarchy)
+        crosshair.transform.position = m_Cam.ConstrainToView(crosshair.transform.position, crosshair.GetComponent<SpriteRenderer>().sprite.bounds.extents, true);
     }
     
     public void Die()
