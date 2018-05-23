@@ -89,16 +89,28 @@ namespace Coop
 			if(m_Players == null || m_Players.Count() == 0)
 				return;
 
-			if(m_ZoomStates.All(z => z == Zoom.In) && m_CurrZoom > MIN_ZOOM_LEVEL)
+			ZoomView();
+			PositionCamera();
+		}
+
+		private void ZoomView()
+		{
+			if(m_ZoomStates.Any(z => z == Zoom.Out) && m_CurrZoom < MAX_ZOOM_LEVEL)
+			{
+				float newZoom = m_CurrZoom + DELTA_ZOOM;
+				m_CurrZoom = newZoom > MAX_ZOOM_LEVEL ? MAX_ZOOM_LEVEL : newZoom;
+			}
+			else if(m_ZoomStates.All(z => z == Zoom.In) && m_CurrZoom > MIN_ZOOM_LEVEL)
 			{
 				float newZoom = m_CurrZoom - DELTA_ZOOM;
 				m_CurrZoom = newZoom < MIN_ZOOM_LEVEL ? MIN_ZOOM_LEVEL : newZoom;
-				m_Cam.orthographicSize = m_CurrZoom;
 			}
-
+			m_Cam.orthographicSize = m_CurrZoom;
 			m_ZoomStates = new List<Zoom>();
-			Debug.Log("NEW FRAME");
+		}
 
+		private void PositionCamera()
+		{
 			float maxY = m_Players.Max(p => p.transform.position.y);
 			Vector3 avgPos = m_Players.Select(p => p.transform.position).Aggregate((total, next) => total += next) / m_Players.Length;
 
@@ -112,52 +124,53 @@ namespace Coop
 
 		/// <summary>Constrains an object to be fully within the view of the camera.</summary>
 		/// <param name="pos">The world position of the object to be constrained.</param>
-		/// <param name="spriteBounds">The visual bounds of the object to be constrained.</param>
+		/// <param name="objBounds">The visual bounds of the object to be constrained.</param>
 		/// <param name="constrainAxisY">Should the object be constrained along the camera Y axis.</param>
 		/// <returns>The constrained world position of the object.</returns>
-		public Vector3 ConstrainToView(Vector3 pos, Vector3 spriteBounds, bool constrainAxisY = false)
+		public Vector3 ConstrainToView(Vector3 pos, Vector3 objBounds, bool constrainAxisY = false)
 		{
 			Vector3 camPos = transform.position;
 
-			float minX = camPos.x - horizLength + spriteBounds.x;
-			float maxX = camPos.x + horizLength - spriteBounds.x;
-			
-			float zoomPadding = 2f;
-			if(pos.x >= maxX - (zoomPadding / 2) || pos.x <= minX + (zoomPadding / 2))
-			{
-				if(m_CurrZoom < MAX_ZOOM_LEVEL)
-				{
-					float newZoom = m_CurrZoom + DELTA_ZOOM;
-					m_CurrZoom = newZoom > MAX_ZOOM_LEVEL ? MAX_ZOOM_LEVEL : newZoom;
-					m_Cam.orthographicSize = m_CurrZoom;
-				}
-				m_ZoomStates.Add(Zoom.Out);
-			}
-			else if(pos.x <= maxX - zoomPadding && pos.x >= minX + zoomPadding)
-				m_ZoomStates.Add(Zoom.In);
-			else
-				m_ZoomStates.Add(Zoom.None);
-			Debug.Log(m_ZoomStates.Last());
-			pos.x = Mathf.Clamp(pos.x, minX, maxX);
+			float xMin = camPos.x - horizLength + objBounds.x;
+			float xMax = camPos.x + horizLength - objBounds.x;
+
+			SetZoomState(pos.x, xMin, xMax);
+
+			pos.x = Mathf.Clamp(pos.x, xMin, xMax);
+
+			float yMin = pos.y;
+			float maxY = camPos.y + vertLength - objBounds.y;
 
 			if(constrainAxisY)
-			{
-				float minY = camPos.y - vertLength + spriteBounds.y;
-				float maxY = camPos.y + vertLength - spriteBounds.y;
-				pos.y = Mathf.Clamp(pos.y, minY, maxY);
-			}
-			else
-			{
-				float maxY = camPos.y + vertLength - spriteBounds.y;
-				pos.y = Mathf.Clamp(pos.y, pos.y, maxY);
-			}
+				yMin = camPos.y - vertLength + objBounds.y;
+			
+			pos.y = Mathf.Clamp(pos.y, pos.y, maxY);
 
 			return pos;
 		}
 
-		/// <summary>
-		/// Callback to draw gizmos that are pickable and always drawn.
-		/// </summary>
+		private void SetZoomState(float constrainedObjX, float minVisibleX, float maxVisibleX)
+		{
+			float zoomInPadding = 2f;
+			float zoomOutPadding = zoomInPadding / 2f;
+
+			bool onLeftLevelEdge = (transform.position.x - m_CamMin.x < 1f && constrainedObjX <= transform.position.x);
+			bool onRightLevelEdge = (m_CamMax.x - transform.position.x < 1f && constrainedObjX >= transform.position.x);
+
+			bool onLeftScreenEdge = constrainedObjX <= minVisibleX + zoomOutPadding;
+			bool onRightScreenEdge = constrainedObjX >= maxVisibleX - zoomOutPadding;
+
+			bool inCenterScreen = constrainedObjX <= maxVisibleX - zoomInPadding && constrainedObjX >= minVisibleX + zoomInPadding;
+
+			if(onLeftLevelEdge || onRightLevelEdge || inCenterScreen)
+				m_ZoomStates.Add(Zoom.In);
+			else if(onLeftScreenEdge || onRightScreenEdge)
+				m_ZoomStates.Add(Zoom.Out);
+			else
+				m_ZoomStates.Add(Zoom.None);
+		}
+
+		/// <summary>Callback to draw gizmos that are pickable and always drawn.</summary>
 		void OnDrawGizmos()
 		{
 			if(m_BottomLeftIndicator && m_TopRightIndicator)
