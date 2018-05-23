@@ -11,10 +11,15 @@ namespace Coop {
 
     [SerializeField]
     [Tooltip("Which scene should be loaded when level is complete?")]
-    internal string nextLevel;
+    internal string m_NextLevel;
+    
+    [SerializeField]
+    [Tooltip("Turn guns off for this level? (Intended for early tutorial level)")]
+    internal bool m_TurnGunsOff = false;
+
 
     [SerializeField]
-    internal Text messageTextbox;
+    internal Text m_MessageTextbox;
 
     [SerializeField]
     private Checkpoint m_ActiveCheckpoint;
@@ -30,7 +35,7 @@ namespace Coop {
     }
 
     [SerializeField]
-    internal UnityEvent levelCompleted;
+    internal UnityEvent m_LevelCompleted;
 
     internal MultiplayerFollow m_Cam;
 
@@ -68,9 +73,9 @@ namespace Coop {
 
     public void LevelComplete()
     {
-      levelCompleted.Invoke(); // Inform subscribers that level is complete.
+      m_LevelCompleted.Invoke(); // Inform subscribers that level is complete.
 
-      CoopGameManager.OpenLevel(nextLevel); // TODO: Show UI  and let player click continue before loading next level?
+      CoopGameManager.OpenLevel(m_NextLevel); // TODO: Show UI  and let player click continue before loading next level?
     }
 
     internal static Vector3 GetRespawnLocation()
