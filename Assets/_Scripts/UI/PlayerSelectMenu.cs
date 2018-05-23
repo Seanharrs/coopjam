@@ -114,12 +114,14 @@ namespace Coop
 
     internal List<PlayerData> GeneratePlayerData()
     {
+      var i = 0;
       return playerControlsMap
         .Select(
           x => new PlayerData
           {
             controlData = x.Key,
-            playerGun = CoopGameManager.instance.allGuns.First(g => g.portraitSprite == x.Value.portraitImage.sprite)
+            playerGun = CoopGameManager.instance.allGuns.First(g => g.portraitSprite == x.Value.portraitImage.sprite),
+            headSprite = CoopGameManager.instance.headSprites[i++]
           }).ToList();
     }
 

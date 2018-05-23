@@ -26,6 +26,22 @@ namespace Coop
     public PlayerControlData controlData;
     private bool isAiming = false;
 
+    [Header("Character Customization")]
+    [SerializeField] private Sprite m_HeadSprite;
+    public Sprite HeadSprite
+    {
+      get { return m_HeadSprite; }
+      set {
+        if(value)
+        {
+          headSocket.GetComponentInChildren<SpriteRenderer>().sprite = value;
+          m_HeadSprite = value;
+        }
+        else
+          Debug.LogWarning("Did not set null head sprite.");
+      }
+    }
+
     [Header("Weapon")]
     public Gun gun;
     public GameObject gunSocket;
@@ -61,6 +77,9 @@ namespace Coop
 
       m_Cam = FindObjectOfType<MultiplayerFollow>();
       m_Bounds = GetComponent<SpriteRenderer>().sprite.bounds.extents;
+
+      // Trigger logic in public property.
+      if(m_HeadSprite != null) HeadSprite = m_HeadSprite;
 
       crosshair.transform.SetParent(null);
     }
@@ -107,7 +126,7 @@ namespace Coop
           // manage game controls
           #region Axis Firing Input
           float fireAxis = Input.GetAxis(controlData.primaryFire);
-          if (fireAxis != 0)
+          if (fireAxis != 0 && m_CanFire)
           {
             FiringState weap = fireAxis > 0 ? FiringState.Primary : FiringState.Secondary;
             if(weap == FiringState.Primary)
@@ -122,7 +141,7 @@ namespace Coop
           }
           #endregion
           #region Keyboard Firing Input
-          else if (Input.GetButton(controlData.primaryFire))
+          else if (Input.GetButton(controlData.primaryFire) && m_CanFire)
           {
             m_FiringPrimary = true;
             if(isAiming)
@@ -130,7 +149,7 @@ namespace Coop
             else
               gun.Fire(FiringState.Primary, gunSocket.transform.right * Mathf.Sign(transform.localScale.x));
           }
-          else if (Input.GetButton(controlData.secondaryFire))
+          else if (Input.GetButton(controlData.secondaryFire) && m_CanFire)
           {
             m_FiringSecondary = true;
             if(isAiming)
@@ -145,7 +164,7 @@ namespace Coop
             m_FiringPrimary = false;
             m_FiringSecondary = false;
           }
-          else if (Input.GetButtonDown(controlData.aimActivate))
+          else if (Input.GetButtonDown(controlData.aimActivate) && m_CanFire)
           {
             if(isAiming) {
               // TODO: Use reticle/crosshairs for cursor
@@ -163,7 +182,7 @@ namespace Coop
               isAiming = true;
             }
           }
-          else if (Input.GetButtonDown(controlData.switchPlayerWeapon))
+          else if (Input.GetButtonDown(controlData.switchPlayerWeapon) && m_CanFire)
           {
             // Debug.Log("Pressed: switchPlayerWeapon " + Input.GetAxis(controlData.switchPlayerWeapon));
             
@@ -282,7 +301,17 @@ namespace Coop
     internal void SetGun(Gun playerGun)
     {
       if(this.gun != null) Destroy(this.gun.gameObject);
-      this.gun = Instantiate(playerGun, gunSocket.transform.position, gunSocket.transform.rotation, gunSocket.transform);
+      if(playerGun == null) // null gun will let us do a tutorial level without guns, just switches, doors, etc.
+      {
+        m_HideGun = true;
+        this.gun = null;
+        // TODO: make CoopGameManager.instance.SetPlayerGun(this, playerGun); work
+        return; // Temp
+      }
+      else
+      {
+        this.gun = Instantiate(playerGun, gunSocket.transform.position, gunSocket.transform.rotation, gunSocket.transform);
+      }
       // TODO: This seems so wrong. Gotta clean up the pipeline somehow.
       CoopGameManager.instance.SetPlayerGun(this, playerGun);
     }

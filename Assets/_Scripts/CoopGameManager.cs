@@ -28,6 +28,8 @@ namespace Coop
      Tooltip("Will hold a reference to the current Gun's prefab.")] 
     public Gun playerGun; 
 
+    public Sprite headSprite;
+
   }
 
   #if UNITY_EDITOR
@@ -61,6 +63,8 @@ namespace Coop
     public CoopUserControl characterRigPrefab;
     [SerializeField]
     internal List<Gun> allGuns;
+    [SerializeField]
+    internal List<Sprite> headSprites;
 
     // [Header("Development/Debugging")]
     [HideInInspector]
@@ -96,6 +100,7 @@ namespace Coop
         // TEST: Debug.Log("Spawned character at: " + spawnPoints[i].transform.position + " (" + characterRig.transform.position + ")");
         characterRig.controlData = playerData[i].controlData;
         characterRig.SetGun(playerData[i].playerGun);
+        characterRig.HeadSprite = playerData[i].headSprite;
         playerData[i].playerCharacter = characterRig;
       }
     }
@@ -115,7 +120,9 @@ namespace Coop
         SceneManager.LoadScene(nextLevelOverride);
         nextLevelOverride = null;
       } else {
+        Debug.Log("Loading: " + levelName);
         SceneManager.LoadScene(levelName);
+        Debug.Log("Loaded: " + levelName);
       }
     }
 

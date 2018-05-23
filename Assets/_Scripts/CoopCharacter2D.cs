@@ -16,7 +16,7 @@ namespace Coop
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     const float k_GroundedRadius = .25f; // Radius of the overlap circle to determine if grounded
-    private bool m_Grounded;            // Whether or not the player is grounded.
+    private bool m_Grounded = false;            // Whether or not the player is grounded.
     private bool m_Jumping = false;
     private bool m_Falling = false;
 
@@ -204,6 +204,7 @@ namespace Coop
       // If sliding
       else if (m_SlipperySlope)
       {
+        Debug.Log("Slippery.");
         m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
       }
 
