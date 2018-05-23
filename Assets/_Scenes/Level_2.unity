@@ -12389,11 +12389,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e763e92b14bb848bf008ccfcbb2568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NextLevel: Level_2
-  m_TurnGunsOff: 0
-  m_MessageTextbox: {fileID: 0}
+  nextLevel: Design Starter Level
+  messageTextbox: {fileID: 0}
   m_ActiveCheckpoint: {fileID: 794074384}
-  m_LevelCompleted:
+  levelCompleted:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,

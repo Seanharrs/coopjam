@@ -20,6 +20,15 @@ namespace Coop
     private bool m_FiringSecondary = false;
     private bool m_CanFire = true;
     private bool m_HideGun = false;
+    internal bool CanFire
+    {
+      get { return m_CanFire; }
+      set { 
+        m_CanFire = value;
+        m_HideGun = !value;
+      }
+    }
+
     private PlayerInputMode m_InputMode = PlayerInputMode.Game;
 
     [Header("Controls")]
@@ -305,15 +314,15 @@ namespace Coop
       {
         m_HideGun = true;
         this.gun = null;
-        // TODO: make CoopGameManager.instance.SetPlayerGun(this, playerGun); work
+        // CoopGameManager.instance.SetPlayerGun(this, null);
         return; // Temp
       }
       else
       {
         this.gun = Instantiate(playerGun, gunSocket.transform.position, gunSocket.transform.rotation, gunSocket.transform);
+        // TODO: This seems so wrong. Gotta clean up the pipeline somehow.
+        CoopGameManager.instance.SetPlayerGun(this, playerGun);
       }
-      // TODO: This seems so wrong. Gotta clean up the pipeline somehow.
-      CoopGameManager.instance.SetPlayerGun(this, playerGun);
     }
 
     private void FixedUpdate()

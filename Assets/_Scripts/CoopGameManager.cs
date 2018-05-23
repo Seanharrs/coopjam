@@ -99,7 +99,14 @@ namespace Coop
         CoopUserControl characterRig = Instantiate(characterRigPrefab, spawnPoints[i].transform.position, Quaternion.identity);
         // TEST: Debug.Log("Spawned character at: " + spawnPoints[i].transform.position + " (" + characterRig.transform.position + ")");
         characterRig.controlData = playerData[i].controlData;
-        characterRig.SetGun(playerData[i].playerGun);
+        if(lm.m_TurnGunsOff)
+        {
+          characterRig.CanFire = false;
+        }
+        else
+        {
+          characterRig.SetGun(playerData[i].playerGun);
+        }
         characterRig.HeadSprite = playerData[i].headSprite;
         playerData[i].playerCharacter = characterRig;
       }
@@ -135,11 +142,11 @@ namespace Coop
     public static IEnumerator ShowMessage(string message, float displayTime = 5f, bool isFatal = false)
     {
       var lm = FindObjectOfType<LevelManager>();
-      if(lm.messageTextbox)
+      if(lm.m_MessageTextbox)
       {
-        lm.messageTextbox.text = message;
+        lm.m_MessageTextbox.text = message;
         yield return new WaitForSeconds(displayTime);
-        lm.messageTextbox.text = "";
+        lm.m_MessageTextbox.text = "";
       }
       else
       {
