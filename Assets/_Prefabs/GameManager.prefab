@@ -65,6 +65,11 @@ MonoBehaviour:
   - {fileID: 114353257182372814, guid: d39616c6dee43114e82bb5b4f8567e91, type: 2}
   - {fileID: 114506248553776704, guid: c0c89f4d06b075c468fd5c0341118ce0, type: 2}
   - {fileID: 114353257182372814, guid: 92df579e5b3b67242868bfbebfedf53d, type: 2}
+  headSprites:
+  - {fileID: 21300000, guid: a4a8e5083f6aee84f8838df31275a445, type: 3}
+  - {fileID: 21300000, guid: 5595bd4bed607c2469e9e244f6b73ecd, type: 3}
+  - {fileID: 21300000, guid: 90b4e8e5ce6b74e40b48ea9d56d61704, type: 3}
+  - {fileID: 21300000, guid: db351418d89d54841a51fb1ff2fb1c56, type: 3}
   playerData:
   - playerCharacter: {fileID: 0}
     controlData: {fileID: 0}
