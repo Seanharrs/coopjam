@@ -62,7 +62,7 @@ namespace Coop
     [SerializeField]
     internal List<Gun> allGuns;
 
-    [Header("Development/Debugging")]
+    // [Header("Development/Debugging")]
     [HideInInspector]
     public List<PlayerData> playerData = new List<PlayerData>();
     
@@ -184,7 +184,14 @@ namespace Coop
       // should have exactly one level object, no more, no less
       var levels = FindObjectsOfType<LevelManager>();
       if(levels.Count() != 1)
+      {
         errors.Add("Should have exactly one level object, no more, no less.");
+      }
+      // Level Manager should have an active checkpoint selected.
+      else if(levels[0].ActiveCheckpoint == null)
+      {
+        errors.Add("Need to set up an initial active checkpoint in the LevelManager.");
+      }
       
       // should not have characters directly, use spawn points instead.
       var characters = FindObjectsOfType<CoopUserControl>();
@@ -223,6 +230,13 @@ namespace Coop
       var levelGoal = FindObjectsOfType<LevelGoal>();
       if(levelGoal.Count() == 0)
         errors.Add("Each level should have at least one LevelGoal (You may have multiple).");
+
+      // At least one checkpoint
+      var checkpoints = FindObjectsOfType<Checkpoint>();
+      if(checkpoints.Count() == 0)
+        errors.Add("Need at least one checkpoint in your level.");
+      else if(checkpoints.Count() < 3)
+        errors.Add("Less than 3 checkpoints... Do you need more?");
 
       // Scene should be in build settings.
       if (SceneManager.GetActiveScene().buildIndex == -1)

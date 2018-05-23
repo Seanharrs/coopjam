@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4426911282354398}
   - component: {fileID: 212906562941842450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SwitchPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114034296321794942}
   - component: {fileID: 114003336854142932}
   - component: {fileID: 114302401808284676}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MagneticSwitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9953d7da7cb419a43b6d821992bcaa80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canPlayerAffect: 1
 --- !u!114 &114034296321794942
 MonoBehaviour:
   m_ObjectHideFlags: 1

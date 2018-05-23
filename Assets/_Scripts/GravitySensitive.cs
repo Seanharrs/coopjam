@@ -5,6 +5,14 @@ using UnityEngine;
 
 namespace Coop
 {
+
+    public enum GravityState 
+    {
+      Normal,
+      Reversed,
+      Reduced
+    }
+
     [RequireComponent(typeof(Rigidbody2D))]
     public class GravitySensitive : MonoBehaviour
     {
@@ -26,6 +34,8 @@ namespace Coop
 
         [SerializeField]
         private float m_ReduceLength = 5f;
+
+        internal GravityState state = GravityState.Normal;
 
         private void Awake() { m_rb2D = GetComponent<Rigidbody2D>(); }
 
@@ -55,6 +65,8 @@ namespace Coop
             else
                 m_rb2D.gravityScale *= -1;
 
+            state = GravityState.Reversed;
+
             Vector3 rot = transform.rotation.eulerAngles;
             Vector3 average;
             
@@ -68,6 +80,8 @@ namespace Coop
                 pc2D.NormalGravity *= -1;
             else
                 m_rb2D.gravityScale *= -1;
+
+            state = GravityState.Normal;
               
             // Rotate to accommodate reversed gravity
             average = GetAverageCenter(transform);

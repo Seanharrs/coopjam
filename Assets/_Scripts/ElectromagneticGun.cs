@@ -144,44 +144,47 @@ namespace Coop
     {
       PopulateHitResults();
 
-      foreach(var hit in m_Results)
+      if(m_CurrentFiringState != FiringState.None)
       {
-        var c = hit.collider;
-        if(!c) continue;
-        var em = c.GetComponent<Electromagnetic>();
-        if(em)
+        foreach(var hit in m_Results)
         {
-          if(!m_MagnetizedObjects.Contains(em))
+          var c = hit.collider;
+          if(!c) continue;
+          var em = c.GetComponent<Electromagnetic>();
+          if(em)
           {
-            AddElectromagnetic(m_CurrentFiringState, em);
+            if(!m_MagnetizedObjects.Contains(em))
+            {
+              AddElectromagnetic(m_CurrentFiringState, em);
+            }
+          }
+
+          var es = c.GetComponent<Electrostatic>();
+          if(es)
+          {
+            if(!m_InterruptedObjects.Contains(es))
+            {
+              AddElectroStatic(es);
+            }
           }
         }
 
-        var es = c.GetComponent<Electrostatic>();
-        if(es)
+        for(var i = m_MagnetizedObjects.Count; i > 0; i--)
         {
-          if(!m_InterruptedObjects.Contains(es))
-          {
-            AddElectroStatic(es);
-          }
+          var obj = m_MagnetizedObjects[i-1];
+
+          if(!m_ResultObjects.Contains(obj.gameObject)) { m_MagnetizedObjects.Remove(obj); }
+          var rb = obj.GetComponent<Rigidbody2D>();
+          if(!rb) return;
+          var direction = AmmoSpawnLocation.right * Mathf.Sign(AmmoSpawnLocation.lossyScale.x);
+          rb.AddForce(direction * (m_CurrentFiringState == FiringState.Primary ? -m_ForceAmount : m_ForceAmount));
         }
-      }
 
-      for(var i = m_MagnetizedObjects.Count; i > 0; i--)
-      {
-        var obj = m_MagnetizedObjects[i-1];
-
-        if(!m_ResultObjects.Contains(obj.gameObject)) { m_MagnetizedObjects.Remove(obj); }
-        var rb = obj.GetComponent<Rigidbody2D>();
-        if(!rb) return;
-        var direction = AmmoSpawnLocation.right * Mathf.Sign(AmmoSpawnLocation.lossyScale.x);
-        rb.AddForce(direction * (m_CurrentFiringState == FiringState.Primary ? -m_ForceAmount : m_ForceAmount));
-      }
-
-      for(var i = m_InterruptedObjects.Count; i > 0; i--)
-      {
-        var obj = m_InterruptedObjects[i -1];
-        if(!m_ResultObjects.Contains(obj.gameObject)) { m_InterruptedObjects.Remove(obj); }
+        for(var i = m_InterruptedObjects.Count; i > 0; i--)
+        {
+          var obj = m_InterruptedObjects[i -1];
+          if(!m_ResultObjects.Contains(obj.gameObject)) { m_InterruptedObjects.Remove(obj); }
+        }
       }
     }
 
