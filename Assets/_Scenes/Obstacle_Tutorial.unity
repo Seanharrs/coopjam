@@ -960,7 +960,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &190881714
 Prefab:
@@ -2666,51 +2666,13 @@ RectTransform:
   - {fileID: 1295132263}
   - {fileID: 994081358}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 59.97, y: 60}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &434821604 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1937534172796854, guid: 4f727ffcc1f105c47a446816f6efbd60,
-    type: 2}
-  m_PrefabInternal: {fileID: 1149551095}
---- !u!114 &434821605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 434821604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a3e167dcda012b47ab3cd5319b4eb8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnStartPull:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnStopPull:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnStartPush:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnStopPush:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  canAttract: 1
-  canRepel: 1
 --- !u!1 &444632457
 GameObject:
   m_ObjectHideFlags: 0
@@ -4636,7 +4598,7 @@ Transform:
   - {fileID: 487759567}
   - {fileID: 578694618}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &695354156
 MonoBehaviour:
@@ -7013,53 +6975,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4786268984411554, guid: 66168eee4b856cf46a4f50f11059b51a,
     type: 2}
   m_PrefabInternal: {fileID: 1128506685}
---- !u!1001 &1149551095
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4488996861792058, guid: 4f727ffcc1f105c47a446816f6efbd60, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 62.691
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488996861792058, guid: 4f727ffcc1f105c47a446816f6efbd60, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488996861792058, guid: 4f727ffcc1f105c47a446816f6efbd60, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488996861792058, guid: 4f727ffcc1f105c47a446816f6efbd60, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488996861792058, guid: 4f727ffcc1f105c47a446816f6efbd60, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488996861792058, guid: 4f727ffcc1f105c47a446816f6efbd60, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488996861792058, guid: 4f727ffcc1f105c47a446816f6efbd60, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488996861792058, guid: 4f727ffcc1f105c47a446816f6efbd60, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212467788256279956, guid: 4f727ffcc1f105c47a446816f6efbd60,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 4f727ffcc1f105c47a446816f6efbd60, type: 2}
-  m_IsPrefabParent: 0
 --- !u!4 &1158663011 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4072383207739418, guid: 48446ff332be4cd46a32ff1a39169271,

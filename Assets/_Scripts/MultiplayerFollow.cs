@@ -56,7 +56,7 @@ namespace Coop
 
 		private const float MAX_ZOOM_LEVEL = 14f;
 		private const float MIN_ZOOM_LEVEL = 8f;
-		private const float DELTA_ZOOM = 0.01f;
+		private const float DELTA_ZOOM = 0.05f;
 
 		private Camera m_Cam;
 		private float m_CurrZoom;
@@ -75,6 +75,8 @@ namespace Coop
 			m_LevelMax.x = m_TopRightIndicator.position.x;
 			m_LevelMax.y = m_TopRightIndicator.position.y;
 
+			PositionCameraAtSpawn();
+
 			m_BottomLeftIndicator.gameObject.SetActive(false);
 			m_TopRightIndicator.gameObject.SetActive(false);
 		}
@@ -86,15 +88,33 @@ namespace Coop
 
 		private void LateUpdate()
 		{
-			if(m_Players == null || m_Players.Count() == 0)
-				return;
-
 			ZoomView();
 			PositionCamera();
 		}
 
+		private void PositionCameraAtSpawn()
+		{
+			SpawnPoint[] spawns = FindObjectsOfType<SpawnPoint>();
+
+			if(spawns == null || spawns.Length == 0)
+				return;
+
+			float maxY = spawns.Max(p => p.transform.position.y);
+			Vector3 avgPos = spawns.Select(p => p.transform.position).Aggregate((total, next) => total += next) / spawns.Length;
+
+			avgPos.y = Mathf.Max(avgPos.y, maxY - vertLength / 2);
+
+			Vector3 clamped = avgPos + m_Offset;
+			clamped.x = Mathf.Clamp(clamped.x, m_CamMin.x, m_CamMax.x);
+			clamped.y = Mathf.Clamp(clamped.y, m_CamMin.y, m_CamMax.y);
+			transform.position = clamped;
+		}
+
 		private void ZoomView()
 		{
+			if(m_ZoomStates.Count() == 0)
+				return;
+
 			if(m_ZoomStates.Any(z => z == Zoom.Out) && m_CurrZoom < MAX_ZOOM_LEVEL)
 			{
 				float newZoom = m_CurrZoom + DELTA_ZOOM;
@@ -105,12 +125,17 @@ namespace Coop
 				float newZoom = m_CurrZoom - DELTA_ZOOM;
 				m_CurrZoom = newZoom < MIN_ZOOM_LEVEL ? MIN_ZOOM_LEVEL : newZoom;
 			}
+
 			m_Cam.orthographicSize = m_CurrZoom;
+
 			m_ZoomStates = new List<Zoom>();
 		}
 
 		private void PositionCamera()
 		{
+			if(m_Players == null || m_Players.Count() == 0)
+				return;
+
 			float maxY = m_Players.Max(p => p.transform.position.y);
 			Vector3 avgPos = m_Players.Select(p => p.transform.position).Aggregate((total, next) => total += next) / m_Players.Length;
 
