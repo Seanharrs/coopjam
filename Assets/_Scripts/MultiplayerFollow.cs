@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Coop
 {
@@ -118,7 +117,7 @@ namespace Coop
 
 		private void ZoomView()
 		{
-			if(m_ZoomStates.Count() == 0)
+			if(m_ZoomStates.Count == 0)
 				return;
 
 			if(m_ZoomStates.Any(z => z == Zoom.Out) && m_CurrZoom < MAX_ZOOM_LEVEL)
@@ -139,19 +138,22 @@ namespace Coop
 
 		private void PositionCamera()
 		{
-			if(m_Players == null || m_Players.Count() == 0)
+			if(m_Players == null || m_Players.Length == 0)
 				return;
 
-            var activePlayers = m_Players.Where(p => !p.GetComponent<Health>().isDead).ToList(); 
-			float maxY = activePlayers.Max(p => p.transform.position.y);
+            List<CoopUserControl> activePlayers = m_Players.Where(p => !p.GetComponent<Health>().isDead).ToList();
 			
             Vector3 avgPos;
-            if(activePlayers.Count() == 1)
-                avgPos = activePlayers[0].transform.position;
-            else
-                avgPos = activePlayers.Select(p => p.transform.position).Aggregate((total, next) => total += next) / m_Players.Length;
-
-			avgPos.y = Mathf.Max(avgPos.y, maxY - vertLength / 2);
+			if(activePlayers.Count == 0)
+				avgPos = FindObjectOfType<LevelManager>().ActiveCheckpoint.transform.position;
+			else if(activePlayers.Count == 1)
+				avgPos = activePlayers[0].transform.position;
+			else
+			{
+				float maxY = activePlayers.Max(p => p.transform.position.y) - (vertLength / 2);
+				avgPos = activePlayers.Select(p => p.transform.position).Aggregate((total, next) => total += next) / activePlayers.Count;
+				avgPos.y = Mathf.Max(avgPos.y, maxY);
+			}
 
 			Vector3 clamped = avgPos + m_Offset;
 			clamped.x = Mathf.Clamp(clamped.x, m_CamMin.x, m_CamMax.x);
