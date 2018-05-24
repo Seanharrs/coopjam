@@ -31,7 +31,7 @@ namespace Coop
       set
       {
         m_NormalGravity = value;
-        m_Rigidbody2D.gravityScale = value;
+        // m_Rigidbody2D.gravityScale = value; <- this actually doubles up gravity, we are handling gravity in this component directly.
       }
     }
 
