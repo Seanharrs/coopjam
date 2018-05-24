@@ -248,9 +248,12 @@ namespace Coop
     void OnSceneGUI()
     {
 
+      Handles.color = Color.blue;
+
       #region Bottom Extent
       Vector3 startPos = m_BottomExtentGO.transform.position + m_BottomExtentRenderer.size.x * m_BottomExtentGO.transform.right + m_BottomExtentRenderer.size.y * m_BottomExtentGO.transform.up / 2;
-      Vector3 newPos = Handles.PositionHandle(startPos, Quaternion.identity);
+      // Vector3 newPos = Handles.PositionHandle(startPos, Quaternion.identity);
+      Vector3 newPos = Handles.Slider(startPos, m_BottomExtentGO.transform.right, HandleUtility.GetHandleSize(startPos) * .25f, Handles.SphereHandleCap, 1f);
       if(newPos != startPos)
       {
         Vector2 oldBottomSize = m_BottomExtentRenderer.size;
@@ -270,7 +273,8 @@ namespace Coop
 
       #region Top Extent
       Vector3 topStartPos = m_TopExtentGO.transform.position + m_TopExtentRenderer.size.x * m_TopExtentGO.transform.right + m_TopExtentRenderer.size.y * m_TopExtentGO.transform.up / 2;
-      Vector3 newTopPos = Handles.PositionHandle(topStartPos, Quaternion.LookRotation(m_TopExtentGO.transform.forward));
+      //Vector3 newTopPos = Handles.PositionHandle(topStartPos, Quaternion.LookRotation(m_TopExtentGO.transform.forward));
+      Vector3 newTopPos = Handles.Slider(topStartPos, m_TopExtentGO.transform.right, HandleUtility.GetHandleSize(topStartPos) * .25f, Handles.SphereHandleCap, 1f);
       if(newTopPos != topStartPos)
       {
         Vector2 oldTopSize = m_TopExtentRenderer.size;
@@ -291,7 +295,8 @@ namespace Coop
       
       #region Middle Size
       Vector3 middleStartPos = m_MiddleExtentGO.transform.position + m_MiddleExtentRenderer.size.x * m_MiddleExtentGO.transform.right / 2 + (m_MiddleExtentRenderer.size.y + 1) * m_MiddleExtentGO.transform.up;
-      Vector3 newMiddlePos = Handles.PositionHandle(middleStartPos, Quaternion.identity);
+      // Vector3 newMiddlePos = Handles.PositionHandle(middleStartPos, Quaternion.identity);
+      Vector3 newMiddlePos = Handles.Slider(middleStartPos, m_MiddleExtentGO.transform.up, HandleUtility.GetHandleSize(middleStartPos) * .25f, Handles.SphereHandleCap, 1f);
       if(newMiddlePos != middleStartPos)
       {
         Vector2 oldMiddleSize = m_MiddleExtentRenderer.size;

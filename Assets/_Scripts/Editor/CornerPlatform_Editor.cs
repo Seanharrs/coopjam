@@ -177,9 +177,13 @@ namespace Coop
     void OnSceneGUI()
     {
 
+
+      Handles.color = Color.blue;
+
       #region Bottom Extent
       Vector3 startPos = m_RightRenderer.transform.position + m_RightRenderer.size.x * m_RightRenderer.transform.right + m_RightRenderer.size.y * m_RightRenderer.transform.up / 2;
-      Vector3 newPos = Handles.PositionHandle(startPos, Quaternion.identity);
+      // Vector3 newPos = Handles.PositionHandle(startPos, Quaternion.identity);
+      Vector3 newPos = Handles.Slider(startPos, m_RightRenderer.transform.right, HandleUtility.GetHandleSize(startPos) * .25f, Handles.SphereHandleCap, 1f);
       if(newPos != startPos)
       {
         Vector2 oldBottomSize = m_RightRenderer.size;
@@ -200,7 +204,8 @@ namespace Coop
       
       #region Middle Size
       Vector3 topStartPos = m_TopRenderer.transform.position + m_TopRenderer.size.x * m_TopRenderer.transform.right / 2 + m_TopRenderer.size.y * m_TopRenderer.transform.up;
-      Vector3 newTopPos = Handles.PositionHandle(topStartPos, Quaternion.identity);
+      // Vector3 newTopPos = Handles.PositionHandle(topStartPos, Quaternion.identity);
+      Vector3 newTopPos = Handles.Slider(topStartPos, m_TopRenderer.transform.up, HandleUtility.GetHandleSize(topStartPos) * .25f, Handles.SphereHandleCap, 1f);
       if(newTopPos != topStartPos)
       {
         Vector2 oldTopSize = m_TopRenderer.size;

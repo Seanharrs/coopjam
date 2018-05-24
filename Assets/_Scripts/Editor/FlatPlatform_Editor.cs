@@ -132,9 +132,14 @@ namespace Coop
     void OnSceneGUI()
     {
 
+      Handles.color = Color.blue;
+
       #region Width Handles
+
+      float size = HandleUtility.GetHandleSize(m_Platform.transform.position) * 0.25f;
       Vector3 startWidthPos = m_Platform.transform.position + m_SpriteRenderer.size.x * m_Platform.transform.right + m_SpriteRenderer.size.y * m_Platform.transform.up;
-      Vector3 newWidthPos = Handles.PositionHandle(startWidthPos, Quaternion.identity);
+      //Vector3 newWidthPos = Handles.Slider(startWidthPos, m_Platform.transform.right, size, Handles.SphereHandleCap, 1f);
+      Vector3 newWidthPos = Handles.Slider2D(startWidthPos, m_Platform.transform.forward, m_Platform.transform.right, m_Platform.transform.up, size, Handles.SphereHandleCap, 1f);
       if(newWidthPos != startWidthPos)
       {
         Vector2 oldWidth = m_SpriteRenderer.size;
@@ -157,6 +162,32 @@ namespace Coop
         Repaint();
       }
       #endregion
+
+      // #region Width Handles
+      // Vector3 startWidthPos = m_Platform.transform.position + m_SpriteRenderer.size.x * m_Platform.transform.right + m_SpriteRenderer.size.y * m_Platform.transform.up;
+      // Vector3 newWidthPos = Handles.PositionHandle(startWidthPos, Quaternion.identity);
+      // if(newWidthPos != startWidthPos)
+      // {
+      //   Vector2 oldWidth = m_SpriteRenderer.size;
+      //   // Width
+      //   oldWidth.x = newWidthPos.x - m_SpriteRenderer.transform.position.x;
+      //   if(oldWidth.x < 1) oldWidth.x = 1;
+      //   if(m_Snapping) oldWidth.x = Mathf.Round(oldWidth.x);
+      //   // Height
+      //   oldWidth.y = newWidthPos.y - m_SpriteRenderer.transform.position.y;
+      //   if(oldWidth.y < 1) oldWidth.y = 1;
+      //   if(m_Snapping) oldWidth.y = Mathf.Round(oldWidth.y);
+
+      //   m_SpriteRenderer.size = oldWidth;
+      //   var offset = m_BoxCollider2D.offset;
+      //   offset.x = oldWidth.x / 2;
+      //   offset.y = oldWidth.y / 2;
+      //   m_BoxCollider2D.offset = offset;
+      //   m_BoxCollider2D.size = oldWidth;
+
+      //   Repaint();
+      // }
+      // #endregion
 
     }
   }

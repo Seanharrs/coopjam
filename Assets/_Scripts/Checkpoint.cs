@@ -12,7 +12,7 @@ namespace Coop
     internal Transform spawnAtPoint;
 
     [SerializeField]
-    internal ParticleSystem particleSystem;
+    internal ParticleSystem m_ParticleSystem;
 
     public void Interact()
     {
@@ -40,9 +40,9 @@ namespace Coop
     internal void SetActive(bool active)
     {
       if(active)
-        particleSystem.Play();
+        m_ParticleSystem.Play();
       else
-        particleSystem.Stop();
+        m_ParticleSystem.Stop();
     }
   }
 }
