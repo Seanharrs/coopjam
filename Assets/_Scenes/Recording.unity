@@ -3801,7 +3801,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4107329273131566, guid: 5ea7d3380eaff7e4f92ccc00629f915c, type: 2}
       propertyPath: m_RootOrder
-      value: 27
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1009755932031942, guid: 5ea7d3380eaff7e4f92ccc00629f915c, type: 2}
       propertyPath: m_Name
@@ -5075,7 +5075,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4256400002329102, guid: d4928cb8cb359e541a6202684c28d43f, type: 2}
       propertyPath: m_RootOrder
-      value: 26
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 212716729127625572, guid: d4928cb8cb359e541a6202684c28d43f,
         type: 2}
@@ -11838,7 +11838,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4834401320226008, guid: ed3d9e21b2b40524eb655f83da09a6b0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 83
+      value: 84
       objectReference: {fileID: 0}
     - target: {fileID: 4834401320226008, guid: ed3d9e21b2b40524eb655f83da09a6b0, type: 2}
       propertyPath: m_LocalPosition.y
@@ -11866,12 +11866,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4834401320226008, guid: ed3d9e21b2b40524eb655f83da09a6b0, type: 2}
       propertyPath: m_RootOrder
-      value: 25
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 212783641235739366, guid: ed3d9e21b2b40524eb655f83da09a6b0,
         type: 2}
       propertyPath: m_Size.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed3d9e21b2b40524eb655f83da09a6b0, type: 2}
@@ -12862,22 +12862,22 @@ Prefab:
     - target: {fileID: 212312832610058094, guid: dec702862a1beb24abcd9fc8fff24f9c,
         type: 2}
       propertyPath: m_Size.x
-      value: 29
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 61706393531051372, guid: dec702862a1beb24abcd9fc8fff24f9c,
         type: 2}
       propertyPath: m_Offset.x
-      value: 14.5
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 61706393531051372, guid: dec702862a1beb24abcd9fc8fff24f9c,
         type: 2}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 29
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 61706393531051372, guid: dec702862a1beb24abcd9fc8fff24f9c,
         type: 2}
       propertyPath: m_Size.x
-      value: 29
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 212312832610058094, guid: dec702862a1beb24abcd9fc8fff24f9c,
         type: 2}
@@ -13719,7 +13719,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4107329273131566, guid: 5ea7d3380eaff7e4f92ccc00629f915c, type: 2}
       propertyPath: m_RootOrder
-      value: 24
+      value: 22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ea7d3380eaff7e4f92ccc00629f915c, type: 2}
