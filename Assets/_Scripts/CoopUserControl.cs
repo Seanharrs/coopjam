@@ -19,7 +19,7 @@ namespace Coop
     private bool m_FiringPrimary = false;
     private bool m_FiringSecondary = false;
     private bool m_CanFire = true;
-    private bool m_HideGun = false;
+    private bool m_HideGun = false; //TODO: Don't think I'll need this afterall.
     internal bool CanFire
     {
       get { return m_CanFire; }

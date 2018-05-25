@@ -45,12 +45,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 1093696345
-    locked: 0
+    locked: 1
   - name: Foreground
     uniqueID: 1859086223
-    locked: 0
-  - name: UI
-    uniqueID: 771169021
     locked: 0
   - name: Objects
     uniqueID: 1016890119
@@ -60,4 +57,7 @@ TagManager:
     locked: 0
   - name: Projectiles
     uniqueID: 1915476707
+    locked: 0
+  - name: UI
+    uniqueID: 771169021
     locked: 0

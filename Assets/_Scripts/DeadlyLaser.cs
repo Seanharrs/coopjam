@@ -10,6 +10,7 @@ public class DeadlyLaser : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<DeathCollider>().enabled = true;
         GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<AudioSource>().enabled = true;
     }
 
     public void TurnOff()
@@ -17,5 +18,6 @@ public class DeadlyLaser : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<DeathCollider>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<AudioSource>().enabled = false;
     }
 }

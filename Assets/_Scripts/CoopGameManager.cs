@@ -267,6 +267,6 @@ namespace Coop
           , "OK", "Cancel");
 
     }
-  }
 #endif
+  }
 }
