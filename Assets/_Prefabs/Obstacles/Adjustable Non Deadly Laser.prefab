@@ -167,7 +167,8 @@ AudioSource:
   m_GameObject: {fileID: 1263349703144074}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243330631847765114, guid: 66e3fec324ff3bd4d8891b4cfa8f802b,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 3ed862c32f678a24b8931d0412419b75, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -279,16 +280,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3555149581572d4f9edb1cf57693c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTriggerStart:
+  state: 0
+  m_IsMultiState: 0
+  m_OnStateChanged_Positive:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onTriggerEnd:
+    m_TypeName: Coop.CircuitEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  m_OnStateChanged_Off:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: Coop.CircuitEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  m_OnStateChanged_Negative:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Coop.CircuitEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114970136344699308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -334,7 +342,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1016890119
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6bd9bd74e77d8fa42ad73fa5992bcc42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -379,7 +387,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1016890119
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 67109d83fd7a168468f7f8da0f0ccd18, type: 3}
   m_Color: {r: 0, g: 0.30588236, b: 1, a: 1}
@@ -424,7 +432,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1016890119
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6bd9bd74e77d8fa42ad73fa5992bcc42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -139,7 +139,8 @@ AudioSource:
   m_GameObject: {fileID: 1564942218400704}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243330631847765114, guid: 66e3fec324ff3bd4d8891b4cfa8f802b,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 19b4ad58d2be4be4482574c72592683d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -255,38 +256,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3555149581572d4f9edb1cf57693c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTriggerStart:
+  state: 0
+  m_IsMultiState: 0
+  m_OnStateChanged_Positive:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: TurnOn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onTriggerEnd:
+      m_Calls: []
+    m_TypeName: Coop.CircuitEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  m_OnStateChanged_Off:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: TurnOff
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+      m_Calls: []
+    m_TypeName: Coop.CircuitEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  m_OnStateChanged_Negative:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Coop.CircuitEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!212 &212365345249156854
 SpriteRenderer:
   m_ObjectHideFlags: 1

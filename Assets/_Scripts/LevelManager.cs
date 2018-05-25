@@ -37,6 +37,9 @@ namespace Coop {
     [SerializeField]
     internal UnityEvent m_LevelCompleted;
 
+    [SerializeField]
+    internal List<AudioClip> musicPlaylist;
+
     internal MultiplayerFollow m_Cam;
 
     private static LevelManager m_Instance;

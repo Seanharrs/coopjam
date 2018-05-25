@@ -6,10 +6,10 @@ namespace Coop
     public class AutoDoor : MonoBehaviour, IMultiSwitchStateListener
     {
         [SerializeField]
-        private Vector3 m_OpenPos;
+        public Vector3 m_OpenPos;
 
         [SerializeField]
-        private Vector3 m_ClosedPos;
+        public Vector3 m_ClosedPos;
 
         [SerializeField]
         private float m_Speed = 5f;

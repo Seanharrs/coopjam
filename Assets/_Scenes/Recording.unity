@@ -1195,6 +1195,26 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 61706393531051372, guid: dec702862a1beb24abcd9fc8fff24f9c,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 61706393531051372, guid: dec702862a1beb24abcd9fc8fff24f9c,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 61706393531051372, guid: dec702862a1beb24abcd9fc8fff24f9c,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 212312832610058094, guid: dec702862a1beb24abcd9fc8fff24f9c,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dec702862a1beb24abcd9fc8fff24f9c, type: 2}
   m_IsPrefabParent: 0
@@ -5892,6 +5912,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  musicPlaylist: []
 --- !u!4 &701155575 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4050022304212642, guid: 91bc2286416b64b449e0c4d78fc6ea00,
@@ -6798,7 +6819,7 @@ Prefab:
     - target: {fileID: 212312832610058094, guid: dec702862a1beb24abcd9fc8fff24f9c,
         type: 2}
       propertyPath: m_SortingOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dec702862a1beb24abcd9fc8fff24f9c, type: 2}
@@ -10177,6 +10198,11 @@ Prefab:
       propertyPath: m_Color.b
       value: 0.8113208
       objectReference: {fileID: 0}
+    - target: {fileID: 212738741394457876, guid: 592858f98f8ae9d4bb8bd3b940c8a25d,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 592858f98f8ae9d4bb8bd3b940c8a25d, type: 2}
   m_IsPrefabParent: 0
@@ -12862,22 +12888,22 @@ Prefab:
     - target: {fileID: 212312832610058094, guid: dec702862a1beb24abcd9fc8fff24f9c,
         type: 2}
       propertyPath: m_Size.x
-      value: 28
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 61706393531051372, guid: dec702862a1beb24abcd9fc8fff24f9c,
         type: 2}
       propertyPath: m_Offset.x
-      value: 14
+      value: 14.5
       objectReference: {fileID: 0}
     - target: {fileID: 61706393531051372, guid: dec702862a1beb24abcd9fc8fff24f9c,
         type: 2}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 28
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 61706393531051372, guid: dec702862a1beb24abcd9fc8fff24f9c,
         type: 2}
       propertyPath: m_Size.x
-      value: 28
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 212312832610058094, guid: dec702862a1beb24abcd9fc8fff24f9c,
         type: 2}
