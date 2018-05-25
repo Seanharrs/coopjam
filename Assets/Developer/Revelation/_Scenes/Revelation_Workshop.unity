@@ -636,7 +636,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  ambientBackgroundSound: {fileID: 0}
   musicPlaylist: []
+  musicWaitTime: 10
 --- !u!4 &860561569
 Transform:
   m_ObjectHideFlags: 0
