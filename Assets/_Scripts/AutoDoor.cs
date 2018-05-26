@@ -20,6 +20,11 @@ namespace Coop
 
         private AudioSource m_AudioSource;
 
+        void Awake()
+        {
+            m_AudioSource = GetComponent<AudioSource>();
+        }
+
         private IEnumerator MoveDoor(Vector3 newPos)
         {
             while(transform.position != newPos)
@@ -34,7 +39,16 @@ namespace Coop
         {
             if(m_OpenSound && m_AudioSource)
             {
-                m_AudioSource.PlayOneShot(m_OpenSound);
+              Debug.Log("Playing door open sound.");
+                m_AudioSource.clip = m_OpenSound;
+                m_AudioSource.loop = false;
+                m_AudioSource.Play();
+
+            } else {
+              if(!m_OpenSound)
+                Debug.LogWarning("Open sound not provided.");
+              if(!m_AudioSource)
+                Debug.LogWarning("AUdiosource not provided.");
             }
             StartCoroutine(MoveDoor(m_OpenPos));
         }
