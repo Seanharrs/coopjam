@@ -6,23 +6,46 @@ using UnityEngine;
 
 namespace Coop 
 {
-  public class LevelGoal : MonoBehaviour {
+	[RequireComponent(typeof (AudioClip))]
+	public class LevelGoal : MonoBehaviour 
+	{
+		[SerializeField]
+        private AudioClip m_OpenSound;
 
-    List<CoopUserControl> overlappedPlayers = new List<CoopUserControl>();
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-      if (other.GetComponent<CoopUserControl>())
-      {
-        if(AddUnique(other.GetComponent<CoopUserControl>()))
+        private AudioSource m_AudioSource;
+		List<CoopUserControl> overlappedPlayers = new List<CoopUserControl>();
+		
+        void Awake()
         {
-          if(CoopGameManager.instance.playerData.Count() == overlappedPlayers.Count())
-          {
-            // Debug.Log("All players overlapping");
-            FindObjectOfType<LevelManager>().LevelComplete();
-          }
+            m_AudioSource = GetComponent<AudioSource>();
         }
-      }
+		
+		void OnTriggerEnter2D(Collider2D other)
+		{
+		  if (other.GetComponent<CoopUserControl>())
+		  {
+			if(AddUnique(other.GetComponent<CoopUserControl>()))
+			{
+			  if(CoopGameManager.instance.playerData.Count() == overlappedPlayers.Count())
+			  {
+				// Debug.Log("All players overlapping");
+				FindObjectOfType<LevelManager>().LevelComplete();
+				if(m_OpenSound && m_AudioSource)
+				{
+				  Debug.Log("Playing door open sound.");
+					m_AudioSource.clip = m_OpenSound;
+					m_AudioSource.loop = false;
+					m_AudioSource.Play();
+
+				} else {
+				  if(!m_OpenSound)
+					Debug.LogWarning("Open sound not provided.");
+				  if(!m_AudioSource)
+					Debug.LogWarning("AUdiosource not provided.");
+				}
+			  }
+			}
+		  }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -40,6 +63,7 @@ namespace Coop
         overlappedPlayers.Add(controller);
         return true;
       }
+	  
       return false;
     }
   }
