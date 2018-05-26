@@ -32,14 +32,14 @@ namespace Coop
     private float lastSwapped = -5;
     public float minSwapIntervalSeconds = .5f;
 
-    internal void SwapPortrait(bool usePreviousInsteadOfNext = false, bool overrideTimeControl = false)
+    internal bool SwapPortrait(bool usePreviousInsteadOfNext = false, bool overrideTimeControl = false)
     {
-      if(isReady) return;
+      if(isReady) return false;
 
       var imageControl = portraitImage; // Why did this happen? -> transform.Find("PortraitImage").GetComponent<Image>();
 
       if (!overrideTimeControl && Time.time - lastSwapped < minSwapIntervalSeconds)
-        return;
+        return false;
 
       lastSwapped = Time.time;
 
@@ -54,6 +54,7 @@ namespace Coop
         imageControl.sprite = menu.GetAvailableSprite(imageControl.sprite, usePreviousInsteadOfNext);
         portraitLabel.text = menu.GetSpriteText(imageControl.sprite);
       }
+      return true;
     }
 
     internal void SetInteractable(bool newEnabled, bool? overrideReadyButton = null)

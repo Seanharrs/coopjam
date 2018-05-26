@@ -4668,6 +4668,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  ambientBackgroundSound: {fileID: 8300000, guid: 36ff8cd9aeee8ed44821caa0eb128e69,
+    type: 3}
+  musicPlaylist:
+  - {fileID: 8300000, guid: c3631734208f6fa4b9ffca1bef271e88, type: 3}
+  musicWaitTime: 10
 --- !u!1 &705269615
 GameObject:
   m_ObjectHideFlags: 0

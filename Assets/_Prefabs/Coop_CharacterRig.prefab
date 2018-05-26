@@ -213,7 +213,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -354108773
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d72a7b83bf434984db02a2161a3a593b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -488,7 +488,8 @@ AudioSource:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243330631847765114, guid: 66e3fec324ff3bd4d8891b4cfa8f802b,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -600,6 +601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlData: {fileID: 11400000, guid: 56d04b6202c4340449f3f14dab4c7949, type: 2}
+  m_HeadSprite: {fileID: 0}
   gun: {fileID: 0}
   gunSocket: {fileID: 1642535746883684}
   armSocket: {fileID: 1843913069083398}
@@ -701,7 +703,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 771169021
-  m_SortingLayer: 3
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f344e98b807028c4a83e810c831c8b3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -746,7 +748,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -354108773
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 0fe256ca2965ab14d91866cfd289f20a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -791,7 +793,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -354108773
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 67407ca4cd36ba0468b0d6e057167ba7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

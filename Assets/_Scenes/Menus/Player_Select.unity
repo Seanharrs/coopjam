@@ -113,6 +113,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &160873142 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114243845137436404, guid: 3401fedc863ad0c4f906d0977869747a,
+    type: 2}
+  m_PrefabInternal: {fileID: 400901832}
+  m_Script: {fileID: 11500000, guid: 9936c3b93ffd17a4e8f26dda41c72d83, type: 3}
 --- !u!224 &373951176 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224386936918724664, guid: 3401fedc863ad0c4f906d0977869747a,
@@ -125,6 +131,76 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 500409083}
     m_Modifications:
+    - target: {fileID: 114943434061735552, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634812609167854, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813362165220944, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114348831792509750, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114570736994815456, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977437152818134, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114887888794497782, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114943434061735552, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634812609167854, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813362165220944, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114348831792509750, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114570736994815456, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977437152818134, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114887888794497782, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224386936918724664, guid: 3401fedc863ad0c4f906d0977869747a,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -220,7 +296,282 @@ Prefab:
       propertyPath: allPlayersReady.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 877546228}
-    m_RemovedComponents: []
+    - target: {fileID: 114200444017574398, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 160873142}
+    - target: {fileID: 114200444017574398, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayNavigateSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 114200444017574398, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114943434061735552, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].eventID
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114943434061735552, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 160873142}
+    - target: {fileID: 114943434061735552, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayNavigateSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 114943434061735552, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114943434061735552, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114943434061735552, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114943434061735552, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_TypeName
+      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634812609167854, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].eventID
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634812609167854, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 160873142}
+    - target: {fileID: 114634812609167854, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayNavigateSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634812609167854, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634812609167854, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634812609167854, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114634812609167854, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_TypeName
+      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813362165220944, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].eventID
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813362165220944, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 160873142}
+    - target: {fileID: 114813362165220944, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayNavigateSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813362165220944, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813362165220944, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813362165220944, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813362165220944, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_TypeName
+      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114348831792509750, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].eventID
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114348831792509750, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 160873142}
+    - target: {fileID: 114348831792509750, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayNavigateSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 114348831792509750, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114348831792509750, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114348831792509750, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114348831792509750, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_TypeName
+      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114570736994815456, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].eventID
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114570736994815456, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 160873142}
+    - target: {fileID: 114570736994815456, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayNavigateSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 114570736994815456, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114570736994815456, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114570736994815456, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114570736994815456, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_TypeName
+      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977437152818134, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].eventID
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977437152818134, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 160873142}
+    - target: {fileID: 114977437152818134, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayNavigateSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977437152818134, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977437152818134, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977437152818134, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114977437152818134, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_TypeName
+      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 114887888794497782, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].eventID
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114887888794497782, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 160873142}
+    - target: {fileID: 114887888794497782, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayNavigateSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 114887888794497782, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114887888794497782, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114887888794497782, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114887888794497782, guid: 3401fedc863ad0c4f906d0977869747a,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_TypeName
+      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114348831792509750, guid: 3401fedc863ad0c4f906d0977869747a, type: 2}
+    - {fileID: 114943434061735552, guid: 3401fedc863ad0c4f906d0977869747a, type: 2}
+    - {fileID: 114200444017574398, guid: 3401fedc863ad0c4f906d0977869747a, type: 2}
+    - {fileID: 114634812609167854, guid: 3401fedc863ad0c4f906d0977869747a, type: 2}
+    - {fileID: 114977437152818134, guid: 3401fedc863ad0c4f906d0977869747a, type: 2}
+    - {fileID: 114887888794497782, guid: 3401fedc863ad0c4f906d0977869747a, type: 2}
+    - {fileID: 114570736994815456, guid: 3401fedc863ad0c4f906d0977869747a, type: 2}
+    - {fileID: 114813362165220944, guid: 3401fedc863ad0c4f906d0977869747a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3401fedc863ad0c4f906d0977869747a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &500409079

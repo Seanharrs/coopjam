@@ -35,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4593984622695586}
   - component: {fileID: 114068677599390282}
+  - component: {fileID: 82359790893678644}
   m_Layer: 0
   m_Name: Gun_Teleportation
   m_TagString: Untagged
@@ -99,6 +100,102 @@ Transform:
   m_Father: {fileID: 4373479350113452}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82359790893678644
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816830008398728}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243830433636165728, guid: 66e3fec324ff3bd4d8891b4cfa8f802b,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.75
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114068677599390282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,11 +208,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GunName: Teleport Gun
-  m_FiringRate: 1
+  m_FiringRate: 2
   PrimaryAmmoType: {fileID: 114504196913111740, guid: cd8c0257bdc494c47b2ef9c9b5d1968b,
     type: 2}
+  m_PrimaryAmmoFireSound: {fileID: 8300000, guid: 75c94404666f68d41a4ece537d54d266,
+    type: 3}
   SecondaryAmmoType: {fileID: 114504196913111740, guid: cd8c0257bdc494c47b2ef9c9b5d1968b,
     type: 2}
+  m_SecondaryAmmoFireSound: {fileID: 8300000, guid: 507988971a8e65d4bbb80a6552e9519d,
+    type: 3}
   portraitSprite: {fileID: 21300000, guid: 68fb3c297bf592949a2ed62a02e4686e, type: 3}
   AmmoSpawnLocation: {fileID: 4892645719443972}
   m_TargetLocationPrefab: {fileID: 1476343525668068, guid: 6bc9e377c590c8348a185767a468af73,

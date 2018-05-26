@@ -12,6 +12,12 @@ namespace Coop
     [SerializeField]
     [Tooltip("How powerful is the EM field?")]
     private int m_ForceAmount;
+    [SerializeField]
+    [Tooltip("Primary weapon particle system prefab.")]
+    private ParticleSystem primaryParticleSystem;
+    [SerializeField]
+    [Tooltip("Secondary weapon particle system prefab.")]
+    private ParticleSystem secondaryParticleSystem;
 
     private List<Electromagnetic> m_MagnetizedObjects = new List<Electromagnetic>();
     private List<Electrostatic> m_InterruptedObjects = new List<Electrostatic>();
@@ -45,9 +51,56 @@ namespace Coop
     {
       if (m_CurrentFiringState == FiringState.Primary || m_CurrentFiringState == FiringState.Secondary) return null;
       
+      ParticleSystem ps1; 
+      ParticleSystem.MainModule main1;
+      ParticleSystem ps2;
+      ParticleSystem.MainModule main2;
+
+      var owningPlayer = GetComponentInParent<CoopCharacter2D>().transform;
+
+      switch(weapType)
+      {
+        case FiringState.Primary:
+          ps1 = Instantiate(primaryParticleSystem, AmmoSpawnLocation.position, Quaternion.identity);
+          main1 = ps1.main;
+          main1.scalingMode = ParticleSystemScalingMode.Hierarchy;
+          ps1.transform.SetParent(AmmoSpawnLocation);
+          ps1.transform.rotation = AmmoSpawnLocation.rotation;
+          ps1.transform.localScale = ps1.transform.localScale * (Mathf.Sign(owningPlayer.localScale.x) * m_EmDistance / 7.5f);
+          
+          ps2 = ps1.GetComponentsInChildren<ParticleSystem>()[1];
+          main2 = ps2.main;
+          main2.scalingMode = ParticleSystemScalingMode.Hierarchy;
+          //ps2.transform.SetParent(ps1.transform);
+
+          Debug.Log("Initiating sound: " + m_SecondaryAmmoFireSound.name);
+          m_AudioSource.clip = m_PrimaryAmmoFireSound;
+          m_AudioSource.loop = true;
+          m_AudioSource.Play();
+          break;
+        case FiringState.Secondary:
+          ps1 = Instantiate(secondaryParticleSystem, AmmoSpawnLocation.position, Quaternion.identity);
+          main1 = ps1.main;
+          main1.scalingMode = ParticleSystemScalingMode.Hierarchy;
+          ps1.transform.SetParent(AmmoSpawnLocation);
+          ps1.transform.rotation = AmmoSpawnLocation.rotation;
+          ps1.transform.localScale = ps1.transform.localScale * (Mathf.Sign(owningPlayer.localScale.x) * m_EmDistance / 7.5f);
+          
+          ps2 = ps1.GetComponentsInChildren<ParticleSystem>()[1];
+          main2 = ps2.main;
+          main2.scalingMode = ParticleSystemScalingMode.Hierarchy;
+          //ps2.transform.SetParent(ps1.transform);
+
+          Debug.Log("Initiating sound: " + m_SecondaryAmmoFireSound.name);
+          m_AudioSource.clip = m_SecondaryAmmoFireSound;
+          m_AudioSource.loop = true;
+          m_AudioSource.Play();
+          break;
+      }
+
       m_CurrentFiringState = weapType;
       
-      Debug.Log("Firing EM gun.");
+      // Debug.Log("Firing EM gun.");
       m_IsFiring = true;
 
       GetInitialEMObjects(weapType);
@@ -106,7 +159,16 @@ namespace Coop
 
     public override void StopFiring()
     {
-      Debug.Log("Stopped firing EM gun.");
+
+      m_AudioSource.Stop();
+
+      var particleSystem = AmmoSpawnLocation.GetChild(0);
+      if(particleSystem)
+      {
+        Destroy(particleSystem.gameObject);
+      }
+
+      // Debug.Log("Stopped firing EM gun.");
       m_IsFiring = false;
       foreach (var obj in m_MagnetizedObjects)
       {
@@ -173,7 +235,10 @@ namespace Coop
         {
           var obj = m_MagnetizedObjects[i-1];
 
-          if(!m_ResultObjects.Contains(obj.gameObject)) { m_MagnetizedObjects.Remove(obj); }
+          if(!m_ResultObjects.Contains(obj.gameObject)) { 
+            StopMagneticEffect(obj);
+            m_MagnetizedObjects.Remove(obj); 
+          }
           var rb = obj.GetComponent<Rigidbody2D>();
           if(!rb) return;
           var direction = AmmoSpawnLocation.right * Mathf.Sign(AmmoSpawnLocation.lossyScale.x);
@@ -183,7 +248,10 @@ namespace Coop
         for(var i = m_InterruptedObjects.Count; i > 0; i--)
         {
           var obj = m_InterruptedObjects[i -1];
-          if(!m_ResultObjects.Contains(obj.gameObject)) { m_InterruptedObjects.Remove(obj); }
+          if(!m_ResultObjects.Contains(obj.gameObject)) { 
+            StopInterruptEffect(obj);
+            m_InterruptedObjects.Remove(obj); 
+          }
         }
       }
     }

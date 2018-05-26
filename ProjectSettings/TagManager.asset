@@ -19,7 +19,7 @@ TagManager:
   - Characters
   - Projectiles
   - LaserBeams
-  - 
+  - Decals
   - 
   - 
   - 
@@ -60,4 +60,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 771169021
+    locked: 0
+  - name: Decals
+    uniqueID: 3239378423
     locked: 0

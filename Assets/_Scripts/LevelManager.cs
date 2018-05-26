@@ -37,6 +37,14 @@ namespace Coop {
     [SerializeField]
     internal UnityEvent m_LevelCompleted;
 
+    [SerializeField]
+    internal AudioClip ambientBackgroundSound;
+    [SerializeField]
+    internal List<AudioClip> musicPlaylist;
+    [SerializeField]
+    [Tooltip("Time in seconds between the end of a playlist item and the beginning of the next. (Default 10 seconds.)")]
+    internal float musicWaitTime = 10f;
+
     internal MultiplayerFollow m_Cam;
 
     private static LevelManager m_Instance;

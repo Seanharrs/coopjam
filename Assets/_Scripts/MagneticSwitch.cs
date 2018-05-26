@@ -25,6 +25,7 @@ namespace Coop
 
     public void OnStartCharge(Gun gun, FiringState weaponType)
     {
+      if(!canPlayerAffect) return;
       if(position == CircuitState.Off && weaponType == FiringState.Primary)
       {
         m_Animator.SetTrigger("OnPositive");
@@ -41,6 +42,7 @@ namespace Coop
 
     public void OnStopCharge(Gun gun, FiringState weaponType)
     {
+      if(!canPlayerAffect) return;
       if(position == CircuitState.Positive && weaponType == FiringState.Primary
       || position == CircuitState.Negative && weaponType == FiringState.Secondary)
       {
