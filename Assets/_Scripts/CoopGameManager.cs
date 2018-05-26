@@ -127,7 +127,6 @@ namespace Coop
         }
 
         m_AudioMixer.FindSnapshot("FadedOut").TransitionTo(0f);
-        Debug.Log("Should have transitioned to FadedOut");
 
       }
       else
@@ -204,7 +203,7 @@ namespace Coop
 
     private void PlayNextClip()
     {
-      if (m_LevelManager.musicPlaylist.Count > 0)
+      if (m_LevelManager && m_LevelManager.musicPlaylist.Count > 0)
       {
         m_MusicIndex = (m_MusicIndex + 1) % m_LevelManager.musicPlaylist.Count;
         musicAudioSource.clip = m_LevelManager.musicPlaylist[m_MusicIndex];

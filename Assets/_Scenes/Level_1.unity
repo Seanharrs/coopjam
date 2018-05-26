@@ -20197,44 +20197,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42399713f87902142bb45552dad922d7, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1241280403 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1931110152801516, guid: e1efc580779646d42b01d0cf82010889,
-    type: 2}
-  m_PrefabInternal: {fileID: 834002424}
---- !u!114 &1241280405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1241280403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83acebcab0a3b504d858d8e111eb0ab0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnStartCharge:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 358010298}
-        m_MethodName: TurnOff
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnStopCharge:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  canInterrupt: 1
 --- !u!1001 &1249661132
 Prefab:
   m_ObjectHideFlags: 0
@@ -22160,7 +22122,7 @@ Prefab:
     - target: {fileID: 114774611298822726, guid: 9a4045af2012efa458bc3ff206d63021,
         type: 2}
       propertyPath: m_OnStateChanged_Off.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114774611298822726, guid: 9a4045af2012efa458bc3ff206d63021,
         type: 2}
@@ -28162,44 +28124,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!1 &1766911869 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1874490199375744, guid: e1efc580779646d42b01d0cf82010889,
-    type: 2}
-  m_PrefabInternal: {fileID: 834002424}
---- !u!114 &1766911870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1766911869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83acebcab0a3b504d858d8e111eb0ab0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnStartCharge:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 358010298}
-        m_MethodName: TurnOff
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnStopCharge:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  canInterrupt: 1
 --- !u!1001 &1767072390
 Prefab:
   m_ObjectHideFlags: 0

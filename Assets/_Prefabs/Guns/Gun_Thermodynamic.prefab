@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GunName: Thermo-gun
-  m_FiringRate: 1
+  m_FiringRate: 3
   PrimaryAmmoType: {fileID: 114127978659472064, guid: 226c165041cdfa34787c1ced6047d1bb,
     type: 2}
   m_PrimaryAmmoFireSound: {fileID: 8300000, guid: d4377fca153d07b4c83b4dec1bc983db,

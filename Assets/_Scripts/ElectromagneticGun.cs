@@ -65,6 +65,7 @@ namespace Coop
           main1 = ps1.main;
           main1.scalingMode = ParticleSystemScalingMode.Hierarchy;
           ps1.transform.SetParent(AmmoSpawnLocation);
+          ps1.transform.rotation = AmmoSpawnLocation.rotation;
           ps1.transform.localScale = ps1.transform.localScale * (Mathf.Sign(owningPlayer.localScale.x) * m_EmDistance / 7.5f);
           
           ps2 = ps1.GetComponentsInChildren<ParticleSystem>()[1];
@@ -82,6 +83,7 @@ namespace Coop
           main1 = ps1.main;
           main1.scalingMode = ParticleSystemScalingMode.Hierarchy;
           ps1.transform.SetParent(AmmoSpawnLocation);
+          ps1.transform.rotation = AmmoSpawnLocation.rotation;
           ps1.transform.localScale = ps1.transform.localScale * (Mathf.Sign(owningPlayer.localScale.x) * m_EmDistance / 7.5f);
           
           ps2 = ps1.GetComponentsInChildren<ParticleSystem>()[1];
