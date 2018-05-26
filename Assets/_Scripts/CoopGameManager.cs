@@ -52,7 +52,11 @@ namespace Coop
 
 #endif
 
-    internal static CoopGameManager instance;
+    internal static CoopGameManager m_Instance;
+    internal static CoopGameManager instance
+    {
+      get { return m_Instance; }
+    }
 
     internal static string nextLevelOverride;
 
@@ -93,7 +97,7 @@ namespace Coop
         Destroy(this.gameObject);
         return;
       }
-      instance = this;
+      m_Instance = this;
       DontDestroyOnLoad(this);
 
       // Ensure existence of AudioSources.
@@ -142,7 +146,9 @@ namespace Coop
     /// </summary>
     void Update()
     {
-      if (m_LevelManager && m_LevelManager.musicPlaylist.Count > 0 && musicAudioSource)
+      if(!m_LevelManager) return;
+
+      if (m_LevelManager.musicPlaylist.Count > 0 && musicAudioSource)
       {
         if (!musicAudioSource.isPlaying && (Time.time - m_LastMusicPlayTime) > m_LevelManager.musicWaitTime)
         {
@@ -160,7 +166,10 @@ namespace Coop
 
       // TODO: This wont help with the menu scenes unless we implement level manager to work with them as well.
       m_LevelManager = FindObjectOfType<LevelManager>();
-      if (m_LevelManager == null) ShowMessage("LevelManager required.", 2f, true);
+      if (m_LevelManager == null) {
+        ShowMessage("LevelManager required.", 2f, true);
+        return;
+      }
 
       // TODO: Fade in visual
 
@@ -174,8 +183,11 @@ namespace Coop
         m_AudioMixer.FindSnapshot("Music0Ambient100").TransitionTo(2f);
       }
 
-      m_MusicIndex = -1;
-      PlayNextClip();
+      if(m_LevelManager)
+      {
+        m_MusicIndex = -1;
+        PlayNextClip();
+      }
 
       var spawnPoints = FindObjectsOfType<SpawnPoint>();
       if (spawnPoints.Count() < playerData.Count())

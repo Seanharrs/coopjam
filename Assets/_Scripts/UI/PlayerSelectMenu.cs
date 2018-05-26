@@ -23,6 +23,9 @@ namespace Coop
 
     private Dictionary<PlayerControlData, PlayerSelectControl> playerControlsMap = new Dictionary<PlayerControlData, PlayerSelectControl>();
 
+    public AudioClip m_SFX_MenuNavigate;
+    public AudioClip m_SFX_MenuConfirm;
+
     internal Sprite GetAvailableSprite(Sprite currentSprite, bool usePreviousInsteadOfNext)
     {
       if (availablePortraits.Count == 0) return null;
@@ -47,6 +50,15 @@ namespace Coop
       }
     }
 
+    public void PlayNavigateSound()
+    {
+      CoopGameManager.instance.ambientAudioSource.PlayOneShot(m_SFX_MenuNavigate);
+    }
+    public void PlayConfirmSound()
+    {
+      CoopGameManager.instance.ambientAudioSource.PlayOneShot(m_SFX_MenuConfirm);
+    }
+
     internal string GetSpriteText(Sprite sprite)
     {
       return CoopGameManager.instance.allGuns.Find(g => g.portraitSprite == sprite).GunName;
@@ -66,6 +78,12 @@ namespace Coop
         selectControl.rightButton.onClick.AddListener(delegate { RightButton_Click(selectControl); });
         selectControl.readyButton.onClick.AddListener(delegate { ReadyButton_Click(selectControl); });
       }
+    }
+
+    void Start()
+    {
+        var snap = CoopGameManager.instance.m_AudioMixer.FindSnapshot("MainMenu");
+        snap.TransitionTo(1.5f); 
     }
 
     void Update()
@@ -92,11 +110,17 @@ namespace Coop
           }
           if (Input.GetAxis(controller.horizontalAxis) < 0) // Left
           {
-            GetUIControlFor(controller).SwapPortrait(true); // previous
+            if(GetUIControlFor(controller).SwapPortrait(true)) // previous
+            {
+              PlayNavigateSound();
+            }
           }
           else if (Input.GetAxis(controller.horizontalAxis) > 0) // Right
           {
-            GetUIControlFor(controller).SwapPortrait(false); // next
+            if(GetUIControlFor(controller).SwapPortrait(false)) // next
+            {
+              PlayNavigateSound();
+            }
           }
           else if (Input.GetButtonDown(controller.submitButton))
           {
@@ -135,6 +159,7 @@ namespace Coop
         {
           playerControlsMap.Add(controller, uiControl);
           uiControl.SetInteractable(true);
+          PlayNavigateSound();
           uiControl.SwapPortrait();
           uiControl.Label = controller.controllerName;
           return true;
@@ -179,15 +204,23 @@ namespace Coop
 
     void LeftButton_Click(PlayerSelectControl uiControl)
     {
-      uiControl.SwapPortrait(true); // previous
+      
+      if(uiControl.SwapPortrait(true)) // previous
+      {
+        PlayNavigateSound();
+      }
     }
     void RightButton_Click(PlayerSelectControl uiControl)
     {
-      uiControl.SwapPortrait(false); // next
+      if(uiControl.SwapPortrait(false)) // next
+      {
+        PlayNavigateSound();
+      }
     }
     void ReadyButton_Click(PlayerSelectControl uiControl)
     {
       // enable/disable controls for clicking
+      PlayConfirmSound();
       uiControl.ToggleReady();
 
       if (uiControl.isReady)

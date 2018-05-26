@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Coop
 {
+    [RequireComponent(typeof (AudioClip))]
     public class AutoDoor : MonoBehaviour, IMultiSwitchStateListener
     {
         [SerializeField]
@@ -13,6 +14,11 @@ namespace Coop
 
         [SerializeField]
         private float m_Speed = 5f;
+
+        [SerializeField]
+        private AudioClip m_OpenSound;
+
+        private AudioSource m_AudioSource;
 
         private IEnumerator MoveDoor(Vector3 newPos)
         {
@@ -26,6 +32,10 @@ namespace Coop
         
         public void OpenDoor()
         {
+            if(m_OpenSound && m_AudioSource)
+            {
+                m_AudioSource.PlayOneShot(m_OpenSound);
+            }
             StartCoroutine(MoveDoor(m_OpenPos));
         }
 
