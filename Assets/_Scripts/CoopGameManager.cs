@@ -109,7 +109,7 @@ namespace Coop
           try
           {
             ambientAudioSource = instance.gameObject.AddComponent<AudioSource>();
-            ambientAudioSource.outputAudioMixerGroup = m_AudioMixer.FindMatchingGroups("Ambience")[0];
+            ambientAudioSource.outputAudioMixerGroup = m_AudioMixer.FindMatchingGroups("SpaceShip Ambiance")[0];
           }
           catch
           {
