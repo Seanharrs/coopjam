@@ -57,12 +57,13 @@ namespace Coop
       if(m_TargetLocationObject == null)
         m_TargetLocationObject = Instantiate(m_TargetLocationPrefab, targetLocation, Quaternion.identity);
       else
-        m_TargetLocationObject.transform.position = targetLocation;
-
-      //for(var i = 0; i < m_NumCollisionPasses; i++)
       {
-        AdjustForCollisions(m_TargetLocationObject.GetComponent<BoxCollider2D>());
+        m_TargetLocationObject.transform.position = targetLocation;
+        m_TargetLocationObject.GetComponent<AudioSource>().Play();
       }
+
+      AdjustForCollisions(m_TargetLocationObject.GetComponent<BoxCollider2D>());
+
       TryCompleteTeleport();
     }
 
