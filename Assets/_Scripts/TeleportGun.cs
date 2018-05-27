@@ -13,6 +13,8 @@ namespace Coop
     private GameObject m_TargetLocationPrefab;
     [SerializeField]
     private int m_NumCollisionPasses = 3;
+	
+
 
     // The thing that will be teleported.
     private GameObject m_TargetObject;

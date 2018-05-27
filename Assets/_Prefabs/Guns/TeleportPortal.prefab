@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 198078021291786696}
   - component: {fileID: 199201295998239862}
   - component: {fileID: 61882336335441454}
-  - component: {fileID: 82506129958598850}
+  - component: {fileID: 82378346431148514}
   m_Layer: 11
   m_Name: TeleportPortal
   m_TagString: Untagged
@@ -70,7 +70,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.4, y: 1.56}
   m_EdgeRadius: 0
---- !u!82 &82506129958598850
+--- !u!82 &82378346431148514
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -78,22 +78,22 @@ AudioSource:
   m_GameObject: {fileID: 1476343525668068}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243330631847765114, guid: 66e3fec324ff3bd4d8891b4cfa8f802b,
+  OutputAudioMixerGroup: {fileID: 243830433636165728, guid: 66e3fec324ff3bd4d8891b4cfa8f802b,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: a9a29a6d9aa4ec84dbaffea76536e29b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8a2e184c2d59fc249af8f4613bc32b2a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 4000
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -126,7 +126,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
