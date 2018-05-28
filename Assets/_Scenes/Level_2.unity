@@ -168,6 +168,20 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 82054212776527220, guid: e1efc580779646d42b01d0cf82010889,
+        type: 2}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 243125031160466832, guid: 66e3fec324ff3bd4d8891b4cfa8f802b,
+        type: 2}
+    - target: {fileID: 4329996029980374, guid: e1efc580779646d42b01d0cf82010889, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329996029980374, guid: e1efc580779646d42b01d0cf82010889, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1efc580779646d42b01d0cf82010889, type: 2}
   m_IsPrefabParent: 0
@@ -7276,7 +7290,7 @@ MonoBehaviour:
   ambientBackgroundSound: {fileID: 8300000, guid: 01e46ec6547bbd049907e4539efcd6c7,
     type: 3}
   musicPlaylist:
-  - {fileID: 8300000, guid: c3631734208f6fa4b9ffca1bef271e88, type: 3}
+  - {fileID: 8300000, guid: 36ff8cd9aeee8ed44821caa0eb128e69, type: 3}
   musicWaitTime: 10
 --- !u!1001 &698952901
 Prefab:
@@ -8491,20 +8505,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 212879705858527312, guid: 48446ff332be4cd46a32ff1a39169271,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 1016890119
-      objectReference: {fileID: 0}
-    - target: {fileID: 212879705858527312, guid: 48446ff332be4cd46a32ff1a39169271,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1937217577025380, guid: 48446ff332be4cd46a32ff1a39169271, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 48446ff332be4cd46a32ff1a39169271, type: 2}
   m_IsPrefabParent: 0
@@ -9065,27 +9065,6 @@ Prefab:
     - target: {fileID: 4272015298764948, guid: 9a3b7efc88549b94db99cc1b3268aa6b, type: 2}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 212153673466282822, guid: 9a3b7efc88549b94db99cc1b3268aa6b,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 1016890119
-      objectReference: {fileID: 0}
-    - target: {fileID: 212153673466282822, guid: 9a3b7efc88549b94db99cc1b3268aa6b,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 212153673466282822, guid: 9a3b7efc88549b94db99cc1b3268aa6b,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300002, guid: d8920effa9952fd498ee035c1b81d117,
-        type: 3}
-    - target: {fileID: 212153673466282822, guid: 9a3b7efc88549b94db99cc1b3268aa6b,
-        type: 2}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1938350717567586, guid: 9a3b7efc88549b94db99cc1b3268aa6b, type: 2}
       propertyPath: m_Name
@@ -11584,26 +11563,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 4367935667662554, guid: e1efc580779646d42b01d0cf82010889, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4185972672818168, guid: e1efc580779646d42b01d0cf82010889, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4185972672818168, guid: e1efc580779646d42b01d0cf82010889, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 3.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4329996029980374, guid: e1efc580779646d42b01d0cf82010889, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4329996029980374, guid: e1efc580779646d42b01d0cf82010889, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1efc580779646d42b01d0cf82010889, type: 2}
   m_IsPrefabParent: 0
@@ -13105,27 +13064,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 212153673466282822, guid: 9a3b7efc88549b94db99cc1b3268aa6b,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 1016890119
-      objectReference: {fileID: 0}
-    - target: {fileID: 212153673466282822, guid: 9a3b7efc88549b94db99cc1b3268aa6b,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 212153673466282822, guid: 9a3b7efc88549b94db99cc1b3268aa6b,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300002, guid: d8920effa9952fd498ee035c1b81d117,
-        type: 3}
-    - target: {fileID: 212153673466282822, guid: 9a3b7efc88549b94db99cc1b3268aa6b,
-        type: 2}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1938350717567586, guid: 9a3b7efc88549b94db99cc1b3268aa6b, type: 2}
       propertyPath: m_Name
       value: Checkpoint (2)
@@ -13877,6 +13815,12 @@ Prefab:
       propertyPath: m_OpenPos.y
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 82014884115863290, guid: 4009c2b570050924b99662b491eed449,
+        type: 2}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 243848761974516638, guid: 66e3fec324ff3bd4d8891b4cfa8f802b,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4009c2b570050924b99662b491eed449, type: 2}
   m_IsPrefabParent: 0
@@ -15711,43 +15655,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 4976190330296550, guid: 4009c2b570050924b99662b491eed449, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 212868984117171986, guid: 4009c2b570050924b99662b491eed449,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
-        type: 2}
-      propertyPath: m_OpenPos.x
-      value: 80.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
-        type: 2}
-      propertyPath: m_OpenPos.y
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
-        type: 2}
-      propertyPath: m_ClosedPos.x
-      value: 84.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759654551702614, guid: 4009c2b570050924b99662b491eed449,
-        type: 2}
-      propertyPath: m_ClosedPos.y
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 4976190330296550, guid: 4009c2b570050924b99662b491eed449, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4976190330296550, guid: 4009c2b570050924b99662b491eed449, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4009c2b570050924b99662b491eed449, type: 2}
   m_IsPrefabParent: 0
@@ -17524,6 +17431,12 @@ Prefab:
       propertyPath: m_Name
       value: Adjustable Deadly Laser (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 82054212776527220, guid: e1efc580779646d42b01d0cf82010889,
+        type: 2}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 243125031160466832, guid: 66e3fec324ff3bd4d8891b4cfa8f802b,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1efc580779646d42b01d0cf82010889, type: 2}
   m_IsPrefabParent: 0

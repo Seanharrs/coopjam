@@ -82,8 +82,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1938350717567586}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 8, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4681834928870740}
@@ -137,9 +137,10 @@ AudioSource:
   m_GameObject: {fileID: 1938350717567586}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243273720468988118, guid: 66e3fec324ff3bd4d8891b4cfa8f802b,
+    type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -147,11 +148,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 3.75
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 35
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -184,7 +185,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -264,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnAtPoint: {fileID: 4681834928870740}
   m_ParticleSystem: {fileID: 198320044923674612}
-  m_Sound_TurnOn: {fileID: 8300000, guid: 3b0baf41b0a1af8469c5c4738815c4b0, type: 3}
+  m_Sound_TurnOn: {fileID: 8300000, guid: c41e3194374801442a4482cf47686198, type: 3}
   m_Sound_ConstantOn: {fileID: 8300000, guid: ca885ed1d9fb6014494300ee31266e66, type: 3}
 --- !u!198 &198320044923674612
 ParticleSystem:
