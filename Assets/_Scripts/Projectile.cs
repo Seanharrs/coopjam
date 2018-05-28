@@ -34,6 +34,22 @@ namespace Coop
     public virtual void Initiate(Vector2 direction, Gun gun, FiringState type = FiringState.Primary, Vector2? target = null)
     {
       GetComponent<Rigidbody2D>().velocity = direction * m_ProjectileSpeed;
+      transform.localRotation = Quaternion.Euler(0, 0, Quaternion.LookRotation(-direction.normalized).eulerAngles.x);
+      if(Mathf.Sign(gun.GetComponentInParent<CoopCharacter2D>().transform.lossyScale.x) < 0)
+      {
+        Debug.Log("Reversed/flipped.");
+        var rot = transform.localRotation.eulerAngles;
+        rot.z += 180;
+        transform.localRotation = Quaternion.Inverse(Quaternion.Euler(rot));
+      }
+      // var systems = GetComponentsInChildren<ParticleSystem>();
+      // foreach(var ps in systems) {
+      //   //var m = ps.main;
+      //   ps.
+      //   Debug.Log("Set rotation to: " + ps.transform.rotation.eulerAngles);
+
+      //   ps.Play();
+      // }
       m_OwnerGun = gun;
       m_Type = type;
 
