@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 4842051282878908}
   - component: {fileID: 212897239166562686}
   - component: {fileID: 61871654482203464}
+  - component: {fileID: 114232401203518048}
   m_Layer: 0
   m_Name: BottomEmitter
   m_TagString: Untagged
@@ -74,6 +75,7 @@ GameObject:
   - component: {fileID: 4329996029980374}
   - component: {fileID: 212820719334825392}
   - component: {fileID: 61821941932726082}
+  - component: {fileID: 114512381165922926}
   m_Layer: 0
   m_Name: TopEmitter
   m_TagString: Untagged
@@ -88,8 +90,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1256376065886970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
+  m_LocalScale: {x: 1, y: 3.25, z: 1}
   m_Children: []
   m_Father: {fileID: 4367935667662554}
   m_RootOrder: 0
@@ -101,7 +103,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1931110152801516}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4367935667662554}
@@ -113,8 +115,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1003616347699808}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 62, y: 12, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.70710677, w: 0.7071068}
+  m_LocalPosition: {x: 22, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4185972672818168}
@@ -122,7 +124,7 @@ Transform:
   - {fileID: 4329996029980374}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.00001}
 --- !u!4 &4842051282878908
 Transform:
   m_ObjectHideFlags: 1
@@ -170,7 +172,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.525}
@@ -195,7 +197,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.525}
@@ -219,7 +221,7 @@ AudioSource:
   m_GameObject: {fileID: 1256376065886970}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243330631847765114, guid: 66e3fec324ff3bd4d8891b4cfa8f802b,
+  OutputAudioMixerGroup: {fileID: 243125031160466832, guid: 66e3fec324ff3bd4d8891b4cfa8f802b,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 3ed862c32f678a24b8931d0412419b75, type: 3}
   m_PlayOnAwake: 1
@@ -231,10 +233,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 50
+  MinDistance: 0
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -321,6 +323,39 @@ MonoBehaviour:
   autoAdjust: 1
   topEmitter: {fileID: 1931110152801516}
   bottomEmitter: {fileID: 1874490199375744}
+--- !u!114 &114232401203518048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1874490199375744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83acebcab0a3b504d858d8e111eb0ab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnStartCharge:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114369949079082524}
+        m_MethodName: TurnOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnStopCharge:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  canInterrupt: 1
 --- !u!114 &114266344782294772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -343,6 +378,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf942576183aee409fcb80c1e7de368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114512381165922926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1931110152801516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83acebcab0a3b504d858d8e111eb0ab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnStartCharge:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114369949079082524}
+        m_MethodName: TurnOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnStopCharge:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Coop.ProjectileEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  canInterrupt: 1
 --- !u!212 &212446826160864818
 SpriteRenderer:
   m_ObjectHideFlags: 1

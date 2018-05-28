@@ -39,7 +39,7 @@ namespace Coop
         {
             if(m_OpenSound && m_AudioSource)
             {
-              Debug.Log("Playing door open sound.");
+              Debug.Log("Playing door open sound. [AutoDoor > " + name + "] (" + Time.time + ")");
                 m_AudioSource.clip = m_OpenSound;
                 m_AudioSource.loop = false;
                 m_AudioSource.Play();
