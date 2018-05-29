@@ -194,8 +194,6 @@ namespace Coop
 
 			if(constrainAxisY)
 				yMin = camPos.y - vertLength + objBounds.y;
-			else if(Mathf.Abs(pos.y - camPos.y) > vertLength)
-				m_ZoomStates[m_ZoomStates.Count - 1] = Zoom.Out;
 
 			pos.y = Mathf.Clamp(pos.y, pos.y, yMax);
 
