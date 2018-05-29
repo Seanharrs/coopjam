@@ -22,7 +22,6 @@ namespace Coop
 
 		public void TurnOff()
 		{
-			m_AlertTimeLeft = 0f;
 			GetComponent<BoxCollider2D>().enabled = false;
 			GetComponent<SpriteRenderer>().enabled = false;
 		}
