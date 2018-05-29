@@ -28,14 +28,12 @@ namespace Coop
       if(!obj) return null;
       if (PrefabUtility.GetPrefabType(obj) == PrefabType.Prefab)
       {
-        Debug.Log(obj.name + ": Selected a prefab.");
         currentPrefab = obj;
 
         return obj;
       }
       else
       {
-        Debug.LogWarning(obj.name + ": Not a prefab.");
         return null;
       }
     }

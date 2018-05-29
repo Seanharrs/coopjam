@@ -17,6 +17,7 @@ namespace Coop
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     const float k_GroundedRadius = .25f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded = false;            // Whether or not the player is grounded.
+    private Rigidbody2D m_GroundRigidBody;
     private bool m_Jumping = false;
     private bool m_Falling = false;
 
@@ -47,6 +48,7 @@ namespace Coop
     private LayerMask m_SlopeMask;
     private bool m_SlipperySlope = false;
     private GameObject debug_GroundObject; // TODO: Remove.
+    private BezierWalk platformParent;
 
     private bool IsOnSlope 
     {
@@ -101,7 +103,7 @@ namespace Coop
       hits[0] = Physics2D.Raycast((Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius) + (Vector2.right * Mathf.Sign(transform.localScale.x) * m_CircleCollider.radius), Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
       hits[1] = Physics2D.Raycast((Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius) - (Vector2.right * Mathf.Sign(transform.localScale.x) * m_CircleCollider.radius), Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
       hits[2] = Physics2D.Raycast((Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius), Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
-      if (hits[0] && hits[0].collider.sharedMaterial != null && hits[0].collider.sharedMaterial == slipperySlopeMaterial)
+      if (hits[0] && !hits[0].collider.isTrigger && hits[0].collider.sharedMaterial != null && hits[0].collider.sharedMaterial == slipperySlopeMaterial)
         m_SlipperySlope = true;
       else
         m_SlipperySlope = false;
@@ -112,7 +114,9 @@ namespace Coop
       int hitCount = 0;
       foreach(var hit in hits)
       {
-        if(!hit) continue;
+        if(!hit || !hit.collider.isTrigger) continue;
+        var rb = hit.collider.GetComponent<Rigidbody2D>();
+        if (rb && !m_GroundRigidBody) m_GroundRigidBody = rb;
         sumSlopes += Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg - 90;
         sumNormals += hit.normal;
         hitCount++;
@@ -195,10 +199,34 @@ namespace Coop
         // Move the character
         if (m_Slope > 15 && m_Slope < 90 && !(m_Jumping || m_Falling))
         {
+          Debug.Log("applying slope velocity.");
           m_Rigidbody2D.velocity = move * m_MaxSpeed * m_SlopePerpendicular;
         }
         else
           m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
+
+        // TODO: Move with ground if ground is moving (do dynamic/kinematic a.k.a. "not static" check)
+        //if(m_GroundRigidBody)
+        //{
+        //  Debug.Log("Ground has a rigidbody: " + m_GroundRigidBody.name);
+        //  if(m_GroundRigidBody.bodyType != RigidbodyType2D.Static)
+        //  {
+        //    var startVelocity = m_Rigidbody2D.velocity;
+        //    startVelocity.x += m_GroundRigidBody.velocity.x;
+        //    m_Rigidbody2D.velocity = startVelocity;
+        //  }
+        //}
+
+        if (m_Grounded)
+        {
+          var bw = debug_GroundObject.GetComponent<BezierWalk>();
+          if (!bw && transform.parent) transform.SetParent(null);
+          else if (bw && !transform.parent)
+          {
+            transform.SetParent(bw.transform);
+          }
+        }
+        else if (transform.parent) transform.SetParent(null);
 
       }
       // If sliding
@@ -221,6 +249,7 @@ namespace Coop
       if (m_Grounded && jump && m_Anim.GetBool("Ground") && !m_SlipperySlope)
       {
         // Add a vertical force to the player.
+        transform.SetParent(null);
         m_Grounded = false;
         m_Anim.SetBool("Ground", false);
         m_Anim.SetTrigger("Jump");
