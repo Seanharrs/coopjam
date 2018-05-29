@@ -150,9 +150,19 @@ namespace Coop
 				avgPos = activePlayers[0].transform.position;
 			else
 			{
-				float maxY = activePlayers.Max(p => p.transform.position.y) - (vertLength / 2);
+				float yMax = activePlayers.Max(p => p.transform.position.y) - (vertLength / 2);
+				float yMin = activePlayers.Min(p => p.transform.position.y) + (vertLength / 2);
+				float twoThirdsCamHeight = (vertLength / 3 * 2);
+				float halfCamHeight = (vertLength / 2);
+
 				avgPos = activePlayers.Select(p => p.transform.position).Aggregate((total, next) => total += next) / activePlayers.Count;
-				avgPos.y = Mathf.Max(avgPos.y, maxY);
+
+				if(yMax - yMin > twoThirdsCamHeight)
+					m_ZoomStates.Add(Zoom.Out);
+				else if(yMax - yMin > halfCamHeight)
+					m_ZoomStates.Add(Zoom.None);
+				else if(m_CurrZoom >= MAX_ZOOM_LEVEL)
+					avgPos.y = Mathf.Max(avgPos.y, yMax);
 			}
 
 			Vector3 clamped = avgPos + m_Offset;
@@ -180,12 +190,14 @@ namespace Coop
 			pos.x = Mathf.Clamp(pos.x, xMin, xMax);
 
 			float yMin = pos.y;
-			float maxY = camPos.y + vertLength - objBounds.y;
+			float yMax = camPos.y + vertLength - objBounds.y;
 
 			if(constrainAxisY)
 				yMin = camPos.y - vertLength + objBounds.y;
-			
-			pos.y = Mathf.Clamp(pos.y, pos.y, maxY);
+			else if(Mathf.Abs(pos.y - camPos.y) > vertLength)
+				m_ZoomStates[m_ZoomStates.Count - 1] = Zoom.Out;
+
+			pos.y = Mathf.Clamp(pos.y, pos.y, yMax);
 
 			return pos;
 		}
