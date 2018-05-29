@@ -53,8 +53,11 @@ public class BezierWalk : MonoBehaviour {
       }
     }
     Vector3 position = spline.GetPoint(progress);
-    //transform.position = position;
-    GetComponent<Rigidbody2D>().MovePosition(position);
+    // transform.position = position;
+    var rb = GetComponent<Rigidbody2D>();
+    //var vel = rb.velocity;
+    //position = Vector2.SmoothDamp(transform.position, position, ref vel, .01f);
+    rb.MovePosition(position);
     
     if (lookForward)
     {

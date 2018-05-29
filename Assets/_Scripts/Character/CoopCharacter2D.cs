@@ -32,7 +32,6 @@ namespace Coop
       set
       {
         m_NormalGravity = value;
-        // m_Rigidbody2D.gravityScale = value; <- this actually doubles up gravity, we are handling gravity in this component directly.
       }
     }
 
@@ -47,7 +46,7 @@ namespace Coop
     private Vector3 m_SlopePerpendicular;
     private LayerMask m_SlopeMask;
     private bool m_SlipperySlope = false;
-    private GameObject debug_GroundObject; // TODO: Remove.
+    private GameObject m_GroundObject; // TODO: Remove.
     private BezierWalk platformParent;
 
     private bool IsOnSlope 
@@ -111,10 +110,12 @@ namespace Coop
       // TODO: Confirm hits exist and only do below averaging based on raycasts that hit.
       float sumSlopes = 0;
       Vector2 sumNormals = Vector2.zero;
+
       int hitCount = 0;
       foreach(var hit in hits)
       {
         if(!hit || !hit.collider.isTrigger) continue;
+        m_GroundObject = hit.collider.gameObject;
         var rb = hit.collider.GetComponent<Rigidbody2D>();
         if (rb && !m_GroundRigidBody) m_GroundRigidBody = rb;
         sumSlopes += Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg - 90;
@@ -196,35 +197,30 @@ namespace Coop
         // The Speed animator parameter is set to the absolute value of the horizontal input.
         m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
-        // Move the character
-        if (m_Slope > 15 && m_Slope < 90 && !(m_Jumping || m_Falling))
+        if(move != 0)
         {
-          Debug.Log("applying slope velocity.");
-          m_Rigidbody2D.velocity = move * m_MaxSpeed * m_SlopePerpendicular;
-        }
-        else
-          m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
-
-        // TODO: Move with ground if ground is moving (do dynamic/kinematic a.k.a. "not static" check)
-        //if(m_GroundRigidBody)
-        //{
-        //  Debug.Log("Ground has a rigidbody: " + m_GroundRigidBody.name);
-        //  if(m_GroundRigidBody.bodyType != RigidbodyType2D.Static)
-        //  {
-        //    var startVelocity = m_Rigidbody2D.velocity;
-        //    startVelocity.x += m_GroundRigidBody.velocity.x;
-        //    m_Rigidbody2D.velocity = startVelocity;
-        //  }
-        //}
-
-        if (m_Grounded)
-        {
-          var bw = debug_GroundObject.GetComponent<BezierWalk>();
-          if (!bw && transform.parent) transform.SetParent(null);
-          else if (bw && !transform.parent)
+          // Move the character
+          if (m_Slope > 15 && m_Slope < 90 && !(m_Jumping || m_Falling))
           {
-            transform.SetParent(bw.transform);
+            Debug.Log("applying slope velocity.");
+            m_Rigidbody2D.velocity = move * m_MaxSpeed * m_SlopePerpendicular;
           }
+          else
+            m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
+        } else
+        {
+          
+        }
+
+        if (m_Grounded && m_GroundObject)
+        {
+          var ground_rb = m_GroundObject.GetComponent<Rigidbody2D>();
+          if(ground_rb)
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, ground_rb.velocity.y);
+          
+          if(!transform.parent)
+            transform.SetParent(m_GroundObject.transform);
+          
         }
         else if (transform.parent) transform.SetParent(null);
 
@@ -268,9 +264,9 @@ namespace Coop
       string output = "Slope: " + (m_Slope);
       output += "\nSlope Front: " + (m_SignedSlope_front);
       output += "\nSlope Mid: " + (m_SignedSlope_mid);
-      if (debug_GroundObject != null)
+      if (m_GroundObject != null)
       {
-        output += "\n" + "Ground Object: " + debug_GroundObject.name;
+        output += "\n" + "Ground Object: " + m_GroundObject.name;
       }
 
       GUI.TextArea(new Rect(0, 0, 200, 200), output);
@@ -286,8 +282,8 @@ namespace Coop
       var start = (Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius);
       var hit = Physics2D.Raycast(start, Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
 
-      if (hit)
-        debug_GroundObject = hit.collider.gameObject;
+      //if (hit)
+      //  m_GroundObject = hit.collider.gameObject;
 
       DrawGroundHitGizmos(start, hit);
 
