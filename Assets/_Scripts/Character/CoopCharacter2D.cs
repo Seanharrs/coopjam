@@ -261,25 +261,25 @@ namespace Coop
     }
 
 #if UNITY_EDITOR
-    /// <summary>
-    /// OnGUI is called for rendering and handling GUI events.
-    /// This function can be called multiple times per frame (one call per event).
-    /// </summary>
-    void OnGUI()
-    {
-      string output = "Slope: " + (m_Slope);
-      output += "\nSlope Front: " + (m_SignedSlope_front);
-      output += "\nSlope Mid: " + (m_SignedSlope_mid);
-      if (m_GroundObject != null)
-      {
-        output += "\n" + "Ground Object: " + m_GroundObject.name;
-      }
+    ///// <summary>
+    ///// OnGUI is called for rendering and handling GUI events.
+    ///// This function can be called multiple times per frame (one call per event).
+    ///// </summary>
+    //void OnGUI()
+    //{
+    //  string output = "Slope: " + (m_Slope);
+    //  output += "\nSlope Front: " + (m_SignedSlope_front);
+    //  output += "\nSlope Mid: " + (m_SignedSlope_mid);
+    //  if (m_GroundObject != null)
+    //  {
+    //    output += "\n" + "Ground Object: " + m_GroundObject.name;
+    //  }
 
-      GUI.TextArea(new Rect(0, 0, 200, 200), output);
-    }
+    //  GUI.TextArea(new Rect(0, 0, 200, 200), output);
+    //}
 
     /// <summary>
-    /// Callback to draw gizmos that are pickable and always drawn.
+    /// Callback to draw Gizmos that are Pickable and always drawn.
     /// </summary>
     void OnDrawGizmos()
     {
