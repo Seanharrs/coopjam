@@ -44,6 +44,7 @@ namespace Coop
     private float m_SignedSlope_mid;
     private Vector3 m_SlopeNormal;
     private Vector3 m_SlopePerpendicular;
+    [SerializeField, Tooltip("Which layers can be tested for ground.")]
     private LayerMask m_SlopeMask;
     private bool m_SlipperySlope = false;
     private GameObject m_GroundObject; // TODO: Remove.
@@ -77,7 +78,7 @@ namespace Coop
       m_CircleCollider = GetComponent<CircleCollider2D>();
       m_GravitySensitive = GetComponent<GravitySensitive>();
       m_Rigidbody2D.centerOfMass = m_CircleCollider.offset - ((Vector2)transform.up * m_CircleCollider.radius);
-      m_SlopeMask = ~LayerMask.GetMask("Characters");
+      //m_SlopeMask = ~LayerMask.GetMask("Characters");
       m_InitialScale = transform.localScale;
 
       m_Rigidbody2D.gravityScale = 0;
@@ -114,8 +115,8 @@ namespace Coop
       int hitCount = 0;
       foreach(var hit in hits)
       {
-        if(!hit || !hit.collider.isTrigger) continue;
-        m_GroundObject = hit.collider.gameObject;
+        if(!hit || hit.collider.isTrigger) continue;
+        m_GroundObject = (hit.collider.gameObject.layer & m_SlopeMask) == hit.collider.gameObject.layer ? hit.collider.gameObject : null;
         var rb = hit.collider.GetComponent<Rigidbody2D>();
         if (rb && !m_GroundRigidBody) m_GroundRigidBody = rb;
         sumSlopes += Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg - 90;
@@ -252,6 +253,11 @@ namespace Coop
         m_Rigidbody2D.AddForce(new Vector2(0f, Mathf.Sign(m_NormalGravity) * m_JumpForce));
         m_Jumping = true;
       }
+    }
+
+    private void OnDestroy()
+    {
+      Debug.Log("Destroying now.");
     }
 
 #if UNITY_EDITOR

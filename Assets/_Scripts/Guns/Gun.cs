@@ -43,6 +43,8 @@ namespace Coop {
     internal Transform AmmoSpawnLocation;
     internal AudioSource m_AudioSource;
 
+    internal CoopCharacter2D m_OwnerCharacter;
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>

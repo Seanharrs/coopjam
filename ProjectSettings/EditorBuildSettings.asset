@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Recording.unity
     guid: bb1232a152e522a43942513fb1978cb1
+  - enabled: 1
+    path: Assets/_Scenes/Pause_Menu.unity
+    guid: b136a7f48ae953245ab931cde91caee1
   m_configObjects: {}

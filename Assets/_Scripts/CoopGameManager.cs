@@ -164,6 +164,7 @@ namespace Coop
     private void SceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {
 
+      if (scene.name == "Pause_Menu") return;
       // TODO: This wont help with the menu scenes unless we implement level manager to work with them as well.
       m_LevelManager = FindObjectOfType<LevelManager>();
       if (m_LevelManager == null) {

@@ -22,10 +22,14 @@ namespace Coop
 
     void OnTriggerEnter2D(Collider2D other)
     {
-      if (other.GetComponent<CoopUserControl>())
+      var userControl = other.GetComponent<CoopUserControl>();
+      if (userControl)
       {
-        if (AddUnique(other.GetComponent<CoopUserControl>()))
+        if (AddUnique(userControl))
         {
+
+          userControl.ExitLevel();
+
           if (CoopGameManager.instance.playerData.Count() == overlappedPlayers.Count())
           {
             // Debug.Log("All players overlapping");
@@ -44,11 +48,13 @@ namespace Coop
               if (!m_AudioSource)
                 Debug.LogWarning("AUdiosource not provided.");
             }
-            
-            StartCoroutine(WaitThenAct(5f, () => 
-                          {
-                            FindObjectOfType<LevelManager>().LevelComplete();
-                          }));
+
+            FindObjectOfType<LevelManager>().LevelComplete();
+
+            // StartCoroutine(WaitThenAct(5f, () => 
+            //              {
+            //                FindObjectOfType<LevelManager>().LevelComplete();
+            //              }));
 
           }
         }
