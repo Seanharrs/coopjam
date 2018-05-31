@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 // using UnityStandardAssets.CrossPlatformInput;
 
 namespace Coop
@@ -9,7 +10,8 @@ namespace Coop
   public enum PlayerInputMode
   {
     Game = 1,
-    UI = 2
+    UI = 2,
+    Disabled = 3
   }
   [RequireComponent(typeof(CoopCharacter2D), typeof(Health))]
   public class CoopUserControl : MonoBehaviour
@@ -27,6 +29,14 @@ namespace Coop
         m_CanFire = value;
         m_HideGun = !value;
       }
+    }
+
+    internal void ExitLevel()
+    {
+      // TODO: Play sound.
+      if (gun) SetGun(null);
+      GetComponent<Animator>().SetTrigger("FlickerOut");
+      SetInputMode(PlayerInputMode.Disabled);
     }
 
     private PlayerInputMode m_InputMode = PlayerInputMode.Game;
@@ -70,11 +80,11 @@ namespace Coop
     private Health m_HP;
     private Animator m_Anim;
     private BoxCollider2D m_Coll;
-    private LevelManager m_LevelControl;
+    private LevelManager m_LevelManager;
 
     private void Awake()
     {
-      m_LevelControl = FindObjectOfType<LevelManager>();
+      m_LevelManager = FindObjectOfType<LevelManager>();
 
       m_Character = GetComponent<CoopCharacter2D>();
       m_HP = GetComponent<Health>();
@@ -96,7 +106,7 @@ namespace Coop
 
     private void Update()
     {
-      if(m_HP.isDead)
+      if(m_HP.isDead || m_InputMode == PlayerInputMode.Disabled)
         return;
       
       if (!m_Jump)
@@ -220,10 +230,14 @@ namespace Coop
         }
         else if (Input.GetButtonDown(controlData.openMenuPause))
         {
-          // Debug.Log("Pressed: Pause");
-          Time.timeScale = 0;
-          // TODO: Show pause menu
-          SetInputMode(Coop.PlayerInputMode.UI);
+          if (Time.timeScale != 0)
+          {
+            // Debug.Log("Pressed: Pause");
+            m_LevelManager.ShowPauseMenu();
+            Time.timeScale = 0;
+            // TODO: Show pause menu
+            SetInputMode(Coop.PlayerInputMode.UI);
+          }
         }
       }
       #endregion
@@ -237,9 +251,11 @@ namespace Coop
         if (Input.GetButtonDown(controlData.openMenuPause))
         { // && !canGoBack
           // Close menu
-          SetInputMode(PlayerInputMode.Game);
+          m_LevelManager.HidePauseMenu();
           Time.timeScale = 1;
           Debug.Log("Pressed: Unpause");
+
+          SetInputMode(PlayerInputMode.Game);
         }
         else if (Input.GetButtonDown(controlData.submitButton))
         {
@@ -286,20 +302,23 @@ namespace Coop
         newAngle += 180;
       }
       //newAngle +=  (Mathf.Sign(transform.lossyScale.x) < 0 ? 180 : 0);
-      
 
       // Simply rotating an additional 180 degrees if the player is facing backward works and makes sense but feels like a hack. What's the better way to do this?
       rotateObject.transform.rotation = Quaternion.Euler(0, 0, newAngle);
     }
 
-    private static void UnidirectionalRotate(float verticalAim, GameObject rotateObject)
+    private void UnidirectionalRotate(float verticalAim, GameObject rotateObject)
     {
+      var character = GetComponent<CoopCharacter2D>();
+      if (character.NormalGravity < 0) verticalAim *= -1;
       rotateObject.transform.Rotate(0, 0, verticalAim);
-      var zRotation = rotateObject.transform.rotation.eulerAngles.z;
+
+      var zRotation = rotateObject.transform.localRotation.eulerAngles.z;
       if (zRotation > 90 && zRotation < 270)
       {
         if (zRotation < 180) zRotation = 90; else zRotation = 270;
-        rotateObject.transform.rotation = Quaternion.Euler(0, 0, zRotation);
+
+        rotateObject.transform.localRotation = Quaternion.Euler(0, 0, zRotation);
       }
     }
 
@@ -320,6 +339,7 @@ namespace Coop
       else
       {
         this.gun = Instantiate(playerGun, gunSocket.transform.position, gunSocket.transform.rotation, gunSocket.transform);
+        gun.m_OwnerCharacter = m_Character;
         // TODO: This seems so wrong. Gotta clean up the pipeline somehow.
         CoopGameManager.instance.SetPlayerGun(this, playerGun);
       }
@@ -327,7 +347,7 @@ namespace Coop
 
     private void FixedUpdate()
     {
-      if(m_HP.isDead)
+      if(m_HP.isDead || m_InputMode == PlayerInputMode.Disabled)
         return;
       
       // Read the inputs.
@@ -341,7 +361,7 @@ namespace Coop
     //Clamp player position to within camera view
     private void LateUpdate()
     {
-      if(m_HP.isDead)
+      if(m_HP.isDead || m_InputMode == PlayerInputMode.Disabled)
         return;
       
       transform.position = m_Cam.ConstrainToView(transform.position, m_Bounds);
@@ -371,7 +391,7 @@ namespace Coop
 
     private void RespawnPlayer()
     {
-      if(!m_LevelControl.ActiveCheckpoint.IsVisible)
+      if(!m_LevelManager.ActiveCheckpoint.IsVisible)
       {
         var cam = FindObjectOfType<MultiplayerFollow>();
         var camPos = cam.transform.position;

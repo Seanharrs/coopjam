@@ -41,6 +41,16 @@ namespace Coop
 
         internal bool ChangeGravity(Gun sourceGun, FiringState type)
         {
+            var c2d = GetComponent<CoopCharacter2D>();
+            if(c2d)
+            {
+              var gun_c2d = sourceGun.GetComponentInParent<CoopCharacter2D>();
+              if(c2d == gun_c2d)
+              {
+                return false;
+              }
+            }
+
             if(type == FiringState.Primary && m_canReverseGravity)
             {
                 StartCoroutine(Reverse());

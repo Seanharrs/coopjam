@@ -20,6 +20,9 @@ namespace Coop
     [SerializeField]
     private Color m_SecondaryColor = Color.white;
 
+    [SerializeField]
+    private bool m_DoNotOverrideColor = false;
+
     private FiringState m_Type = FiringState.Primary;
     internal FiringState type { get { return m_Type; } }
 
@@ -33,34 +36,61 @@ namespace Coop
 
     public virtual void Initiate(Vector2 direction, Gun gun, FiringState type = FiringState.Primary, Vector2? target = null)
     {
-      GetComponent<Rigidbody2D>().velocity = direction * m_ProjectileSpeed;
-      transform.localRotation = Quaternion.Euler(0, 0, Quaternion.LookRotation(-direction.normalized).eulerAngles.x);
-      if(Mathf.Sign(gun.GetComponentInParent<CoopCharacter2D>().transform.lossyScale.x) < 0)
-      {
-        Debug.Log("Reversed/flipped.");
-        var rot = transform.localRotation.eulerAngles;
-        rot.z += 180;
-        transform.localRotation = Quaternion.Inverse(Quaternion.Euler(rot));
-      }
-      // var systems = GetComponentsInChildren<ParticleSystem>();
-      // foreach(var ps in systems) {
-      //   //var m = ps.main;
-      //   ps.
-      //   Debug.Log("Set rotation to: " + ps.transform.rotation.eulerAngles);
+      GetComponent<Rigidbody2D>().velocity = direction.normalized * m_ProjectileSpeed;
+      //transform.localRotation = Quaternion.Euler(0, 0, Quaternion.LookRotation(-direction.normalized).eulerAngles.x);
+      //if(Mathf.Sign(gun.GetComponentInParent<CoopCharacter2D>().transform.lossyScale.x) < 0)
+      //{
+      //  Debug.Log("Reversed/flipped.");
+      //  var rot = transform.localRotation.eulerAngles;
+      //  rot.z += 180;
+      //  transform.localRotation = Quaternion.Inverse(Quaternion.Euler(rot));
+      //}
+      transform.right = direction.normalized;
 
-      //   ps.Play();
-      // }
       m_OwnerGun = gun;
       m_Type = type;
 
       if(target != null)
         crossTarget = target;
-      
-      SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-      if(type == FiringState.Primary)
-        renderer.color = m_PrimaryColor;
-      else
-        renderer.color = m_SecondaryColor;
+
+      if (!m_DoNotOverrideColor)
+      {
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        ParticleSystem system = GetComponent<ParticleSystem>();
+        TrailRenderer trail = GetComponent<TrailRenderer>();
+        if (type == FiringState.Primary)
+        {
+          renderer.color = m_PrimaryColor;
+          if (system)
+          {
+            foreach (var s in system.GetComponentsInChildren<ParticleSystem>())
+            {
+              var main = s.main;
+              main.startColor = m_PrimaryColor;
+            }
+          }
+          //if(trail)
+          //{
+          //  trail.startColor = m_PrimaryColor;
+          //}
+        }
+        else
+        {
+          renderer.color = m_SecondaryColor;
+          if (system)
+          {
+            foreach (var s in system.GetComponentsInChildren<ParticleSystem>())
+            {
+              var main = s.main;
+              main.startColor = m_SecondaryColor;
+            }
+          }
+          //if (trail)
+          //{
+          //  trail.startColor = m_SecondaryColor;
+          //}
+        }
+      }
     }
   }
 }

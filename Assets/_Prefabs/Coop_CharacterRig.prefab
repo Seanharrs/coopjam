@@ -656,6 +656,9 @@ MonoBehaviour:
   m_MaxSlope: 50
   m_NormalGravity: 3
   m_SlopeGravity: 25
+  m_SlopeMask:
+    serializedVersion: 2
+    m_Bits: 257
   floorTestCollider: {fileID: 61969712049750068}
   slipperySlopeMaterial: {fileID: 6200000, guid: 88efa86b3a8e90247be931199507788f,
     type: 2}

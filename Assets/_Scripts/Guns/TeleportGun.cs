@@ -105,21 +105,21 @@ namespace Coop
       int overlappedCount = collider.OverlapCollider(filter, results);
       if (overlappedCount > 0)
       {
-        Debug.Log("target:" + m_TargetLocation.Value);
+        //Debug.Log("target:" + m_TargetLocation.Value);
         bool adjustedX = false, adjustedY = false;
         for (int i = 0; i < results.Length; ++i)
         {
           Collider2D c = results[i];
-          Debug.Log("Checking... " + c);
+          //Debug.Log("Checking... " + c);
           if(!c) return;
 
           if(!c.isTrigger && c != collider)
           {
             Vector3 cHitPos = c.transform.InverseTransformPoint(m_TargetLocation.Value) - (Vector3)c.offset;
-            Debug.Log("local hit pos: " + cHitPos);
+            //Debug.Log("local hit pos: " + cHitPos);
 
             var p = collider.transform.position;
-            Debug.Log("Original Position: " + p);
+            //Debug.Log("Original Position: " + p);
 
             bool hitTopOrBottom = Mathf.Abs(cHitPos.y) >= c.bounds.extents.y;
             bool hitLeftOrRight = Mathf.Abs(cHitPos.x) >= c.bounds.extents.x;
@@ -130,7 +130,7 @@ namespace Coop
 
             if(hitTopOrBottom)
             {
-              Debug.Log("Adjusting on Y... " + c);
+              //Debug.Log("Adjusting on Y... " + c);
               if(adjustedY) Debug.Log("already adjusted");
               else p.y += collider.bounds.extents.y * Mathf.Sign(cHitPos.y);
               adjustedY = true;
@@ -138,13 +138,13 @@ namespace Coop
 
             if(hitLeftOrRight)
             {
-              Debug.Log("Adjusting on X... " + c);
+              //Debug.Log("Adjusting on X... " + c);
               if(adjustedX) Debug.Log("already adjusted");
               else p.x += collider.bounds.extents.x * Mathf.Sign(cHitPos.x);
               adjustedX = true;
             }
 
-            Debug.Log("New position: " + p);
+            //Debug.Log("New position: " + p);
             collider.transform.position = p;
 
             //

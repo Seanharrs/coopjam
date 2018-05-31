@@ -46,6 +46,23 @@ namespace Coop {
     internal float musicWaitTime = 10f;
 
     internal MultiplayerFollow m_Cam;
+    private PauseMenu m_PauseMenu;
+    internal PauseMenu PauseMenu
+    {
+      get {
+        if (!m_PauseMenu)
+        {
+          var existingMenus = Resources.FindObjectsOfTypeAll<PauseMenu>();
+          if(existingMenus.Length == 0)
+            SceneManager.LoadScene("Pause_Menu", LoadSceneMode.Additive);
+          existingMenus = Resources.FindObjectsOfTypeAll<PauseMenu>();
+          if (existingMenus.Length == 0) return null;
+          m_PauseMenu = existingMenus[0];
+          m_PauseMenu.gameObject.SetActive(false);
+        }
+        return m_PauseMenu;
+      }
+    }
 
     private static LevelManager m_Instance;
 
@@ -70,6 +87,19 @@ namespace Coop {
       if(m_ActiveCheckpoint)
         m_ActiveCheckpoint.SetActive(true);
 
+      if (!m_PauseMenu)
+      {
+        var existingMenus = Resources.FindObjectsOfTypeAll<PauseMenu>();
+        if (existingMenus.Length == 0)
+          SceneManager.LoadScene("Pause_Menu", LoadSceneMode.Additive);
+        existingMenus = Resources.FindObjectsOfTypeAll<PauseMenu>();
+        if (existingMenus.Length != 0)
+        {
+          m_PauseMenu = existingMenus[0];
+          m_PauseMenu.gameObject.SetActive(false);
+        }
+      }
+
     }
 
     private void SceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -89,6 +119,16 @@ namespace Coop {
     internal static Vector3 GetRespawnLocation()
     {
       return m_Instance.m_ActiveCheckpoint.spawnAtPoint.position;
+    }
+
+    internal void ShowPauseMenu()
+    {
+      PauseMenu.gameObject.SetActive(true);
+    }
+
+    internal void HidePauseMenu()
+    {
+      PauseMenu.gameObject.SetActive(false);
     }
   }
 }
