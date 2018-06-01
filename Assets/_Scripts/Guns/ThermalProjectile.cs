@@ -7,12 +7,12 @@ namespace Coop
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {
-          Debug.Log("THermal triggered.");
+			Debug.Log("Thermal triggered.");
             ThermalSensitive thermalObj = collision.GetComponent<ThermalSensitive>();
             Projectile projectileComponent = GetComponent<Projectile>();
             if(thermalObj != null)
             {
-                if(GetComponent<Projectile>().type == FiringState.Primary)
+                if(projectileComponent.type == FiringState.Primary)
                     thermalObj.Heat(projectileComponent.OwnerGun, projectileComponent.type);
                 else
                     thermalObj.Cool(projectileComponent.OwnerGun, projectileComponent.type);
