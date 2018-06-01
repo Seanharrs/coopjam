@@ -22642,6 +22642,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114635089661692242, guid: 7fe5c230420447b4bab4498b429da183,
+        type: 2}
+      propertyPath: OnStartCharge.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4284568841192382, guid: 7fe5c230420447b4bab4498b429da183, type: 2}
       propertyPath: m_LocalPosition.x
       value: 20
@@ -22674,9 +22679,39 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114635089661692242, guid: 7fe5c230420447b4bab4498b429da183,
+        type: 2}
+      propertyPath: OnStartCharge.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1394524183}
+    - target: {fileID: 114635089661692242, guid: 7fe5c230420447b4bab4498b429da183,
+        type: 2}
+      propertyPath: OnStartCharge.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635089661692242, guid: 7fe5c230420447b4bab4498b429da183,
+        type: 2}
+      propertyPath: OnStartCharge.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635089661692242, guid: 7fe5c230420447b4bab4498b429da183,
+        type: 2}
+      propertyPath: OnStartCharge.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635089661692242, guid: 7fe5c230420447b4bab4498b429da183,
+        type: 2}
+      propertyPath: OnStartCharge.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fe5c230420447b4bab4498b429da183, type: 2}
   m_IsPrefabAsset: 0
+--- !u!198 &1394524183 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198447046909303792, guid: 7fe5c230420447b4bab4498b429da183,
+    type: 2}
+  m_PrefabInternal: {fileID: 1394524182}
 --- !u!1 &1400198065
 GameObject:
   m_ObjectHideFlags: 0

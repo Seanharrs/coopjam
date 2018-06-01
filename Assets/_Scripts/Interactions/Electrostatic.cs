@@ -34,7 +34,8 @@ namespace Coop
 		{
 			if(canInterrupt && OnStopCharge.GetPersistentEventCount() > 0)
 			{
-				m_PS.Stop();
+				if(m_PS.isPlaying)
+					m_PS.Stop();
 				OnStopCharge.Invoke(sourceGun, weapType);
 			}
 			return canInterrupt;
