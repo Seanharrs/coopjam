@@ -376,6 +376,7 @@ MonoBehaviour:
   m_ProjectileSpeed: 10
   m_PrimaryColor: {r: 0.5235849, g: 0.9246907, b: 1, a: 0.7058824}
   m_SecondaryColor: {r: 0.42454743, g: 0.4009434, b: 1, a: 0.6862745}
+  m_DoNotOverrideColor: 0
 --- !u!198 &198637242644505846
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -14009,8 +14010,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1915476707
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -14066,9 +14067,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1915476707
+  m_SortingLayer: 5
+  m_SortingOrder: 2
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
