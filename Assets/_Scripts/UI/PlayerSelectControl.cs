@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -78,7 +79,12 @@ namespace Coop
       SetInteractable(!newReady, true); // ready button should remain interactable.
       isReady = newReady;
 
-      readyButton.GetComponentInChildren<Text>().text = isReady ? "Cancel" : "Play";
+      var t = readyButton.GetComponentInChildren<Text>();
+      var tm = readyButton.GetComponentInChildren<TextMeshProUGUI>();
+      if(t)
+        t.text = isReady ? "Waiting..." : "Play";
+      if(tm)
+        tm.text = isReady ? "Waiting..." : "Play";
     }
 
     internal void ToggleReady()
