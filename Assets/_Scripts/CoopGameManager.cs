@@ -81,6 +81,10 @@ namespace Coop
     [SerializeField]
     internal AudioMixer m_AudioMixer;
 
+    [SerializeField]
+    internal GameObject m_InteractSpritePrefab;
+    private static GameObject m_InteractSpriteInstance;
+
     private LevelManager m_LevelManager;
     private int m_MusicIndex = -1;
     private float m_LastMusicPlayTime = -1;
@@ -382,6 +386,29 @@ namespace Coop
           "Errors ecountered:\n - " + String.Join("\n - ", errors.ToArray())
           , "OK", "Cancel");
 
+    }
+
+    internal static void ShowInteractIcon(Interactable interactable)
+    {
+
+      var iconPosition = interactable.GetComponent<Collider2D>().bounds.center + (Vector3)interactable.m_IconOffset;
+
+
+      if (m_InteractSpriteInstance == null)
+      {
+        m_InteractSpriteInstance = Instantiate(m_Instance.m_InteractSpritePrefab, iconPosition, Quaternion.identity);
+      }
+      else
+      {
+        m_InteractSpriteInstance.gameObject.SetActive(true);
+        m_InteractSpriteInstance.transform.position = iconPosition;
+      }
+    }
+
+    internal static void HideInteractIcon()
+    {
+      if (m_InteractSpriteInstance)
+        m_InteractSpriteInstance.gameObject.SetActive(false);
     }
 #endif
   }

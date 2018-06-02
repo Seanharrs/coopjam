@@ -10908,6 +10908,16 @@ Prefab:
       propertyPath: m_EdgeRadius
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212611314905659276, guid: 7865ce34c72bbd34abab3c17b76b970c,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 1016890119
+      objectReference: {fileID: 0}
+    - target: {fileID: 212611314905659276, guid: 7865ce34c72bbd34abab3c17b76b970c,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
   m_IsPrefabAsset: 0
@@ -24843,6 +24853,16 @@ Prefab:
         type: 2}
       propertyPath: m_EdgeRadius
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212611314905659276, guid: 7865ce34c72bbd34abab3c17b76b970c,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 1016890119
+      objectReference: {fileID: 0}
+    - target: {fileID: 212611314905659276, guid: 7865ce34c72bbd34abab3c17b76b970c,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7865ce34c72bbd34abab3c17b76b970c, type: 2}
