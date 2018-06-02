@@ -7,7 +7,7 @@ namespace Coop
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {
-			Debug.Log("Thermal triggered.");
+			      Debug.Log("Thermal triggered.");
             ThermalSensitive thermalObj = collision.GetComponent<ThermalSensitive>();
             Projectile projectileComponent = GetComponent<Projectile>();
             if(thermalObj != null)
