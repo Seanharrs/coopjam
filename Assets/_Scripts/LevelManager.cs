@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,7 +21,9 @@ namespace Coop {
 
 
     [SerializeField]
-    internal Text m_MessageTextbox;
+    internal Image m_MessagePanel;
+    [SerializeField]
+    internal TextMeshProUGUI m_MessageTextbox;
 
     [SerializeField]
     private Checkpoint m_ActiveCheckpoint;

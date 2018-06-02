@@ -298,19 +298,19 @@ namespace Coop
     ///// OnGUI is called for rendering and handling GUI events.
     ///// This function can be called multiple times per frame (one call per event).
     ///// </summary>
-    void OnGUI()
-    {
-      if (FindObjectsOfType<CoopCharacter2D>()[0] != this) return;
-      string output = "Slope: " + (m_SignedSlope);
-      output += "\nSigned up/right: " + (Vector2.SignedAngle(Vector2.up, (Vector2.up + Vector2.right) / 2));
-      output += "\nSigned up/left: " + (Vector2.SignedAngle(Vector2.up, -Vector2.right));
-      if (m_GroundObject != null)
-      {
-        output += "\n" + "Ground Object: " + m_GroundObject.name;
-      }
+    //void OnGUI()
+    //{
+    //  if (FindObjectsOfType<CoopCharacter2D>()[0] != this) return;
+    //  string output = "Slope: " + (m_SignedSlope);
+    //  output += "\nSigned up/right: " + (Vector2.SignedAngle(Vector2.up, (Vector2.up + Vector2.right) / 2));
+    //  output += "\nSigned up/left: " + (Vector2.SignedAngle(Vector2.up, -Vector2.right));
+    //  if (m_GroundObject != null)
+    //  {
+    //    output += "\n" + "Ground Object: " + m_GroundObject.name;
+    //  }
 
-      GUI.TextArea(new Rect(0, 0, 200, 200), output);
-    }
+    //  GUI.TextArea(new Rect(0, 0, 200, 200), output);
+    //}
 
     /// <summary>
     /// Callback to draw Gizmos that are Pickable and always drawn.
@@ -318,7 +318,7 @@ namespace Coop
     void OnDrawGizmos()
     {
       m_CircleCollider = GetComponent<CircleCollider2D>();
-      m_SlopeMask = ~LayerMask.GetMask("Characters");
+      // m_SlopeMask = ~LayerMask.GetMask("Characters");
       var start = bottomMiddle; // (Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius);
       var hit = Physics2D.Raycast(start, Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
 
