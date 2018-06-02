@@ -6,7 +6,12 @@ namespace Coop
   public class CoopCharacter2D : MonoBehaviour
   {
 
-    private const float GROUND_RAY_DISTANCE = .4f;
+    private const float GROUND_RAY_DISTANCE = 2f;
+
+    
+    private Vector2 bottomFront;
+    private Vector2 bottomMiddle;
+    private Vector2 bottomBack;
 
     [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
     [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
@@ -77,8 +82,7 @@ namespace Coop
       m_Rigidbody2D = GetComponent<Rigidbody2D>();
       m_CircleCollider = GetComponent<CircleCollider2D>();
       m_GravitySensitive = GetComponent<GravitySensitive>();
-      m_Rigidbody2D.centerOfMass = m_CircleCollider.offset - ((Vector2)transform.up * m_CircleCollider.radius);
-      //m_SlopeMask = ~LayerMask.GetMask("Characters");
+      m_Rigidbody2D.centerOfMass = m_CircleCollider.offset + ((Vector2)transform.forward * m_CircleCollider.radius); // - ((Vector2)transform.up * m_CircleCollider.radius);
       m_InitialScale = transform.localScale;
 
       m_Rigidbody2D.gravityScale = 0;
@@ -89,7 +93,7 @@ namespace Coop
     {
       m_Grounded = false;
 
-      // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+      // The player is grounded if a circle cast to the ground check position hits anything designated as ground
       // This can be done using layers instead but Sample Assets will not overwrite your project settings.
       Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
       for (int i = 0; i < colliders.Length; i++)
@@ -98,41 +102,66 @@ namespace Coop
           m_Grounded = true;
       }
 
-      // Need to raycast as well to determine slope and angle.
+      bottomFront = (Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius) + (Vector2.right * Mathf.Sign(transform.lossyScale.x) * m_CircleCollider.radius);
+      bottomBack = (Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius) - (Vector2.right * Mathf.Sign(transform.lossyScale.x) * m_CircleCollider.radius);
+      bottomMiddle = (Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius);
+
+      // Need to ray cast as well to determine slope and angle.
       RaycastHit2D[] hits = new RaycastHit2D[3];
-      hits[0] = Physics2D.Raycast((Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius) + (Vector2.right * Mathf.Sign(transform.localScale.x) * m_CircleCollider.radius), Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
-      hits[1] = Physics2D.Raycast((Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius) - (Vector2.right * Mathf.Sign(transform.localScale.x) * m_CircleCollider.radius), Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
-      hits[2] = Physics2D.Raycast((Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius), Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
+      hits[0] = Physics2D.Raycast(bottomFront, Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
+      hits[1] = Physics2D.Raycast(bottomBack, Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
+      hits[2] = Physics2D.Raycast(bottomMiddle, Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
       if (hits[0] && !hits[0].collider.isTrigger && hits[0].collider.sharedMaterial != null && hits[0].collider.sharedMaterial == slipperySlopeMaterial)
         m_SlipperySlope = true;
       else
         m_SlipperySlope = false;
 
-      // TODO: Confirm hits exist and only do below averaging based on raycasts that hit.
-      float sumSlopes = 0;
-      Vector2 sumNormals = Vector2.zero;
+      //var diff = Vector2.SignedAngle(hits[0].normal, hits[1].normal);
+      //var diff2 = Vector2.SignedAngle(hits[1].normal, hits[0].normal);
+      
+      //if (Math.Abs(diff) > 0.1f)
+      //  Debug.Log(diff + ":::" + diff2);
 
-      int hitCount = 0;
-      foreach(var hit in hits)
-      {
-        if(!hit || hit.collider.isTrigger) continue;
-        m_GroundObject = (hit.collider.gameObject.layer & m_SlopeMask) == hit.collider.gameObject.layer ? hit.collider.gameObject : null;
-        var rb = hit.collider.GetComponent<Rigidbody2D>();
-        if (rb && !m_GroundRigidBody) m_GroundRigidBody = rb;
-        sumSlopes += Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg - 90;
-        sumNormals += hit.normal;
-        hitCount++;
-      }
-      if(hits[0].normal == Vector2.up && hits[1].normal == Vector2.up && Vector2.Angle(hits[1].normal, hits[2].normal) <= -15)
-      {
-        m_SignedSlope = Mathf.Atan2(hits[0].normal.y, hits[0].normal.x) * Mathf.Rad2Deg - 90;
-        m_SlopeNormal = hits[0].normal;
-      }
+      //// TODO: Confirm hits exist and only do below averaging based on ray casts that hit.
+      //float sumSlopes = 0;
+      //Vector2 sumNormals = Vector2.zero;
+
+      //int hitCount = 0;
+      //foreach(var hit in hits)
+      //{
+      //  if(!hit || hit.collider.isTrigger) continue;
+      //  m_GroundObject = (hit.collider.gameObject.layer & m_SlopeMask) == hit.collider.gameObject.layer ? hit.collider.gameObject : null;
+      //  var rb = hit.collider.GetComponent<Rigidbody2D>();
+      //  if (rb && !m_GroundRigidBody) m_GroundRigidBody = rb;
+      //  if (!float.IsNaN(hit.normal.x) && !float.IsNaN(hit.normal.y))
+      //  {
+      //    sumSlopes += Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg - 90;
+      //    sumNormals += hit.normal;
+      //    hitCount++;
+      //  }
+      //}
+      //if (diff <= -15)
+      //{
+      //  m_SignedSlope = Mathf.Atan2(hits[0].normal.y, hits[0].normal.x) * Mathf.Rad2Deg - 90;
+      //  m_SlopeNormal = hits[0].normal;
+      //}
+      //else if (diff >= 15)
+      //{
+      //  Debug.Log("Going down???");
+      //  m_SignedSlope = Mathf.Atan2(hits[0].normal.y, hits[0].normal.x) * Mathf.Rad2Deg - 90;
+      //  m_SlopeNormal = (hits[0].normal + hits[1].normal) / 2;
+      //}
+      //else
+      //{
+      //  m_SignedSlope = sumSlopes / hitCount;
+      //  m_SlopeNormal = sumNormals / hitCount;
+      //}
+      m_SlopeNormal = hits[0].normal;
+      m_SignedSlope = Vector2.SignedAngle(Vector2.up, m_SlopeNormal) * Mathf.Sign(transform.lossyScale.x);
+      if ((m_SignedSlope < 1f && m_SignedSlope > -1f) || m_SignedSlope >= 89f)
+        m_SlopeNormal = hits[0] ? hits[0].normal : hits[1] ? hits[1].normal : hits[2] ? hits[2].normal : Vector2.up;
       else
-      {
-        m_SignedSlope = sumSlopes / hitCount;
-        m_SlopeNormal = sumNormals / hitCount;
-      }
+        m_SlopeNormal = Mathf.Sign(m_SignedSlope) > 0 ? hits[0].normal : hits[1].normal;
 
       m_Slope = Mathf.Abs(m_SignedSlope);
 
@@ -144,7 +173,7 @@ namespace Coop
       }
       if (m_Grounded && IsOnSlope)
       {
-        m_Rigidbody2D.AddForce(m_SlopeNormal * Physics2D.gravity * m_NormalGravity);
+        m_Rigidbody2D.AddForce(m_SlopeNormal * Physics2D.gravity * m_NormalGravity * 0.5f);
       }
       else
       {
@@ -201,10 +230,14 @@ namespace Coop
         if(move != 0)
         {
           // Move the character
-          if (m_Slope > 15 && m_Slope < 90 && !(m_Jumping || m_Falling))
+          if (!(m_Jumping || m_Falling) && m_SlopePerpendicular != null && !float.IsNaN(m_SlopePerpendicular.x)) // (m_Slope > 0 && m_Slope < 90 && !(m_Jumping || m_Falling))
           {
-            Debug.Log("applying slope velocity.");
-            m_Rigidbody2D.velocity = move * m_MaxSpeed * m_SlopePerpendicular;
+            var newVelocity = move * m_MaxSpeed * m_SlopePerpendicular;
+            if (newVelocity.magnitude > 0.1f)
+              m_Rigidbody2D.velocity = newVelocity;
+            else
+              m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
+
           }
           else
             m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
@@ -219,7 +252,7 @@ namespace Coop
           if(ground_rb)
             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, ground_rb.velocity.y);
           
-          if(!transform.parent)
+          if(!transform.parent && m_GroundObject.GetComponent<BezierWalk>() != null)
             transform.SetParent(m_GroundObject.transform);
           
         }
@@ -261,15 +294,16 @@ namespace Coop
     }
 
 #if UNITY_EDITOR
-    /// <summary>
-    /// OnGUI is called for rendering and handling GUI events.
-    /// This function can be called multiple times per frame (one call per event).
-    /// </summary>
+    ///// <summary>
+    ///// OnGUI is called for rendering and handling GUI events.
+    ///// This function can be called multiple times per frame (one call per event).
+    ///// </summary>
     void OnGUI()
     {
-      string output = "Slope: " + (m_Slope);
-      output += "\nSlope Front: " + (m_SignedSlope_front);
-      output += "\nSlope Mid: " + (m_SignedSlope_mid);
+      if (FindObjectsOfType<CoopCharacter2D>()[0] != this) return;
+      string output = "Slope: " + (m_SignedSlope);
+      output += "\nSigned up/right: " + (Vector2.SignedAngle(Vector2.up, (Vector2.up + Vector2.right) / 2));
+      output += "\nSigned up/left: " + (Vector2.SignedAngle(Vector2.up, -Vector2.right));
       if (m_GroundObject != null)
       {
         output += "\n" + "Ground Object: " + m_GroundObject.name;
@@ -279,21 +313,43 @@ namespace Coop
     }
 
     /// <summary>
-    /// Callback to draw gizmos that are pickable and always drawn.
+    /// Callback to draw Gizmos that are Pickable and always drawn.
     /// </summary>
     void OnDrawGizmos()
     {
       m_CircleCollider = GetComponent<CircleCollider2D>();
       m_SlopeMask = ~LayerMask.GetMask("Characters");
-      var start = (Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius);
+      var start = bottomMiddle; // (Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius);
       var hit = Physics2D.Raycast(start, Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
+
+      DrawGroundHitGizmos(start, hit);
 
       //if (hit)
       //  m_GroundObject = hit.collider.gameObject;
 
+      if (m_SlopePerpendicular != null)
+      {
+        if (m_Rigidbody2D)
+        {
+          Gizmos.color = Color.magenta;
+          Gizmos.DrawRay(transform.position, m_Rigidbody2D.velocity.normalized * 4);
+        }
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawRay(transform.position - transform.up, m_SlopePerpendicular.normalized * 4);
+      } else
+      {
+          Gizmos.color = Color.magenta;
+          Gizmos.DrawWireCube(transform.position, Vector3.one);
+      }
+
+
+      start = bottomFront; // (Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius) + (Vector2.right * Mathf.Sign(transform.localScale.x) * m_CircleCollider.radius);
+      hit = Physics2D.Raycast(start, Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
+
       DrawGroundHitGizmos(start, hit);
 
-      start = (Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius) + (Vector2.right * Mathf.Sign(transform.localScale.x) * m_CircleCollider.radius);
+      start = bottomBack; 
       hit = Physics2D.Raycast(start, Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
 
       DrawGroundHitGizmos(start, hit);
@@ -311,7 +367,7 @@ namespace Coop
       Gizmos.DrawSphere(hit.point, .15f);
 
       var perpStart = hit.point + hit.normal;
-      var perpendicular = Vector2.Perpendicular(hit.normal);
+      var perpendicular = Vector2.Perpendicular(hit.normal) * -Mathf.Sign(transform.lossyScale.x);
       Gizmos.color = Color.red;
       Gizmos.DrawLine(perpStart, perpStart + perpendicular);
       Gizmos.DrawSphere(perpStart, .15f);
