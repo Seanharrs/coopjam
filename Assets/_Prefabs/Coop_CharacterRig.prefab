@@ -35,6 +35,7 @@ GameObject:
   - component: {fileID: 114474097172430586}
   - component: {fileID: 114528723132736130}
   - component: {fileID: 114329824752243218}
+  - component: {fileID: 70294658794128780}
   m_Layer: 9
   m_Name: Coop_CharacterRig
   m_TagString: Player
@@ -77,7 +78,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.629921, y: 11.426121, z: 0}
+  m_LocalPosition: {x: 17.067535, y: -3.173023, z: 0}
   m_LocalScale: {x: 1.771533, y: 1.771533, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -130,9 +131,9 @@ CircleCollider2D:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 4a7696911043c7f449828e3cfb41e92d, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.1, y: -0.45}
   serializedVersion: 2
@@ -145,9 +146,9 @@ BoxCollider2D:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 4a7696911043c7f449828e3cfb41e92d, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.12, y: 0.33}
   m_SpriteTilingProperty:
@@ -433,14 +434,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1843913069083398}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.4405044, w: 0.8977505}
   m_LocalPosition: {x: 0.206, y: 0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4533013003283686}
   m_Father: {fileID: 400002}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -52.272003}
 --- !u!58 &58202210969915864
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -464,7 +465,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1546894737094534}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 4a7696911043c7f449828e3cfb41e92d, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -481,6 +482,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0.1
+--- !u!70 &70294658794128780
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.099, y: 0.15}
+  m_Size: {x: 0.33, y: 1.5}
+  m_Direction: 0
 --- !u!82 &82411637549160056
 AudioSource:
   m_ObjectHideFlags: 1
@@ -658,7 +674,7 @@ MonoBehaviour:
   m_SlopeGravity: 25
   m_SlopeMask:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 1
   floorTestCollider: {fileID: 61969712049750068}
   slipperySlopeMaterial: {fileID: 6200000, guid: 88efa86b3a8e90247be931199507788f,
     type: 2}
