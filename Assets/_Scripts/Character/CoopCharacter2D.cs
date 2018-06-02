@@ -318,7 +318,7 @@ namespace Coop
     void OnDrawGizmos()
     {
       m_CircleCollider = GetComponent<CircleCollider2D>();
-      m_SlopeMask = ~LayerMask.GetMask("Characters");
+      // m_SlopeMask = ~LayerMask.GetMask("Characters");
       var start = bottomMiddle; // (Vector2)m_CircleCollider.bounds.center + (Vector2.down * m_CircleCollider.radius);
       var hit = Physics2D.Raycast(start, Vector2.down, GROUND_RAY_DISTANCE, m_SlopeMask);
 

@@ -66,7 +66,7 @@ namespace Coop
           Transform barTransform = transform.GetChild(0);
 
           float newRotZ = m_IsActive ? ACTIVE_ROT : INACTIVE_ROT;
-          float currRotZ = barTransform.rotation.eulerAngles.z;
+          float currRotZ = barTransform.localRotation.eulerAngles.z;
           int direction = m_IsActive ? -1 : 1; // right : left
 
           while(Mathf.Abs(currRotZ - newRotZ) >= 1f)
@@ -77,12 +77,12 @@ namespace Coop
               else if(currRotZ < 0f)
                   currRotZ += 360f;
 
-              barTransform.rotation = Quaternion.Euler(0, 0, currRotZ);
+              barTransform.localRotation = Quaternion.Euler(0, 0, currRotZ);
 
               yield return new WaitForFixedUpdate();
           }
 
-          barTransform.rotation = Quaternion.Euler(0, 0, newRotZ);
+          barTransform.localRotation = Quaternion.Euler(0, 0, newRotZ);
 
           yield return null;
       }

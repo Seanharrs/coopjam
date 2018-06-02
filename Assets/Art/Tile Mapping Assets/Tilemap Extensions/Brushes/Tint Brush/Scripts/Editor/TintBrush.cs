@@ -37,7 +37,7 @@ namespace UnityEditor
 			}
 		}
 
-		private static void SetColor(Tilemap tilemap, Vector3Int position, Color color)
+    private static void SetColor(Tilemap tilemap, Vector3Int position, Color color)
 		{
 			TileBase tile = tilemap.GetTile(position);
 			if (tile != null)
@@ -53,8 +53,9 @@ namespace UnityEditor
 						Debug.LogWarning("Tint brush cancelled. because Tile (" + tile.name + ") has TileFlags.LockColor set. Unset it in GetTileData().");
 					}
 				}
-
-				tilemap.SetColor(position, color);
+        if (tilemap.GetColor(position) != color)
+				  tilemap.SetColor(position, color);
+        
 			}
 		}
 	}

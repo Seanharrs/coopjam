@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets._2D;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -262,11 +263,30 @@ namespace Coop
     public static IEnumerator ShowMessage(string message, float displayTime = 5f, bool isFatal = false)
     {
       var lm = FindObjectOfType<LevelManager>();
-      if (lm.m_MessageTextbox)
+      if (lm && lm.m_MessageTextbox)
       {
-        lm.m_MessageTextbox.text = message;
+        var panel = lm.m_MessagePanel.GetComponent<Image>();
+        var textbox = lm.m_MessageTextbox;
+        Color32 color = panel.color;
+
+        textbox.gameObject.SetActive(true);        
+        textbox.text = message;
+
+        if (panel)
+        {
+          panel.gameObject.SetActive(true);
+          color.a = 100;
+          panel.color = color;
+        }
+
         yield return new WaitForSeconds(displayTime);
-        lm.m_MessageTextbox.text = "";
+
+        textbox.text = "";
+        if (panel)
+        {
+          color.a = 0;
+          panel.color = color;
+        }
       }
       else
       {
@@ -275,6 +295,15 @@ namespace Coop
 
       if (isFatal)
         Application.Quit();
+    }
+    public static void HideMessage()
+    {
+      var lm = FindObjectOfType<LevelManager>();
+      var textbox = lm.m_MessageTextbox;
+      if (textbox) textbox.gameObject.SetActive(false);
+      
+      var panel = lm.m_MessagePanel;
+      if (panel) panel.gameObject.SetActive(false);
     }
 
 
