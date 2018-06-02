@@ -325,4 +325,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6156e158dd3f24d4d99624c680219a36, type: 3}
   - {fileID: 21300000, guid: a9d5faf863da4c849b6ec3bf0a6d4a92, type: 3}
   m_AudioMixer: {fileID: 24100000, guid: 66e3fec324ff3bd4d8891b4cfa8f802b, type: 2}
-  interactSprite: {fileID: 21300002, guid: 8407cc004210f214bae880909e610dd6, type: 3}
+  m_InteractSpritePrefab: {fileID: 1488353824274734, guid: 338baa9ed53cb7f4d9c5d58f7ebe3895,
+    type: 2}

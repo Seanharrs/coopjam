@@ -668,7 +668,7 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 4294963423
+    m_Bits: 23
   m_MaxSlope: 50
   m_NormalGravity: 3
   m_SlopeGravity: 25

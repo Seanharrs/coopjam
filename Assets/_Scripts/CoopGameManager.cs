@@ -391,7 +391,8 @@ namespace Coop
     internal static void ShowInteractIcon(Interactable interactable)
     {
 
-      var iconPosition = interactable.GetComponent<Collider2D>().bounds.center + (Vector3)interactable.m_IconOffset;
+      var bounds = interactable.GetComponent<Collider2D>().bounds;
+      var iconPosition = bounds.center + (Vector3.up * bounds.extents.y)  + (Vector3)interactable.m_IconOffset;
 
 
       if (m_InteractSpriteInstance == null)
