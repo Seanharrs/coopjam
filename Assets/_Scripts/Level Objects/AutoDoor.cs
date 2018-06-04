@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Coop
 {
     [RequireComponent(typeof (AudioClip))]
-    public class AutoDoor : MonoBehaviour, IMultiSwitchStateListener
+    public class AutoDoor : MonoBehaviour, ICircuitObjectListener
     {
         [SerializeField]
         private Vector3 m_OpenPos;
@@ -65,5 +65,20 @@ namespace Coop
             else
                 CloseDoor();
         }
+
+    public void OnStateChangePositive(CircuitObject source)
+    {
+      OpenDoor();
     }
+
+    public void OnStateChangeNegative(CircuitObject source)
+    {
+      OpenDoor();
+    }
+
+    public void OnStateChangeOff(CircuitObject source)
+    {
+      CloseDoor();
+    }
+  }
 }

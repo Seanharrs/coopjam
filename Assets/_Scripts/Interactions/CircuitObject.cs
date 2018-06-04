@@ -23,6 +23,10 @@ namespace Coop
 
       [SerializeField]
       private bool m_IsMultiState = false;
+      public bool IsMultiState
+      {
+        get { return m_IsMultiState;  }
+      }
 
       private bool m_SwitchEnabled = true;
       internal bool SwitchEnabled {
@@ -33,11 +37,11 @@ namespace Coop
       }
 
       [SerializeField]
-      private CircuitEvent m_OnStateChanged_Positive = new CircuitEvent();
+      public CircuitEvent m_OnStateChanged_Positive = new CircuitEvent();
       [SerializeField]
-      private CircuitEvent m_OnStateChanged_Off = new CircuitEvent();
+      public CircuitEvent m_OnStateChanged_Off = new CircuitEvent();
       [SerializeField]
-      private CircuitEvent m_OnStateChanged_Negative = new CircuitEvent();
+      public CircuitEvent m_OnStateChanged_Negative = new CircuitEvent();
 
       private void Awake()
       {
