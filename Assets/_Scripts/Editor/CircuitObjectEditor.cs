@@ -15,7 +15,7 @@ namespace Coop
     private CircuitObject m_Target;
 
     public static bool isConnecting = false;
-    private const float handleSize = 0.4f;
+    private const float handleSize = 0.8f;
     private const float pickSize = 0.6f;
     private const float lineSize = 10f;
 
@@ -58,7 +58,7 @@ namespace Coop
           {
             MonoBehaviour listenerBehavior = listener as MonoBehaviour;
             Handles.color = Color.red;
-            if(Handles.Button(listenerBehavior.transform.position, Quaternion.identity, size * handleSize, size * pickSize, Handles.CircleHandleCap))
+            if(Handles.Button(listenerBehavior.transform.position, Quaternion.identity, size * handleSize * 2, size * pickSize, Handles.SphereHandleCap))
             {
               ConnectCircuitEditorWindow.Show(m_Target, listener);
               isConnecting = false;
