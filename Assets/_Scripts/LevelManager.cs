@@ -110,7 +110,7 @@ namespace Coop {
     {
       m_Cam = FindObjectOfType<MultiplayerFollow>();
       if(!m_Cam) CoopGameManager.ShowMessage("Please add a follow camera to the scene.", 5f, true);        
-      m_Cam.AcquirePlayerRefs();
+      else m_Cam.AcquirePlayerRefs();
     }
 
     public void LevelComplete()
