@@ -23,7 +23,7 @@ namespace Coop
 		{
 			if(canInterrupt && OnStartCharge.GetPersistentEventCount() > 0)
 			{
-				if(!m_PS.isPlaying)
+				if(m_PS && !m_PS.isPlaying)
 					m_PS.Play();
 				OnStartCharge.Invoke(sourceGun, weapType);
 			}
@@ -34,7 +34,7 @@ namespace Coop
 		{
 			if(canInterrupt && OnStopCharge.GetPersistentEventCount() > 0)
 			{
-				if(m_PS.isPlaying)
+				if(m_PS && m_PS.isPlaying)
 					m_PS.Stop();
 				OnStopCharge.Invoke(sourceGun, weapType);
 			}
