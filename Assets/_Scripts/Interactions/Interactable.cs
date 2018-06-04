@@ -2,28 +2,31 @@
 using UnityEngine.Events;
 using Coop;
 
-public class Interactable : MonoBehaviour
+namespace Coop
 {
-    [SerializeField]
-    private UnityEvent m_OnInteract = new UnityEvent();
+	public class Interactable : MonoBehaviour
+	{
+		[SerializeField]
+		private UnityEvent m_OnInteract = new UnityEvent();
 
-  [SerializeField]
-  internal Vector2 m_IconOffset = Vector2.zero;
+		[SerializeField]
+		internal Vector2 m_IconOffset = Vector2.zero;
 
-    public void Interact()
-    {
-        m_OnInteract.Invoke();
-    }
+		public void Interact()
+		{
+			m_OnInteract.Invoke();
+		}
 
-  private void OnTriggerEnter2D(Collider2D collision)
-  {
-    if(collision.gameObject.GetComponent<CoopCharacter2D>() != null)
-      CoopGameManager.ShowInteractIcon(this);
-  }
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+			if(collision.gameObject.GetComponent<CoopCharacter2D>() != null)
+				CoopGameManager.ShowInteractIcon(this);
+		}
 
-  private void OnTriggerExit2D(Collider2D collision)
-  {
-    if (collision.gameObject.GetComponent<CoopCharacter2D>() != null)
-      CoopGameManager.HideInteractIcon();
-  }
+		private void OnTriggerExit2D(Collider2D collision)
+		{
+			if(collision.gameObject.GetComponent<CoopCharacter2D>() != null)
+				CoopGameManager.HideInteractIcon();
+		}
+	}
 }

@@ -416,8 +416,9 @@ namespace Coop
           , "OK", "Cancel");
 
     }
+#endif
 
-    internal static void ShowInteractIcon(Interactable interactable)
+    public static void ShowInteractIcon(Interactable interactable)
     {
 
       var bounds = interactable.GetComponent<Collider2D>().bounds;
@@ -435,11 +436,10 @@ namespace Coop
       }
     }
 
-    internal static void HideInteractIcon()
+    public static void HideInteractIcon()
     {
       if (m_InteractSpriteInstance)
         m_InteractSpriteInstance.gameObject.SetActive(false);
     }
-#endif
   }
 }

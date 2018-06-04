@@ -20,6 +20,8 @@ namespace Coop
 
         private AudioSource m_AudioSource;
 
+		private bool m_IsOpen = false;
+
         private void Awake()
         {
             m_AudioSource = GetComponent<AudioSource>();
@@ -50,13 +52,21 @@ namespace Coop
               if(!m_AudioSource)
                 Debug.LogWarning("AUdiosource not provided.");
             }
+			m_IsOpen = true;
             StartCoroutine(MoveDoor(m_OpenPos));
         }
 
         public void CloseDoor()
         {
+			m_IsOpen = false;
             StartCoroutine(MoveDoor(m_ClosedPos));
         }
+
+		public void ToggleDoor()
+		{
+			if(m_IsOpen) CloseDoor();
+			else OpenDoor();
+		}
 
         public void OnSwitchStateChanged(MultiSwitch multiSwitch, SwitchState state)
         {
