@@ -3,7 +3,12 @@ guid: 5d7f74febe3c5894183bd15bf8a1f75c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sprite_IconLightning: {fileID: 21300000, guid: 56452e15f0759cd40a0ee99cbf2229ac,
+      type: 3}
+  - sprite_IconChainlink: {fileID: 21300002, guid: 56452e15f0759cd40a0ee99cbf2229ac,
+      type: 3}
+  - buttonSkin: {fileID: 11400000, guid: 396d1a462a0c8fd4fb11b42dfbd61e2a, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1207525975478612}
+  m_IsPrefabAsset: 1
+--- !u!1 &1207525975478612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4741488188781802}
+  - component: {fileID: 114316312000052158}
+  m_Layer: 0
+  m_Name: Spline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4741488188781802
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1207525975478612}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 7, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &114316312000052158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1207525975478612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6032857161906c241a0b078a22a5affc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {x: 2.0000012, y: -11.000001, z: 0}
+  - {x: 2.000001, y: -10, z: 0}
+  - {x: 2.0000017, y: -9.000001, z: 0}
+  - {x: 2.0000012, y: -8.000001, z: 0}
+  - {x: 2.0000007, y: -7, z: 0}
+  - {x: 2, y: -6, z: 0}
+  - {x: 2.0000007, y: -5, z: 0}
+  - {x: 2.0000014, y: -4.0287585, z: 0}
+  - {x: 2.0000005, y: -2.9999998, z: 0}
+  - {x: 2.0000005, y: -1.9999998, z: 0}
+  - {x: 2.0000005, y: -1, z: 0}
+  - {x: 2, y: 0.00000023841858, z: 0}
+  - {x: 2, y: 1.0000004, z: 0}
+  - {x: 2, y: 2.0000005, z: 0}
+  - {x: 1.9999998, y: 3.0000007, z: 0}
+  - {x: 1.9999998, y: 4.000001, z: 0}
+  - {x: 1.9999998, y: 5.000001, z: 0}
+  - {x: 1.9999993, y: 6.000001, z: 0}
+  - {x: 1.9999993, y: 7.000001, z: 0}
+  - {x: 1.9999993, y: 8.000001, z: 0}
+  - {x: 1.9999993, y: 9.000001, z: 0}
+  - {x: 1.9999993, y: 10.000001, z: 0}
+  - {x: 1.9999993, y: 11.000001, z: 0}
+  - {x: 1.9999983, y: 12.000002, z: 0}
+  - {x: 1.9999983, y: 13.000002, z: 0}
+  modes: 000000000100000001000000010000000200000000000000000000000000000000000000
+  loop: 0

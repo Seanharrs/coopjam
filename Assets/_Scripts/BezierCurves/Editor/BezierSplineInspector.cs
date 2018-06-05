@@ -28,6 +28,7 @@ public class BezierSplineInspector : Editor
     Color.yellow,
     Color.cyan
   };
+  public float snapToAmount = 1f;
 
   private void OnSceneGUI()
   {
@@ -38,9 +39,9 @@ public class BezierSplineInspector : Editor
     Vector3 p0 = ShowPoint(0);
     for (int i = 1; i < spline.ControlPointCount; i += 3)
     {
-      Vector3 p1 = ShowPoint(i);
-      Vector3 p2 = ShowPoint(i + 1);
-      Vector3 p3 = ShowPoint(i + 2);
+      Vector3 p1 = ShowPoint(i, Color.red);
+      Vector3 p2 = ShowPoint(i + 1, Color.green);
+      Vector3 p3 = ShowPoint(i + 2, Color.blue);
 
       Handles.color = Color.gray;
       Handles.DrawLine(p0, p1);
@@ -50,8 +51,15 @@ public class BezierSplineInspector : Editor
       p0 = p3;
     }
 
+    if(Event.current.type == EventType.MouseDown && Event.current.button == 0 && Event.current.control)
+    {
+      var position = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin;
+      position.z = spline.GetPoint(1f).z;
+      spline.AddCurveAtPosition(position);
+    }
+
     ShowDirections();
-    
+
   }
 
   private void ShowDirections()
@@ -67,7 +75,7 @@ public class BezierSplineInspector : Editor
     }
   }
 
-  private Vector3 ShowPoint(int index)
+  private Vector3 ShowPoint(int index, Color? color = null)
   {
     Vector3 point = handleTransform.TransformPoint(spline.GetControlPoint(index));
     float size = HandleUtility.GetHandleSize(point);
@@ -75,7 +83,7 @@ public class BezierSplineInspector : Editor
     {
       size *= 2f;
     }
-    Handles.color = modeColors[(int)spline.GetControlPointMode(index)];
+    Handles.color = color != null ? color.Value : modeColors[(int)spline.GetControlPointMode(index)];
     if (Handles.Button(point, handleRotation, size * handleSize, size * pickSize, Handles.DotHandleCap))
     {
       selectedIndex = index;
@@ -85,19 +93,31 @@ public class BezierSplineInspector : Editor
     {
       EditorGUI.BeginChangeCheck();
       point = Handles.DoPositionHandle(point, handleRotation);
+      if (Event.current.shift || Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+      {
+        point.x = RoundToNearest(point.x, snapToAmount);
+        point.y = RoundToNearest(point.y, snapToAmount);
+        Debug.Log("Snapped (at " + snapToAmount + "): " + point);
+      }
       if (EditorGUI.EndChangeCheck())
       {
         Undo.RecordObject(spline, "Move Point");
         EditorUtility.SetDirty(spline);
+        
         spline.SetControlPoint(index, handleTransform.InverseTransformPoint(point));
       }
     }
     return point;
   }
 
+  private float RoundToNearest(float inputNumber, float roundTo)
+  {
+    return ((int)(inputNumber / roundTo)) * roundTo;
+  }
+
   public override void OnInspectorGUI()
   {
-    DrawDefaultInspector();
+    //DrawDefaultInspector();
 
     spline = target as BezierSpline;
 
@@ -109,6 +129,8 @@ public class BezierSplineInspector : Editor
       EditorUtility.SetDirty(spline);
       spline.Loop = loop;
     }
+
+    snapToAmount = EditorGUILayout.FloatField("Snap Amount:", snapToAmount);
 
     if (selectedIndex >= 0 && selectedIndex < spline.ControlPointCount)
     {
@@ -131,6 +153,7 @@ public class BezierSplineInspector : Editor
     {
       Undo.RecordObject(spline, "Move Point");
       EditorUtility.SetDirty(spline);
+
       spline.SetControlPoint(selectedIndex, point);
     }
     EditorGUI.BeginChangeCheck();

@@ -4,13 +4,13 @@ using UnityEngine;
 namespace Coop
 {
     [RequireComponent(typeof (AudioClip))]
-    public class AutoDoor : MonoBehaviour, IMultiSwitchStateListener
+    public class AutoDoor : MonoBehaviour, ICircuitObjectListener
     {
         [SerializeField]
         private Vector3 m_OpenPos;
 
         [SerializeField]
-		private Vector3 m_ClosedPos;
+		    private Vector3 m_ClosedPos;
 
         [SerializeField]
         private float m_Speed = 5f;
@@ -20,7 +20,7 @@ namespace Coop
 
         private AudioSource m_AudioSource;
 
-		private bool m_IsOpen = false;
+		    private bool m_IsOpen = false;
 
         private void Awake()
         {
@@ -52,21 +52,21 @@ namespace Coop
               if(!m_AudioSource)
                 Debug.LogWarning("AUdiosource not provided.");
             }
-			m_IsOpen = true;
+			      m_IsOpen = true;
             StartCoroutine(MoveDoor(m_OpenPos));
         }
 
         public void CloseDoor()
         {
-			m_IsOpen = false;
+			      m_IsOpen = false;
             StartCoroutine(MoveDoor(m_ClosedPos));
         }
 
-		public void ToggleDoor()
-		{
-			if(m_IsOpen) CloseDoor();
-			else OpenDoor();
-		}
+		    public void ToggleDoor()
+		    {
+			    if(m_IsOpen) CloseDoor();
+			    else OpenDoor();
+		    }
 
         public void OnSwitchStateChanged(MultiSwitch multiSwitch, SwitchState state)
         {
@@ -75,5 +75,20 @@ namespace Coop
             else
                 CloseDoor();
         }
-    }
+
+        public void OnStateChangePositive(CircuitObject source)
+        {
+          OpenDoor();
+        }
+
+        public void OnStateChangeNegative(CircuitObject source)
+        {
+          OpenDoor();
+        }
+
+        public void OnStateChangeOff(CircuitObject source)
+        {
+          CloseDoor();
+        }
+  }
 }

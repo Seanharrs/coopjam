@@ -130,6 +130,30 @@ public class BezierSpline : MonoBehaviour
     return GetVelocity(t).normalized;
   }
 
+  public void AddCurveAtPosition(Vector3 position)
+  {
+    Vector3 lastPoint = points[points.Length - 1];
+    Array.Resize(ref points, points.Length + 3);
+
+    Vector3 newPoint = transform.InverseTransformPoint(position);
+    points[points.Length - 3] = lastPoint + (transform.rotation * Vector3.right);
+    newPoint = transform.InverseTransformPoint(position) + (transform.rotation * Vector3.right);
+    points[points.Length - 2] = newPoint;
+    newPoint = transform.InverseTransformPoint(position);
+    points[points.Length - 1] = newPoint;
+
+    Array.Resize(ref modes, modes.Length + 1);
+    modes[modes.Length - 1] = modes[modes.Length - 2];
+    EnforceMode(points.Length - 4);
+
+    if (loop)
+    {
+      points[points.Length - 1] = points[0];
+      modes[modes.Length - 1] = modes[0];
+      EnforceMode(0);
+    }
+  }
+
   public void AddCurve()
   {
     Vector3 point = points[points.Length - 1];
