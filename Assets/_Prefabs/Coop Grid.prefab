@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4579653862644366}
   - component: {fileID: 2569400266799229490}
+  - component: {fileID: 114641460435999760}
   m_Layer: 0
   m_Name: Coop Grid
   m_TagString: Untagged
@@ -230,6 +231,17 @@ CompositeCollider2D:
   m_CompositePaths:
     m_Paths: []
   m_VertexDistance: 0.0005
+--- !u!114 &114641460435999760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1573962791140624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c1bb5f7cefb5684ab67ea6aab3a970a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!19719996 &2113883504822683268
 TilemapCollider2D:
   m_ObjectHideFlags: 1
